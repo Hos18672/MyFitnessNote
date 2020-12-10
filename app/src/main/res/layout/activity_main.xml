@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@drawable/blur_blue_uu22">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Profile"
+        android:textSize="50dp"
+        tools:layout_editor_absoluteX="151dp"
+        tools:layout_editor_absoluteY="82dp"
+        android:layout_margin="20dp"/>
+
+
+        <TextView
+            android:id="@+id/main_userIdTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="User ID"
+            tools:layout_editor_absoluteX="151dp"
+            tools:layout_editor_absoluteY="224dp"
+            android:layout_margin="20dp"/>
+
+        <TextView
+            android:id="@+id/main_usernameTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Username"
+            tools:layout_editor_absoluteX="151dp"
+            tools:layout_editor_absoluteY="224dp"
+            android:layout_margin="20dp"/>
+
+    <TextView
+        android:id="@+id/main_emailTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email"
+        tools:layout_editor_absoluteX="158dp"
+        tools:layout_editor_absoluteY="301dp"
+        android:layout_margin="20dp"/>
+
+        <Button
+            android:id="@+id/main_logOut_btn"
+            android:layout_width="116dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape"
+            android:text="Log out"
+            tools:layout_editor_absoluteX="150dp"
+            tools:layout_editor_absoluteY="530dp"
+            android:layout_margin="20dp"/>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
