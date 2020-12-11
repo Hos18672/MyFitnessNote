@@ -8,47 +8,54 @@
     android:background="@drawable/blur_blue_uu22">
 
     <LinearLayout
+        android:id="@+id/ll1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center"
         android:orientation="vertical"
-        android:gravity="center">
+        tools:ignore="UselessParent">
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="254dp"
             android:layout_height="162dp"
+            android:contentDescription="@string/app_name"
             app:srcCompat="@drawable/logo1"
             tools:layout_editor_absoluteX="58dp"
             tools:layout_editor_absoluteY="39dp" />
 
         <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Login"
-            android:textSize="40dp"
-        tools:layout_editor_absoluteX="165dp"
-        tools:layout_editor_absoluteY="218dp" />
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login"
+            android:textSize="40sp"
+            tools:layout_editor_absoluteX="165dp"
+            tools:layout_editor_absoluteY="218dp" />
 
-    <EditText
-        android:id="@+id/login_email_input"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        tools:layout_editor_absoluteX="99dp"
-        tools:layout_editor_absoluteY="270dp"
-        android:layout_margin="20dp"/>
+        <EditText
+            android:id="@+id/login_email_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            tools:layout_editor_absoluteX="99dp"
+            tools:layout_editor_absoluteY="270dp"
+            android:autofillHints=""
+            tools:ignore="LabelFor" />
 
-    <EditText
-        android:id="@+id/login_password_input"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPassword"
-        tools:layout_editor_absoluteX="99dp"
-        tools:layout_editor_absoluteY="363dp"
-        android:layout_margin="20dp"/>
+        <EditText
+            android:id="@+id/login_password_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:ems="10"
+            android:inputType="textPassword"
+            tools:layout_editor_absoluteX="99dp"
+            tools:layout_editor_absoluteY="363dp"
+            android:importantForAutofill="no"
+            tools:ignore="LabelFor" />
 
 
         <Button
@@ -57,15 +64,16 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:background="@drawable/shape"
-            android:text="Login"
+            android:text="@string/login"
             tools:layout_editor_absoluteX="154dp"
             tools:layout_editor_absoluteY="508dp" />
+
         <TextView
             android:id="@+id/login_signUpTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Don't have an account?"
             android:layout_margin="20dp"
+            android:text="@string/don_t_have_an_account"
             tools:layout_editor_absoluteX="174dp"
             tools:layout_editor_absoluteY="601dp" />
     </LinearLayout>

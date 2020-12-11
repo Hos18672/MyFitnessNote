@@ -19,58 +19,64 @@
             android:layout_height="162dp"
             app:srcCompat="@drawable/logo1"
             tools:layout_editor_absoluteX="58dp"
-            tools:layout_editor_absoluteY="39dp" />
+            tools:layout_editor_absoluteY="39dp"
+            android:contentDescription="@string/todo" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sign Up"
-            android:textSize="40dp"
+            android:text="@string/sign_up"
+            android:textSize="40sp"
             tools:layout_editor_absoluteX="165dp"
             tools:layout_editor_absoluteY="218dp" />
         <EditText
             android:id="@+id/signUpUsernameInput"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Username"
+            android:hint="@string/username"
             android:ems="10"
 
             tools:layout_editor_absoluteX="99dp"
             tools:layout_editor_absoluteY="363dp"
-            android:layout_margin="20dp"/>
+            android:layout_margin="20dp"
+            android:autofillHints=""
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/signUp_email_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Email"
+            android:hint="@string/email"
             android:inputType="textEmailAddress"
             tools:layout_editor_absoluteX="99dp"
             tools:layout_editor_absoluteY="270dp"
-            android:layout_margin="20dp"/>
+            android:layout_margin="20dp"
+            android:autofillHints="" />
 
         <EditText
             android:id="@+id/signUp_password_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Password"
+            android:hint="@string/password"
             android:inputType="textPassword"
             tools:layout_editor_absoluteX="99dp"
             tools:layout_editor_absoluteY="363dp"
-            android:layout_margin="20dp"/>
+            android:layout_margin="20dp"
+            android:autofillHints="" />
         <EditText
             android:id="@+id/signUp_password_input2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Password"
+            android:hint="@string/password"
             android:inputType="textPassword"
             tools:layout_editor_absoluteX="99dp"
             tools:layout_editor_absoluteY="363dp"
-            android:layout_margin="20dp"/>
+            android:layout_margin="20dp"
+            android:autofillHints="" />
 
 
         <Button
@@ -79,14 +85,14 @@
             android:layout_height="47dp"
             android:layout_margin="20dp"
             android:background="@drawable/shape"
-            android:text="Sign Up"
+            android:text="@string/sign_up"
             tools:layout_editor_absoluteX="154dp"
             tools:layout_editor_absoluteY="508dp" />
         <TextView
             android:id="@+id/signUp_loginText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Have an account?"
+            android:text="@string/have_an_account"
             android:layout_margin="20dp"
             tools:layout_editor_absoluteX="174dp"
             tools:layout_editor_absoluteY="601dp" />
