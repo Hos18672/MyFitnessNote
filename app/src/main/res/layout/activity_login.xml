@@ -35,16 +35,17 @@
             tools:layout_editor_absoluteX="165dp"
             tools:layout_editor_absoluteY="218dp" />
         <com.google.android.material.card.MaterialCardView
-            android:layout_width="300dp"
+            android:layout_width="320dp"
             android:layout_height="wrap_content"
             android:background="@android:color/white"
+            android:layout_margin="20dp"
             app:cardCornerRadius="15dp">
             <LinearLayout
                 android:id="@+id/ll2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:layout_margin="10dp"
+                android:layout_margin="20dp"
                 android:orientation="vertical"
                 tools:ignore="UselessParent">
 
