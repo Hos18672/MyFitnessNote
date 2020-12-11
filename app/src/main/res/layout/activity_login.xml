@@ -29,50 +29,82 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/login"
-            android:textSize="40sp"
+            android:textSize="50sp"
+            android:textColor="#000000"
+            android:layout_marginBottom="20dp"
             tools:layout_editor_absoluteX="165dp"
             tools:layout_editor_absoluteY="218dp" />
-
-        <EditText
-            android:id="@+id/login_email_input"
-            android:layout_width="wrap_content"
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:ems="10"
-            android:inputType="textEmailAddress"
-            tools:layout_editor_absoluteX="99dp"
-            tools:layout_editor_absoluteY="270dp"
-            android:autofillHints=""
-            tools:ignore="LabelFor" />
+            android:background="@android:color/white"
+            app:cardCornerRadius="15dp">
+            <LinearLayout
+                android:id="@+id/ll2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_margin="10dp"
+                android:orientation="vertical"
+                tools:ignore="UselessParent">
 
-        <EditText
-            android:id="@+id/login_password_input"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:ems="10"
-            android:inputType="textPassword"
-            tools:layout_editor_absoluteX="99dp"
-            tools:layout_editor_absoluteY="363dp"
-            android:importantForAutofill="no"
-            tools:ignore="LabelFor" />
+                <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/inputEmail"
+                            style="@style/EditText.OutlinedBox"
+                            android:layout_margin="5dp"
+                            app:boxStrokeColor="#0287FB"
+                            android:textColorHint="#8D8D8E"
+                            android:outlineSpotShadowColor="#0909F6"
+                            android:layout_width="260dp"
+                            android:layout_height="60dp">
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/login_email_input"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:hint="E-Mail"
+                                android:inputType="textEmailAddress"
+                                tools:ignore="LabelFor" />
+                </com.google.android.material.textfield.TextInputLayout>
 
 
-        <Button
-            android:id="@+id/login_button"
-            android:layout_width="110dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:background="@drawable/shape"
-            android:text="@string/login"
-            tools:layout_editor_absoluteX="154dp"
-            tools:layout_editor_absoluteY="508dp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/inputPassword"
+                            style="@style/EditText.OutlinedBox"
+                            android:layout_margin="5dp"
+                    app:boxStrokeColor="#0287FB"
+                    android:textColorHint="#8D8D8E"
+                            android:layout_width="260dp"
+                            android:layout_height="60dp">
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/login_password_input"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:hint="Password"
+                                android:inputType="textPassword"
+                                tools:layout_editor_absoluteX="99dp"
+                                tools:ignore="LabelFor" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:id="@+id/login_button"
+                    android:layout_width="260dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/shape"
+                    android:text="@string/login"
+                    tools:layout_editor_absoluteX="154dp"
+                    tools:layout_editor_absoluteY="508dp" />
+    </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
         <TextView
             android:id="@+id/login_signUpTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
+            android:textStyle="bold"
+            android:textColor="#000000"
             android:text="@string/don_t_have_an_account"
             tools:layout_editor_absoluteX="174dp"
             tools:layout_editor_absoluteY="601dp" />
