@@ -33,11 +33,11 @@
             tools:layout_editor_absoluteX="165dp"
             tools:layout_editor_absoluteY="218dp" />
 
-        <com.google.android.material.card.MaterialCardView
+        <androidx.cardview.widget.CardView
             android:layout_width="320dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:background="@android:color/white"
+            app:cardBackgroundColor="#7FFFFFFF"
             android:layout_gravity="center"
             app:cardCornerRadius="15dp">
 
@@ -132,7 +132,7 @@
                     android:background="@drawable/shape"
                     android:text="@string/sign_up" />
             </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/signUp_loginText"
