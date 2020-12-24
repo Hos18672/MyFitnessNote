@@ -1,4 +1,4 @@
-package modle
+package models
 
 import java.util.*
 
@@ -12,19 +12,15 @@ class Workout {
         }
         return training.get(id)
     }
-
     fun add(t :Training)
     {
         if(t != null){
-            if (!training.contains(t))
-            {
-                if (training.size< 100)
-                {
+            if (!training.contains(t)) {
+                if (training.size< 100) {
                     training.add(t)
                 }else{
                     println("workout not founded1")
                 }
-
             }else{
                 println("workout not founded2")
             }
@@ -32,7 +28,6 @@ class Workout {
             println("workout not founded3")
         }
     }
-
     override fun toString(): String {
         var gesamt = ""
         for (m in training)

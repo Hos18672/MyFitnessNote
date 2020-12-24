@@ -1,15 +1,17 @@
 package com.example.myfitneesnote
 
+import activities.R
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.WindowManager
 import android.widget.Toast
+
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_sign_up.*
+import kotlinx.android.synthetic.main.activity_login.toolBar_login_activity
 
 class LoginActivity : AppCompatActivity() {
 
@@ -17,8 +19,14 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
+        setupActionBar()
+
         login_signUpTv.setOnClickListener {
-            startActivity(Intent(this,SignUpActivity::class.java))
+            startActivity(Intent(this, SignUpActivity::class.java))
         }
 
             login_button.setOnClickListener {
@@ -58,6 +66,17 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }
             }
+    }
 
+    private fun setupActionBar()
+    {
+        setSupportActionBar(toolBar_login_activity)
+        var actionBar = supportActionBar
+        if(actionBar!=null)
+        {
+            actionBar.setDisplayHomeAsUpEnabled(true)
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_navigate_before_black_24dp)
+        }
+        toolBar_login_activity.setNavigationOnClickListener{onBackPressed()}
     }
 }

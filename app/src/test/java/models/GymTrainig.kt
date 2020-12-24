@@ -1,4 +1,4 @@
-package modle
+package models
 
   class GymTrainig(id: Int,
                            name: String?,

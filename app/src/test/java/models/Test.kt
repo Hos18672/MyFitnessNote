@@ -1,6 +1,8 @@
-import modle.GymTrainig
-import modle.HomeTrainig
-import modle.Workout
+package models
+
+import models.GymTrainig
+import models.HomeTrainig
+import models.Workout
 
 class Test {
 

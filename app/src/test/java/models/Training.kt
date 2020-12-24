@@ -1,4 +1,4 @@
-package modle
+package models
 
  open abstract class Training : Comparable<Training> {
     var id :Int =0

@@ -1,3 +1,3 @@
-package modle
+package models
 
 data class User(val user_id :Long, val username: String, val email :String, val password : String) 

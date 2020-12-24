@@ -3,60 +3,79 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.myfitneesnote.MainActivity"
     android:background="@drawable/blur_blue_uu22">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center"
         android:orientation="vertical"
-        android:gravity="center">
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/profile"
-        android:textSize="50sp"
-        tools:layout_editor_absoluteX="151dp"
-        tools:layout_editor_absoluteY="82dp"
-        android:layout_margin="20dp"/>
-
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="16dp">
 
         <TextView
-            android:id="@+id/main_userIdTV"
+            android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/user_id"
+            android:layout_margin="20dp"
+            android:text="@string/profile"
+            android:textSize="50sp"
             tools:layout_editor_absoluteX="151dp"
-            tools:layout_editor_absoluteY="224dp"
-            android:layout_margin="20dp"/>
+            tools:layout_editor_absoluteY="82dp" />
 
-        <TextView
-            android:id="@+id/main_usernameTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/username"
-            tools:layout_editor_absoluteX="151dp"
-            tools:layout_editor_absoluteY="224dp"
-            android:layout_margin="20dp"/>
 
-    <TextView
-        android:id="@+id/main_emailTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/email"
-        tools:layout_editor_absoluteX="158dp"
-        tools:layout_editor_absoluteY="301dp"
-        android:layout_margin="20dp"/>
 
-        <Button
-            android:id="@+id/main_logOut_btn"
-            android:layout_width="116dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/shape"
-            android:text="@string/log_out"
-            tools:layout_editor_absoluteX="150dp"
-            tools:layout_editor_absoluteY="530dp"
-            android:layout_margin="20dp"/>
+            <LinearLayout
+                android:id="@+id/ll2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:background="@drawable/shape3"
+                tools:ignore="UselessParent">
+
+
+                <TextView
+                    android:id="@+id/main_userIdTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:text="@string/user_id"
+                    tools:layout_editor_absoluteX="151dp"
+                    tools:layout_editor_absoluteY="224dp" />
+
+                <TextView
+                    android:id="@+id/main_usernameTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:text="@string/username"
+                    tools:layout_editor_absoluteX="151dp"
+                    tools:layout_editor_absoluteY="224dp" />
+
+                <TextView
+                    android:id="@+id/main_emailTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:text="@string/email"
+                    tools:layout_editor_absoluteX="158dp"
+                    tools:layout_editor_absoluteY="301dp" />
+
+                <Button
+                    android:id="@+id/main_logOut_btn"
+                    android:layout_width="184dp"
+                    android:layout_height="35dp"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/shape"
+                    android:text="@string/log_out"
+                    tools:layout_editor_absoluteX="150dp"
+                    tools:layout_editor_absoluteY="530dp" />
+            </LinearLayout>
+
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
