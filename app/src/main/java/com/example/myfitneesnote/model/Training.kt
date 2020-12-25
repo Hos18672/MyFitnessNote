@@ -1,4 +1,4 @@
-package models
+package com.example.myfitneesnote.model
 
  open abstract class Training : Comparable<Training> {
     var id :Int =0

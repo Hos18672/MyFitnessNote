@@ -1,5 +1,6 @@
-package models
+package com.example.myfitneesnote.model
 
+import com.example.myfitneesnote.model.Training
 import java.util.*
 
 class Workout {
@@ -12,7 +13,7 @@ class Workout {
         }
         return training.get(id)
     }
-    fun add(t :Training)
+    fun add(t : Training)
     {
         if(t != null){
             if (!training.contains(t)) {

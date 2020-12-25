@@ -1,8 +1,4 @@
-package models
-
-import models.GymTrainig
-import models.HomeTrainig
-import models.Workout
+package com.example.myfitneesnote.model
 
 class Test {
 

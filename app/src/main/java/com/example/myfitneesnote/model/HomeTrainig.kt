@@ -1,9 +1,9 @@
-package models
+package com.example.myfitneesnote.model
 
 import android.os.Parcel
 import android.os.Parcelable
 
- class HomeTrainig(id: Int,
+class HomeTrainig(id: Int,
                            name: String?,
                            type: String?,
                            descript: String?) : Training(id, name, type, descript), Parcelable {

@@ -1,6 +1,6 @@
-package models
+package com.example.myfitneesnote.model
 
-  class GymTrainig(id: Int,
+class GymTrainig(id: Int,
                            name: String?,
                            type: String?,
                            descript: String?) : Training(id, name, type, descript) {

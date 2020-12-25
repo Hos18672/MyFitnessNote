@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.view.WindowManager
 import android.widget.Toast
+import com.example.myfitneesnote.firebase.FirestoreClass
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -30,9 +31,9 @@ class LoginActivity : BaseActivity() {
             startActivity(Intent(this, SignUpActivity::class.java))
         }
 
-            login_button.setOnClickListener {
+        login_button.setOnClickListener {
                     loginUser()
-            }
+        }
     }
     /**
      * A function to login the user.
@@ -53,7 +54,6 @@ class LoginActivity : BaseActivity() {
                             "Your are logged in Up successfully.",
                             Toast.LENGTH_SHORT
                         ).show()
-
                         val intent = Intent(this@LoginActivity, MainActivity::class.java)
                         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         intent.putExtra("user_id", FirebaseAuth.getInstance().currentUser!!.uid)
@@ -67,8 +67,7 @@ class LoginActivity : BaseActivity() {
             }
         }
     }
-    private fun setupActionBar()
-    {
+    private fun setupActionBar() {
         setSupportActionBar(toolBar_login_activity)
         var actionBar = supportActionBar
         if(actionBar!=null)
@@ -79,7 +78,7 @@ class LoginActivity : BaseActivity() {
         toolBar_login_activity.setNavigationOnClickListener{onBackPressed()}
     }
 
-    fun validateForm(email: String, password: String) : Boolean{
+    private fun validateForm(email: String, password: String) : Boolean{
         return when{
             TextUtils.isEmpty(email)->{
                 showErrorSnackBar("Please enter a  email address")

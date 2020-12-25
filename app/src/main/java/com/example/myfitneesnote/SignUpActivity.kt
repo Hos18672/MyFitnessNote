@@ -1,17 +1,20 @@
 package com.example.myfitneesnote
 
 import activities.R
+import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.WindowManager
 import android.widget.Toast
+import com.example.myfitneesnote.firebase.FirestoreClass
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_sign_up.*
 
+
 class SignUpActivity : BaseActivity() {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +36,7 @@ class SignUpActivity : BaseActivity() {
     /**
      * A function to register the user  and save data on  firestore database.
      */
+    @SuppressLint("RestrictedApi")
     private  fun signUpUser(){
         val name : String = signUpUsernameInput.text.toString().trim{ it <= ' '}
         val email : String = signUp_email_input.text.toString().trim{ it <= ' '}
@@ -42,16 +46,14 @@ class SignUpActivity : BaseActivity() {
             showProgressDialog(resources.getString(R.string.please_wait))
             FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,password).addOnCompleteListener {
                     task ->
-                    hideProgressDialog()
                     if (task.isSuccessful) {
                         val firebaseUser: FirebaseUser = task.result!!.user!!
-                        Toast.makeText(
-                            this@SignUpActivity,
-                            "Your are Signed Up successfully.",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                      //  FirebaseAuth.getInstance().signOut()
+                        val signUpedEmail = firebaseUser.email!!
 
+                        val user = com.example.myfitneesnote.model.User(firebaseUser.uid,name,email)
+                        FirestoreClass().registerUser(this,user)
+
+                      //  FirebaseAuth.getInstance().signOut()
                         val intent = Intent(this@SignUpActivity, MainActivity::class.java)
                         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         intent.putExtra("user_id", firebaseUser.uid)
