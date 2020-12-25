@@ -8,6 +8,7 @@ import android.text.TextUtils
 import android.view.WindowManager
 import android.widget.Toast
 import com.example.myfitneesnote.firebase.FirestoreClass
+import com.example.myfitneesnote.model.User
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -77,7 +78,11 @@ class LoginActivity : BaseActivity() {
         }
         toolBar_login_activity.setNavigationOnClickListener{onBackPressed()}
     }
-
+    fun logInSuccess(user: User){
+            hideProgressDialog()
+            startActivity(Intent(this,MainActivity::class.java))
+            finish()
+    }
     private fun validateForm(email: String, password: String) : Boolean{
         return when{
             TextUtils.isEmpty(email)->{
