@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="activities">
+    package="com.example.myfitneesnote">
 
     <application
         android:allowBackup="true"
@@ -10,24 +10,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name="com.example.myfitneesnote.BaseActivity" />
+        <activity android:name=".myProfileActivity"></activity>
+        <activity android:name=".nav_header_main" />
+        <activity android:name=".drawerActivity" />
+        <activity android:name=".BaseActivity" />
         <activity
-            android:name="com.example.myfitneesnote.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/title_activity_main2"
             android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
         <activity
-            android:name="com.example.myfitneesnote.IntroActivity"
+            android:name=".IntroActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="LockedOrientationActivity" />
-        <activity android:name="com.example.myfitneesnote.LoginActivity" />
+        <activity android:name=".LoginActivity" />
         <activity
-            android:name="com.example.myfitneesnote.SignUpActivity"
+            android:name=".SignUpActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name="com.example.myfitneesnote.SplashActivity"
+            android:name=".SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="LockedOrientationActivity">

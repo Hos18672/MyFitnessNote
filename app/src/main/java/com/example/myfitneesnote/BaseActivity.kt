@@ -1,17 +1,16 @@
 package com.example.myfitneesnote
 
-import activities.R
 import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.text.TextUtils
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.dialog_progress.*
+
 
 open class BaseActivity : AppCompatActivity() {
 
@@ -53,6 +52,13 @@ open class BaseActivity : AppCompatActivity() {
         val snackBarView = snackBar.view
         snackBarView.setBackgroundColor(ContextCompat.getColor(this, R.color.snackBar_error_color))
         snackBar.show()
+    }
+
+    fun fullscreen(){
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
     }
 
 

@@ -1,11 +1,9 @@
 package com.example.myfitneesnote
 
-import activities.R
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
-import android.view.WindowManager
 import android.widget.Toast
 import com.example.myfitneesnote.firebase.FirestoreClass
 import com.google.firebase.auth.FirebaseAuth
@@ -15,15 +13,11 @@ import kotlinx.android.synthetic.main.activity_sign_up.*
 
 class SignUpActivity : BaseActivity() {
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_sign_up)
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
-        )
+        fullscreen()
         setupActionBar()
 
         signUp_loginText.setOnClickListener {
@@ -85,8 +79,7 @@ class SignUpActivity : BaseActivity() {
             }
         }
     }
-    private fun setupActionBar()
-    {
+    private fun setupActionBar() {
         setSupportActionBar(toolBar_sign_up_activity)
         var actionBar = supportActionBar
         if(actionBar!=null)

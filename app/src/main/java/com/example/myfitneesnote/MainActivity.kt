@@ -1,35 +1,33 @@
 package com.example.myfitneesnote
 
-import activities.R
+
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.WindowManager
+import android.view.MenuItem
+import com.example.myfitneesnote.firebase.FirestoreClass
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        //This call the parent constructor
         super.onCreate(savedInstanceState)
+        fullscreen()
         setContentView(R.layout.activity_main)
-
-
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
-        )
-
-        val userId= intent.getStringExtra("user_id")
-        val emailId= intent.getStringExtra("email_id")
-        val usernameId= intent.getStringExtra("userName")
-
-        main_userIdTV.text= "User Id = $userId"
-        main_emailTv.text= "Email = $emailId"
-        main_usernameTV.text= "Username = $usernameId"
-        main_logOut_btn.setOnClickListener {
-            FirebaseAuth.getInstance().signOut()
-            startActivity(Intent(this, LoginActivity::class.java))
-            finish()}
     }
+
+    companion object {
+        //A unique code for starting the activity for result
+        const val MY_PROFILE_REQUEST_CODE: Int = 11
+
+        const val CREATE_BOARD_REQUEST_CODE: Int = 12
+    }
+
+    override fun onNavigationItemSelected(p0: MenuItem): Boolean {
+        TODO("Not yet implemented")
+    }
+
 }

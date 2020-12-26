@@ -1,20 +1,14 @@
 package com.example.myfitneesnote
 
-import activities.R
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
-import android.view.WindowManager
 import android.widget.Toast
-import com.example.myfitneesnote.firebase.FirestoreClass
 import com.example.myfitneesnote.model.User
-
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_login.toolBar_login_activity
-import kotlinx.android.synthetic.main.activity_sign_up.*
 
 class LoginActivity : BaseActivity() {
 
@@ -22,10 +16,7 @@ class LoginActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
-        )
+        fullscreen()
         setupActionBar()
 
         login_signUpTv.setOnClickListener {
@@ -55,7 +46,7 @@ class LoginActivity : BaseActivity() {
                             "Your are logged in Up successfully.",
                             Toast.LENGTH_SHORT
                         ).show()
-                        val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                        val intent = Intent(this@LoginActivity,MainActivity::class.java)
                         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         intent.putExtra("user_id", FirebaseAuth.getInstance().currentUser!!.uid)
                         intent.putExtra("email_id", email)
