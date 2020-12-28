@@ -7,27 +7,24 @@
     android:gravity="bottom"
     android:orientation="vertical"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/iv_user_image"
-        android:layout_width="117dp"
-        android:layout_height="@dimen/nav_image_size"
-        android:layout_marginStart="@dimen/nav_content_margin_StartEnd"
-        android:layout_marginEnd="@dimen/nav_content_margin_StartEnd"
-        android:contentDescription="@string/description"
-        android:src="@drawable/ic_user_place_holder"
-        app:civ_border_color="@android:color/white"
-        app:civ_border_width="@dimen/nav_image_circular_border_width" />
+    
+    <ImageView
+        android:id="@+id/main_drawer_profile_photo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="20dp"
+        app:srcCompat="@drawable/personal_photo__1_" />
 
     <TextView
         android:id="@+id/tv_username"
-        android:layout_width="161dp"
+        android:layout_width="104dp"
         android:layout_height="wrap_content"
+        android:layout_margin="20dp"
         android:layout_marginStart="@dimen/nav_content_margin_StartEnd"
         android:layout_marginTop="@dimen/nav_content_margin_top"
         android:layout_marginEnd="@dimen/nav_content_margin_StartEnd"
         android:layout_marginBottom="@dimen/nav_content_margin_bottom"
-        android:text="@string/app_name"
+        android:text="Your Nmae"
         android:textColor="@android:color/white"
         android:textSize="@dimen/nav_user_name_text_size" />
 
