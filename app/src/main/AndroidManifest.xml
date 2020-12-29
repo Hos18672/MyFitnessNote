@@ -12,11 +12,9 @@
         android:theme="@style/AppTheme.NoActionBar">
         <activity android:name=".myProfileActivity"></activity>
         <activity android:name=".nav_header_main" />
-        <activity android:name=".drawerActivity" />
         <activity android:name=".BaseActivity" />
         <activity
             android:name=".MainActivity"
-            android:label="@string/title_activity_main2"
             android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
         <activity
             android:name=".IntroActivity"

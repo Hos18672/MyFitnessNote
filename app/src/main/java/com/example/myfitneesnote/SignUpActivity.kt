@@ -22,6 +22,7 @@ class SignUpActivity : BaseActivity() {
 
         signUp_loginText.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
+            finish()
         }
         sigUp_button.setOnClickListener {
                  signUpUser()
@@ -87,7 +88,10 @@ class SignUpActivity : BaseActivity() {
             actionBar.setDisplayHomeAsUpEnabled(true)
             actionBar.setHomeAsUpIndicator(R.drawable.ic_navigate_before_black_24dp)
         }
-        toolBar_sign_up_activity.setNavigationOnClickListener{onBackPressed()}
+        toolBar_sign_up_activity.setNavigationOnClickListener{
+            startActivity(Intent(this,IntroActivity::class.java))
+            finish()
+        }
     }
 
     /**
@@ -107,6 +111,10 @@ class SignUpActivity : BaseActivity() {
          */
         FirebaseAuth.getInstance().signOut()
         // Finish the Sign-Up Screen
+        finish()
+    }
+    override fun onBackPressed() {
+        startActivity(Intent(this, IntroActivity::class.java))
         finish()
     }
 }

@@ -228,4 +228,14 @@
     <dimen name="card_details_members_label_marginTop">15dp</dimen>
 
     <dimen name="card_details_update_btn_marginTop">30dp</dimen>
+
+
+
+    <dimen name="defaultBtnWidth">210dp</dimen>
+    <dimen name="buttonsMargin">20dp</dimen>
+    <dimen name="doneSize">25dp</dimen>
+    <dimen name="drawableTextMargin">10dp</dimen>
+    <dimen name="progressRadius">10dp</dimen>
+    <dimen name="progressStroke">5dp</dimen>
+    <dimen name="textMarginStyled">20dp</dimen>
 </resources>

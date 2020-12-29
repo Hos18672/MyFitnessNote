@@ -1,6 +1,7 @@
 package com.example.myfitneesnote
 
 import android.app.Dialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -43,7 +44,7 @@ open class BaseActivity : AppCompatActivity() {
         this.doubleBackToExitPressedOnce = true
         Toast.makeText(this,resources.getString(R.string.please_click_again),Toast.LENGTH_SHORT).show()
         Handler().postDelayed({
-            doubleBackToExitPressedOnce = false },2000)
+            doubleBackToExitPressedOnce = false },1000)
     }
 
     fun showErrorSnackBar(message:String){
@@ -61,7 +62,8 @@ open class BaseActivity : AppCompatActivity() {
         )
     }
 
-
-
+    override fun onBackPressed() {
+        finish()
+    }
 
 }

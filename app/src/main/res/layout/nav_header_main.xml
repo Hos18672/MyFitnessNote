@@ -7,7 +7,7 @@
     android:gravity="bottom"
     android:orientation="vertical"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
-    
+
     <ImageView
         android:id="@+id/main_drawer_profile_photo"
         android:layout_width="100dp"

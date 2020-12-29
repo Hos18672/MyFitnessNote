@@ -1,28 +1,35 @@
 package com.example.myfitneesnote
 
-
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.view.animation.AnimationUtils
 import com.example.myfitneesnote.firebase.FirestoreClass
+import kotlinx.android.synthetic.main.activity_splash.*
 
 class SplashActivity : BaseActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         fullscreen()
+        animat()
 
         Handler().postDelayed({
-
             var currentUserID = FirestoreClass().getCurrentUserId()
-            if (currentUserID.isNotEmpty()){
+            if (currentUserID.isNotEmpty()) {
                 startActivity(Intent(this, MainActivity::class.java))
-            }
-            else{
+            } else {
                 startActivity(Intent(this, IntroActivity::class.java))
+                overridePendingTransition(R.anim.slidetoright, R.anim.slide_out_left);
             }
-            finish() }, 1500)
+            finish()
+        }, 2500)
+    }
 
+    fun animat(){
+        val btt = AnimationUtils.loadAnimation(this, R.anim.btt)
+        splash_textView.startAnimation(btt)
+        val ttb = AnimationUtils.loadAnimation(this, R.anim.ttb)
+        splash_imageView.startAnimation(ttb)
     }
 }
