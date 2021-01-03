@@ -9,10 +9,10 @@
 
     <ImageView
         android:id="@+id/main_menu"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_margin="20dp"
-    app:srcCompat="@drawable/navicon" />
+        app:srcCompat="@drawable/menu2" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,9 +22,9 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="410dp"
+            android:layout_width="match_parent"
             android:layout_height="90dp"
-            android:background="@drawable/rounded"
+
             android:gravity="bottom|center"
             android:orientation="horizontal">
 
@@ -33,22 +33,24 @@
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                app:srcCompat="@drawable/forum__1_" />
+                app:srcCompat="@drawable/chat" />
 
             <ImageView
                 android:id="@+id/Add_main"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:layout_margin="10dp"
-                app:srcCompat="@drawable/add" />
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginBottom="17dp"
+                app:srcCompat="@drawable/add2" />
 
             <ImageView
                 android:id="@+id/main_diagramm"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginBottom="15dp"
-                app:srcCompat="@drawable/stats_line_chart" />
+                app:srcCompat="@drawable/diagram1" />
         </LinearLayout>
 
     </LinearLayout>

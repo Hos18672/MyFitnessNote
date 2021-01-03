@@ -5,9 +5,12 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.widget.ImageView
 import androidx.core.view.GravityCompat
+import com.bumptech.glide.Glide
+import com.example.myfitneesnote.model.User
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.nav_header_main.*
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -17,7 +20,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         setContentView(R.layout.activity_main)
         nav_view.setNavigationItemSelectedListener(this)
         fullscreen()
-       var main_menu : ImageView = findViewById(R.id.main_menu)
+        var main_menu : ImageView = findViewById(R.id.main_menu)
         main_menu.setOnClickListener {
             if(drawer_layout.isDrawerOpen(GravityCompat.START)){
                 drawer_layout.closeDrawer(GravityCompat.START)
@@ -59,6 +62,14 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 
 
+fun updateNavigationUserDetails(user: User) {
+        Glide.with(this)
+            .load(user.image)
+            .centerCrop()
+            .placeholder(R.drawable.ic_user_place_holder)
+            .into(main_drawer_profile_photo)
 
+        tv_username.text = user.username
+    }
 }
 

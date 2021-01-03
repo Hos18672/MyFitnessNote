@@ -1,26 +1,41 @@
 package com.example.myfitneesnote
 
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.view.Window
+import android.view.WindowManager
 import android.view.animation.AnimationUtils
+import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_intro.*
 import kotlin.system.exitProcess
 
 class IntroActivity : BaseActivity() {
+
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_intro)
+
+
+        val window: Window = this.window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        window.statusBarColor = ContextCompat.getColor(this, R.color.statusColor)
+
         fullscreen()
         animat()
         intro_login_button.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
-            finish()
         }
         intro_sign_up_button.setOnClickListener {
             startActivity(Intent(this, SignUpActivity::class.java))
-            finish()
         }
+
+
     }
 
     fun animat(){

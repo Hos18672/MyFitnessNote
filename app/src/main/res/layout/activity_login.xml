@@ -5,7 +5,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_alignParentBottom="true"
+    android:fitsSystemWindows="true"
     tools:context="com.example.myfitneesnote.LoginActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginRight="-808dp"
+        android:layout_marginTop="400dp"
+        android:layout_marginBottom="-60dp"
+        android:contentDescription="@string/todo"
+        app:srcCompat="@drawable/logo1"
+        tools:layout_editor_absoluteX="58dp"
+        tools:layout_editor_absoluteY="39dp" />
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar_login_activity"
         android:layout_width="match_parent"
@@ -31,19 +45,13 @@
         android:orientation="vertical"
         tools:ignore="UselessParent">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="254dp"
-            android:layout_height="162dp"
-            android:layout_marginTop="-100dp"
-            android:contentDescription="@string/app_name"
-            app:srcCompat="@drawable/logo1" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
+            android:layout_marginTop="-200dp"
+            android:layout_marginBottom="50dp"
             android:text="Sign in"
             android:textColor="#000000"
             android:textSize="50sp"
@@ -93,17 +101,19 @@
             android:background="@drawable/shape"
             android:gravity="center"
             android:orientation="horizontal">
+
             <ProgressBar
-                android:layout_height="@dimen/progress_bar_size"
+                android:id="@+id/progressBar_login"
                 android:layout_width="90px"
-                android:visibility="invisible"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/tv_progress_text"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginRight="20dp"
+                android:layout_height="@dimen/progress_bar_size"
                 android:layout_marginLeft="-60dp"
-                android:id="@+id/progressBar_login"/>
+                android:layout_marginRight="20dp"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tv_progress_text"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:id="@+id/sign_in_btn_text"
                 android:layout_width="wrap_content"
@@ -118,13 +128,12 @@
             android:id="@+id/login_signUpTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="40dp"
             android:layout_marginBottom="-400dp"
             android:text="@string/don_t_have_an_account"
             android:textColor="#000000"
             android:textStyle="bold"
             tools:layout_editor_absoluteX="174dp"
             tools:layout_editor_absoluteY="601dp" />
-
     </LinearLayout>
 </RelativeLayout>

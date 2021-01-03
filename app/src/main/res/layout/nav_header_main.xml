@@ -13,7 +13,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginLeft="20dp"
-        app:srcCompat="@drawable/personal_photo__1_" />
+        app:srcCompat="@drawable/man" />
 
     <TextView
         android:id="@+id/tv_username"
@@ -34,3 +34,4 @@
         android:background="@color/colorAccent" />
 
 </LinearLayout>
+

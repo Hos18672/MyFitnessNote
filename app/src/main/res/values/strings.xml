@@ -24,4 +24,8 @@
     <string name="please_click_again">Please click again</string>
     <string name="please_wait">Please wait&#8230;</string>
     <string name="description">Descrtiption</string>
+    <string name="gymworkout" />
+    <string name="homeworkout" />
+    <string name="workout_choice" />
+    <string name="back" />
 </resources>

@@ -5,4 +5,7 @@
     <color name="colorAccent">#010922</color>
     <color name="snackBar_error_color">#FF0A0A</color>
 
+
+    <color name="statusColor">#FFFFFF</color>
+
 </resources>

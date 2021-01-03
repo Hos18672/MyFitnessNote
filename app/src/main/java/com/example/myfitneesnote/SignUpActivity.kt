@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.WindowManager
 import android.widget.Toast
 import com.example.myfitneesnote.firebase.FirestoreClass
 import com.google.firebase.auth.FirebaseAuth
@@ -15,7 +16,7 @@ class SignUpActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE or WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         setContentView(R.layout.activity_sign_up)
         fullscreen()
         setupActionBar()
@@ -36,17 +37,20 @@ class SignUpActivity : BaseActivity() {
         val name : String = signUpUsernameInput.text.toString().trim{ it <= ' '}
         val email : String = signUp_email_input.text.toString().trim{ it <= ' '}
         val password : String = signUp_password_input.text.toString().trim{ it <= ' '}
-        if(validateForm(name,email,password)){
+        if(validateForm(name, email, password)){
             // Toast.makeText(this, "Now we register User",Toast.LENGTH_SHORT).show()
             showProgressDialog(resources.getString(R.string.please_wait))
-            FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,password).addOnCompleteListener {
-                    task ->
+            FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         val firebaseUser: FirebaseUser = task.result!!.user!!
                         val signUpedEmail = firebaseUser.email!!
 
-                        val user = com.example.myfitneesnote.model.User(firebaseUser.uid,name,email)
-                        FirestoreClass().registerUser(this,user)
+                        val user = com.example.myfitneesnote.model.User(
+                            firebaseUser.uid,
+                            name,
+                            email
+                        )
+                        FirestoreClass().registerUser(this, user)
 
                       //  FirebaseAuth.getInstance().signOut()
                         val intent = Intent(this@SignUpActivity, MainActivity::class.java)
@@ -57,12 +61,16 @@ class SignUpActivity : BaseActivity() {
                         startActivity(intent)
                         finish()
                     }else{
-                        Toast.makeText(this@SignUpActivity,task.exception!!.message.toString(),Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this@SignUpActivity,
+                            task.exception!!.message.toString(),
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
             }
         }
     }
-    private  fun validateForm(name :String, email: String, password: String) : Boolean{
+    private  fun validateForm(name: String, email: String, password: String) : Boolean{
         return when{
             TextUtils.isEmpty(name)->{
                 showErrorSnackBar("Please enter a  name")
@@ -89,8 +97,7 @@ class SignUpActivity : BaseActivity() {
             actionBar.setHomeAsUpIndicator(R.drawable.ic_navigate_before_black_24dp)
         }
         toolBar_sign_up_activity.setNavigationOnClickListener{
-            startActivity(Intent(this,IntroActivity::class.java))
-            finish()
+            onBackPressed()
         }
     }
 
@@ -114,7 +121,6 @@ class SignUpActivity : BaseActivity() {
         finish()
     }
     override fun onBackPressed() {
-        startActivity(Intent(this, IntroActivity::class.java))
         finish()
     }
 }
