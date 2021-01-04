@@ -4,6 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/ic_background"
     tools:context=".myProfileActivity">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolBar_my_profile_activity"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        tools:ignore="MissingConstraints">
+        <TextView
+            android:id="@+id/toolBar_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text=""
+            android:textColor="#000000"
+            android:textSize="15sp"
+            tools:layout_editor_absoluteX="165dp"
+            tools:layout_editor_absoluteY="218dp" />
+    </androidx.appcompat.widget.Toolbar>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,6 +12,7 @@ import com.example.myfitneesnote.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_sign_up.*
 
 
 class LoginActivity : BaseActivity() {
@@ -38,6 +39,18 @@ class LoginActivity : BaseActivity() {
 
     }
 
+    private fun setupActionBar() {
+        setSupportActionBar(toolBar_login_activity)
+        var actionBar = supportActionBar
+        if(actionBar!=null)
+        {
+            actionBar.setDisplayHomeAsUpEnabled(true)
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_navigate_before_black_24dp)
+        }
+        toolBar_login_activity.setNavigationOnClickListener{
+            onBackPressed()
+        }
+    }
     /**
      * A function to login the user.
      */
@@ -82,17 +95,6 @@ class LoginActivity : BaseActivity() {
         }
     }
 
-    private fun setupActionBar() {
-        setSupportActionBar(toolBar_login_activity)
-        var actionBar = supportActionBar
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true)
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_navigate_before_black_24dp)
-        }
-        toolBar_login_activity.setNavigationOnClickListener {
-            onBackPressed()
-        }
-    }
 
     fun logInSuccess(user: User) {
         hideProgressDialog()

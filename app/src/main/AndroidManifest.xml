@@ -10,9 +10,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".myProfileActivity" />
-        <activity android:name=".nav_header_main" />
-        <activity android:name=".BaseActivity" />
+        <activity
+            android:name=".musclegrupp"
+            android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
+        <activity android:name=".uebungen"
+            android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
+        <activity android:name=".workout"
+            android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
+        <activity android:name=".myProfileActivity"
+            android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
+        <activity android:name=".nav_header_main"
+            android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
+        <activity android:name=".BaseActivity"
+            android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar.NoActionBar" />

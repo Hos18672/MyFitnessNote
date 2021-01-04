@@ -12,8 +12,8 @@
         android:id="@+id/main_drawer_profile_photo"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginLeft="20dp"
-        app:srcCompat="@drawable/man" />
+        android:layout_marginLeft="10dp"
+        app:srcCompat="@drawable/man2" />
 
     <TextView
         android:id="@+id/tv_username"
@@ -24,13 +24,13 @@
         android:layout_marginTop="@dimen/nav_content_margin_top"
         android:layout_marginEnd="@dimen/nav_content_margin_StartEnd"
         android:layout_marginBottom="@dimen/nav_content_margin_bottom"
-        android:text="Your Nmae"
+        android:text="Your Name"
         android:textColor="@android:color/white"
         android:textSize="@dimen/nav_user_name_text_size" />
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="4dp"
+        android:layout_height="2dp"
         android:background="@color/colorAccent" />
 
 </LinearLayout>

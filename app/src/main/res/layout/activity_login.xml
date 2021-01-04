@@ -7,19 +7,9 @@
     android:orientation="vertical"
     android:layout_alignParentBottom="true"
     android:fitsSystemWindows="true"
+    android:background="@drawable/ic_background"
     tools:context="com.example.myfitneesnote.LoginActivity">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginRight="-808dp"
-        android:layout_marginTop="400dp"
-        android:layout_marginBottom="-60dp"
-        android:contentDescription="@string/todo"
-        app:srcCompat="@drawable/logo1"
-        tools:layout_editor_absoluteX="58dp"
-        tools:layout_editor_absoluteY="39dp" />
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar_login_activity"
         android:layout_width="match_parent"
