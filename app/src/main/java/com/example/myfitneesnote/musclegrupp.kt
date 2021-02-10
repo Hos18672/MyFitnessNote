@@ -1,10 +1,8 @@
 package com.example.myfitneesnote
 
-import androidx.appcompat.app.AppCompatActivity
+
 import android.os.Bundle
-import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_musclegrupp.*
-import kotlinx.android.synthetic.main.activity_sign_up.*
 
 class musclegrupp : BaseActivity() {
 
@@ -14,7 +12,6 @@ class musclegrupp : BaseActivity() {
         fullscreen()
         setupActionBar()
     }
-
 
     private fun setupActionBar() {
         setSupportActionBar(toolBar_muscle_gruppe_activity)

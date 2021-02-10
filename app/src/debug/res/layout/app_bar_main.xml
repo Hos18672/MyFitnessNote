@@ -4,55 +4,76 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/ic_background"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/main_menu"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_margin="20dp"
-        app:srcCompat="@drawable/menu2" />
+    <RelativeLayout
+        android:layout_width="70dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="1dp"
+        android:gravity="center"
+        android:padding="10dp"
+        android:background="@drawable/rounded2"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/main_menu"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/menu2" />
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#00C13333"
         android:gravity="bottom|center"
         android:orientation="vertical">
 
-        <LinearLayout
+        <androidx.cardview.widget.CardView
+            android:id="@+id/nav_bar_bottom"
             android:layout_width="match_parent"
-            android:layout_height="90dp"
+            android:layout_height="60dp"
+            android:layout_margin="10dp"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="7dp"
+            android:layout_marginBottom="10dp"
+            android:dividerHeight="0.0px"
+            android:background="@drawable/ic_list"
+            android:orientation="horizontal"
+            app:cardCornerRadius="30dp">
 
-            android:gravity="bottom|center"
-            android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="bottom|center"
+                    android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/chat_main"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                app:srcCompat="@drawable/chat" />
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/chat_main"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@drawable/chat" />
 
-            <ImageView
-                android:id="@+id/Add_main"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:layout_marginBottom="17dp"
-                app:srcCompat="@drawable/add2" />
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/Add_main"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginLeft="100dp"
+                        android:layout_marginRight="100dp"
+                        android:layout_marginBottom="2dp"
+                        android:background="@drawable/add2" />
 
-            <ImageView
-                android:id="@+id/main_diagramm"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginBottom="15dp"
-                app:srcCompat="@drawable/diagram1" />
-        </LinearLayout>
-
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/main_diagramm"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/diagram1" />
+                </LinearLayout>
+        </androidx.cardview.widget.CardView>
     </LinearLayout>
 
 </LinearLayout>

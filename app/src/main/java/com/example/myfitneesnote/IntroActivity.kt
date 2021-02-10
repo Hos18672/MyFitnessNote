@@ -1,7 +1,5 @@
 package com.example.myfitneesnote
 
-
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -11,7 +9,6 @@ import android.view.animation.AnimationUtils
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_intro.*
-import kotlin.system.exitProcess
 
 class IntroActivity : BaseActivity() {
 
@@ -19,8 +16,6 @@ class IntroActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_intro)
-
-
         val window: Window = this.window
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
@@ -34,10 +29,7 @@ class IntroActivity : BaseActivity() {
         intro_sign_up_button.setOnClickListener {
             startActivity(Intent(this, SignUpActivity::class.java))
         }
-
-
     }
-
     fun animat(){
         val ttb = AnimationUtils.loadAnimation(this, R.anim.ttb1)
             intro_imageView.startAnimation(ttb)

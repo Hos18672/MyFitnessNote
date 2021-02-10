@@ -1,8 +1,6 @@
 package com.example.myfitneesnote
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.activity_workout.*
 
 class workout : BaseActivity() {
@@ -13,7 +11,6 @@ class workout : BaseActivity() {
         fullscreen()
         setupActionBar()
     }
-
     private fun setupActionBar() {
         setSupportActionBar(toolBar_workout_activity)
         var actionBar = supportActionBar

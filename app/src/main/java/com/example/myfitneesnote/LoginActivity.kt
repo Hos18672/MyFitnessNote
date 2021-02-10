@@ -12,8 +12,6 @@ import com.example.myfitneesnote.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_sign_up.*
-
 
 class LoginActivity : BaseActivity() {
 
@@ -28,17 +26,12 @@ class LoginActivity : BaseActivity() {
             startActivity(Intent(this, SignUpActivity::class.java))
             finish()
         }
-
-
         sing_in_button.setOnClickListener {
             Handler().postDelayed({
                 loginUser()
             }, 100)
         }
-
-
     }
-
     private fun setupActionBar() {
         setSupportActionBar(toolBar_login_activity)
         var actionBar = supportActionBar
@@ -94,14 +87,11 @@ class LoginActivity : BaseActivity() {
             sign_in_btn_text.setText("Sign in")
         }
     }
-
-
     fun logInSuccess(user: User) {
         hideProgressDialog()
         startActivity(Intent(this, MainActivity::class.java))
         finish()
     }
-
     private fun validateForm(email: String, password: String): Boolean {
         return when {
             TextUtils.isEmpty(email) -> {

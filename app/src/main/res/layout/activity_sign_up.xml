@@ -34,26 +34,25 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="254dp"
-            android:layout_height="165dp"
-            android:contentDescription="@string/todo"
-            app:srcCompat="@drawable/logo1"
-            tools:layout_editor_absoluteX="58dp"
-            tools:layout_editor_absoluteY="39dp" />
-
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:layout_marginTop="-70dp"
+            android:layout_marginBottom="60dp"
             android:text="@string/sign_up"
             android:textColor="#0B123A"
             android:textSize="50sp"
             tools:layout_editor_absoluteX="165dp"
             tools:layout_editor_absoluteY="218dp" />
-
+        <ImageView
+            android:id="@+id/signUp_image"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/personal_photo"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="45dp" />
 
         <LinearLayout
             android:id="@+id/ll2"
@@ -130,7 +129,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="300"
-                    android:hint="@string/password"
+                    android:hint="Retype Password"
                     android:inputType="textPassword"
                     tools:layout_editor_absoluteX="99dp"
                     tools:layout_editor_absoluteY="363dp" />

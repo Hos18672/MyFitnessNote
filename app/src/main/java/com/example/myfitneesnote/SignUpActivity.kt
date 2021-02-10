@@ -4,11 +4,13 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.WindowManager
 import android.widget.Toast
 import com.example.myfitneesnote.firebase.FirestoreClass
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_sign_up.*
 
 
@@ -37,6 +39,7 @@ class SignUpActivity : BaseActivity() {
         val name : String = signUpUsernameInput.text.toString().trim{ it <= ' '}
         val email : String = signUp_email_input.text.toString().trim{ it <= ' '}
         val password : String = signUp_password_input.text.toString().trim{ it <= ' '}
+        val Image : String = signUp_image.toString().trim{ it <= ' '}
         if(validateForm(name, email, password)){
             // Toast.makeText(this, "Now we register User",Toast.LENGTH_SHORT).show()
             showProgressDialog(resources.getString(R.string.please_wait))
@@ -48,9 +51,20 @@ class SignUpActivity : BaseActivity() {
                         val user = com.example.myfitneesnote.model.User(
                             firebaseUser.uid,
                             name,
-                            email
+                            email,
+                            password,
+                            Image
                         )
                         FirestoreClass().registerUser(this, user)
+                        val uid = FirebaseAuth.getInstance().uid ?: ""
+                        val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
+                        ref.setValue(user)
+                            .addOnSuccessListener {
+                                Log.d("User", "Finally we saved the user to Firebase Database")
+                            }
+                            .addOnFailureListener {
+                                Log.d("User", "Failed to set value to database: ${it.message}")
+                            }
 
                       //  FirebaseAuth.getInstance().signOut()
                         val intent = Intent(this@SignUpActivity, MainActivity::class.java)
@@ -70,6 +84,26 @@ class SignUpActivity : BaseActivity() {
             }
         }
     }
+    /*private fun uploadImageToFirebaseStorage() {
+        if (selectedPhotoUri == null) return
+
+        val filename = UUID.randomUUID().toString()
+        val ref = FirebaseStorage.getInstance().getReference("/images/$filename")
+
+        ref.putFile(selectedPhotoUri!!)
+            .addOnSuccessListener {
+                Log.d(TAG, "Successfully uploaded image: ${it.metadata?.path}")
+
+                ref.downloadUrl.addOnSuccessListener {
+                    Log.d(TAG, "File Location: $it")
+
+                    saveUserToFirebaseDatabase(it.toString())
+                }
+            }
+            .addOnFailureListener {
+                Log.d(TAG, "Failed to upload image to storage: ${it.message}")
+            }
+    }*/
     private  fun validateForm(name: String, email: String, password: String) : Boolean{
         return when{
             TextUtils.isEmpty(name)->{
