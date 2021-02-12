@@ -9,12 +9,13 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/rounded_mesage"
         android:gravity="center"
         android:padding="15dp"
-        android:text="This is may first message to you"
+        android:layout_marginLeft="5dp"
+        android:text="Hi max what are you doing?"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.346"
