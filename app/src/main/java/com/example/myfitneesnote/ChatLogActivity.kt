@@ -1,0 +1,60 @@
+package com.example.myfitneesnote
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import com.example.myfitneesnote.model.User
+import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.Item
+import com.xwray.groupie.ViewHolder
+import kotlinx.android.synthetic.main.activity_chat.*
+import kotlinx.android.synthetic.main.activity_chat.toolBar_Chat_activity
+import kotlinx.android.synthetic.main.activity_chat_log.*
+import kotlinx.android.synthetic.main.user_row.view.*
+
+class ChatLogActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_chat_log)
+        setupActionBar()
+        val adapter = GroupAdapter<ViewHolder>()
+        adapter.add(ChatFromItem())
+        adapter.add(ChatToItem())
+        recyclerView_chat_log.adapter = adapter
+
+        val user = intent.getParcelableExtra<User>(ChatActivity.USER_KEY)
+       //val username=  intent.getStringExtra(ChatActivity.USER_KEY)
+        if (user != null) {
+            Chat_log_textView.text = user.username
+        }
+    }
+    private fun setupActionBar() {
+        setSupportActionBar(toolBar_Chat_activity)
+        var actionBar = supportActionBar
+        if(actionBar!=null)
+        {
+            actionBar.setDisplayHomeAsUpEnabled(true)
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_navigate_before_black_24dp)
+        }
+        toolBar_Chat_activity.setNavigationOnClickListener{
+            onBackPressed()
+        }
+    }
+}
+
+class ChatFromItem: Item<ViewHolder>(){
+    override fun bind(viewHolder: ViewHolder, position: Int) {
+    }
+    override fun getLayout(): Int {
+        return R.layout.chat_from_row
+    }
+}
+
+class ChatToItem: Item<ViewHolder>(){
+    override fun bind(viewHolder: ViewHolder, position: Int) {
+    }
+    override fun getLayout(): Int {
+        return R.layout.chat_to_row
+    }
+}
+

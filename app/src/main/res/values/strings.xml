@@ -28,4 +28,7 @@
     <string name="homeworkout" />
     <string name="workout_choice" />
     <string name="back" />
+    <string name="massages">Massages</string>
+    <string name="enter_message">Enter Message</string>
+    <string name="button">Button</string>
 </resources>

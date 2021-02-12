@@ -40,7 +40,7 @@
             android:layout_marginRight="7dp"
             android:layout_marginBottom="10dp"
             android:dividerHeight="0.0px"
-            android:background="@drawable/ic_list"
+            android:background="@drawable/rounded_mesage"
             android:orientation="horizontal"
             app:cardCornerRadius="30dp">
 
@@ -48,6 +48,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="bottom|center"
+                    android:background="@drawable/rounded_mesage"
                     android:orientation="horizontal">
 
                     <androidx.appcompat.widget.AppCompatImageButton

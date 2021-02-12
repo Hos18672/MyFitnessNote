@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ic_background"
+    android:orientation="vertical"
+    tools:context=".ChatLogActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolBar_Chat_activity"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/toolBar_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text=""
+            android:textColor="#000000"
+            android:textSize="15sp"
+            tools:layout_editor_absoluteX="165dp"
+            tools:layout_editor_absoluteY="218dp" />
+
+        <TextView
+            android:id="@+id/Chat_log_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="150dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/massages"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            tools:layout_editor_absoluteX="165dp"
+            tools:layout_editor_absoluteY="218dp"
+            android:layout_marginStart="150dp" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_chat_log"
+        android:layout_width="match_parent"
+        android:layout_height="775dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolBar_Chat_activity"
+        tools:ignore="MissingConstraints">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <LinearLayout
+        android:id="@+id/ll1"
+        android:layout_width="443dp"
+        android:layout_height="60dp"
+        android:layout_gravity="bottom"
+        android:layout_margin="15dp"
+        android:background="@drawable/shapetransparent_message"
+        android:gravity="bottom"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView_chat_log"
+        app:layout_constraintVertical_bias="1.0">
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="315dp"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="2dp"
+            android:hint="@string/enter_message"
+            android:inputType="text|textNoSuggestions"
+            android:padding="10dp" />
+
+        <Button
+            android:id="@+id/SendeBtn"
+            android:layout_width="53dp"
+            android:layout_height="55dp"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/ic_send_btn"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

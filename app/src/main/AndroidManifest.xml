@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".ChatActivity"></activity>
+        <activity android:name=".ChatLogActivity"></activity>
+        <activity android:name=".ChatActivity" />
         <activity
             android:name=".musclegrupp"
             android:theme="@style/AppTheme.NoActionBar.NoActionBar" />

@@ -1,5 +1,6 @@
 package com.example.myfitneesnote
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import com.example.myfitneesnote.model.User
@@ -34,6 +35,9 @@ class ChatActivity : BaseActivity() {
             onBackPressed()
         }
 }
+    companion object{
+        val USER_KEY = "USER_KEY"
+    }
 
    fun fetchUsers(){
       val ref = FirebaseDatabase.getInstance().getReference("/users")
@@ -46,6 +50,13 @@ class ChatActivity : BaseActivity() {
                    if(user != null) {
                        adapter.add(UserItem(user))
                    }
+               }
+               adapter.setOnItemClickListener{ item, view ->
+                   val userItem= item as UserItem
+                   val intent = Intent( view.context, ChatLogActivity:: class.java)
+                  // intent.putExtra(USER_KEY, userItem.user.username)
+                   intent.putExtra(USER_KEY, userItem.user)
+                   startActivity(intent)
                }
                recyclerView.adapter = adapter
            }
