@@ -1,8 +1,10 @@
 package com.example.myfitneesnote
 
 import android.content.Intent
+import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
+import androidx.core.view.isVisible
 import com.example.myfitneesnote.model.User
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -12,10 +14,10 @@ import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.activity_chat.*
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import kotlinx.android.synthetic.main.user_row.*
 import kotlinx.android.synthetic.main.user_row.view.*
 
 class ChatActivity : BaseActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
@@ -38,7 +40,6 @@ class ChatActivity : BaseActivity() {
     companion object{
         val USER_KEY = "USER_KEY"
     }
-
    fun fetchUsers(){
       val ref = FirebaseDatabase.getInstance().getReference("/users")
        ref.addListenerForSingleValueEvent(object : ValueEventListener{
@@ -48,8 +49,11 @@ class ChatActivity : BaseActivity() {
                    Log.d("new massage", it.toString())
                    val user = it.getValue(User::class.java)
                    if(user != null) {
-                       adapter.add(UserItem(user))
+                       if (user.username == "Trainer") {
+                           adapter.add(UserItem(user))
+                       }
                    }
+
                }
                adapter.setOnItemClickListener{ item, view ->
                    val userItem= item as UserItem
@@ -67,12 +71,12 @@ class ChatActivity : BaseActivity() {
     }
 }
 class UserItem(val user: User): Item<ViewHolder>(){
+
     override fun bind(viewHolder: ViewHolder, position: Int) {
        viewHolder.itemView.User_name.text= user.username
     }
     override fun getLayout(): Int {
         return R.layout.user_row
     }
-
 }
 

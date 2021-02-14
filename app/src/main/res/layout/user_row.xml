@@ -1,37 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="vertical"
     >
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
         tools:ignore="UselessParent"
-        android:layout_marginTop="5dp">
-
-    <ImageView
-        android:id="@+id/imageView_user"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginLeft="10dp"
-        android:src="@drawable/personal_photo"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="45dp" />
-        <TextView
-        android:id="@+id/User_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginLeft="60dp"
-            android:layout_marginTop="15dp"
-        android:text="@string/username"
-        android:gravity="center"
-        android:textSize="50px"
-        tools:ignore="MissingConstraints" />
+        android:layout_marginTop="30dp">
+        <ImageView
+            android:id="@+id/imageView_user"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/man"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="45dp" />
+            <TextView
+            android:id="@+id/User_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_marginLeft="60dp"
+                android:layout_marginTop="15dp"
+            android:text="@string/username"
+            android:gravity="center"
+            android:textSize="50px"
+            tools:ignore="MissingConstraints"/>
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <View
+        android:id="@+id/ViewLine"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/man"
+        android:layout_margin="10dp"
+        android:background="@android:color/black"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="45dp"
+        tools:ignore="MissingConstraints" />
+</LinearLayout>

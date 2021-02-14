@@ -56,7 +56,7 @@
     <LinearLayout
         android:id="@+id/ll1"
         android:layout_width="444dp"
-        android:layout_height="66dp"
+        android:layout_height="46dp"
         android:layout_gravity="bottom"
         android:layout_margin="15dp"
         android:background="@drawable/shapetransparent_message"
@@ -70,25 +70,26 @@
 
         <EditText
             android:id="@+id/editText"
-            android:layout_width="315dp"
-            android:layout_height="50dp"
+            android:layout_width="310dp"
+            android:layout_height="match_parent"
             android:layout_gravity="bottom"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="2dp"
             android:layout_marginRight="30dp"
-            android:layout_marginBottom="2dp"
+            android:background="@android:color/transparent"
             android:hint="@string/enter_message"
             android:inputType="text|textNoSuggestions"
             android:padding="10dp" />
 
         <Button
             android:id="@+id/SendeBtn"
-            android:layout_width="53dp"
-            android:layout_height="55dp"
+            android:layout_width="40dp"
+            android:layout_height="45dp"
             android:layout_gravity="bottom"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="30dp"
             android:background="@drawable/ic_send_btn"
             android:textStyle="bold" />
 
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
