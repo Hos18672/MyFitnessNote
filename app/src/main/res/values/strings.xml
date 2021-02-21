@@ -31,4 +31,8 @@
     <string name="massages">Massages</string>
     <string name="enter_message">Enter Message</string>
     <string name="button">Button</string>
+    <string name="workout_choice1">WORKOUT CHOICE</string>
+    <string name="back1">Back</string>
+    <string name="gymwork1">Gymwork</string>
+    <string name="homeworkout1">Homeworkout</string>
 </resources>

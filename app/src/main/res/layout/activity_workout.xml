@@ -23,6 +23,7 @@
                     tools:layout_editor_absoluteX="165dp"
                     tools:layout_editor_absoluteY="218dp" />
         </androidx.appcompat.widget.Toolbar>
+
         <LinearLayout
             android:id="@+id/ll1"
             android:layout_width="match_parent"
@@ -30,44 +31,47 @@
             android:gravity="center"
             android:orientation="vertical"
             tools:ignore="UselessParent">
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="400dp"
-            android:layout_height="70dp"
-            android:layout_marginBottom="40dp"
-            android:gravity="center"
-            android:text="WORKOUT CHOICE"
-            android:textAlignment="center"
-            android:textColor="#000000"
-            android:textSize="30sp"
-            android:textStyle="bold|italic"/>
 
-        <Button
-            android:id="@+id/button1"
-            android:layout_width="400dp"
-            android:layout_height="223dp"
-            android:background="@drawable/ic_gym_out"
-            android:layout_margin="10dp"
-            android:text="Gymwork"
-            android:textColor="@android:color/background_light" />
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="400dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="20dp"
+                    android:layout_marginBottom="40dp"
+                    android:background="@drawable/shapetransparent_message"
+                    android:gravity="center"
+                    android:text="@string/workout_choice1"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/button5"
-            android:layout_width="400dp"
-            android:layout_height="223dp"
-            android:layout_margin="10dp"
-            android:background="@drawable/imageedit_5_6040594024"
-            android:text="Homeworkout"
-            android:textColor="@android:color/background_light" />
+                <Button
+                    android:id="@+id/button1"
+                    android:layout_width="380dp"
+                    android:layout_height="200dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/ic_gym_out"
+                    android:text="@string/gymwork1"
+                    android:textColor="@android:color/background_light" />
+
+                <Button
+                    android:id="@+id/button5"
+                    android:layout_width="380dp"
+                    android:layout_height="200dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/imageedit_5_6040594024"
+                    android:text="@string/homeworkout1"
+                    android:textColor="@android:color/background_light" />
 
 
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="400dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="50dp"
-            android:background="@drawable/shape"
-            android:text="Back" />
+                <Button
+                    android:id="@+id/button3"
+                    android:layout_width="400dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/shape"
+                    android:text="@string/back1" />
         </LinearLayout>
 
 

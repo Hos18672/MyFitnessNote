@@ -6,11 +6,16 @@
     android:layout_height="match_parent"
     android:background="@drawable/ic_background"
     tools:context="com.example.myfitneesnote.ChatActivity">
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar_Chat_activity"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints">
+
         <TextView
             android:id="@+id/toolBar_textView"
             android:layout_width="wrap_content"
@@ -21,14 +26,16 @@
             android:textSize="15sp"
             tools:layout_editor_absoluteX="165dp"
             tools:layout_editor_absoluteY="218dp" />
+
         <TextView
             android:id="@+id/Massage_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="150dp"
+            android:layout_marginLeft="130dp"
             android:layout_marginBottom="10dp"
             android:text="Your Chats"
             android:textColor="#000000"
+            android:gravity="center"
             android:textSize="15sp"
             tools:layout_editor_absoluteX="165dp"
             tools:layout_editor_absoluteY="218dp" />
@@ -36,15 +43,15 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="860dp"
+        android:layout_width="397dp"
+        android:layout_height="756dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolBar_Chat_activity"
-        app:layout_constraintVertical_bias="0.714">
+        app:layout_constraintVertical_bias="0.0">
 
     </androidx.recyclerview.widget.RecyclerView>
 

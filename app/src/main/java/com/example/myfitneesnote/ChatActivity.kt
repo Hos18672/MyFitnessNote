@@ -1,10 +1,8 @@
 package com.example.myfitneesnote
 
 import android.content.Intent
-import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
-import androidx.core.view.isVisible
 import com.example.myfitneesnote.model.User
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -14,7 +12,6 @@ import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.activity_chat.*
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import kotlinx.android.synthetic.main.user_row.*
 import kotlinx.android.synthetic.main.user_row.view.*
 
 class ChatActivity : BaseActivity() {
