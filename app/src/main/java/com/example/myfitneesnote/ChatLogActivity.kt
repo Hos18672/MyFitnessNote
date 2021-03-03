@@ -1,10 +1,9 @@
 package com.example.myfitneesnote
 
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.print.PrinterCapabilitiesInfo
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import com.example.myfitneesnote.model.ChatMessage
 import com.example.myfitneesnote.model.User
 import com.google.firebase.auth.FirebaseAuth
@@ -12,11 +11,11 @@ import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firestore.v1.FirestoreGrpc
 import com.squareup.picasso.Picasso
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
+import kotlinx.android.synthetic.main.activity_chat.*
 import kotlinx.android.synthetic.main.activity_chat.toolBar_Chat_activity
 import kotlinx.android.synthetic.main.activity_chat_log.*
 import kotlinx.android.synthetic.main.chat_from_row.view.*
@@ -33,12 +32,11 @@ class ChatLogActivity : AppCompatActivity() {
         setContentView(R.layout.activity_chat_log)
         toUser =  intent.getParcelableExtra<User>(ChatActivity.USER_KEY)
         recyclerView_chat_log.adapter= adapter
-
         setupActionBar()
         listenForMessages()
 
         SendeBtn.setOnClickListener{
-            Log.d(TAG,"To send Message")
+            Log.d(TAG, "To send Message")
             performSendMessage()
         }
     }
@@ -46,20 +44,21 @@ class ChatLogActivity : AppCompatActivity() {
 
     private  fun listenForMessages(){
         val ref = FirebaseDatabase.getInstance().getReference("/messages")
-         ref.addChildEventListener(object: ChildEventListener{
+         ref.addChildEventListener(object : ChildEventListener {
              override fun onChildAdded(p0: DataSnapshot, p1: String?) {
-                val chatMessage= p0.getValue(ChatMessage::class.java)
+                 val chatMessage = p0.getValue(ChatMessage::class.java)
 
-                 if(chatMessage != null){
+                 if (chatMessage != null) {
                      Log.d(TAG, chatMessage!!.text)
-                     if(chatMessage.formId == FirebaseAuth.getInstance().uid) {
-                         val currentUser = ChatActivity.currentUser?: return
-                         adapter.add(ChatFromItem(chatMessage.text,currentUser!!))
-                     }else {
+                     if (chatMessage.formId == FirebaseAuth.getInstance().uid) {
+                         val currentUser = ChatActivity.currentUser ?: return
+                         adapter.add(ChatFromItem(chatMessage.text, currentUser!!))
+                     } else {
                          adapter.add(ChatToItem(chatMessage.text, toUser!!))
                      }
                  }
              }
+
              override fun onCancelled(der: DatabaseError) {
                  TODO("Not yet implemented")
              }
@@ -67,6 +66,7 @@ class ChatLogActivity : AppCompatActivity() {
              override fun onChildChanged(snap: DataSnapshot, previousChildName: String?) {
                  TODO("Not yet implemented")
              }
+
              override fun onChildMoved(snap: DataSnapshot, previousChildName: String?) {
                  TODO("Not yet implemented")
              }
@@ -90,12 +90,19 @@ class ChatLogActivity : AppCompatActivity() {
 
 
         val refrence = FirebaseDatabase.getInstance().getReference("/messages").push()
-        val chatMessage= ChatMessage(refrence.key!!,text,fromId!!,toId!!,System.currentTimeMillis()/1000)
+        val chatMessage= ChatMessage(
+            refrence.key!!,
+            text,
+            fromId!!,
+            toId!!,
+            System.currentTimeMillis() / 1000
+        )
         refrence.setValue(chatMessage).addOnSuccessListener {
             Log.d(TAG, "Saved our Chat message : ${refrence.key}")
             editTextChatLog.setText("")
 
         }
+        recyclerView_chat_log.scrollToPosition((recyclerView_chat_log.adapter?.itemCount ?: -1) -2)
 
     }
     private fun setupActionBar() {
@@ -114,7 +121,7 @@ class ChatLogActivity : AppCompatActivity() {
 }
 
 // --------------- Outer Class -------------------
-class ChatFromItem(val text:String, val user : User): Item<ViewHolder>(){
+class ChatFromItem(val text: String, val user: User): Item<ViewHolder>(){
     override fun bind(viewHolder: ViewHolder, position: Int) {
         viewHolder.itemView.textView_from_row.text = text
         // load our user image into the picture
@@ -127,7 +134,7 @@ class ChatFromItem(val text:String, val user : User): Item<ViewHolder>(){
     }
 }
 
-class ChatToItem(val text:String, val user : User): Item<ViewHolder>(){
+class ChatToItem(val text: String, val user: User): Item<ViewHolder>(){
     override fun bind(viewHolder: ViewHolder, position: Int) {
         viewHolder.itemView.textview_to_row.text = text
 
