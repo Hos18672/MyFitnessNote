@@ -32,14 +32,8 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         FirestoreClass().loginUser(this)
         fullscreen()
         onClick()
-
         setupLineChartData()
-
-
-
     }
-
-
     fun onClick(){
         var main_menu : ImageView = findViewById(id.main_menu)
         var add_main : ImageView   = findViewById(id.Add_main)

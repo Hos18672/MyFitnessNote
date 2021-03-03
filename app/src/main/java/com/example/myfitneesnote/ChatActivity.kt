@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import com.example.myfitneesnote.model.User
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.xwray.groupie.GroupAdapter
@@ -15,12 +16,19 @@ import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.user_row.view.*
 
 class ChatActivity : BaseActivity() {
+
+    companion object{
+        var currentUser: User?= null
+        val USER_KEY = "USER_KEY"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
         fullscreen()
         setupActionBar()
         fetchUsers()
+        fetchCurrentUser()
     }
     private fun setupActionBar() {
         setSupportActionBar(toolBar_Chat_activity)
@@ -34,10 +42,23 @@ class ChatActivity : BaseActivity() {
             onBackPressed()
         }
 }
-    companion object{
-        val USER_KEY = "USER_KEY"
+
+    private  fun fetchCurrentUser(){
+        val uid = FirebaseAuth.getInstance().uid
+        val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
+        ref.addListenerForSingleValueEvent(object :ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                currentUser = snapshot.getValue(User::class.java)
+                Log.d("LatesMessages", "Current User ${currentUser?.image}")
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
     }
-   fun fetchUsers(){
+   private  fun fetchUsers(){
       val ref = FirebaseDatabase.getInstance().getReference("/users")
        ref.addListenerForSingleValueEvent(object : ValueEventListener{
            override fun onDataChange(snapshot: DataSnapshot) {
@@ -50,7 +71,6 @@ class ChatActivity : BaseActivity() {
                            adapter.add(UserItem(user))
                        }
                    }
-
                }
                adapter.setOnItemClickListener{ item, view ->
                    val userItem= item as UserItem
@@ -68,7 +88,6 @@ class ChatActivity : BaseActivity() {
     }
 }
 class UserItem(val user: User): Item<ViewHolder>(){
-
     override fun bind(viewHolder: ViewHolder, position: Int) {
        viewHolder.itemView.User_name.text= user.username
     }
