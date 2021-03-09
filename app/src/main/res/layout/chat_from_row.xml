@@ -7,33 +7,35 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="10dp">
 
+
     <TextView
         android:id="@+id/textView_from_row"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:background="@drawable/rounded_mesage"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/rounded_mesageto"
         android:gravity="center"
+        android:maxWidth="300dp"
         android:padding="15dp"
         android:text="Hi Max How are you doing?"
+        android:textSize="40px"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.23"
+        app:layout_constraintHorizontal_bias="0.193"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
+        app:layout_constraintVertical_bias="0.0" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imageView_from_row"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        app:layout_constraintCircleRadius="100dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/man1"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintCircleRadius="100dp"
         app:layout_constraintEnd_toStartOf="@+id/textView_from_row"
-        app:layout_constraintHorizontal_bias="0.136"
+        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        android:src="@drawable/man1" />
+        app:layout_constraintVertical_bias="0.444" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -26,10 +26,10 @@
             android:orientation="horizontal"
             tools:ignore="UselessParent">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imageView_user"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_marginLeft="10dp"
                 android:src="@drawable/man"
                 tools:ignore="MissingConstraints"

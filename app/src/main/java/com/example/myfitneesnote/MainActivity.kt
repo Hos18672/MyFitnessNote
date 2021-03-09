@@ -1,12 +1,15 @@
 package com.example.myfitneesnote
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.ImageView
 import androidx.core.view.GravityCompat
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.myfitneesnote.ChatActivity.Companion.USER_KEY
 import com.example.myfitneesnote.R.*
 import com.example.myfitneesnote.firebase.FirestoreClass
 import com.example.myfitneesnote.model.User
@@ -18,11 +21,20 @@ import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.squareup.picasso.Picasso
+import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.Item
+import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.nav_header_main.*
+import kotlinx.android.synthetic.main.nav_header_main.view.*
+import kotlinx.android.synthetic.main.user_row.view.*
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         //This call the parent constructor
@@ -93,7 +105,7 @@ fun updateNavigationUserDetails(user: User) {
             .centerCrop()
             .placeholder(drawable.ic_user_place_holder)
             .into(main_drawer_profile_photo)
-
+             UserLoged(user)
         tv_username.text = user.username
     }
 
@@ -149,8 +161,25 @@ fun updateNavigationUserDetails(user: User) {
         lineChart.xAxis.position = XAxis.XAxisPosition.BOTTOM
     }
 
+}
+
+class UserLoged(val user: User): Item<ViewHolder>(){
+    override fun bind(viewHolder: ViewHolder, position: Int) {
+        // load our user image into the picture
+        val uri = user.image
+        val targetImageView = viewHolder.itemView.main_drawer_profile_photo
+        Picasso.get().load(uri).into(targetImageView)
+    }
+    override fun getLayout(): Int {
+        return R.layout.chat_from_row
+    }
+
+
 
 }
+
+
+
 
 
 

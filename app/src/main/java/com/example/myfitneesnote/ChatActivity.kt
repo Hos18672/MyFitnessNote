@@ -13,6 +13,8 @@ import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.activity_chat.*
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.chat_from_row.view.*
 import kotlinx.android.synthetic.main.user_row.view.*
 
 class ChatActivity : BaseActivity() {
@@ -67,7 +69,7 @@ class ChatActivity : BaseActivity() {
                    Log.d("new massage", it.toString())
                    val user = it.getValue(User::class.java)
                    if(user != null) {
-                       if (user.username == "Trainer") {
+                       if (user.user_id!= FirebaseAuth.getInstance().uid) {
                            adapter.add(UserItem(user))
                        }
                    }
@@ -80,6 +82,7 @@ class ChatActivity : BaseActivity() {
                    startActivity(intent)
                }
                recyclerView.adapter = adapter
+
            }
            override fun onCancelled(error: DatabaseError) {
                TODO("Not yet implemented")
@@ -89,7 +92,11 @@ class ChatActivity : BaseActivity() {
 }
 class UserItem(val user: User): Item<ViewHolder>(){
     override fun bind(viewHolder: ViewHolder, position: Int) {
-       viewHolder.itemView.User_name.text= user.username
+        val uri = user.image
+        viewHolder.itemView.User_name.text= user.username
+        val targetImageView = viewHolder.itemView.imageView_user
+        Picasso.get().load(uri).into(targetImageView)
+
     }
     override fun getLayout(): Int {
         return R.layout.user_row

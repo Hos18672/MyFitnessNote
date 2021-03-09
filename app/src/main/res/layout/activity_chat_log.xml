@@ -8,97 +8,113 @@
     android:orientation="vertical"
     tools:context=".ChatLogActivity">
 
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar_Chat_activity"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="48dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="-1dp"
+        android:layout_marginRight="-1dp"
         android:background="@android:color/white"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints">
-        <TextView
-            android:id="@+id/toolBar_textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text=""
-            android:textColor="#000000"
-            android:textSize="15sp"
-            tools:layout_editor_absoluteX="165dp"
-            tools:layout_editor_absoluteY="218dp" />
+
+
         <TextView
             android:id="@+id/Chat_log_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="150dp"
             android:layout_marginLeft="150dp"
             android:layout_marginBottom="10dp"
-            android:text="@string/massages"
+            android:text="Messages "
             android:textColor="#000000"
             android:textSize="15sp"
             tools:layout_editor_absoluteX="165dp"
-            tools:layout_editor_absoluteY="218dp"
-            android:layout_marginStart="150dp" />
+            tools:layout_editor_absoluteY="218dp" />
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_chat_log"
         android:layout_width="match_parent"
-        android:layout_height="696dp"
-        android:layout_above="@+id/toolBar_Chat_activity"
-        android:layout_below="@+id/toolBar_Chat_activity"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="1dp"
-        android:layout_marginBottom="60dp"
+        android:layout_height="736dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints">
+        android:layout_above="@+id/ll1"
+        android:layout_below="@+id/toolBar_Chat_activity"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="-1dp"
+        android:layout_marginRight="-1dp"
+        android:layout_marginBottom="4dp" />
 
-    </androidx.recyclerview.widget.RecyclerView>
-
-
-    <RelativeLayout
-        android:id="@+id/ll2"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ll1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="bottom">
-        <LinearLayout
-            android:id="@+id/ll1"
-            android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/shapetransparent_message"
+        android:gravity="bottom"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0.991">
+
+
+        <EditText
+            android:id="@+id/editTextChatLog"
+            android:layout_width="326dp"
             android:layout_height="46dp"
             android:layout_gravity="bottom"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/shapetransparent_message"
-            android:gravity="bottom"
-            android:orientation="horizontal"
+            android:background="@android:color/transparent"
+            android:hint="@string/enter_message"
+            android:inputType="text|textNoSuggestions"
+            android:padding="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintHorizontal_bias="0.207"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
-            <EditText
-                android:id="@+id/editTextChatLog"
-                android:layout_width="330dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="bottom"
-                android:layout_marginLeft="20dp"
-                android:background="@android:color/transparent"
-                android:hint="@string/enter_message"
-                android:inputType="text|textNoSuggestions"
-                android:padding="10dp" />
-            <Button
-                android:id="@+id/SendeBtn"
-                android:layout_width="40dp"
-                android:layout_height="45dp"
-                android:layout_gravity="bottom"
-                android:layout_marginLeft="10dp"
-                android:background="@drawable/ic_send_btn"
-                android:textStyle="bold" />
+        <Button
+            android:id="@+id/SendeBtn"
+            android:layout_width="40dp"
+            android:layout_height="45dp"
+            android:layout_gravity="bottom"
+            android:background="@drawable/ic_send_btn"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.666"
+            app:layout_constraintStart_toEndOf="@+id/editTextChatLog"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
-        </LinearLayout>
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </RelativeLayout>
