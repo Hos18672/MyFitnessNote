@@ -10,14 +10,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".MuskelGroupActivity"></activity>
-        <activity android:name=".HomeworkouActivity" />
-        <activity android:name=".GymworkoutActivity" />
-        <activity android:name=".dfas" />
-        <activity android:name=".ChatLogActivity" />
-        <activity android:name=".ChatActivity" />
+        <activity android:name=".AddWorkoutActivity"
+            android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
         <activity
-            android:name=".musclegrupp"
+            android:name=".MuskelGroupActivity"
+            android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
+        <activity
+            android:name=".HomeworkouActivity"
+            android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
+        <activity
+            android:name=".GymworkoutActivity"
+            android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
+        <activity
+            android:name=".ChatLogActivity"
+            android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
+        <activity
+            android:name=".ChatActivity"
             android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
         <activity
             android:name=".uebungen"

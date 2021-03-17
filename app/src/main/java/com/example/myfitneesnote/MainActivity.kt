@@ -29,7 +29,9 @@ import com.squareup.picasso.Picasso
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
+import kotlinx.android.synthetic.main.activity_chat.*
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_muskel_group.*
 import kotlinx.android.synthetic.main.nav_header_main.*
 import kotlinx.android.synthetic.main.nav_header_main.view.*
 import kotlinx.android.synthetic.main.user_row.view.*
@@ -45,6 +47,8 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         fullscreen()
         onClick()
         setupLineChartData()
+
+
     }
     fun onClick(){
         var main_menu : ImageView = findViewById(id.main_menu)
@@ -99,17 +103,14 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             doubleBackToExit()
         }
     }
-fun updateNavigationUserDetails(user: User) {
+    fun updateNavigationUserDetails(user: User) {
         Glide.with(this)
             .load(user.image)
             .centerCrop()
             .placeholder(drawable.ic_user_place_holder)
             .into(main_drawer_profile_photo)
-             UserLoged(user)
-        tv_username.text = user.username
+    tv_username.text = user.username
     }
-
-
     private fun setupLineChartData() {
         val yVals = ArrayList<Entry>()
         var lineChart : LineChart = findViewById(R.id.lineChart)
@@ -125,8 +126,6 @@ fun updateNavigationUserDetails(user: User) {
         yVals.add(Entry(9f, 32f, "9"))
         yVals.add(Entry(10f, 54f, "10"))
         yVals.add(Entry(11f, 28f, "11"))
-
-
         val set1: LineDataSet
         set1 = LineDataSet(yVals, "DataSet 1")
 
@@ -161,22 +160,10 @@ fun updateNavigationUserDetails(user: User) {
         lineChart.xAxis.position = XAxis.XAxisPosition.BOTTOM
     }
 
-}
-
-class UserLoged(val user: User): Item<ViewHolder>(){
-    override fun bind(viewHolder: ViewHolder, position: Int) {
-        // load our user image into the picture
-        val uri = user.image
-        val targetImageView = viewHolder.itemView.main_drawer_profile_photo
-        Picasso.get().load(uri).into(targetImageView)
-    }
-    override fun getLayout(): Int {
-        return R.layout.chat_from_row
-    }
-
 
 
 }
+
 
 
 

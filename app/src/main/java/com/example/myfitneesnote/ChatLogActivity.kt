@@ -22,7 +22,7 @@ import kotlinx.android.synthetic.main.chat_from_row.view.*
 import kotlinx.android.synthetic.main.chat_to_row.view.*
 
 
-class ChatLogActivity : AppCompatActivity() {
+class ChatLogActivity : BaseActivity() {
     companion object{ val TAG = "ChatLog" }
     var toUser: User?= null
     val adapter = GroupAdapter<ViewHolder>()
@@ -33,6 +33,7 @@ class ChatLogActivity : AppCompatActivity() {
         toUser =  intent.getParcelableExtra<User>(ChatActivity.USER_KEY)
         recyclerView_chat_log.adapter= adapter
         setupActionBar()
+        fullscreen()
         listenForMessages()
         SendeBtn.setOnClickListener{
             Log.d(TAG, "To send Message")

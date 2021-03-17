@@ -23,7 +23,7 @@ class SplashActivity : BaseActivity() {
                 overridePendingTransition(R.anim.slidetoright, R.anim.slide_out_left);
             }
             finish()
-        }, 2500)
+        }, 850)
     }
 
     fun animat(){

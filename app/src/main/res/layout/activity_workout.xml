@@ -12,7 +12,11 @@
             android:id="@+id/toolBar_workout_activity"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints">
+
                 <TextView
                     android:id="@+id/toolBar_textView"
                     android:layout_width="wrap_content"
@@ -27,15 +31,15 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/ll1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="368dp"
+            android:layout_height="675dp"
             android:layout_margin="10dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.476"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolBar_workout_activity"
             tools:ignore="UselessParent">
 
 
@@ -55,7 +59,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.39" />
+                    app:layout_constraintVertical_bias="0.026" />
 
                 <Button
                     android:id="@+id/btn_gym_home"
