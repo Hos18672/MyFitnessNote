@@ -8,12 +8,18 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.ProgressBar
 import android.widget.Toast
+import at.favre.lib.crypto.bcrypt.BCrypt
 import com.example.myfitneesnote.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.*
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : BaseActivity() {
+    private var mFirebaseDatabase: DatabaseReference? = null
+    private var mFirebaseInstance: FirebaseDatabase? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,42 +57,47 @@ class LoginActivity : BaseActivity() {
         val email: String = login_email_input.text.toString().trim { it <= ' ' }
         val password: String = login_password_input.text.toString().trim { it <= ' ' }
         val pb = findViewById(R.id.progressBar_login) as ProgressBar
-        if (validateForm(email, password)) {
-            //showProgressDialog(resources.getString(R.string.please_wait))
-            // create an instance and create a register a user with email and password
-            pb.visibility = View.VISIBLE
-            sign_in_btn_text.setText("Please wait ...")
-            FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener { task ->
-                    //hideProgressDialog()
 
-                    if (task.isSuccessful) {
-                        val firebaseUser: FirebaseUser = task.result!!.user!!
-                        Toast.makeText(
-                            this@LoginActivity,
-                            "Your are logged in Up successfully.",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                        intent.flags =
-                            Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                        intent.putExtra("user_id", FirebaseAuth.getInstance().currentUser!!.uid)
-                        intent.putExtra("email_id", email)
-                        startActivity(intent)
-                        finish()
-                    } else {
-                        pb.visibility = View.GONE
-                        Toast.makeText(
-                            this@LoginActivity, task.exception!!.message.toString(),
-                            Toast.LENGTH_SHORT
-                        ).show()
+        if (validateForm(email, password)) {
+
+                startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                finish()
+                //showProgressDialog(resources.getString(R.string.please_wait))
+                // create an instance and create a register a user with email and password
+                pb.visibility = View.VISIBLE
+                sign_in_btn_text.setText("Please wait ...")
+                FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener { task ->
+                        //hideProgressDialog()
+                        if (task.isSuccessful) {
+                            val firebaseUser: FirebaseUser = task.result!!.user!!
+                            Toast.makeText(
+                                this@LoginActivity,
+                                "Your are logged in Up successfully.",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                            intent.flags =
+                                Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                            intent.putExtra("user_id", FirebaseAuth.getInstance().currentUser!!.uid)
+                            intent.putExtra("email_id", email)
+                            startActivity(intent)
+                            finish()
+                        } else {
+                            pb.visibility = View.GONE
+                            Toast.makeText(
+                                this@LoginActivity, task.exception!!.message.toString(),
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
                     }
-                }
         } else {
             pb.visibility = View.GONE
             sign_in_btn_text.setText("Sign in")
         }
     }
+
+
     fun logInSuccess(user: User) {
         hideProgressDialog()
         startActivity(Intent(this, MainActivity::class.java))

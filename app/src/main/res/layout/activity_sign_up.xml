@@ -60,7 +60,22 @@
             android:gravity="center"
             android:orientation="vertical"
             tools:ignore="UselessParent">
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputname"
+                android:layout_width="300dp"
+                android:layout_height="60dp"
+                android:layout_margin="5dp"
+                android:textColorHint="#8D8D8E"
+                app:boxStrokeColor="#0287FB">
 
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/signUpNameInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="300"
+                    android:hint="Full name"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputusername"
                 android:layout_width="300dp"

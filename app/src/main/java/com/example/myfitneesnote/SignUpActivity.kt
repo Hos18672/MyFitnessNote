@@ -7,6 +7,7 @@ import android.text.TextUtils
 import android.util.Log
 import android.view.WindowManager
 import android.widget.Toast
+import at.favre.lib.crypto.bcrypt.BCrypt
 import com.example.myfitneesnote.firebase.FirestoreClass
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -36,51 +37,64 @@ class SignUpActivity : BaseActivity() {
      */
     @SuppressLint("RestrictedApi")
     private  fun signUpUser(){
-        val name : String = signUpUsernameInput.text.toString().trim{ it <= ' '}
+        val name : String = signUpNameInput.text.toString().trim{ it <= ' '}
+        val username : String = signUpUsernameInput.text.toString().trim{ it <= ' '}
         val email : String = signUp_email_input.text.toString().trim{ it <= ' '}
         val password : String = signUp_password_input.text.toString().trim{ it <= ' '}
+        val password2 : String = signUp_password_input2.text.toString().trim{ it <= ' '}
         val Image : String = signUp_image.toString().trim{ it <= ' '}
-        if(validateForm(name, email, password)){
-            // Toast.makeText(this, "Now we register User",Toast.LENGTH_SHORT).show()
-            showProgressDialog(resources.getString(R.string.please_wait))
-            FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        val firebaseUser: FirebaseUser = task.result!!.user!!
-                        val signUpedEmail = firebaseUser.email!!
+        if(validateForm(name, username, email, password) ) {
+            if (password.equals(password2)) {
+                // Toast.makeText(this, "Now we register User",Toast.LENGTH_SHORT).show()
+                //password encryption
+                val hashPass = BCrypt.withDefaults().hashToString(12,password.toCharArray())
+                showProgressDialog(resources.getString(R.string.please_wait))
+                FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            val firebaseUser: FirebaseUser = task.result!!.user!!
+                            val signUpedEmail = firebaseUser.email!!
 
-                        val user = com.example.myfitneesnote.model.User(
-                            firebaseUser.uid,
-                            name,
-                            email,
-                            password,
-                            Image
-                        )
-                        FirestoreClass().registerUser(this, user)
-                        val uid = FirebaseAuth.getInstance().uid ?: ""
-                        val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
-                        ref.setValue(user)
-                            .addOnSuccessListener {
-                                Log.d("User", "Finally we saved the user to Firebase Database")
-                            }
-                            .addOnFailureListener {
-                                Log.d("User", "Failed to set value to database: ${it.message}")
-                            }
+                            val user = com.example.myfitneesnote.model.User(
+                                firebaseUser.uid,
+                                name,
+                                username,
+                                email,
+                                hashPass,
+                                Image
+                            )
+                            FirestoreClass().registerUser(this, user)
+                            val uid = FirebaseAuth.getInstance().uid ?: ""
+                            val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
+                            ref.setValue(user)
+                                .addOnSuccessListener {
+                                    Log.d("User", "Finally we saved the user to Firebase Database")
+                                }
+                                .addOnFailureListener {
+                                    Log.d("User", "Failed to set value to database: ${it.message}")
+                                }
 
-                      //  FirebaseAuth.getInstance().signOut()
-                        val intent = Intent(this@SignUpActivity, MainActivity::class.java)
-                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                        intent.putExtra("user_id", firebaseUser.uid)
-                        intent.putExtra("email_id", email)
-                        intent.putExtra("userName", signUpUsernameInput.text.toString())
-                        startActivity(intent)
-                        finish()
-                    }else{
-                        Toast.makeText(
-                            this@SignUpActivity,
-                            task.exception!!.message.toString(),
-                            Toast.LENGTH_SHORT
-                        ).show()
+                            //  FirebaseAuth.getInstance().signOut()
+                            val intent = Intent(this@SignUpActivity, MainActivity::class.java)
+                            intent.flags =
+                                Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                            intent.putExtra("user_id", firebaseUser.uid)
+                            intent.putExtra("name", signUpNameInput.text.toString())
+                            intent.putExtra("userName", signUpUsernameInput.text.toString())
+                            intent.putExtra("email_id", email)
+
+                            startActivity(intent)
+                            finish()
+                        } else {
+                            Toast.makeText(
+                                this@SignUpActivity,
+                                task.exception!!.message.toString(),
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
                     }
+            }else{
+                showErrorSnackBar("Passwords not match")
             }
         }
     }
@@ -104,10 +118,14 @@ class SignUpActivity : BaseActivity() {
                 Log.d(TAG, "Failed to upload image to storage: ${it.message}")
             }
     }*/
-    private  fun validateForm(name: String, email: String, password: String) : Boolean{
+    private  fun validateForm(name: String,username: String, email: String, password: String) : Boolean{
         return when{
             TextUtils.isEmpty(name)->{
                 showErrorSnackBar("Please enter a  name")
+                false
+            }
+            TextUtils.isEmpty(username)->{
+                showErrorSnackBar("Please enter a  username")
                 false
             }
             TextUtils.isEmpty(email)->{

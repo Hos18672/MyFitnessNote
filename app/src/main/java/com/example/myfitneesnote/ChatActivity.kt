@@ -14,7 +14,6 @@ import kotlinx.android.synthetic.main.activity_chat.*
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.chat_from_row.view.*
 import kotlinx.android.synthetic.main.user_row.view.*
 
 class ChatActivity : BaseActivity() {
@@ -43,7 +42,7 @@ class ChatActivity : BaseActivity() {
         toolBar_Chat_activity.setNavigationOnClickListener{
             onBackPressed()
         }
-}
+    }
 
     private  fun fetchCurrentUser(){
         val uid = FirebaseAuth.getInstance().uid
@@ -60,34 +59,34 @@ class ChatActivity : BaseActivity() {
 
         })
     }
-   private  fun fetchUsers(){
-      val ref = FirebaseDatabase.getInstance().getReference("/users")
-       ref.addListenerForSingleValueEvent(object : ValueEventListener{
-           override fun onDataChange(snapshot: DataSnapshot) {
-               val adapter = GroupAdapter<ViewHolder>()
-               snapshot.children.forEach{
-                   Log.d("new massage", it.toString())
-                   val user = it.getValue(User::class.java)
-                   if(user != null) {
-                       if (user.user_id!= FirebaseAuth.getInstance().uid) {
-                           adapter.add(UserItem(user))
-                       }
-                   }
-               }
-               adapter.setOnItemClickListener{ item, view ->
-                   val userItem= item as UserItem
-                   val intent = Intent( view.context, ChatLogActivity:: class.java)
-                  // intent.putExtra(USER_KEY, userItem.user.username)
-                   intent.putExtra(USER_KEY, userItem.user)
-                   startActivity(intent)
-               }
-               recyclerView.adapter = adapter
+    private  fun fetchUsers(){
+        val ref = FirebaseDatabase.getInstance().getReference("/users")
+        ref.addListenerForSingleValueEvent(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val adapter = GroupAdapter<ViewHolder>()
+                snapshot.children.forEach{
+                    Log.d("new massage", it.toString())
+                    val user = it.getValue(User::class.java)
+                    if(user != null) {
+                        if (user.user_id!= FirebaseAuth.getInstance().uid) {
+                            adapter.add(UserItem(user))
+                        }
+                    }
+                }
+                adapter.setOnItemClickListener{ item, view ->
+                    val userItem= item as UserItem
+                    val intent = Intent( view.context, ChatLogActivity:: class.java)
+                    // intent.putExtra(USER_KEY, userItem.user.username)
+                    intent.putExtra(USER_KEY, userItem.user)
+                    startActivity(intent)
+                }
+                recyclerView.adapter = adapter
 
-           }
-           override fun onCancelled(error: DatabaseError) {
-               TODO("Not yet implemented")
-           }
-       })
+            }
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
     }
 }
 class UserItem(val user: User): Item<ViewHolder>(){
@@ -102,4 +101,3 @@ class UserItem(val user: User): Item<ViewHolder>(){
         return R.layout.user_row
     }
 }
-

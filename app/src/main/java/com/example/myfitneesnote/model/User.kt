@@ -2,14 +2,15 @@ package com.example.myfitneesnote.model
 
 import android.os.Parcel
 import android.os.Parcelable
-
-  data class User(
-      val user_id: String = "",
-      val username: String="",
-      val email: String="",
-      val password: String="",
-      val image: String="") : Parcelable {
+data class User(
+    val user_id: String = "",
+    val name: String="",
+    val username: String="",
+    val email: String="",
+    val password: String="",
+    val image: String="") : Parcelable {
     constructor(parcel: Parcel) : this(
+        parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
@@ -20,6 +21,7 @@ import android.os.Parcelable
 
     override fun writeToParcel(parcel: Parcel, flags: Int) = with(parcel) {
         writeString(user_id)
+        writeString(name)
         writeString(username)
         writeString(email)
         writeString(password)

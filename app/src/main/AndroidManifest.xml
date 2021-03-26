@@ -4,13 +4,15 @@
     package="com.example.myfitneesnote">
 
     <application
-        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label=""
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".AddWorkoutActivity"
+        <activity android:name=".SecurityActivity"
+            android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
+        <activity
+            android:name=".AddWorkoutActivity"
             android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
         <activity
             android:name=".MuskelGroupActivity"

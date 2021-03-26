@@ -3,7 +3,6 @@
     <string name="login">Login</string>
     <string name="don_t_have_an_account">Don\'t have an account?</string>
     <string name="todo">TODO</string>
-    <string name="username">Username</string>
     <string name="have_an_account">Have an account?</string>
     <string name="sign_up">Sign Up</string>
     <string name="email">Email</string>
@@ -40,4 +39,11 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="full_name">Full name</string>
+    <string name="birthdate">Birthdate</string>
+    <string name="gender">Gender</string>
+    <string name="save">Save</string>
+    <string name="username">Username</string>
+    <string name="change_email_or_password">Change Email Or Password</string>
+    <string name="current_password">Current Password</string>
 </resources>
