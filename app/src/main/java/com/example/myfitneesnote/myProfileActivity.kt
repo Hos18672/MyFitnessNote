@@ -3,12 +3,19 @@ package com.example.myfitneesnote
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
-import android.view.View
+import android.view.WindowManager
 import android.widget.Toast
+import com.example.myfitneesnote.R.*
+import com.example.myfitneesnote.R.drawable.*
+import com.example.myfitneesnote.model.User
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
+import com.squareup.picasso.Picasso
+import com.xwray.groupie.Item
+import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.activity_my_profile.*
+import kotlinx.android.synthetic.main.chat_to_row.view.*
+
 
 class myProfileActivity : BaseActivity() {
 
@@ -19,11 +26,10 @@ class myProfileActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_my_profile)
+        setContentView(layout.activity_my_profile)
         fullscreen()
         setupActionBar()
-
-
+        userProfileData()
         mFirebaseInstance = FirebaseDatabase.getInstance()
 
         // get reference to 'users' node
@@ -62,37 +68,47 @@ class myProfileActivity : BaseActivity() {
         //Calling updateUser function
         updateUser(username, name)
     }
-
-/*
-    fun onDeleteClicked(view: View) {
-        //Remove value from child
-        mFirebaseDatabase!!.child(userId!!).removeValue()
-        Toast.makeText(applicationContext, "Successfully deleted user", Toast.LENGTH_SHORT).show()
-
-        // clear information
-        txt_user.setText("")
-        email.setText("")
-        name.setText("")
-    }
-
-
-    companion object {
-        private val TAG = upd_del::class.java.getSimpleName()
-    }
-    */
-
-
     private fun setupActionBar() {
         setSupportActionBar(toolBar_my_profile_activity)
         var actionBar = supportActionBar
         if(actionBar!=null)
         {
             actionBar.setDisplayHomeAsUpEnabled(true)
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_navigate_before_black_24dp)
+            actionBar.setHomeAsUpIndicator(ic_navigate_before_black_24dp)
         }
         toolBar_my_profile_activity.setNavigationOnClickListener{
             onBackPressed()
         }
     }
 
+
+    private fun userProfileData() {
+        val uid = FirebaseAuth.getInstance().uid
+        val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
+        ref.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val username = snapshot.child("username").getValue(String::class.java)
+                val fullname = snapshot.child("name").getValue(String::class.java)
+                login_username_input.setText(username)
+                profile_fullName_input.setText(fullname)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
+    }
+}
+
+
+class profileImage(val user: User): Item<ViewHolder>(){
+    override fun bind(viewHolder: ViewHolder, position: Int) {
+        // load our user image into the picture
+        val uri = user.image
+        val targetImageView = viewHolder.itemView.imageView_to_row
+        Picasso.get().load(uri).into(targetImageView)
+    }
+    override fun getLayout(): Int {
+        return R.layout.chat_to_row
+    }
 }

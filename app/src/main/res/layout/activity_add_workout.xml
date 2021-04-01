@@ -133,37 +133,37 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
     <RelativeLayout
-            android:id="@+id/Rl3"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_marginTop="12dp"
-            android:orientation="vertical"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Rl2"
-            tools:ignore="MissingConstraints">
+        android:id="@+id/Rl3"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="12dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Rl2"
+        tools:ignore="MissingConstraints">
 
-            <TextView
-                android:id="@+id/textView16"
-                android:layout_width="346dp"
-                android:layout_height="59dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="35dp"
-                android:layout_marginLeft="35dp"
-                android:layout_marginTop="6dp"
-                android:layout_marginEnd="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginBottom="5dp"
-                android:gravity="center"
-                android:text="Gewicht pro Sätze"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                tools:layout_editor_absoluteX="19dp"
-                tools:layout_editor_absoluteY="308dp" />
-        </RelativeLayout>
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="346dp"
+            android:layout_height="59dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="35dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="5dp"
+            android:gravity="center"
+            android:text="Gewicht pro Sätze"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            tools:layout_editor_absoluteX="19dp"
+            tools:layout_editor_absoluteY="308dp" />
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/Rl4"

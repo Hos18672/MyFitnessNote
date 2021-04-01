@@ -41,7 +41,6 @@
             android:id="@+id/imageView4"
             android:layout_width="130dp"
             android:layout_height="130dp"
-            android:background="@drawable/resume"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"

@@ -9,16 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".SecurityActivity"
-            android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
+        <activity android:name=".AddWorkoutActivity" />
         <activity
-            android:name=".AddWorkoutActivity"
-            android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
-        <activity
-            android:name=".MuskelGroupActivity"
+            android:name=".SecurityActivity"
             android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
         <activity
             android:name=".HomeworkouActivity"
+            android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
+        <activity
+            android:name=".workout"
+            android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
+        <activity
+            android:name=".MuskelGroupActivity"
             android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
         <activity
             android:name=".GymworkoutActivity"
@@ -28,12 +30,6 @@
             android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
         <activity
             android:name=".ChatActivity"
-            android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
-        <activity
-            android:name=".uebungen"
-            android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
-        <activity
-            android:name=".workout"
             android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
         <activity
             android:name=".myProfileActivity"

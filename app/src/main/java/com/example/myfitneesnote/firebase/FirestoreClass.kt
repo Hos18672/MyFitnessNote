@@ -37,7 +37,7 @@ class FirestoreClass {
                     }
                     is MainActivity -> {
                         if (loggedInUser != null) {
-                            activity.updateNavigationUserDetails(loggedInUser)
+                           // activity.updateNavigationUserDetails(loggedInUser)
                         }
                     }
                 }

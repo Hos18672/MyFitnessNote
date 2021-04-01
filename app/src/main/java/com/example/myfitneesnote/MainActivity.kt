@@ -1,17 +1,13 @@
 package com.example.myfitneesnote
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.WindowManager
 import android.widget.ImageView
 import androidx.core.view.GravityCompat
-import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.example.myfitneesnote.ChatActivity.Companion.USER_KEY
 import com.example.myfitneesnote.R.*
-import com.example.myfitneesnote.firebase.FirestoreClass
 import com.example.myfitneesnote.model.User
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.XAxis
@@ -26,29 +22,26 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
-import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
-import kotlinx.android.synthetic.main.activity_chat.*
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_muskel_group.*
 import kotlinx.android.synthetic.main.nav_header_main.*
 import kotlinx.android.synthetic.main.nav_header_main.view.*
-import kotlinx.android.synthetic.main.user_row.view.*
+
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
+    val database = FirebaseDatabase.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
         //This call the parent constructor
         super.onCreate(savedInstanceState)
         setContentView(layout.activity_main)
         nav_view.setNavigationItemSelectedListener(this)
-        FirestoreClass().loginUser(this)
+       // FirestoreClass().loginUser(this)
         fullscreen()
         onClick()
         setupLineChartData()
-
-
+        updateNavigationUserDetails()
     }
     fun onClick(){
         var main_menu : ImageView = findViewById(id.main_menu)
@@ -103,14 +96,26 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             doubleBackToExit()
         }
     }
-    fun updateNavigationUserDetails(user: User) {
-        Glide.with(this)
-            .load(user.image)
-            .centerCrop()
-            .placeholder(drawable.ic_user_place_holder)
-            .into(main_drawer_profile_photo)
-    tv_username.text = user.username
-    }
+     private fun updateNavigationUserDetails() {
+         val uid = FirebaseAuth.getInstance().uid
+         val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
+         ref.addListenerForSingleValueEvent(object : ValueEventListener {
+             override fun onDataChange(snapshot: DataSnapshot) {
+                 val username = snapshot.child("username").getValue(String::class.java)
+                 val imageUri = snapshot.child("image").getValue(String::class.java)
+                 Picasso.get().load(imageUri).into(main_drawer_profile_photo)
+                 tv_username.text = username
+             }
+
+             override fun onCancelled(error: DatabaseError) {
+                 TODO("Not yet implemented")
+             }
+
+         })
+
+     }
+
+
     private fun setupLineChartData() {
         val yVals = ArrayList<Entry>()
         var lineChart : LineChart = findViewById(R.id.lineChart)
@@ -126,6 +131,8 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         yVals.add(Entry(9f, 32f, "9"))
         yVals.add(Entry(10f, 54f, "10"))
         yVals.add(Entry(11f, 28f, "11"))
+
+
         val set1: LineDataSet
         set1 = LineDataSet(yVals, "DataSet 1")
 
@@ -159,11 +166,22 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         lineChart.xAxis.labelCount = 11
         lineChart.xAxis.position = XAxis.XAxisPosition.BOTTOM
     }
+}
+
+class UserLoged(val user: User): Item<ViewHolder>(){
+    override fun bind(viewHolder: ViewHolder, position: Int) {
+        // load our user image into the picture
+        val uri = user.image
+        val targetImageView = viewHolder.itemView.main_drawer_profile_photo
+        Picasso.get().load(uri).into(targetImageView)
+    }
+    override fun getLayout(): Int {
+        return R.layout.chat_from_row
+    }
 
 
 
 }
-
 
 
 

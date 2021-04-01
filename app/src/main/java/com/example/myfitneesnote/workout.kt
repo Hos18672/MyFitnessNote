@@ -1,14 +1,14 @@
 package com.example.myfitneesnote
-
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
-
 import android.view.WindowManager
+import androidx.annotation.RequiresApi
 import kotlinx.android.synthetic.main.activity_workout.*
 
 class workout : BaseActivity() {
 
-
+    @RequiresApi(Build.VERSION_CODES.KITKAT)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_workout)
@@ -22,7 +22,6 @@ class workout : BaseActivity() {
         btnBack.setOnClickListener {
             onBackPressed()
         }
-
     }
     private fun setupActionBar() {
         setSupportActionBar(toolBar_workout_activity)
@@ -36,10 +35,6 @@ class workout : BaseActivity() {
             onBackPressed()
         }
     }
-
-
-
-
 }
 
 

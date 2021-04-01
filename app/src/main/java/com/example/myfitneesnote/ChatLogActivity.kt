@@ -1,9 +1,8 @@
 package com.example.myfitneesnote
 
-
 import android.os.Bundle
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
+import android.view.WindowManager
 import com.example.myfitneesnote.model.ChatMessage
 import com.example.myfitneesnote.model.User
 import com.google.firebase.auth.FirebaseAuth
@@ -15,7 +14,6 @@ import com.squareup.picasso.Picasso
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
-import kotlinx.android.synthetic.main.activity_chat.*
 import kotlinx.android.synthetic.main.activity_chat.toolBar_Chat_activity
 import kotlinx.android.synthetic.main.activity_chat_log.*
 import kotlinx.android.synthetic.main.chat_from_row.view.*
@@ -26,14 +24,13 @@ class ChatLogActivity : BaseActivity() {
     companion object{ val TAG = "ChatLog" }
     var toUser: User?= null
     val adapter = GroupAdapter<ViewHolder>()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat_log)
+        fullscreen()
         toUser =  intent.getParcelableExtra<User>(ChatActivity.USER_KEY)
         recyclerView_chat_log.adapter= adapter
         setupActionBar()
-        fullscreen()
         listenForMessages()
         SendeBtn.setOnClickListener{
             Log.d(TAG, "To send Message")
@@ -118,7 +115,6 @@ class ChatLogActivity : BaseActivity() {
             onBackPressed()
         }
     }
-
 }
 
 // --------------- Outer Class -------------------

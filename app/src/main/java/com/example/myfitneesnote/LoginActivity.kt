@@ -2,25 +2,18 @@ package com.example.myfitneesnote
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import android.text.TextUtils
 import android.view.View
 import android.view.WindowManager
 import android.widget.ProgressBar
 import android.widget.Toast
-import at.favre.lib.crypto.bcrypt.BCrypt
 import com.example.myfitneesnote.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.*
-import com.google.firebase.ktx.Firebase
+
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : BaseActivity() {
-    private var mFirebaseDatabase: DatabaseReference? = null
-    private var mFirebaseInstance: FirebaseDatabase? = null
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -33,9 +26,7 @@ class LoginActivity : BaseActivity() {
             finish()
         }
         sing_in_button.setOnClickListener {
-            Handler().postDelayed({
                 loginUser()
-            }, 100)
         }
     }
     private fun setupActionBar() {
@@ -59,9 +50,6 @@ class LoginActivity : BaseActivity() {
         val pb = findViewById(R.id.progressBar_login) as ProgressBar
 
         if (validateForm(email, password)) {
-
-                startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-                finish()
                 //showProgressDialog(resources.getString(R.string.please_wait))
                 // create an instance and create a register a user with email and password
                 pb.visibility = View.VISIBLE
@@ -73,7 +61,7 @@ class LoginActivity : BaseActivity() {
                             val firebaseUser: FirebaseUser = task.result!!.user!!
                             Toast.makeText(
                                 this@LoginActivity,
-                                "Your are logged in Up successfully.",
+                                "Your are logged in successfully.",
                                 Toast.LENGTH_SHORT
                             ).show()
                             val intent = Intent(this@LoginActivity, MainActivity::class.java)

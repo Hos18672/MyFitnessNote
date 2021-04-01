@@ -37,17 +37,17 @@
         tools:layout_editor_absoluteY="0dp">
 
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imageView4"
             android:layout_width="130dp"
             android:layout_height="130dp"
-            android:background="@drawable/resume"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.128" />
+            app:layout_constraintVertical_bias="0.128"  />
+
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/inputUsername"

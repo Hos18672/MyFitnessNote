@@ -73,7 +73,7 @@
         android:layout_gravity="bottom"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/shapetransparent_message"
         android:gravity="bottom"
         android:orientation="horizontal"
