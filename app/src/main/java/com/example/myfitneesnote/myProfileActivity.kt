@@ -100,7 +100,7 @@ class myProfileActivity : BaseActivity() {
     }
 }
 
-
+/*
 class profileImage(val user: User): Item<ViewHolder>(){
     override fun bind(viewHolder: ViewHolder, position: Int) {
         // load our user image into the picture
@@ -111,4 +111,4 @@ class profileImage(val user: User): Item<ViewHolder>(){
     override fun getLayout(): Int {
         return R.layout.chat_to_row
     }
-}
+}*/

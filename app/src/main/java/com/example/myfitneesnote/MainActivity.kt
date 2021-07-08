@@ -102,8 +102,8 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
          ref.addListenerForSingleValueEvent(object : ValueEventListener {
              override fun onDataChange(snapshot: DataSnapshot) {
                  val username = snapshot.child("username").getValue(String::class.java)
-                 val imageUri = snapshot.child("image").getValue(String::class.java)
-                 Picasso.get().load(imageUri).into(main_drawer_profile_photo)
+                // val imageUri = snapshot.child("image").getValue(String::class.java)
+                // Picasso.get().load(imageUri!!).into(main_drawer_profile_photo)
                  tv_username.text = username
              }
 
@@ -178,9 +178,6 @@ class UserLoged(val user: User): Item<ViewHolder>(){
     override fun getLayout(): Int {
         return R.layout.chat_from_row
     }
-
-
-
 }
 
 

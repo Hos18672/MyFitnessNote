@@ -121,10 +121,6 @@ class ChatLogActivity : BaseActivity() {
 class ChatFromItem(val text: String, val user: User): Item<ViewHolder>(){
     override fun bind(viewHolder: ViewHolder, position: Int) {
         viewHolder.itemView.textView_from_row.text = text
-        // load our user image into the picture
-        val uri = user.image
-        val targetImageView = viewHolder.itemView.imageView_from_row
-        Picasso.get().load(uri).into(targetImageView)
     }
     override fun getLayout(): Int {
         return R.layout.chat_from_row
@@ -134,11 +130,6 @@ class ChatFromItem(val text: String, val user: User): Item<ViewHolder>(){
 class ChatToItem(val text: String, val user: User): Item<ViewHolder>(){
     override fun bind(viewHolder: ViewHolder, position: Int) {
         viewHolder.itemView.textview_to_row.text = text
-
-        // load our user image into the picture
-        val uri = user.image
-        val targetImageView = viewHolder.itemView.imageView_to_row
-        Picasso.get().load(uri).into(targetImageView)
     }
     override fun getLayout(): Int {
         return R.layout.chat_to_row

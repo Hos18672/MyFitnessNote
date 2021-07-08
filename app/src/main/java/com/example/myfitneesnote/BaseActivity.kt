@@ -29,7 +29,7 @@ open class BaseActivity : AppCompatActivity() {
         mProgressDialog.show()
     }
 
-    fun hideProgressDialog() {
+    fun hideProgressDialog1() {
         mProgressDialog.dismiss()
     }
     fun getCurrentUserID() :String{

@@ -94,9 +94,6 @@ class UserItem(val user: User): Item<ViewHolder>(){
     override fun bind(viewHolder: ViewHolder, position: Int) {
         val uri = user.image
         viewHolder.itemView.User_name.text= user.username
-        val targetImageView = viewHolder.itemView.imageView_user
-        Picasso.get().load(uri).into(targetImageView)
-
     }
     override fun getLayout(): Int {
         return R.layout.user_row

@@ -51,14 +51,14 @@
                     android:textColor="#000000"
                     android:textSize="30sp"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toTopOf="@+id/btn_gym_home"
+                    app:layout_constraintBottom_toTopOf="@+id/btn_gym_workout"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.39" />
 
                 <Button
-                    android:id="@+id/btn_gym_home"
+                    android:id="@+id/btn_gym_workout"
                     android:layout_width="380dp"
                     android:layout_height="200dp"
                     android:layout_margin="10dp"
@@ -66,7 +66,7 @@
                     android:background="@drawable/ic_gym_out"
                     android:text="@string/gymwork1"
                     android:textColor="@android:color/background_light"
-                    app:layout_constraintBottom_toTopOf="@+id/button5"
+                    app:layout_constraintBottom_toTopOf="@+id/btn_home_workout"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.454"
                     app:layout_constraintStart_toStartOf="parent"
@@ -74,7 +74,7 @@
                     app:layout_constraintVertical_bias="0.931" />
 
                 <Button
-                    android:id="@+id/button5"
+                    android:id="@+id/btn_home_workout"
                     android:layout_width="380dp"
                     android:layout_height="200dp"
                     android:layout_margin="10dp"
@@ -88,7 +88,7 @@
                     app:layout_constraintVertical_bias="0.669" />
 
                 <Button
-                    android:id="@+id/btnBack"
+                    android:id="@+id/btnBack1"
                     android:layout_width="350dp"
                     android:layout_height="60dp"
                     android:layout_margin="20dp"
@@ -98,7 +98,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/button5"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_home_workout"
                     app:layout_constraintVertical_bias="0.315" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 

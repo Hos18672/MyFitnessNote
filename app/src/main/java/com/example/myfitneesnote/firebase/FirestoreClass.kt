@@ -22,6 +22,7 @@ class FirestoreClass {
                 activity.userRegisteredSuccess()
             }
     }
+/*
 
     fun loginUser(activity: Activity) {
         mFireStore.collection(Constant.USERS)
@@ -44,15 +45,16 @@ class FirestoreClass {
             }.addOnFailureListener { e ->
                 when (activity) {
                     is LoginActivity -> {
-                        activity.hideProgressDialog()
+                        activity.hideProgressDialog1()
                     }
                     is MainActivity -> {
-                        activity.hideProgressDialog()
+                        activity.hideProgressDialog1()
                     }
                 }
                 Log.e("FireStoreLogInUser", "Error writing document")
             }
     }
+*/
 
     fun getCurrentUserId(): String {
         var currentUser = FirebaseAuth.getInstance().currentUser

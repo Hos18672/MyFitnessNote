@@ -48,46 +48,59 @@
             tools:layout_editor_absoluteX="165dp"
             tools:layout_editor_absoluteY="218dp" />
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView1"
+            android:layout_width="360dp"
+            android:layout_height="200dp"
+            app:cardCornerRadius="10dp">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/inputEmail"
-            android:layout_width="300dp"
-            android:layout_height="60dp"
-            android:layout_margin="10dp"
-            android:textColorHint="#8D8D8E"
-            app:boxStrokeColor="#0287FB">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/login_email_input"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="@string/email"
-                android:inputType="textEmailAddress" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical">
 
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/login_input_password"
-            android:layout_width="300dp"
-            android:layout_height="60dp"
-            android:layout_margin="10dp"
-            android:textColorHint="#8D8D8E"
-            app:boxStrokeColor="#0287FB">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/inputEmail"
+                    android:layout_width="300dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="10dp"
+                    android:textColorHint="#8D8D8E"
+                    app:boxStrokeColor="#0287FB">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/login_password_input"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="@string/password"
-                android:inputType="textPassword" />
-        </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/login_email_input"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="@string/email"
+                        android:inputType="textEmailAddress" />
+                </com.google.android.material.textfield.TextInputLayout>
 
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/login_input_password"
+                    android:layout_width="300dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="10dp"
+                    android:textColorHint="#8D8D8E"
+                    app:boxStrokeColor="#0287FB">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/login_password_input"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="@string/password"
+                        android:inputType="textPassword" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
         <LinearLayout
             android:id="@+id/sing_in_button"
             android:layout_width="300dp"
             android:layout_height="50dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="40dp"
             android:background="@drawable/shape"
             android:gravity="center"
             android:orientation="horizontal">

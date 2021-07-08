@@ -201,7 +201,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/BACK_btn12"
+            android:id="@+id/btnBack"
             android:layout_width="318dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"

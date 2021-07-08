@@ -50,110 +50,115 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.084" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/editps0"
-            android:layout_width="300dp"
-            android:layout_height="60dp"
-            android:layout_margin="10dp"
-            android:textColorHint="#8D8D8E"
-            app:boxStrokeColor="#0287FB"
-            app:layout_constraintBottom_toTopOf="@+id/editps"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.54"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5"
-            app:layout_constraintVertical_bias="0.763">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/CurrentPassword"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="@string/current_password"
-                tools:ignore="DuplicateIds" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/editps"
-            android:layout_width="300dp"
-            android:layout_height="60dp"
-            android:layout_margin="10dp"
-            android:textColorHint="#8D8D8E"
-            app:boxStrokeColor="#0287FB"
+        <androidx.cardview.widget.CardView
+            android:layout_width="350dp"
+            android:layout_height="400dp"
+            app:cardCornerRadius="20dp"
             app:layout_constraintBottom_toTopOf="@+id/btnSave"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.531"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5"
-            app:layout_constraintVertical_bias="0.369">
+            app:layout_constraintTop_toBottomOf="@+id/textView5">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextTextPassword"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="New Password"
-                tools:ignore="DuplicateIds" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_gravity="center">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/ed"
-            android:layout_width="300dp"
-            android:layout_height="60dp"
-            android:layout_margin="10dp"
-            android:textColorHint="#8D8D8E"
-            app:boxStrokeColor="#0287FB"
-            app:layout_constraintBottom_toTopOf="@+id/btnSave"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.549"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5"
-            app:layout_constraintVertical_bias="0.539">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/editps0"
+                    android:layout_width="300dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="10dp"
+                    android:textColorHint="#8D8D8E"
+                    app:boxStrokeColor="#0287FB"
+                    tools:layout_editor_absoluteX="51dp"
+                    tools:layout_editor_absoluteY="48dp"
+                    tools:ignore="MissingConstraints">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextTextPasswordAgain"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="Repeat password"
-                tools:ignore="DuplicateIds" />
-        </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/CurrentPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="@string/current_password"
+                        tools:ignore="DuplicateIds" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/editps3"
-            android:layout_width="300dp"
-            android:layout_height="60dp"
-            android:layout_margin="10dp"
-            android:textColorHint="#8D8D8E"
-            app:boxStrokeColor="#0287FB"
-            app:layout_constraintBottom_toBottomOf="@+id/btnSave"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.54"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5"
-            app:layout_constraintVertical_bias="0.646">
+                </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextTextEmailAddress"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="Change Email"
-                tools:ignore="DuplicateIds" />
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/ed"
+                    android:layout_width="300dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="10dp"
+                    android:textColorHint="#8D8D8E"
+                    app:boxStrokeColor="#0287FB"
+                    tools:layout_editor_absoluteX="50dp"
+                    tools:layout_editor_absoluteY="220dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextTextPasswordAgain"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="Repeat password"
+                        tools:ignore="DuplicateIds" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/editps3"
+                    android:layout_width="300dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="10dp"
+                    android:textColorHint="#8D8D8E"
+                    app:boxStrokeColor="#0287FB"
+                    app:layout_goneMarginBottom="10dp"
+                    tools:layout_editor_absoluteX="51dp"
+                    tools:layout_editor_absoluteY="309dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextTextEmailAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="49dp"
+                        android:hint="Change Email"
+                        app:layout_goneMarginBottom="10dp"
+                        tools:ignore="DuplicateIds" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/editps"
+                    android:layout_width="300dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="10dp"
+                    android:textColorHint="#8D8D8E"
+                    app:boxStrokeColor="#0287FB"
+                    tools:layout_editor_absoluteX="50dp"
+                    tools:layout_editor_absoluteY="132dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextTextPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="New Password"
+                        tools:ignore="DuplicateIds" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
         <Button
             android:id="@+id/btnSave"
             android:layout_width="300dp"
             android:layout_height="60dp"
+            android:layout_marginBottom="116dp"
             android:backgroundTint="#E303FFA6"
             android:text="Save"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.54"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5"
-            app:layout_constraintVertical_bias="0.767" />
+            app:layout_constraintHorizontal_bias="0.585"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/btnback"
-            android:layout_width="100dp"
+            android:layout_width="120dp"
             android:layout_height="60dp"
             android:backgroundTint="#D1FF0038"
             android:text="back"

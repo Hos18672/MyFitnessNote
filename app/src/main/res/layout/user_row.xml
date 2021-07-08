@@ -25,17 +25,6 @@
             android:background="@drawable/custom_ripple"
             android:orientation="horizontal"
             tools:ignore="UselessParent">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/imageView_user"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginLeft="10dp"
-                android:src="@drawable/man"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="16dp"
-                tools:layout_editor_absoluteY="45dp" />
-
             <TextView
                 android:id="@+id/User_name"
                 android:layout_width="wrap_content"
@@ -45,7 +34,7 @@
                 android:layout_marginTop="15dp"
                 android:gravity="center"
                 android:text="@string/username"
-                android:textSize="50px"
+                android:textSize="60px"
                 tools:ignore="MissingConstraints" />
         </LinearLayout>
 
