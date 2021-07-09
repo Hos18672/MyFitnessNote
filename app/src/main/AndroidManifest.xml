@@ -17,7 +17,7 @@
             android:name=".HomeworkouActivity"
             android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
         <activity
-            android:name=".workout"
+            android:name=".WorkoutActivity"
             android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
         <activity
             android:name=".MuskelGroupActivity"

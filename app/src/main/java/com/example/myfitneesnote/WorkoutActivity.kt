@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.activity_muskel_group.*
 import kotlinx.android.synthetic.main.activity_security.*
 import kotlinx.android.synthetic.main.activity_workout.*
 
-class workout : BaseActivity(){
+class WorkoutActivity : BaseActivity(){
 
     @RequiresApi(Build.VERSION_CODES.KITKAT)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,24 +21,18 @@ class workout : BaseActivity(){
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         fullscreen()
         setupActionBar()
-        btn_gym_workout.setOnClickListener(clickListener)
-        btn_home_workout.setOnClickListener(clickListener)
+        btn_gym_workout.setOnClickListener{
+            var intent = Intent( this,  MuskelGroupActivity::class.java)
+            intent.putExtra("WorkoutType",btn_gym_workout.text)
+            startActivity(intent) }
+
+        btn_home_workout.setOnClickListener{
+            var intent = Intent( this,  MuskelGroupActivity::class.java)
+            intent.putExtra("WorkoutType",btn_home_workout.text)
+            startActivity(intent)}
         btnBack1.setOnClickListener{ onBackPressed() }
     }
-    val clickListener = View.OnClickListener {view ->
-        when(view.getId()){
-            R.id.btn_gym_workout ->{
-                var intent = Intent( this,  MuskelGroupActivity::class.java)
-                intent.putExtra("WorkoutType",btn_gym_workout.text)
-                startActivity(intent)
-            }
-            R.id.btn_home_workout ->{
-                var intent = Intent( this,  MuskelGroupActivity::class.java)
-                intent.putExtra("WorkoutType",btn_home_workout.text)
-                startActivity(intent)
-            }
-        }
-    }
+
 
     private fun setupActionBar() {
         setSupportActionBar(toolBar_workout_activity)

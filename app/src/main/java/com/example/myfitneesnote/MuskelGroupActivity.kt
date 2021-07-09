@@ -3,10 +3,8 @@ package com.example.myfitneesnote
 import android.content.Intent
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_muskel_group.*
-import kotlinx.android.synthetic.main.activity_workout.*
 
 class MuskelGroupActivity : BaseActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_muskel_group)
@@ -18,19 +16,17 @@ class MuskelGroupActivity : BaseActivity() {
 
         brust_btn.setOnClickListener  {
            var intent = Intent (this, AddWorkoutActivity::class.java)
-            intent.putExtra("Chest", brust_btn.text)
+            intent.putExtra("MuskelName", brust_btn.text)
+            intent.putExtra("GymName", brust_btn.text)
             startActivity(intent)
         }
         biceps_btn.setOnClickListener  {
             var intent = Intent (this, AddWorkoutActivity::class.java)
-            intent.putExtra("Biceps", biceps_btn.text)
-            startActivity(intent)
+            intent.putExtra("MuskelName", biceps_btn.text)
+            intent.putExtra("GymName", biceps_btn.text)
+                startActivity(intent)
         }
-
-
     }
-
-
     private fun setupActionBar() {
         setSupportActionBar(toolBar_muscle_gruppe_activity)
         var actionBar = supportActionBar
@@ -43,5 +39,4 @@ class MuskelGroupActivity : BaseActivity() {
             onBackPressed()
         }
     }
-
 }

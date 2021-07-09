@@ -8,7 +8,8 @@ class Test {
             try {
                 val w : Workout = Workout()
                 var h : HomeTrainig = HomeTrainig(1,"Body","Home","Only home training")
-                var g : GymTrainig = GymTrainig(2,"Body","Gym","Only Gym training")
+                var g : Workout =
+                    Workout(2,"Body","Gym","Only Gym training")
                 w.add(h)
                 w.add(g)
                 println(w.toString())

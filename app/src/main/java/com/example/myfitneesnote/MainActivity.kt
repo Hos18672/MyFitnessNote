@@ -4,7 +4,6 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.WindowManager
 import android.widget.ImageView
 import androidx.core.view.GravityCompat
 import com.example.myfitneesnote.R.*
@@ -57,7 +56,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             }
         }
         add_main.setOnClickListener {
-            startActivity(Intent(this, workout::class.java))
+            startActivity(Intent(this, WorkoutActivity::class.java))
 
         }
 
