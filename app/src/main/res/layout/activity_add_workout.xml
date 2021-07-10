@@ -7,362 +7,325 @@
     android:background="@drawable/ic_background"
     tools:context=".AddWorkoutActivity">
 
-    <TextView
-        android:id="@+id/WorkoutName"
-        android:layout_width="212dp"
-        android:layout_height="59dp"
-        android:layout_marginTop="24dp"
-        android:backgroundTint="#070707"
-        android:gravity="center"
-        android:text="New Training"
-        android:textSize="25dp"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/CV"
+        android:layout_width="400dp"
+        android:layout_height="560dp"
+        app:cardCornerRadius="15dp"
+        android:layout_marginBottom="60dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="579dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="1dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/WorkoutName"
+                android:layout_width="210dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="35dp"
+                android:backgroundTint="#070707"
+                android:gravity="center"
+                android:text="New Training"
+                android:textColor="@color/cardview_dark_background"
+                android:textSize="25dp"
+                android:textStyle="bold" />
 
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
 
-    <RelativeLayout
-        android:id="@+id/Rl1"
+                <TextView
+                    android:id="@+id/tv_set"
+                    android:layout_width="165dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Set"
+                    android:textColor="@color/cardview_dark_background"
+                    android:textSize="25dp" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/signupCard2"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    app:cardCornerRadius="10dp">
+
+                    <Button
+                        android:id="@+id/btn_set_minus"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:background="@drawable/ic_minus_arrow" />
+                </androidx.cardview.widget.CardView>
+
+                <EditText
+                    android:id="@+id/SetNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="15dp"
+                    android:background="@color/cardview_light_background"
+                    android:gravity="center"
+                    android:maxWidth="60dp"
+                    android:maxHeight="50dp"
+                    android:minWidth="60dp"
+                    android:padding="10dp"
+                    android:text="0"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/signupCard"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
+                    app:cardCornerRadius="10dp">
+
+                    <Button
+                        android:id="@+id/btn_set_plus"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:background="@drawable/ic_plus_arrow" />
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="bottom"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_weight"
+                    android:layout_width="166dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Weight"
+                    android:textColor="@color/cardview_dark_background"
+                    android:textSize="25dp" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/signupCard3"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    app:cardCornerRadius="10dp">
+
+                    <Button
+                        android:id="@+id/btn_weight_minus"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:background="@drawable/ic_minus_arrow" />
+                </androidx.cardview.widget.CardView>
+
+
+                <EditText
+                    android:id="@+id/weightNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="15dp"
+                    android:background="@color/cardview_light_background"
+                    android:gravity="center"
+                    android:maxWidth="60dp"
+                    android:maxHeight="50dp"
+                    android:minWidth="60dp"
+                    android:padding="10dp"
+                    android:text="0"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/signupCard4"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    app:cardCornerRadius="10dp">
+
+                    <Button
+                        android:id="@+id/btn_weight_plus"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:background="@drawable/ic_plus_arrow" />
+                </androidx.cardview.widget.CardView>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_break"
+                    android:layout_width="170dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Break"
+                    android:textColor="@color/cardview_dark_background"
+                    android:textSize="25dp" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/signupCard5"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    app:cardCornerRadius="10dp">
+
+                    <Button
+                        android:id="@+id/btn_break_minus"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:background="@drawable/ic_minus_arrow" />
+                </androidx.cardview.widget.CardView>
+
+                <EditText
+                    android:id="@+id/breakNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="15dp"
+                    android:background="@color/cardview_light_background"
+                    android:gravity="center"
+                    android:maxWidth="60dp"
+                    android:maxHeight="50dp"
+                    android:minWidth="60dp"
+                    android:padding="10dp"
+                    android:text="0"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/signupCard6"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    app:cardCornerRadius="10dp">
+
+                    <Button
+                        android:id="@+id/btn_break_plus"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:background="@drawable/ic_plus_arrow" />
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_repeat"
+                    android:layout_width="171dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Repeat"
+                    android:textColor="@color/cardview_dark_background"
+                    android:textSize="25dp" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/signupCard7"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    app:cardCornerRadius="10dp">
+
+                    <Button
+                        android:id="@+id/btn_repeat_minus"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:background="@drawable/ic_minus_arrow" />
+                </androidx.cardview.widget.CardView>
+
+                <EditText
+                    android:id="@+id/repeatNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="15dp"
+                    android:background="@color/cardview_light_background"
+                    android:gravity="center"
+                    android:maxWidth="60dp"
+                    android:maxHeight="50dp"
+                    android:minWidth="60dp"
+                    android:padding="10dp"
+                    android:text="0"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/signupCard8"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    app:cardCornerRadius="10dp">
+
+                    <Button
+                        android:id="@+id/btn_repeat_plus"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:background="@drawable/ic_plus_arrow" />
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/Rl2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/WorkoutName"
-        app:layout_constraintVertical_bias="0.347"
-        tools:ignore="MissingConstraints">
-
-        <TextView
-            android:id="@+id/tv_Seatze"
-            android:layout_width="134dp"
-            android:layout_height="61dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="31dp"
-            android:layout_marginLeft="31dp"
-            android:layout_marginTop="9dp"
-            android:layout_marginEnd="144dp"
-            android:layout_marginRight="144dp"
-            android:layout_marginBottom="-9dp"
-            android:layout_toStartOf="@+id/tv_Seatze2"
-            android:layout_toLeftOf="@+id/tv_Seatze2"
-            android:gravity="center"
-            android:paddingLeft="10dp"
-            android:text="Sets"
-            android:textSize="35dp" />
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tv_Seatze2"
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginEnd="23dp"
-            android:layout_marginRight="23dp"
-            android:background="@drawable/rounded_tv"
-            android:gravity="center"
-            android:text="4"
-            android:textSize="20dp" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/Rl2"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/WorkoutName"
-        app:layout_constraintVertical_bias="0.123"
-        tools:ignore="MissingConstraints">
+        app:layout_constraintStart_toStartOf="parent">
 
-        <TextView
-            android:id="@+id/tv_pausen"
-            android:layout_width="147dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="31dp"
-            android:layout_marginLeft="31dp"
-            android:layout_marginTop="-2dp"
-            android:layout_marginEnd="112dp"
-            android:layout_marginRight="112dp"
-            android:layout_marginBottom="2dp"
-            android:layout_toStartOf="@+id/tv_pausen2"
-            android:layout_toLeftOf="@+id/tv_pausen2"
-            android:gravity="center"
-            android:text="Break"
-            android:textSize="35dp"
-            tools:layout_editor_absoluteX="186dp"
-            tools:layout_editor_absoluteY="496dp" />
+        <Button
+            android:id="@+id/save_btn"
+            android:layout_width="330dp"
+            android:layout_height="50dp"
+            android:layout_above="@+id/btnBackNewWorkout"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape"
+            android:text="save" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tv_pausen2"
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginEnd="21dp"
-            android:layout_marginRight="21dp"
-            android:layout_toEndOf="@+id/textView10"
-            android:layout_toRightOf="@+id/textView10"
-            android:background="@drawable/rounded_tv"
-            android:gravity="center"
-            android:text="5"
-            android:textSize="20sp"
-            tools:ignore="UnknownId" />
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:background="@android:color/background_dark"
-        app:layout_constraintBottom_toTopOf="@+id/Rl3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />
-    <RelativeLayout
-        android:id="@+id/Rl3"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginTop="12dp"
-        android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Rl2"
-        tools:ignore="MissingConstraints">
-
-        <TextView
-            android:id="@+id/textView16"
-            android:layout_width="346dp"
-            android:layout_height="59dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="35dp"
-            android:layout_marginLeft="35dp"
-            android:layout_marginTop="6dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginBottom="5dp"
-            android:gravity="center"
-            android:text="@string/weight"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            tools:layout_editor_absoluteX="19dp"
-            tools:layout_editor_absoluteY="308dp" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/Rl4"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/textView17"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Rl3"
-        app:layout_constraintVertical_bias="0.108"
-        tools:ignore="MissingConstraints">
-
-        <TextView
-            android:id="@+id/tv14_Gewicht"
-            android:layout_width="70dp"
-            android:layout_height="match_parent"
-            android:background="@drawable/rounded_tv2"
-            android:gravity="center"
-            android:text="@string/_4"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/tv1_Gewicht"
-            android:layout_width="70dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="30dp"
-            android:layout_marginEnd="18dp"
-            android:layout_marginRight="18dp"
-            android:layout_toStartOf="@+id/tv2_Gewicht"
-            android:layout_toLeftOf="@+id/tv2_Gewicht"
-            android:background="@drawable/rounded_tv"
-            android:gravity="center"
-            android:text="@string/_1"
-            android:textSize="20sp"
-            android:layout_marginStart="30dp" />
-
-        <TextView
-            android:id="@+id/tv2_Gewicht"
-            android:layout_width="70dp"
-            android:layout_height="match_parent"
-            android:layout_marginRight="10dp"
-            android:layout_toStartOf="@+id/tv3_Gewicht"
-            android:layout_toLeftOf="@+id/tv3_Gewicht"
-            android:background="@drawable/rounded_tv"
-            android:gravity="center"
-            android:text="@string/_2"
-            android:textSize="20sp"
-            android:layout_marginEnd="10dp" />
-
-        <TextView
-            android:id="@+id/tv3_Gewicht"
-            android:layout_width="70dp"
-            android:layout_height="match_parent"
-            android:layout_marginRight="10dp"
-            android:layout_toStartOf="@+id/tv14_Gewicht"
-            android:layout_toLeftOf="@+id/tv14_Gewicht"
-            android:background="@drawable/rounded_tv"
-            android:gravity="center"
-            android:text="@string/_3"
-            android:textSize="20sp"
-            android:layout_marginEnd="10dp" />
-
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:background="@android:color/background_dark"
-        app:layout_constraintBottom_toTopOf="@+id/textView17"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Rl4"
-        app:layout_constraintVertical_bias="0.68" />
-
-    <TextView
-        android:id="@+id/textView17"
-        android:layout_width="358dp"
-        android:layout_height="60dp"
-        android:gravity="center"
-        android:text="@string/repeat"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.485"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Rl3"
-        app:layout_constraintVertical_bias="0.285"
-        tools:ignore="MissingConstraints" />
-
-    <RelativeLayout
-        android:id="@+id/Rl5"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginTop="36dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView17"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="MissingConstraints">
-
-        <TextView
-            android:id="@+id/tv4_repeat"
-            android:layout_width="70dp"
-            android:layout_height="match_parent"
-            android:background="@drawable/rounded_tv"
-            android:gravity="center"
-            android:text="@string/_4"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/tv2_repeat"
-            android:layout_width="70dp"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_toStartOf="@+id/tv3_repeat"
-            android:layout_toLeftOf="@+id/tv3_repeat"
-            android:background="@drawable/rounded_tv"
-            android:gravity="center"
-            android:text="@string/_2"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/tv3_repeat"
-            android:layout_width="70dp"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_toStartOf="@+id/tv4_repeat"
-            android:layout_toLeftOf="@+id/tv4_repeat"
-            android:background="@drawable/rounded_tv2"
-            android:gravity="center"
-            android:text="@string/_3"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/tv1_repeat"
-            android:layout_width="70dp"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_toStartOf="@+id/tv2_repeat"
-            android:layout_toLeftOf="@+id/tv2_repeat"
-            android:background="@drawable/rounded_tv"
-            android:gravity="center"
-            android:text="@string/_1"
-            android:textSize="20sp" />
-
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginLeft="30dp"
-        android:background="@android:color/background_dark"
-        app:layout_constraintBottom_toTopOf="@+id/save_btn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Rl5" />
-
-    <Button
-        android:id="@+id/save_btn"
-        android:layout_width="328dp"
-        android:layout_height="46dp"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/shape"
-        android:text="@string/save"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Rl5"
-        app:layout_constraintVertical_bias="0.328" />
-
-    <Button
-        android:id="@+id/btnBackNewWorkout"
-        android:layout_width="128dp"
-        android:layout_height="46dp"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/shape"
-        android:text="@string/BtnBackNew"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/save_btn"
-        app:layout_constraintVertical_bias="0.38" />
-
+        <Button
+            android:id="@+id/btnBackNewWorkout"
+            android:layout_width="130dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:background="@drawable/shape"
+            android:text="@string/BtnBackNew" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

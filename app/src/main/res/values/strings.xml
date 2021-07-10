@@ -42,18 +42,13 @@
     <string name="full_name">Full name</string>
     <string name="birthdate">Birthdate</string>
     <string name="gender">Gender</string>
-    <string name="save">Save</string>
     <string name="username">Username</string>
     <string name="change_email_or_password">Change Email Or Password</string>
     <string name="current_password">Current Password</string>
-    <string name="save">Save</string>
+    <string name="save2">Save</string>
     <string name="BtnBackNew">BACK</string>
-    <string name="_3">3</string>
-    <string name="_2">2</string>
     <string name="_4">4</string>
     <string name="repeat">Repeat</string>
-    <string name="_3">3</string>
     <string name="_2">2</string>
-    <string name="_4">4</string>
     <string name="weight">Weight</string>
 </resources>
