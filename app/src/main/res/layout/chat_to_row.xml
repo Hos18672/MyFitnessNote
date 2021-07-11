@@ -14,7 +14,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="5dp"
         android:background="@drawable/rounded_mesage_from"
-        android:gravity="center"
+        android:gravity="left"
         android:maxWidth="300dp"
         android:padding="15dp"
         android:textStyle="bold"

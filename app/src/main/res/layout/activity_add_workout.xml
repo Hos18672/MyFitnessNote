@@ -56,20 +56,12 @@
                     android:textColor="@color/cardview_dark_background"
                     android:textSize="25dp" />
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/signupCard2"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
-                    app:cardCornerRadius="10dp">
-
                     <Button
                         android:id="@+id/btn_set_minus"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
                         android:layout_gravity="center"
-                        android:background="@drawable/ic_minus_arrow" />
-                </androidx.cardview.widget.CardView>
+                        android:background="@drawable/ic_minus" />
 
                 <EditText
                     android:id="@+id/SetNum"
@@ -77,13 +69,14 @@
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:layout_margin="10dp"
-                    android:background="@color/cardview_light_background"
+                    android:background="@null"
                     android:gravity="center"
+                    android:inputType="number"
                     android:maxWidth="60dp"
                     android:maxHeight="50dp"
+                    android:maxLength="2"
                     android:minWidth="60dp"
                     android:text="0"
-                    android:maxLength="2"
                     android:textSize="30sp"
                     android:textStyle="bold" />
 
@@ -91,7 +84,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:layout_marginRight="28dp"
+                    android:layout_marginRight="30dp"
                     android:layout_marginLeft="-5dp"
                     android:background="@color/cardview_light_background"
                     android:gravity="center"
@@ -100,21 +93,13 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/signupCard"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
-                    android:layout_marginRight="5dp"
-                    app:cardCornerRadius="10dp">
 
                     <Button
                         android:id="@+id/btn_set_plus"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
                         android:layout_gravity="center"
-                        android:background="@drawable/ic_plus_arrow" />
-                </androidx.cardview.widget.CardView>
+                        android:background="@drawable/ic_plus" />
 
             </LinearLayout>
 
@@ -134,20 +119,12 @@
                     android:textColor="@color/cardview_dark_background"
                     android:textSize="25dp" />
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/signupCard3"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
-                    app:cardCornerRadius="10dp">
-
                     <Button
                         android:id="@+id/btn_weight_minus"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
                         android:layout_gravity="center"
-                        android:background="@drawable/ic_minus_arrow" />
-                </androidx.cardview.widget.CardView>
+                        android:background="@drawable/ic_minus" />
 
 
                 <EditText
@@ -156,12 +133,13 @@
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:layout_margin="10dp"
-                    android:background="@color/cardview_light_background"
                     android:gravity="center"
                     android:maxWidth="60dp"
                     android:maxHeight="50dp"
                     android:minWidth="60dp"
                     android:text="0"
+                    android:inputType="number"
+                    android:background="@null"
                     android:maxLength="2"
                     android:textSize="30sp"
                     android:textStyle="bold" />
@@ -178,20 +156,12 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/signupCard4"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
-                    app:cardCornerRadius="10dp">
-
                     <Button
                         android:id="@+id/btn_weight_plus"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
                         android:layout_gravity="center"
-                        android:background="@drawable/ic_plus_arrow" />
-                </androidx.cardview.widget.CardView>
+                        android:background="@drawable/ic_plus" />
 
 
             </LinearLayout>
@@ -211,20 +181,12 @@
                     android:textColor="@color/cardview_dark_background"
                     android:textSize="25dp" />
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/signupCard5"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
-                    app:cardCornerRadius="10dp">
-
                     <Button
                         android:id="@+id/btn_break_minus"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
                         android:layout_gravity="center"
-                        android:background="@drawable/ic_minus_arrow" />
-                </androidx.cardview.widget.CardView>
+                        android:background="@drawable/ic_minus" />
 
                 <EditText
                     android:id="@+id/breakNum"
@@ -232,12 +194,13 @@
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:layout_margin="10dp"
-                    android:background="@color/cardview_light_background"
                     android:gravity="center"
                     android:maxWidth="60dp"
                     android:maxHeight="50dp"
                     android:minWidth="60dp"
                     android:text="0"
+                    android:inputType="number"
+                    android:background="@null"
                     android:maxLength="2"
                     android:textSize="30sp"
                     android:textStyle="bold" />
@@ -255,20 +218,12 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/signupCard6"
+                <Button
+                    android:id="@+id/btn_break_plus"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
-                    app:cardCornerRadius="10dp">
-
-                    <Button
-                        android:id="@+id/btn_break_plus"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:background="@drawable/ic_plus_arrow" />
-                </androidx.cardview.widget.CardView>
+                    android:background="@drawable/ic_plus" />
             </LinearLayout>
 
             <LinearLayout
@@ -286,20 +241,12 @@
                     android:textColor="@color/cardview_dark_background"
                     android:textSize="25dp" />
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/signupCard7"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
-                    app:cardCornerRadius="10dp">
-
                     <Button
                         android:id="@+id/btn_repeat_minus"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
                         android:layout_gravity="center"
-                        android:background="@drawable/ic_minus_arrow" />
-                </androidx.cardview.widget.CardView>
+                        android:background="@drawable/ic_minus" />
 
                 <EditText
                     android:id="@+id/repeatNum"
@@ -307,12 +254,13 @@
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:layout_margin="10dp"
-                    android:background="@color/cardview_light_background"
                     android:gravity="center"
                     android:maxWidth="60dp"
                     android:maxHeight="50dp"
                     android:minWidth="60dp"
                     android:text="0"
+                    android:inputType="number"
+                    android:background="@null"
                     android:maxLength="2"
                     android:textSize="30sp"
                     android:textStyle="bold" />
@@ -328,21 +276,13 @@
                     android:text="X"
                     android:textSize="20sp"
                     android:textStyle="bold"/>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/signupCard8"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
-                    app:cardCornerRadius="10dp">
-
                     <Button
                         android:id="@+id/btn_repeat_plus"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
                         android:layout_gravity="center"
-                        android:background="@drawable/ic_plus_arrow" />
-                </androidx.cardview.widget.CardView>
+                        android:background="@drawable/ic_plus" />
+
             </LinearLayout>
 
         </LinearLayout>

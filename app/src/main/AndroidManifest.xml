@@ -14,16 +14,10 @@
             android:name=".SecurityActivity"
             android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
         <activity
-            android:name=".HomeworkouActivity"
-            android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
-        <activity
             android:name=".WorkoutActivity"
             android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
         <activity
             android:name=".MuskelGroupActivity"
-            android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
-        <activity
-            android:name=".GymworkoutActivity"
             android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
         <activity
             android:name=".ChatLogActivity"
