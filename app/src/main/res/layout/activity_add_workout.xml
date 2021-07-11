@@ -49,7 +49,7 @@
 
                 <TextView
                     android:id="@+id/tv_set"
-                    android:layout_width="165dp"
+                    android:layout_width="160dp"
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="Set"
@@ -74,17 +74,30 @@
                 <EditText
                     android:id="@+id/SetNum"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:layout_margin="15dp"
+                    android:layout_margin="10dp"
                     android:background="@color/cardview_light_background"
                     android:gravity="center"
                     android:maxWidth="60dp"
                     android:maxHeight="50dp"
                     android:minWidth="60dp"
-                    android:padding="10dp"
                     android:text="0"
+                    android:maxLength="2"
                     android:textSize="30sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="28dp"
+                    android:layout_marginLeft="-5dp"
+                    android:background="@color/cardview_light_background"
+                    android:gravity="center"
+                    android:minHeight="40dp"
+                    android:text="X"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <androidx.cardview.widget.CardView
@@ -92,7 +105,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginRight="5dp"
                     app:cardCornerRadius="10dp">
 
                     <Button
@@ -114,7 +127,7 @@
 
                 <TextView
                     android:id="@+id/tv_weight"
-                    android:layout_width="166dp"
+                    android:layout_width="162dp"
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="Weight"
@@ -140,17 +153,29 @@
                 <EditText
                     android:id="@+id/weightNum"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:layout_margin="15dp"
+                    android:layout_margin="10dp"
                     android:background="@color/cardview_light_background"
                     android:gravity="center"
                     android:maxWidth="60dp"
                     android:maxHeight="50dp"
                     android:minWidth="60dp"
-                    android:padding="10dp"
                     android:text="0"
+                    android:maxLength="2"
                     android:textSize="30sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="21dp"
+                    android:layout_marginLeft="-10dp"
+                    android:background="@color/cardview_light_background"
+                    android:gravity="center"
+                    android:minHeight="40dp"
+                    android:text="Kg"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <androidx.cardview.widget.CardView
@@ -179,7 +204,7 @@
 
                 <TextView
                     android:id="@+id/tv_break"
-                    android:layout_width="170dp"
+                    android:layout_width="160dp"
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="Break"
@@ -204,17 +229,30 @@
                 <EditText
                     android:id="@+id/breakNum"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:layout_margin="15dp"
+                    android:layout_margin="10dp"
                     android:background="@color/cardview_light_background"
                     android:gravity="center"
                     android:maxWidth="60dp"
                     android:maxHeight="50dp"
                     android:minWidth="60dp"
-                    android:padding="10dp"
                     android:text="0"
+                    android:maxLength="2"
                     android:textSize="30sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="-10dp"
+                    android:layout_marginRight="14dp"
+                    android:background="@color/cardview_light_background"
+                    android:gravity="center"
+                    android:minHeight="40dp"
+                    android:text="min"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <androidx.cardview.widget.CardView
@@ -241,7 +279,7 @@
 
                 <TextView
                     android:id="@+id/tv_repeat"
-                    android:layout_width="171dp"
+                    android:layout_width="160dp"
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="Repeat"
@@ -266,18 +304,30 @@
                 <EditText
                     android:id="@+id/repeatNum"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:layout_margin="15dp"
+                    android:layout_margin="10dp"
                     android:background="@color/cardview_light_background"
                     android:gravity="center"
                     android:maxWidth="60dp"
                     android:maxHeight="50dp"
                     android:minWidth="60dp"
-                    android:padding="10dp"
                     android:text="0"
+                    android:maxLength="2"
                     android:textSize="30sp"
                     android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginLeft="-6dp"
+                    android:background="@color/cardview_light_background"
+                    android:gravity="center"
+                    android:minHeight="40dp"
+                    android:text="X"
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/signupCard8"
