@@ -3,16 +3,14 @@ package com.example.myfitneesnote
 
 import android.os.Bundle
 import android.text.Editable
-import android.util.Log
 import android.widget.EditText
 import android.widget.Toast
+import com.example.myfitneesnote.firebase.FirestoreClass
 import com.example.myfitneesnote.model.Workout
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_add_workout.*
 
 class AddWorkoutActivity : BaseActivity() {
-    var  counter  = 0
-    lateinit var workout : Workout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +18,6 @@ class AddWorkoutActivity : BaseActivity() {
         onClick()
     }
     private fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
-
     private fun onClick(){
         btnBackNewWorkout.setOnClickListener {onBackPressed()}
 
@@ -36,7 +33,7 @@ class AddWorkoutActivity : BaseActivity() {
         btn_repeat_minus.setOnClickListener{minusButton(repeatNum)}
         btn_repeat_plus.setOnClickListener{plusButton(repeatNum)}
 
-        save_btn.setOnClickListener { save() }
+        save_btn.setOnClickListener {        createTraining() }
     }
     private fun minusButton(et: EditText){
         var num = et.text.toString().toInt()
@@ -48,17 +45,28 @@ class AddWorkoutActivity : BaseActivity() {
         num++
         et.text= "${num}".toEditable()
     }
-    private fun save(){
+    private fun createTraining(){
+        var workout : Workout
         val user = FirebaseAuth.getInstance().currentUser
         var userId = user?.uid.toString()
-        var gymType : String? = intent.getStringExtra("GymName")
-        var muskelName : String? = intent.getStringExtra("MuskelName")
-        workout= Workout(userId,gymType,muskelName,SetNum.toString(),weightNum.toString(),breakNum.toString(),repeatNum.toString())
+        var gymType : String = intent.getStringExtra("GymName").toString()
+        var muskelName : String = intent.getStringExtra("MuskelName").toString()
+        workout= Workout(
+            userId,
+            gymType,
+            muskelName,
+            SetNum.text.toString(),
+            weightNum.text.toString(),
+            breakNum.text.toString(),
+            repeatNum.text.toString())
+
+        FirestoreClass().createNewTraining(this,workout)
 
         Toast.makeText(
             this,
             "User: ${userId}\n"+ "Gym: ${gymType}\n" + "Set: ${SetNum.text}\n" + "Weight: ${weightNum.text}\n" + "Break: ${breakNum.text}\n" + "Repeat: ${repeatNum.text}",
             Toast.LENGTH_LONG
         ).show()
+        //finish()
     }
 }
