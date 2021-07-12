@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_alignParentBottom="true"
     android:fitsSystemWindows="true"
-    android:background="@drawable/ic_background"
+    android:background="@drawable/blue_white"
     tools:context="com.example.myfitneesnote.SignUpActivity">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar_sign_up_activity"

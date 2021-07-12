@@ -7,7 +7,7 @@
     android:layout_gravity="center"
     android:gravity="center"
     android:orientation="vertical"
-    android:background="@drawable/ic_background"
+    android:background="@drawable/blue_white"
     tools:context=".myProfileActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -34,13 +34,14 @@
         android:id="@+id/txtProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Profile"
+        android:text="@string/profile"
         android:textColor="#000000"
-        android:textSize="55sp"
+        android:textSize="50sp"
         app:layout_constraintBottom_toTopOf="@+id/pcard"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolBar_my_profile_activity" />
+        app:layout_constraintTop_toBottomOf="@+id/toolBar_my_profile_activity"
+        app:layout_constraintVertical_bias="0.336" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/pcard"
@@ -130,54 +131,33 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <androidx.cardview.widget.CardView
+
+    <Button
         android:id="@+id/btnSave"
-        android:layout_width="300dp"
+        android:layout_width="330dp"
         android:layout_height="50dp"
         android:layout_marginBottom="100dp"
-        android:backgroundTint="#03FFA6"
-        android:text="Save"
-        app:cardCornerRadius="10dp"
+        android:background="@drawable/ic_save_shape"
+        android:text="@string/save2"
+        android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.585"
+        app:layout_constraintHorizontal_bias="0.588"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pcard">
+        app:layout_constraintTop_toBottomOf="@+id/pcard"
+        app:layout_constraintVertical_bias="0.358" />
 
-        <TextView
-            android:id="@+id/btnSavetxt"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="Save"
-            android:textAlignment="center"
-            android:textColor="#0E0E0E"
-            android:textSize="30sp" />
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
+    <Button
         android:id="@+id/btnChangeEmailOrPassword"
-        android:layout_width="300dp"
+        android:layout_width="330dp"
         android:layout_height="50dp"
         android:layout_marginBottom="60dp"
-        android:backgroundTint="#FF174A"
-        app:cardCornerRadius="10dp"
+        android:background="@drawable/shape"
+        android:text="@string/change_email_or_password"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.583"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"/>
 
-        <TextView
-            android:id="@+id/btnbacktxt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="7dp"
-            android:gravity="center"
-            android:text="Change Email or Password"
-            android:textAlignment="center"
-            android:textColor="#0E0E0E"
-            android:textSize="20sp" />
-    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

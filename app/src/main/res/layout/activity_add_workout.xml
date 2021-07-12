@@ -12,7 +12,8 @@
         android:layout_width="400dp"
         android:layout_height="560dp"
         app:cardCornerRadius="15dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,9 +22,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="579dp"
+            android:layout_height="570dp"
             android:layout_gravity="center"
-            android:layout_marginTop="1dp"
             android:orientation="vertical">
 
             <TextView
@@ -56,12 +56,12 @@
                     android:textColor="@color/cardview_dark_background"
                     android:textSize="25dp" />
 
-                    <Button
-                        android:id="@+id/btn_set_minus"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/ic_minus" />
+                <Button
+                    android:id="@+id/btn_set_minus"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/ic_minus" />
 
                 <EditText
                     android:id="@+id/SetNum"
@@ -84,8 +84,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:layout_marginRight="30dp"
                     android:layout_marginLeft="-5dp"
+                    android:layout_marginRight="30dp"
                     android:background="@color/cardview_light_background"
                     android:gravity="center"
                     android:minHeight="40dp"
@@ -94,12 +94,12 @@
                     android:textStyle="bold" />
 
 
-                    <Button
-                        android:id="@+id/btn_set_plus"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/ic_plus" />
+                <Button
+                    android:id="@+id/btn_set_plus"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/ic_plus" />
 
             </LinearLayout>
 
@@ -119,12 +119,12 @@
                     android:textColor="@color/cardview_dark_background"
                     android:textSize="25dp" />
 
-                    <Button
-                        android:id="@+id/btn_weight_minus"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/ic_minus" />
+                <Button
+                    android:id="@+id/btn_weight_minus"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/ic_minus" />
 
 
                 <EditText
@@ -133,22 +133,23 @@
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:layout_margin="10dp"
+                    android:background="@null"
                     android:gravity="center"
+                    android:inputType="number"
                     android:maxWidth="60dp"
                     android:maxHeight="50dp"
+                    android:maxLength="2"
                     android:minWidth="60dp"
                     android:text="0"
-                    android:inputType="number"
-                    android:background="@null"
-                    android:maxLength="2"
                     android:textSize="30sp"
                     android:textStyle="bold" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:layout_marginRight="21dp"
                     android:layout_marginLeft="-10dp"
+                    android:layout_marginRight="21dp"
                     android:background="@color/cardview_light_background"
                     android:gravity="center"
                     android:minHeight="40dp"
@@ -156,12 +157,12 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-                    <Button
-                        android:id="@+id/btn_weight_plus"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/ic_plus" />
+                <Button
+                    android:id="@+id/btn_weight_plus"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/ic_plus" />
 
 
             </LinearLayout>
@@ -181,12 +182,12 @@
                     android:textColor="@color/cardview_dark_background"
                     android:textSize="25dp" />
 
-                    <Button
-                        android:id="@+id/btn_break_minus"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/ic_minus" />
+                <Button
+                    android:id="@+id/btn_break_minus"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/ic_minus" />
 
                 <EditText
                     android:id="@+id/breakNum"
@@ -194,14 +195,14 @@
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:layout_margin="10dp"
+                    android:background="@null"
                     android:gravity="center"
+                    android:inputType="number"
                     android:maxWidth="60dp"
                     android:maxHeight="50dp"
+                    android:maxLength="2"
                     android:minWidth="60dp"
                     android:text="0"
-                    android:inputType="number"
-                    android:background="@null"
-                    android:maxLength="2"
                     android:textSize="30sp"
                     android:textStyle="bold" />
 
@@ -241,12 +242,12 @@
                     android:textColor="@color/cardview_dark_background"
                     android:textSize="25dp" />
 
-                    <Button
-                        android:id="@+id/btn_repeat_minus"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/ic_minus" />
+                <Button
+                    android:id="@+id/btn_repeat_minus"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/ic_minus" />
 
                 <EditText
                     android:id="@+id/repeatNum"
@@ -254,34 +255,36 @@
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:layout_margin="10dp"
+                    android:background="@null"
                     android:gravity="center"
+                    android:inputType="number"
                     android:maxWidth="60dp"
                     android:maxHeight="50dp"
+                    android:maxLength="2"
                     android:minWidth="60dp"
                     android:text="0"
-                    android:inputType="number"
-                    android:background="@null"
-                    android:maxLength="2"
                     android:textSize="30sp"
                     android:textStyle="bold" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:layout_marginRight="30dp"
                     android:layout_marginLeft="-6dp"
+                    android:layout_marginRight="30dp"
                     android:background="@color/cardview_light_background"
                     android:gravity="center"
                     android:minHeight="40dp"
                     android:text="X"
                     android:textSize="20sp"
-                    android:textStyle="bold"/>
-                    <Button
-                        android:id="@+id/btn_repeat_plus"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/ic_plus" />
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btn_repeat_plus"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/ic_plus" />
 
             </LinearLayout>
 
@@ -294,6 +297,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="bottom"
+        android:layout_marginBottom="10dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -304,14 +308,16 @@
             android:layout_width="330dp"
             android:layout_height="50dp"
             android:layout_above="@+id/btnBackNewWorkout"
+            android:background="@drawable/ic_save_shape"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:background="@drawable/shape"
+            android:layout_marginBottom="10dp"
+            android:textSize="25sp"
             android:text="save" />
 
         <Button
             android:id="@+id/btnBackNewWorkout"
-            android:layout_width="130dp"
+            android:layout_width="330dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_margin="20dp"

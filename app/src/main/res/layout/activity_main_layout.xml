@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ic_background"
+    android:background="@drawable/gradient"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -188,7 +188,7 @@
         app:cardCornerRadius="30dp"
         android:layout_marginRight="5dp"
         android:layout_marginBottom="15dp"
-        android:background="@drawable/rounded_mesage"
+
         android:dividerHeight="0.0px"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -199,10 +199,9 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/rounded_mesage"
             android:gravity="bottom|center">
 
-            <androidx.appcompat.widget.AppCompatImageButton
+            <Button
                 android:id="@+id/chat_main"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
@@ -213,7 +212,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatImageButton
+            <Button
                 android:id="@+id/Add_main"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
@@ -224,7 +223,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
 
-            <androidx.appcompat.widget.AppCompatImageButton
+            <Button
                 android:id="@+id/main_diagramm"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
@@ -245,7 +244,7 @@
     <RelativeLayout
         android:layout_width="70dp"
         android:layout_height="50dp"
-        android:background="@drawable/rounded2"
+        android:background="@drawable/shape3"
         android:gravity="center"
         android:orientation="horizontal"
         android:padding="10dp"

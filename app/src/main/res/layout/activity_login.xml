@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:layout_alignParentBottom="true"
     android:fitsSystemWindows="true"
-    android:background="@drawable/ic_background"
+    android:background="@drawable/blue_white"
     tools:context="com.example.myfitneesnote.LoginActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -51,7 +51,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView1"
             android:layout_width="360dp"
-            android:layout_height="200dp"
+            android:layout_height="220dp"
             app:cardCornerRadius="10dp">
 
             <LinearLayout
@@ -82,7 +82,8 @@
                     android:id="@+id/login_input_password"
                     android:layout_width="300dp"
                     android:layout_height="60dp"
-                    android:layout_margin="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="30dp"
                     android:textColorHint="#8D8D8E"
                     app:boxStrokeColor="#0287FB">
 

@@ -17,13 +17,12 @@ class SecurityActivity : BaseActivity() {
     private var mFirebaseInstance: FirebaseDatabase? = null
     private var userId: String? = null
     private lateinit var auth: FirebaseAuth
-// ...
+
 // Initialize Firebase Auth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_security)
-        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE or WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         userProfileData()
         mFirebaseInstance = FirebaseDatabase.getInstance()
         // get reference to 'users' node
