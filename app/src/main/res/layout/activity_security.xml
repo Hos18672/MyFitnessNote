@@ -86,23 +86,6 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/ed"
-                    android:layout_width="300dp"
-                    android:layout_height="60dp"
-                    android:layout_margin="10dp"
-                    android:textColorHint="#8D8D8E"
-                    app:boxStrokeColor="#0287FB"
-                    tools:layout_editor_absoluteX="50dp"
-                    tools:layout_editor_absoluteY="220dp">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/editTextTextPasswordAgain"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:hint="Repeat password"
-                        tools:ignore="DuplicateIds" />
-                </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/editps3"
@@ -139,6 +122,23 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:hint="New Password"
+                        tools:ignore="DuplicateIds" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/ed"
+                    android:layout_width="300dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="10dp"
+                    android:textColorHint="#8D8D8E"
+                    app:boxStrokeColor="#0287FB"
+                    tools:layout_editor_absoluteX="50dp"
+                    tools:layout_editor_absoluteY="220dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextTextPasswordAgain"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="Repeat password"
                         tools:ignore="DuplicateIds" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>

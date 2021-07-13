@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:orientation="vertical"
+    android:layout_marginBottom="10dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="10dp">
+            <TextView
+                android:id="@+id/tv_GymName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="left"
+                android:text="GymType: "
+                android:textColor="#000000"
+                android:textSize="15sp" />
+            <TextView
+                android:id="@+id/tv_Muscle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="left"
+                android:text="Muscle: "
+                android:textColor="#000000"
+                android:textSize="15sp" />
+            <TextView
+                android:id="@+id/tv_Sets"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="left"
+                android:text="Sets: "
+                android:textColor="#000000"
+                android:textSize="15sp" />
+            <TextView
+                android:id="@+id/tv_weight"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="left"
+                android:text="Weight: "
+                android:textColor="#000000"
+                android:textSize="15sp" />
+            <TextView
+                android:id="@+id/tv_repeat"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="left"
+                android:text="Repeat: "
+                android:textColor="#000000"
+                android:textSize="15sp" />
+            <TextView
+                android:id="@+id/tv_break"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="left"
+                android:text="Break: "
+                android:textColor="#000000"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -11,7 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="10dp"
-        android:background="@drawable/custom_ripple"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,28 +21,32 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/custom_ripple"
             android:orientation="horizontal"
             tools:ignore="UselessParent">
             <TextView
                 android:id="@+id/User_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="60dp"
+                android:layout_marginStart="30dp"
                 android:layout_marginLeft="60dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
                 android:gravity="center"
                 android:text="@string/username"
-                android:textSize="60px"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
                 tools:ignore="MissingConstraints" />
         </LinearLayout>
 
         <View
             android:id="@+id/ViewLine"
             android:layout_width="match_parent"
-            android:layout_height="0.2dp"
-            android:layout_margin="5dp"
-            android:background="@android:color/black"
+            android:layout_height="1sp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="@android:color/darker_gray"
             android:src="@drawable/man"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="16dp"

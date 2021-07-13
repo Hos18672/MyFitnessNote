@@ -3,10 +3,8 @@ package com.example.myfitneesnote.firebase
 import android.app.Activity
 import android.util.Log
 import android.widget.Toast
-import com.example.myfitneesnote.AddWorkoutActivity
-import com.example.myfitneesnote.LoginActivity
-import com.example.myfitneesnote.MainActivity
-import com.example.myfitneesnote.SignUpActivity
+import androidx.recyclerview.widget.RecyclerView
+import com.example.myfitneesnote.*
 import com.example.myfitneesnote.model.User
 import com.example.myfitneesnote.model.Workout
 import com.example.myfitneesnote.utils.Constant
@@ -26,7 +24,7 @@ class FirestoreClass {
                 activity.userRegisteredSuccess()
             }
     }
-/*
+
 
     fun loginUser(activity: Activity) {
         mFireStore.collection(Constant.USERS)
@@ -58,7 +56,7 @@ class FirestoreClass {
                 Log.e("FireStoreLogInUser", "Error writing document")
             }
     }
-*/
+
 
     fun getCurrentUserId(): String {
         var currentUser = FirebaseAuth.getInstance().currentUser
@@ -71,7 +69,7 @@ class FirestoreClass {
 
     fun createNewTraining(activity: AddWorkoutActivity, workout: Workout){
 
-        mFireStore.collection("Trainings")
+        mFireStore.collection(Constant.TRAININGS)
             .document()
             .set(workout, SetOptions.merge())
             .addOnSuccessListener {
@@ -81,6 +79,27 @@ class FirestoreClass {
                 exception ->
                 Log.e(activity.javaClass.simpleName, "Creation failed",exception)
                 Toast.makeText(activity, "Training's creation failed", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    fun getWorkout(activity: TrainingActivity){
+        mFireStore.collection(Constant.TRAININGS)
+            .whereArrayContains(Constant.USER_ID, getCurrentUserId())
+            .get()
+            .addOnSuccessListener {
+                document ->
+                Log.i(activity.javaClass.simpleName, document.documents.toString())
+                val workoutList : ArrayList<Workout> = ArrayList()
+                for(i in document.documents){
+                    val workout= i.toObject(Workout::class.java)!!
+                    workout.documentId= i.id
+                    workoutList.add(workout)
+                }
+                activity.populateWorkoutListToUi(workoutList)
+            }.addOnFailureListener{
+                    exception ->
+                Log.e(activity.javaClass.simpleName, "get Workouts failed",exception)
+
             }
     }
 }

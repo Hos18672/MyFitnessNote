@@ -10,9 +10,11 @@ data class Workout(
     var set: String= "",
     var weight:String= "",
     var Break: String= "",
-    var repeat: String= "",)
+    var repeat: String= "",
+    var documentId :String= "")
     :Parcelable {
     constructor(parcel: Parcel) : this(
+        parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
@@ -30,6 +32,7 @@ data class Workout(
         parcel.writeString(weight)
         parcel.writeString(Break)
         parcel.writeString(repeat)
+        parcel.writeString(documentId)
     }
 
     override fun describeContents(): Int {

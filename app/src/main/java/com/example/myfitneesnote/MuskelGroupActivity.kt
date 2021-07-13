@@ -23,7 +23,7 @@ class MuskelGroupActivity : BaseActivity() {
         biceps_btn.setOnClickListener  {
             var intent = Intent (this, AddWorkoutActivity::class.java)
             intent.putExtra("MuskelName", biceps_btn.text)
-            intent.putExtra("GymName", biceps_btn.text)
+            intent.putExtra("GymName", GymType)
                 startActivity(intent)
         }
     }
