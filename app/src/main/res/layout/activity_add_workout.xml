@@ -4,9 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ic_background"
+    android:background="@drawable/ic_splash_background"
     tools:context=".AddWorkoutActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolBar_add_workout_activity"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        tools:ignore="MissingConstraints">
+        <TextView
+            android:id="@+id/toolBar_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text=""
+            android:textColor="#000000"
+            android:textSize="15sp"
+            tools:layout_editor_absoluteX="165dp"
+            tools:layout_editor_absoluteY="218dp" />
+    </androidx.appcompat.widget.Toolbar>
+    <TextView
+        android:id="@+id/TrainingName"
+        android:layout_width="210dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:backgroundTint="@android:color/black"
+        android:gravity="center"
+        android:text="New Training"
+
+        android:textColor="@color/cardview_dark_background"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/CV"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
     <androidx.cardview.widget.CardView
         android:id="@+id/CV"
         android:layout_width="400dp"
@@ -51,7 +84,9 @@
                     android:id="@+id/tv_set"
                     android:layout_width="160dp"
                     android:layout_height="match_parent"
-                    android:gravity="center"
+                    android:gravity="left|center"
+                    android:padding="20dp"
+                    android:layout_gravity="center"
                     android:text="Set"
                     android:textColor="@color/cardview_dark_background"
                     android:textSize="25dp" />
@@ -114,7 +149,8 @@
                     android:id="@+id/tv_weight"
                     android:layout_width="162dp"
                     android:layout_height="match_parent"
-                    android:gravity="center"
+                    android:gravity="left|center"
+                    android:padding="20dp"
                     android:text="Weight"
                     android:textColor="@color/cardview_dark_background"
                     android:textSize="25dp" />
@@ -177,7 +213,8 @@
                     android:id="@+id/tv_break"
                     android:layout_width="160dp"
                     android:layout_height="match_parent"
-                    android:gravity="center"
+                    android:gravity="left|center"
+                    android:padding="20dp"
                     android:text="Break"
                     android:textColor="@color/cardview_dark_background"
                     android:textSize="25dp" />
@@ -237,7 +274,8 @@
                     android:id="@+id/tv_repeat"
                     android:layout_width="160dp"
                     android:layout_height="match_parent"
-                    android:gravity="center"
+                    android:gravity="left|center"
+                    android:padding="20dp"
                     android:text="Repeat"
                     android:textColor="@color/cardview_dark_background"
                     android:textSize="25dp" />

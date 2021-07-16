@@ -4,7 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 
 data class Workout(
-    val user_id: String= "",
+    var user_id: String= "",
     var GymType: String= "",
     var MuskelName: String= "",
     var set: String= "",

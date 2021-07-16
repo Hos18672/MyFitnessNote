@@ -10,12 +10,17 @@ import com.example.myfitneesnote.firebase.FirestoreClass
 import com.example.myfitneesnote.model.Workout
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_add_workout.*
+import kotlinx.android.synthetic.main.activity_muskel_group.*
 
 class AddWorkoutActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_workout)
         onClick()
+        fullscreen()
+        setupActionBar()
+        var trainingsName: String? = intent.getStringExtra("MuskelName")
+        TrainingName.text = trainingsName
     }
     private fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
     private fun onClick(){
@@ -72,5 +77,17 @@ class AddWorkoutActivity : BaseActivity() {
         ).show()
 
         startActivity(Intent(this, TrainingActivity::class.java))
+    }
+    private fun setupActionBar() {
+        setSupportActionBar(toolBar_add_workout_activity)
+        var actionBar = supportActionBar
+        if(actionBar!=null)
+        {
+            actionBar.setDisplayHomeAsUpEnabled(true)
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_navigate_before_black_24dp)
+        }
+        toolBar_add_workout_activity.setNavigationOnClickListener{
+            onBackPressed()
+        }
     }
 }

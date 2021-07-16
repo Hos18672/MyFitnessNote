@@ -10,6 +10,7 @@ import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_security.*
 import kotlinx.android.synthetic.main.activity_security.btnSave
+import kotlinx.android.synthetic.main.activity_training.*
 
 class SecurityActivity : BaseActivity() {
     private var mFirebaseDatabase: DatabaseReference? = null
@@ -20,6 +21,9 @@ class SecurityActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_security)
+        fullscreen()
+         setupActionBar()
+
         userProfileData()
         mFirebaseInstance = FirebaseDatabase.getInstance()
         // get reference to 'users' node
@@ -136,6 +140,19 @@ class SecurityActivity : BaseActivity() {
             }else ->{
                 true
             }
+        }
+    }
+
+    private fun setupActionBar() {
+        setSupportActionBar(toolBar_security_activity)
+        var actionBar = supportActionBar
+        if(actionBar!=null)
+        {
+            actionBar.setDisplayHomeAsUpEnabled(true)
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_navigate_before_black_24dp)
+        }
+        toolBar_security_activity.setNavigationOnClickListener{
+            onBackPressed()
         }
     }
 }

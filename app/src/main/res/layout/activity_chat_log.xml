@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ic_background"
+    android:background="@drawable/ic_splash_background"
     android:orientation="vertical"
     tools:context=".ChatLogActivity">
 
@@ -23,7 +23,6 @@
         android:layout_marginTop="0dp"
         android:layout_marginEnd="-1dp"
         android:layout_marginRight="-1dp"
-        android:background="@android:color/white"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,14 +36,15 @@
             android:id="@+id/Chat_log_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="150dp"
-            android:layout_marginLeft="150dp"
+            android:layout_marginStart="130dp"
             android:layout_marginBottom="10dp"
             android:text="Messages "
             android:textColor="#000000"
-            android:textSize="15sp"
+            android:textSize="17sp"
+            android:textStyle="bold"
             tools:layout_editor_absoluteX="165dp"
-            tools:layout_editor_absoluteY="218dp" />
+            tools:layout_editor_absoluteY="218dp"
+            android:layout_marginLeft="130dp" />
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -73,7 +73,7 @@
         android:layout_gravity="bottom"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/shapetransparent_message"
         android:gravity="bottom"
         android:orientation="horizontal"
