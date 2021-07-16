@@ -1,6 +1,7 @@
 package com.example.myfitneesnote
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.widget.EditText
@@ -11,7 +12,6 @@ import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_add_workout.*
 
 class AddWorkoutActivity : BaseActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_workout)
@@ -33,7 +33,7 @@ class AddWorkoutActivity : BaseActivity() {
         btn_repeat_minus.setOnClickListener{minusButton(repeatNum)}
         btn_repeat_plus.setOnClickListener{plusButton(repeatNum)}
 
-        save_btn.setOnClickListener {        createTraining() }
+        save_btn.setOnClickListener { createTraining() }
     }
     private fun minusButton(et: EditText){
         var num = et.text.toString().toInt()
@@ -47,26 +47,30 @@ class AddWorkoutActivity : BaseActivity() {
     }
     private fun createTraining(){
         var workout : Workout
-        val user = FirebaseAuth.getInstance().currentUser
-        var userId = user?.uid.toString()
-        var gymType : String = intent.getStringExtra("GymName").toString()
+        val user   = FirebaseAuth.getInstance().currentUser
+        var userId = user?.uid
+        var gymType    : String = intent.getStringExtra("GymName").toString()
         var muskelName : String = intent.getStringExtra("MuskelName").toString()
         workout= Workout(
-            userId,
+            userId.toString(),
             gymType,
             muskelName,
             SetNum.text.toString(),
             weightNum.text.toString(),
             breakNum.text.toString(),
             repeatNum.text.toString())
-
-        FirestoreClass().createNewTraining(this,workout)
-
-        Toast.makeText(
+        FirestoreClass().createNewTraining(this, workout)
+       Toast.makeText(
             this,
-            "User: ${userId}\n"+ "Gym: ${gymType}\n" + "Set: ${SetNum.text}\n" + "Weight: ${weightNum.text}\n" + "Break: ${breakNum.text}\n" + "Repeat: ${repeatNum.text}",
+               "User:   ${userId}\n"+
+                    "Gym:    ${gymType}\n" +
+                    "Set:    ${SetNum.text}\n" +
+                    "Weight: ${weightNum.text}\n" +
+                    "Break:  ${breakNum.text}\n" +
+                    "Repeat: ${repeatNum.text}",
             Toast.LENGTH_LONG
         ).show()
-        //finish()
+
+        startActivity(Intent(this, TrainingActivity::class.java))
     }
 }

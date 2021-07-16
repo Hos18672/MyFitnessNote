@@ -20,7 +20,6 @@ class IntroActivity : BaseActivity() {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         window.statusBarColor = ContextCompat.getColor(this, R.color.statusColor)
-
         fullscreen()
         animat()
         intro_login_button.setOnClickListener {
@@ -44,5 +43,4 @@ class IntroActivity : BaseActivity() {
     override fun onBackPressed() {
         finish()
     }
-
 }

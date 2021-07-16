@@ -7,6 +7,7 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.ProgressBar
 import android.widget.Toast
+import com.example.myfitneesnote.firebase.FirestoreClass
 import com.example.myfitneesnote.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -20,7 +21,6 @@ class LoginActivity : BaseActivity() {
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE or WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         fullscreen()
         setupActionBar()
-
         login_signUpTv.setOnClickListener {
             startActivity(Intent(this, SignUpActivity::class.java))
             finish()
@@ -64,9 +64,9 @@ class LoginActivity : BaseActivity() {
                                 "Your are logged in successfully.",
                                 Toast.LENGTH_SHORT
                             ).show()
+
                             val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                            intent.flags =
-                                Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                             intent.putExtra("user_id", FirebaseAuth.getInstance().currentUser!!.uid)
                             intent.putExtra("email_id", email)
                             startActivity(intent)
@@ -84,8 +84,6 @@ class LoginActivity : BaseActivity() {
             sign_in_btn_text.setText("Sign in")
         }
     }
-
-
     fun logInSuccess(user: User) {
         //hideProgressDialog1()
         startActivity(Intent(this, MainActivity::class.java))
@@ -106,7 +104,6 @@ class LoginActivity : BaseActivity() {
             }
         }
     }
-
     override fun onBackPressed() {
         finish()
     }

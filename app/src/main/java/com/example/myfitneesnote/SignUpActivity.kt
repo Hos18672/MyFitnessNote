@@ -1,11 +1,7 @@
 package com.example.myfitneesnote
 
-import android.app.Activity
 import android.content.Intent
-import android.graphics.drawable.BitmapDrawable
-import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
 import android.text.TextUtils
 import android.util.Log
 import android.view.WindowManager
@@ -15,22 +11,16 @@ import com.example.myfitneesnote.firebase.FirestoreClass
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import java.util.*
 
-
 class SignUpActivity : BaseActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE or WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
-
         fullscreen()
         setupActionBar()
-
         signUp_loginText.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
@@ -39,8 +29,7 @@ class SignUpActivity : BaseActivity() {
                  signUpUser()
         }
     }
-
-/*    var selectedImageUri : Uri?= null
+/*  var selectedImageUri : Uri?= null
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == 0 && resultCode == Activity.RESULT_OK && data != null){
@@ -55,11 +44,11 @@ class SignUpActivity : BaseActivity() {
      * A function to register the user  and save data on  firestore database.
      */
    private  fun signUpUser(){
-        val name : String = signUpNameInput.text.toString().trim{ it <= ' '}
+        val name     : String = signUpNameInput.text.toString().trim{ it <= ' '}
         val username : String = signUpUsernameInput.text.toString().trim{ it <= ' '}
-        val email : String = signUp_email_input.text.toString().trim{ it <= ' '}
+        val email    : String = signUp_email_input.text.toString().trim{ it <= ' '}
         val password : String = signUp_password_input.text.toString().trim{ it <= ' '}
-        val password2 : String = signUp_password_input2.text.toString().trim{ it <= ' '}
+        val password2: String = signUp_password_input2.text.toString().trim{ it <= ' '}
         //val Image : String = signUp_image.toString().trim{ it <= ' '}
         if(validateForm(name, username, email, password) ) {
             if (password.equals(password2)) {
@@ -124,8 +113,7 @@ class SignUpActivity : BaseActivity() {
     }*/
     private  fun validateForm(name: String, username: String, email: String, password: String) : Boolean{
         return when{
-            TextUtils.isEmpty(name)->{
-                showErrorSnackBar("Please enter a  name")
+            TextUtils.isEmpty(name)->{ showErrorSnackBar("Please enter a  name")
                 false
             }
             TextUtils.isEmpty(username)->{
@@ -147,8 +135,7 @@ class SignUpActivity : BaseActivity() {
     private fun setupActionBar() {
         setSupportActionBar(toolBar_sign_up_activity)
         var actionBar = supportActionBar
-        if(actionBar!=null)
-        {
+        if(actionBar!=null) {
             actionBar.setDisplayHomeAsUpEnabled(true)
             actionBar.setHomeAsUpIndicator(R.drawable.ic_navigate_before_black_24dp)
         }
@@ -156,7 +143,6 @@ class SignUpActivity : BaseActivity() {
             onBackPressed()
         }
     }
-
     /**
      * A function to be called the user is registered successfully and entry is made in the firestore database.
      */
@@ -176,7 +162,5 @@ class SignUpActivity : BaseActivity() {
         // Finish the Sign-Up Screen
         finish()
     }
-    override fun onBackPressed() {
-        finish()
-    }
+    override fun onBackPressed() { finish() }
 }

@@ -3,7 +3,6 @@ package com.example.myfitneesnote
 
 import android.os.Bundle
 import android.text.TextUtils
-import android.view.WindowManager
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -17,9 +16,7 @@ class SecurityActivity : BaseActivity() {
     private var mFirebaseInstance: FirebaseDatabase? = null
     private var userId: String? = null
     private lateinit var auth: FirebaseAuth
-
 // Initialize Firebase Auth
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_security)
@@ -34,7 +31,6 @@ class SecurityActivity : BaseActivity() {
         btnback.setOnClickListener { onBackPressed() }
         auth = Firebase.auth
     }
-
     private fun updateUser2(currentPassword :String, password1: String,password2: String, email: String) {
         if (validateForm(currentPassword, password1, password2, email) && password1.equals(password2)) {
             val user = FirebaseAuth.getInstance().currentUser
@@ -63,10 +59,8 @@ class SecurityActivity : BaseActivity() {
                         Toast.makeText(applicationContext, "Current Password is wrong", Toast.LENGTH_SHORT).show()
                     }
                 }
-
         }
     }
-
     private  fun updateUser(currentPassword :String, password1: String,password2: String, email: String){
         if(validateForm(currentPassword, password1, password2, email)) {
             if (password1.equals(password2)) {
@@ -101,9 +95,6 @@ class SecurityActivity : BaseActivity() {
             }
         }
     }
-
-
-
     fun onUpdateClicked() {
         val currentPassword= CurrentPassword.text.toString()
         val pass1 = editTextTextPassword.text.toString()
@@ -125,7 +116,6 @@ class SecurityActivity : BaseActivity() {
             }
         })
     }
-
     private  fun validateForm(currentPassword :String, password1: String,password2: String, email: String) : Boolean{
         return when{
             TextUtils.isEmpty(currentPassword)->{

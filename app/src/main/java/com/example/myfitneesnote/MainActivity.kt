@@ -5,8 +5,10 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.core.view.GravityCompat
 import com.example.myfitneesnote.R.*
+import com.example.myfitneesnote.firebase.FirestoreClass
 import com.example.myfitneesnote.model.User
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.XAxis
@@ -42,30 +44,22 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         setupLineChartData()
         updateNavigationUserDetails()
     }
-    fun onClick(){
-        var main_menu : ImageView = findViewById(id.main_menu)
-        var add_main : ImageView   = findViewById(id.Add_main)
-        var chat_main : ImageView   = findViewById(id.chat_main)
-        var diagram_main : ImageView   = findViewById(id.main_diagramm)
+    fun onClick() {
+        var main_menu: ImageView = findViewById(id.main_menu)
+        var add_main: ImageView = findViewById(id.Add_main)
+        var chat_main: ImageView = findViewById(id.chat_main)
+        var diagram_main: ImageView = findViewById(id.main_diagramm)
 
         main_menu.setOnClickListener {
-            if(drawer_layout.isDrawerOpen(GravityCompat.START)){
+            if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
                 drawer_layout.closeDrawer(GravityCompat.START)
-            }else{
+            } else {
                 drawer_layout.openDrawer(GravityCompat.START)
             }
         }
-        add_main.setOnClickListener {
-            startActivity(Intent(this, WorkoutActivity::class.java))
-
-        }
-
-        chat_main.setOnClickListener {
-            startActivity(Intent(this, ChatActivity::class.java))
-        }
-        diagram_main.setOnClickListener {
-            startActivity(Intent(this, myProfileActivity::class.java))
-        }
+        add_main.setOnClickListener { startActivity(Intent(this, WorkoutActivity::class.java)) }
+        chat_main.setOnClickListener { startActivity(Intent(this, ChatActivity::class.java)) }
+        diagram_main.setOnClickListener { startActivity(Intent(this, TrainingActivity::class.java)) }
     }
     companion object {
         //A unique code for starting the activity for result
@@ -164,6 +158,20 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         //lineChart.setDrawGridBackground()
         lineChart.xAxis.labelCount = 11
         lineChart.xAxis.position = XAxis.XAxisPosition.BOTTOM
+    }
+
+
+    fun updateNavigationUserDetails(user: User) {
+
+        var mUserName = user.name
+
+        // The instance of the header view of the navigation view.
+        val headerView = nav_view.getHeaderView(0)
+
+        // The instance of the user name TextView of the navigation view.
+        val navUsername = headerView.findViewById<TextView>(R.id.tv_username)
+        // Set the user name
+        navUsername.text = user.name
     }
 }
 

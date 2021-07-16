@@ -3,7 +3,6 @@ package com.example.myfitneesnote
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.WindowManager
 import com.example.myfitneesnote.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -14,7 +13,6 @@ import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.activity_chat.*
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.user_row.view.*
 
 class ChatActivity : BaseActivity() {
@@ -23,7 +21,6 @@ class ChatActivity : BaseActivity() {
         var currentUser: User?= null
         val USER_KEY = "USER_KEY"
     }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
@@ -35,8 +32,7 @@ class ChatActivity : BaseActivity() {
     private fun setupActionBar() {
         setSupportActionBar(toolBar_Chat_activity)
         var actionBar = supportActionBar
-        if(actionBar!=null)
-        {
+        if(actionBar!=null) {
             actionBar.setDisplayHomeAsUpEnabled(true)
             actionBar.setHomeAsUpIndicator(R.drawable.ic_navigate_before_black_24dp)
         }
@@ -44,7 +40,6 @@ class ChatActivity : BaseActivity() {
             onBackPressed()
         }
     }
-
     private  fun fetchCurrentUser(){
         val uid = FirebaseAuth.getInstance().uid
         val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
@@ -53,11 +48,9 @@ class ChatActivity : BaseActivity() {
                 currentUser = snapshot.getValue(User::class.java)
                 Log.d("LatesMessages", "Current User ${currentUser?.image}")
             }
-
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
-
         })
     }
     private  fun fetchUsers(){
@@ -82,7 +75,6 @@ class ChatActivity : BaseActivity() {
                     startActivity(intent)
                 }
                 recyclerView.adapter = adapter
-
             }
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")

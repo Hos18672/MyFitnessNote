@@ -1,61 +1,52 @@
 package com.example.myfitneesnote.adapters
 
-import android.content.Context
-import android.content.DialogInterface
+
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.*
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myfitneesnote.R
 import com.example.myfitneesnote.model.Workout
-import kotlinx.android.synthetic.main.item_training.view.*
 
-open class TrainingItemAdapter(private val context: Context,
-                                   private var list : ArrayList<Workout>)
-    : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
-
-    private var onClickListener: OnClickListener? = null
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-
-        return MyViewHolder(
-            LayoutInflater.from(context)
-                .inflate((R.layout.item_training),
-                    parent,
-                    false))
+class TrainingItemAdapter( private var list : ArrayList<Workout>)
+    : RecyclerView.Adapter<TrainingItemAdapter.MyViewHolder>(){
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder{
+        val itemView = LayoutInflater.
+        from(parent.context)
+            .inflate(
+                (R.layout.item_training),
+                parent,
+            false)
+        return  MyViewHolder(itemView)
     }
     override fun getItemCount(): Int {
         return list.size
     }
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-      val model = list[position]
-        if(holder is MyViewHolder){
-            holder.itemView.tv_GymName.text = model.GymType
-            holder.itemView.tv_Muscle.text= model.MuskelName
-            holder.itemView.tv_Sets.text = model.set
-            holder.itemView.tv_weight.text = model.weight
-            holder.itemView.tv_repeat.text= model.repeat
-            holder.itemView.tv_break.text = model.Break
-
-            holder.itemView.setOnClickListener {
-
-                if (onClickListener != null) {
-                    onClickListener!!.onClick(position, model)
-                }
-            }
-        }
-    }
-    interface OnClickListener {
-        fun onClick(position: Int, model: Workout)
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+      val training = list[position]
+        holder.user_id.text   = training.user_id
+        holder.gymName.text   = training.GymType
+        holder.muskelName.text= training.MuskelName
+        holder.sets.text      = training.set
+        holder.weight.text    = training.weight
+        holder.repeat.text    = training.repeat
+        holder.breakTime.text = training.BreakTime
     }
 
-
-    private class MyViewHolder(view: View): RecyclerView.ViewHolder(view){
-
-
-
+    class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+        val user_id    : TextView =   itemView.findViewById(R.id.tv_user_id)
+        val gymName    : TextView =   itemView.findViewById(R.id.tv_GymName)
+        val muskelName : TextView =   itemView.findViewById(R.id.tv_Muscle)
+        val sets       : TextView =   itemView.findViewById(R.id.tv_Sets)
+        val weight     : TextView =   itemView.findViewById(R.id.tv_GymName)
+        val repeat     : TextView =   itemView.findViewById(R.id.tv_repeat)
+        val breakTime  : TextView =   itemView.findViewById(R.id.tv_break)
     }
 
 }
+
+
+
+
 

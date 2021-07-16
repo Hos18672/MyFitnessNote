@@ -13,7 +13,6 @@ class SplashActivity : BaseActivity() {
         setContentView(R.layout.activity_splash)
         fullscreen()
         animat()
-
         Handler().postDelayed({
             var currentUserID = FirestoreClass().getCurrentUserId()
             if (currentUserID.isNotEmpty()) {
@@ -25,7 +24,6 @@ class SplashActivity : BaseActivity() {
             finish()
         }, 2500)
     }
-
     fun animat(){
         val btt = AnimationUtils.loadAnimation(this, R.anim.btt)
         splash_textView.startAnimation(btt)
