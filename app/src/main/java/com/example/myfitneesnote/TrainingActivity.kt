@@ -26,6 +26,7 @@ class TrainingActivity : BaseActivity() {
         setContentView(R.layout.activity_training)
         fullscreen()
         setupActionBar()
+        btnback_training.setOnClickListener { onBackPressed() }
         recyclerView = findViewById(R.id.rv_trainings_list)
         list = arrayListOf()
        // trainingItemAdapter = TrainingItemAdapter(list)       recyclerView.adapter = trainingItemAdapter

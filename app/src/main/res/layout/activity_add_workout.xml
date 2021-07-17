@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/ic_splash_background"
     tools:context=".AddWorkoutActivity">
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar_add_workout_activity"
         android:layout_width="match_parent"
@@ -16,8 +15,8 @@
             android:id="@+id/toolBar_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text=""
+            android:text="New Training"
+            android:gravity="center"
             android:textColor="#000000"
             android:textSize="15sp"
             tools:layout_editor_absoluteX="165dp"
@@ -28,11 +27,8 @@
         android:layout_width="210dp"
         android:layout_height="60dp"
         android:layout_gravity="center"
-        android:backgroundTint="@android:color/black"
+        android:textColor="@android:color/black"
         android:gravity="center"
-        android:text="New Training"
-
-        android:textColor="@color/cardview_dark_background"
         android:textSize="25dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/CV"
@@ -42,8 +38,8 @@
         tools:ignore="MissingConstraints" />
     <androidx.cardview.widget.CardView
         android:id="@+id/CV"
-        android:layout_width="400dp"
-        android:layout_height="560dp"
+        android:layout_width="375dp"
+        android:layout_height="500dp"
         app:cardCornerRadius="15dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
@@ -55,49 +51,42 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="570dp"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
             android:orientation="vertical">
-
             <TextView
                 android:id="@+id/WorkoutName"
                 android:layout_width="210dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginBottom="35dp"
-                android:backgroundTint="#070707"
                 android:gravity="center"
                 android:text="New Training"
-                android:textColor="@color/cardview_dark_background"
+                android:textColor="@android:color/black"
                 android:textSize="25dp"
                 android:textStyle="bold" />
-
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:orientation="horizontal">
-
                 <TextView
                     android:id="@+id/tv_set"
-                    android:layout_width="160dp"
+                    android:layout_width="120dp"
                     android:layout_height="match_parent"
+                    android:layout_gravity="center"
                     android:gravity="left|center"
                     android:padding="20dp"
-                    android:layout_gravity="center"
                     android:text="Set"
-                    android:textColor="@color/cardview_dark_background"
+                    android:textColor="@android:color/black"
                     android:textSize="25dp" />
-
                 <Button
                     android:id="@+id/btn_set_minus"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:background="@drawable/ic_minus" />
-
                 <EditText
                     android:id="@+id/SetNum"
                     android:layout_width="wrap_content"
@@ -114,7 +103,6 @@
                     android:text="0"
                     android:textSize="30sp"
                     android:textStyle="bold" />
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
@@ -127,15 +115,12 @@
                     android:text="X"
                     android:textSize="20sp"
                     android:textStyle="bold" />
-
-
                 <Button
                     android:id="@+id/btn_set_plus"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:background="@drawable/ic_plus" />
-
             </LinearLayout>
 
             <LinearLayout
@@ -144,25 +129,21 @@
                 android:layout_marginTop="20dp"
                 android:gravity="bottom"
                 android:orientation="horizontal">
-
                 <TextView
                     android:id="@+id/tv_weight"
-                    android:layout_width="162dp"
+                    android:layout_width="120dp"
                     android:layout_height="match_parent"
                     android:gravity="left|center"
                     android:padding="20dp"
                     android:text="Weight"
-                    android:textColor="@color/cardview_dark_background"
+                    android:textColor="@android:color/black"
                     android:textSize="25dp" />
-
                 <Button
                     android:id="@+id/btn_weight_minus"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:background="@drawable/ic_minus" />
-
-
                 <EditText
                     android:id="@+id/weightNum"
                     android:layout_width="wrap_content"
@@ -179,7 +160,6 @@
                     android:text="0"
                     android:textSize="30sp"
                     android:textStyle="bold" />
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
@@ -192,15 +172,12 @@
                     android:text="Kg"
                     android:textSize="20sp"
                     android:textStyle="bold" />
-
                 <Button
                     android:id="@+id/btn_weight_plus"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:background="@drawable/ic_plus" />
-
-
             </LinearLayout>
 
             <LinearLayout
@@ -208,24 +185,21 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:orientation="horizontal">
-
                 <TextView
                     android:id="@+id/tv_break"
-                    android:layout_width="160dp"
+                    android:layout_width="120dp"
                     android:layout_height="match_parent"
                     android:gravity="left|center"
                     android:padding="20dp"
                     android:text="Break"
-                    android:textColor="@color/cardview_dark_background"
+                    android:textColor="@android:color/black"
                     android:textSize="25dp" />
-
                 <Button
                     android:id="@+id/btn_break_minus"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:background="@drawable/ic_minus" />
-
                 <EditText
                     android:id="@+id/breakNum"
                     android:layout_width="wrap_content"
@@ -242,7 +216,6 @@
                     android:text="0"
                     android:textSize="30sp"
                     android:textStyle="bold" />
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
@@ -255,7 +228,6 @@
                     android:text="min"
                     android:textSize="20sp"
                     android:textStyle="bold" />
-
                 <Button
                     android:id="@+id/btn_break_plus"
                     android:layout_width="50dp"
@@ -269,24 +241,21 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:orientation="horizontal">
-
                 <TextView
                     android:id="@+id/tv_repeat"
-                    android:layout_width="160dp"
+                    android:layout_width="120dp"
                     android:layout_height="match_parent"
                     android:gravity="left|center"
                     android:padding="20dp"
                     android:text="Repeat"
-                    android:textColor="@color/cardview_dark_background"
+                    android:textColor="@android:color/black"
                     android:textSize="25dp" />
-
                 <Button
                     android:id="@+id/btn_repeat_minus"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:background="@drawable/ic_minus" />
-
                 <EditText
                     android:id="@+id/repeatNum"
                     android:layout_width="wrap_content"
@@ -303,7 +272,6 @@
                     android:text="0"
                     android:textSize="30sp"
                     android:textStyle="bold" />
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
@@ -316,18 +284,14 @@
                     android:text="X"
                     android:textSize="20sp"
                     android:textStyle="bold" />
-
                 <Button
                     android:id="@+id/btn_repeat_plus"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:background="@drawable/ic_plus" />
-
             </LinearLayout>
-
         </LinearLayout>
-
     </androidx.cardview.widget.CardView>
 
     <LinearLayout
@@ -340,10 +304,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
-
         <Button
             android:id="@+id/save_btn"
-            android:layout_width="330dp"
+            android:layout_width="350dp"
             android:layout_height="50dp"
             android:layout_above="@+id/btnBackNewWorkout"
             android:background="@drawable/ic_save_shape"
@@ -352,13 +315,13 @@
             android:layout_marginBottom="10dp"
             android:textSize="25sp"
             android:text="save" />
-
         <Button
             android:id="@+id/btnBackNewWorkout"
-            android:layout_width="330dp"
+            android:layout_width="350dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_margin="20dp"
+            app:layout_constraintVertical_bias="1.0"
             android:background="@drawable/shape"
             android:text="@string/BtnBackNew" />
     </LinearLayout>

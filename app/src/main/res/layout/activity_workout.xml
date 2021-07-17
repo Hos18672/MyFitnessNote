@@ -7,7 +7,6 @@
     android:background="@drawable/blue_white"
     android:gravity="center"
     tools:context=".WorkoutActivity">
-
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolBar_workout_activity"
             android:layout_width="match_parent"
@@ -18,13 +17,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:text=""
+                    android:text="Workout choice"
                     android:textColor="#000000"
                     android:textSize="15sp"
                     tools:layout_editor_absoluteX="165dp"
                     tools:layout_editor_absoluteY="218dp" />
         </androidx.appcompat.widget.Toolbar>
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/ll1"
             android:layout_width="match_parent"
@@ -36,8 +34,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="UselessParent">
-
-
                 <TextView
                     android:id="@+id/textView"
                     android:layout_width="350dp"
@@ -54,11 +50,10 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.551" />
-
                 <Button
                     android:id="@+id/btn_gym_workout"
-                    android:layout_width="380dp"
-                    android:layout_height="200dp"
+                    android:layout_width="355dp"
+                    android:layout_height="190dp"
                     android:layout_margin="10dp"
                     android:layout_marginBottom="12dp"
                     android:background="@drawable/ic_gym_out"
@@ -69,11 +64,10 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.939" />
-
                 <Button
                     android:id="@+id/btn_home_workout"
-                    android:layout_width="380dp"
-                    android:layout_height="200dp"
+                    android:layout_width="355dp"
+                    android:layout_height="190dp"
                     android:layout_margin="10dp"
                     android:background="@drawable/imageedit_5_6040594024"
                     android:text="@string/homeworkout1"
@@ -83,21 +77,17 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.669" />
-
                 <Button
                     android:id="@+id/btnBack1"
-                    android:layout_width="330dp"
+                    android:layout_width="350dp"
                     android:layout_height="50dp"
-                    android:layout_margin="20dp"
-                    android:layout_marginTop="28dp"
+                    android:layout_marginBottom="20dp"
                     android:background="@drawable/shape"
                     android:text="@string/back1"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/btn_home_workout"
-                    app:layout_constraintVertical_bias="0.984" />
+                    app:layout_constraintVertical_bias="1.0" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,6 +2,7 @@ package com.example.myfitneesnote
 
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.ImageView
@@ -28,17 +29,36 @@ import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.nav_header_main.*
 import kotlinx.android.synthetic.main.nav_header_main.view.*
+import kotlinx.coroutines.delay
 
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
-
+    private lateinit var rocketAnimation: AnimationDrawable
     val database = FirebaseDatabase.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
         //This call the parent constructor
         super.onCreate(savedInstanceState)
         setContentView(layout.activity_main)
         nav_view.setNavigationItemSelectedListener(this)
-       // FirestoreClass().loginUser(this)
+        // FirestoreClass().loginUser(this)
+        btn_sing_out_draw_layout.setOnClickListener {
+            btn_sing_out_draw_layout.animate().apply {
+                duration =100
+                scaleYBy(.3f)
+                scaleXBy(.3f)
+            }.withEndAction {
+                btn_sing_out_draw_layout.animate().apply {
+                    duration = 100
+                    scaleYBy(-.3f)
+                    scaleXBy(-.3f)
+                }
+            }.start()
+            FirebaseAuth.getInstance().signOut()
+            val intent = Intent(this, IntroActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+            finish()
+        }
         fullscreen()
         onClick()
         setupLineChartData()
@@ -57,9 +77,49 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 drawer_layout.openDrawer(GravityCompat.START)
             }
         }
-        add_main.setOnClickListener { startActivity(Intent(this, WorkoutActivity::class.java)) }
-        chat_main.setOnClickListener { startActivity(Intent(this, ChatActivity::class.java)) }
-        diagram_main.setOnClickListener { startActivity(Intent(this, TrainingActivity::class.java)) }
+        add_main.setOnClickListener {
+            add_main.animate().apply {
+                duration =100
+                scaleYBy(.3f)
+                scaleXBy(.3f)
+            }.withEndAction {
+                add_main.animate().apply {
+                    duration = 100
+                    scaleYBy(-.3f)
+                    scaleXBy(-.3f)
+                }
+            }.start()
+
+            startActivity(Intent(this, WorkoutActivity::class.java))
+        }
+        chat_main.setOnClickListener {
+            chat_main.animate().apply {
+                duration =100
+                scaleYBy(.3f)
+                scaleXBy(.3f)
+            }.withEndAction {
+                chat_main.animate().apply {
+                    duration = 100
+                    scaleYBy(-.3f)
+                    scaleXBy(-.3f)
+                }
+            }.start()
+            startActivity(Intent(this, ChatActivity::class.java))
+        }
+        diagram_main.setOnClickListener {
+            diagram_main.animate().apply {
+                duration =100
+                scaleYBy(.3f)
+                scaleXBy(.3f)
+            }.withEndAction {
+                diagram_main.animate().apply {
+                    duration = 100
+                    scaleYBy(-.3f)
+                    scaleXBy(-.3f)
+                }
+            }.start()
+            startActivity(Intent(this, TrainingActivity::class.java))
+        }
     }
     companion object {
         //A unique code for starting the activity for result
@@ -99,16 +159,11 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 // Picasso.get().load(imageUri!!).into(main_drawer_profile_photo)
                  tv_username.text = username
              }
-
              override fun onCancelled(error: DatabaseError) {
                  TODO("Not yet implemented")
              }
-
          })
-
      }
-
-
     private fun setupLineChartData() {
         val yVals = ArrayList<Entry>()
         var lineChart : LineChart = findViewById(R.id.lineChart)
@@ -125,16 +180,9 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         yVals.add(Entry(10f, 54f, "10"))
         yVals.add(Entry(11f, 28f, "11"))
 
-
         val set1: LineDataSet
         set1 = LineDataSet(yVals, "DataSet 1")
 
-        // set1.fillAlpha = 110
-        // set1.setFillColor(Color.RED);
-
-        // set the line to be drawn like this "- - - - - -"
-        // set1.enableDashedLine(5f, 5f, 0f);
-        // set1.enableDashedHighlightLine(10f, 5f, 0f);
         set1.color = Color.BLUE
         set1.setCircleColor(Color.BLUE)
         set1.lineWidth = 1f
@@ -159,15 +207,10 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         lineChart.xAxis.labelCount = 11
         lineChart.xAxis.position = XAxis.XAxisPosition.BOTTOM
     }
-
-
     fun updateNavigationUserDetails(user: User) {
-
         var mUserName = user.name
-
         // The instance of the header view of the navigation view.
         val headerView = nav_view.getHeaderView(0)
-
         // The instance of the user name TextView of the navigation view.
         val navUsername = headerView.findViewById<TextView>(R.id.tv_username)
         // Set the user name

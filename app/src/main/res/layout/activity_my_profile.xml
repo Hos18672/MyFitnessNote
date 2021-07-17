@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text=""
+            android:text="Profile"
             android:textColor="#000000"
             android:textSize="15sp"
             tools:layout_editor_absoluteX="165dp"
@@ -45,13 +45,12 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/pcard"
-        android:layout_width="350dp"
+        android:layout_width="355dp"
         android:layout_height="400dp"
         app:cardCornerRadius="20dp"
-        android:layout_marginBottom="70dp"
+        android:layout_marginBottom="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.585"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolBar_my_profile_activity">
 
@@ -134,30 +133,44 @@
 
     <Button
         android:id="@+id/btnSave"
-        android:layout_width="330dp"
+        android:layout_width="255dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="100dp"
+
+        android:layout_marginBottom="10dp"
         android:background="@drawable/ic_save_shape"
         android:text="@string/save2"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.588"
+        app:layout_constraintHorizontal_bias="0.231"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pcard"
-        app:layout_constraintVertical_bias="0.358" />
+        app:layout_constraintVertical_bias="0.271" />
 
     <Button
         android:id="@+id/btnChangeEmailOrPassword"
-        android:layout_width="330dp"
+        android:layout_width="80dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="60dp"
         android:background="@drawable/shape"
-        android:text="@string/change_email_or_password"
+        android:text="More"
+        app:layout_constraintBottom_toBottomOf="@+id/btnSave"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.267"
+        app:layout_constraintStart_toEndOf="@+id/btnSave" />
+
+    <Button
+        android:id="@+id/btnback_profile"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="25dp"
+        android:background="@drawable/shape"
+        android:text="back"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.583"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSave"
+        app:layout_constraintVertical_bias="1.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

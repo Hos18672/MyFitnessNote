@@ -23,6 +23,7 @@ class myProfileActivity : BaseActivity() {
         fullscreen()
         setupActionBar()
         userProfileData()
+        btnback_profile.setOnClickListener { onBackPressed() }
         mFirebaseInstance = FirebaseDatabase.getInstance()
         // get reference to 'users' node
         mFirebaseDatabase = mFirebaseInstance!!.getReference("users")

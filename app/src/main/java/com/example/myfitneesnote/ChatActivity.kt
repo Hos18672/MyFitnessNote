@@ -28,6 +28,7 @@ class ChatActivity : BaseActivity() {
         setupActionBar()
         fetchUsers()
         fetchCurrentUser()
+        btnBack_ChatList.setOnClickListener { onBackPressed() }
     }
     private fun setupActionBar() {
         setSupportActionBar(toolBar_Chat_activity)

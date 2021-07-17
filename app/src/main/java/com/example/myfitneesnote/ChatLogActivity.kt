@@ -16,6 +16,7 @@ import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.activity_chat.toolBar_Chat_activity
 import kotlinx.android.synthetic.main.activity_chat_log.*
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.chat_from_row.view.*
 import kotlinx.android.synthetic.main.chat_to_row.view.*
 
@@ -32,6 +33,17 @@ class ChatLogActivity : BaseActivity() {
         setupActionBar()
         listenForMessages()
         SendeBtn.setOnClickListener{
+            SendeBtn.animate().apply {
+                duration = 100
+                scaleYBy(.3f)
+                scaleXBy(.3f)
+            }.withEndAction {
+                SendeBtn.animate().apply {
+                    duration = 100
+                    scaleYBy(-.3f)
+                    scaleXBy(-.3f)
+                }
+            }.start()
             Log.d(TAG, "To send Message")
             performSendMessage()
         }
