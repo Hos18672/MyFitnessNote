@@ -45,7 +45,10 @@ class ChatLogActivity : BaseActivity() {
                 }
             }.start()
             Log.d(TAG, "To send Message")
-            performSendMessage()
+            if(editTextChatLog.text.toString() != ""){
+                performSendMessage()
+            }
+
         }
     }
     private  fun listenForMessages(){

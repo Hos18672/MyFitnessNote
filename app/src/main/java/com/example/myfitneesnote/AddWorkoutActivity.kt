@@ -2,15 +2,25 @@ package com.example.myfitneesnote
 
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.widget.EditText
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import com.example.myfitneesnote.firebase.FirestoreClass
 import com.example.myfitneesnote.model.Workout
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_add_workout.*
-import kotlinx.android.synthetic.main.activity_muskel_group.*
+import kotlinx.android.synthetic.main.item_training.*
+import java.sql.Timestamp
+import java.time.Instant
+import java.time.Instant.now
+import java.time.LocalDate
+import java.time.LocalDateTime.now
+import java.time.ZoneOffset
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 class AddWorkoutActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,6 +31,7 @@ class AddWorkoutActivity : BaseActivity() {
         setupActionBar()
         var trainingsName: String? = intent.getStringExtra("MuskelName")
         TrainingName.text = trainingsName
+
     }
     private fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
     private fun onClick(){
@@ -51,6 +62,14 @@ class AddWorkoutActivity : BaseActivity() {
         et.text= "${num}".toEditable()
     }
     private fun createTraining(){
+        val c= Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+        val hour = c.get(Calendar.HOUR_OF_DAY)
+        val minute = c.get(Calendar.MINUTE)
+        var currentDate : String = "${year}/${month}/${day} - ${hour}:${minute}"
+
         var workout : Workout
         val user   = FirebaseAuth.getInstance().currentUser
         var userId = user?.uid
@@ -63,7 +82,8 @@ class AddWorkoutActivity : BaseActivity() {
             SetNum.text.toString(),
             weightNum.text.toString(),
             breakNum.text.toString(),
-            repeatNum.text.toString())
+            repeatNum.text.toString(),
+            currentDate)
         FirestoreClass().createNewTraining(this, workout)
        Toast.makeText(
             this,

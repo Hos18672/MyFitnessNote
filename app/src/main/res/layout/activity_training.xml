@@ -9,14 +9,19 @@
     android:background="@drawable/ic_splash_background"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".TrainingActivity">
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar_workouts_activity"
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnback_training"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints">
+
         <TextView
             android:id="@+id/toolBar_textView"
             android:layout_width="wrap_content"
@@ -25,26 +30,30 @@
             android:textColor="#000000"
             android:textSize="15sp" />
     </androidx.appcompat.widget.Toolbar>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_trainings_list"
-        android:layout_width="match_parent"
-        android:layout_height="740dp"
+        android:layout_width="398dp"
+        android:layout_height="721dp"
         android:layout_margin="5dp"
         app:layout_constraintBottom_toTopOf="@+id/btnback_training"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolBar_workouts_activity">
-    </androidx.recyclerview.widget.RecyclerView>
+        app:layout_constraintTop_toBottomOf="@+id/toolBar_workouts_activity"
+        app:layout_constraintVertical_bias="0.0" />
+
     <Button
         android:id="@+id/btnback_training"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginTop="5dp"
-        android:layout_marginBottom="20dp"
         android:background="@drawable/shape"
         android:text="back"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.979" />
 </androidx.constraintlayout.widget.ConstraintLayout>

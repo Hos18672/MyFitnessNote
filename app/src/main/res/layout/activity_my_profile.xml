@@ -135,17 +135,16 @@
         android:id="@+id/btnSave"
         android:layout_width="255dp"
         android:layout_height="50dp"
-
         android:layout_marginBottom="10dp"
         android:background="@drawable/ic_save_shape"
         android:text="@string/save2"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.231"
+        app:layout_constraintHorizontal_bias="0.29"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pcard"
-        app:layout_constraintVertical_bias="0.271" />
+        app:layout_constraintVertical_bias="0.276" />
 
     <Button
         android:id="@+id/btnChangeEmailOrPassword"
@@ -155,7 +154,7 @@
         android:text="More"
         app:layout_constraintBottom_toBottomOf="@+id/btnSave"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.267"
+        app:layout_constraintHorizontal_bias="0.172"
         app:layout_constraintStart_toEndOf="@+id/btnSave" />
 
     <Button

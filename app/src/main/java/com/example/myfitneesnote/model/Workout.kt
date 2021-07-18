@@ -1,7 +1,7 @@
 package com.example.myfitneesnote.model
 
-import android.os.Parcel
-import android.os.Parcelable
+import java.time.LocalDate
+import java.util.*
 
 data class Workout(
     var user_id: String= "",
@@ -10,7 +10,9 @@ data class Workout(
     var set: String= "",
     var weight:String= "",
     var BreakTime: String= "",
-    var repeat: String= "")
+    var repeat: String= "",
+    var date: String= ""
+)
 
 
 

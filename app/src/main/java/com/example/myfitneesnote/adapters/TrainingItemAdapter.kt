@@ -29,6 +29,7 @@ class TrainingItemAdapter(options: FirestoreRecyclerOptions<Workout>) : Firestor
         holder.weight.text    = training.weight
         holder.repeat.text    = training.repeat
         holder.breakTime.text = training.BreakTime
+        holder.date.text      = training.date
     }
 
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
@@ -40,6 +41,7 @@ class TrainingItemAdapter(options: FirestoreRecyclerOptions<Workout>) : Firestor
         val weight     =   itemView.tv_weight
         val repeat     =   itemView.tv_repeat
         val breakTime  =   itemView.tv_break
+        val date       =   itemView.tv_date
     }
 
 

@@ -12,6 +12,7 @@ import com.google.firebase.firestore.*
 import kotlinx.android.synthetic.main.activity_muskel_group.*
 import kotlinx.android.synthetic.main.activity_muskel_group.toolBar_muscle_gruppe_activity
 import kotlinx.android.synthetic.main.activity_training.*
+import kotlinx.android.synthetic.main.item_training.*
 
 class TrainingActivity : BaseActivity() {
 
@@ -57,7 +58,7 @@ class TrainingActivity : BaseActivity() {
     fun getTrainingsFromFireStore2(){
 
         db = FirebaseFirestore.getInstance()
-        var query : Query = db.collection("Trainings")
+        var query : Query = db.collection("Trainings").orderBy("date", Query.Direction.ASCENDING)
         var fireStoreRecyclerOption : FirestoreRecyclerOptions<Workout> = FirestoreRecyclerOptions.Builder<Workout>()
             .setQuery(query, Workout::class.java)
             .build()

@@ -17,10 +17,33 @@ class WorkoutActivity : BaseActivity(){
         fullscreen()
         setupActionBar()
         btn_gym_workout.setOnClickListener{
+
+            btn_gym_workout.animate().apply {
+                duration =400
+                scaleYBy(.2f)
+                scaleXBy(.2f)
+            }.withEndAction {
+                btn_gym_workout.animate().apply {
+                    duration = 400
+                    scaleYBy(-.2f)
+                    scaleXBy(-.2f)
+                }
+            }.start()
             var intent = Intent( this,  MuskelGroupActivity::class.java)
             intent.putExtra("WorkoutType",btn_gym_workout.text)
             startActivity(intent) }
         btn_home_workout.setOnClickListener{
+            btn_home_workout.animate().apply {
+                duration =400
+                scaleYBy(.2f)
+                scaleXBy(.2f)
+            }.withEndAction {
+                btn_home_workout.animate().apply {
+                    duration = 400
+                    scaleYBy(-.2f)
+                    scaleXBy(-.2f)
+                }
+            }.start()
             var intent = Intent( this,  MuskelGroupActivity::class.java)
             intent.putExtra("WorkoutType",btn_home_workout.text)
             startActivity(intent)}
