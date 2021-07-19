@@ -25,16 +25,19 @@ class TrainingItemAdapter(options: FirestoreRecyclerOptions<Workout>) : Firestor
         //holder.user_id.text   = training.user_id
         holder.gymName.text   = training.GymType
         holder.muskelName.text= training.MuskelName
-        holder.sets.text      = training.set
-        holder.weight.text    = training.weight
-        holder.repeat.text    = training.repeat
-        holder.breakTime.text = training.BreakTime
-        holder.date.text      = training.date
+        holder.sets.text      = "${training.set} x"
+        holder.weight.text    = "${training.weight } kg"
+        holder.repeat.text    = "${training.repeat} x"
+        holder.breakTime.text = "${training.BreakTime} min"
+        holder.date.text      = "${training.date}"
     }
-
+     fun deleteItem(i: Int){
+        snapshots.getSnapshot(i).reference.delete()
+        notifyDataSetChanged()
+    }
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
 
-      //  val user_id    =   itemView.tv_user_id
+        //  val user_id    =   itemView.tv_user_id
         val gymName    =   itemView.tv_GymName
         val muskelName =   itemView.tv_Muscle
         val sets       =   itemView.tv_Sets

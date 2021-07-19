@@ -2,17 +2,17 @@ package com.example.myfitneesnote
 
 
 import android.os.Bundle
-import android.util.Log
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.request.RequestOptions
+import com.example.myfitneesnote.adapters.SwipeToDelete
 import com.example.myfitneesnote.adapters.TrainingItemAdapter
 import com.example.myfitneesnote.model.Workout
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.*
-import kotlinx.android.synthetic.main.activity_muskel_group.*
-import kotlinx.android.synthetic.main.activity_muskel_group.toolBar_muscle_gruppe_activity
+import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.activity_training.*
-import kotlinx.android.synthetic.main.item_training.*
 
 class TrainingActivity : BaseActivity() {
 
@@ -30,31 +30,11 @@ class TrainingActivity : BaseActivity() {
         btnback_training.setOnClickListener { onBackPressed() }
         recyclerView = findViewById(R.id.rv_trainings_list)
         list = arrayListOf()
-       // trainingItemAdapter = TrainingItemAdapter(list)       recyclerView.adapter = trainingItemAdapter
+        // trainingItemAdapter = TrainingItemAdapter(list)       recyclerView.adapter = trainingItemAdapter
         getTrainingsFromFireStore2()
     }
 
-/*    fun getTrainingsFromFireStore(){
 
-        db = FirebaseFirestore.getInstance()
-        db.collection("Trainings").orderBy("breakTime", Query.Direction.ASCENDING)
-            .addSnapshotListener(object : EventListener<QuerySnapshot>{
-                override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
-                    if(error != null){
-                        Log.e("Firestore error", error.message.toString())
-                        return
-                    }
-                    for(dc: DocumentChange in value?.documentChanges!!){
-
-                        if(dc.type == DocumentChange.Type.ADDED){
-                            list.add(dc.document.toObject(Workout::class.java))
-                        }
-                    }
-
-                    trainingItemAdapter.notifyDataSetChanged()
-                }
-            })
-    }*/
     fun getTrainingsFromFireStore2(){
 
         db = FirebaseFirestore.getInstance()
@@ -67,7 +47,16 @@ class TrainingActivity : BaseActivity() {
         recyclerView.layoutManager= LinearLayoutManager(this)
 
         recyclerView.adapter= trainingItemAdapter
+
+        val Item = object : SwipeToDelete(this, 0,ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT){
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+               trainingItemAdapter.deleteItem(viewHolder.adapterPosition)
+            }
+        }
+        val itemTouchHelper= ItemTouchHelper(Item)
+        itemTouchHelper.attachToRecyclerView(recyclerView)
     }
+
 
     override fun onStart() {
         super.onStart()

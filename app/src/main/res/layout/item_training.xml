@@ -42,14 +42,14 @@
 
         <TextView
             android:id="@+id/tv_date"
-            android:layout_width="121dp"
-            android:layout_height="20dp"
+            android:layout_width="111dp"
+            android:layout_height="22dp"
             android:layout_gravity="bottom"
             android:layout_margin="5dp"
             android:gravity="bottom|center"
             android:text="Date"
             android:textColor="#000000"
-            android:textSize="15sp"
+            android:textSize="13sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -61,12 +61,13 @@
             android:id="@+id/linearLayout3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="bottom"
             android:layout_margin="5dp"
+            android:layout_marginBottom="4dp"
+            android:gravity="bottom"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/linearLayout"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.416"
             app:layout_constraintStart_toStartOf="parent">
 
             <TextView
@@ -120,11 +121,12 @@
             android:id="@+id/linearLayout"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_margin="5dp"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/linearLayout3">
 
 
             <TextView

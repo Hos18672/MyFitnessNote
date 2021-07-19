@@ -23,6 +23,8 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 
 class AddWorkoutActivity : BaseActivity() {
+
+    var uuid : UUID= UUID.randomUUID()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_workout)
@@ -76,6 +78,7 @@ class AddWorkoutActivity : BaseActivity() {
         var gymType    : String = intent.getStringExtra("GymName").toString()
         var muskelName : String = intent.getStringExtra("MuskelName").toString()
         workout= Workout(
+            uuid.toString(),
             userId.toString(),
             gymType,
             muskelName,
@@ -85,17 +88,6 @@ class AddWorkoutActivity : BaseActivity() {
             repeatNum.text.toString(),
             currentDate)
         FirestoreClass().createNewTraining(this, workout)
-       Toast.makeText(
-            this,
-               "User:   ${userId}\n"+
-                    "Gym:    ${gymType}\n" +
-                    "Set:    ${SetNum.text}\n" +
-                    "Weight: ${weightNum.text}\n" +
-                    "Break:  ${breakNum.text}\n" +
-                    "Repeat: ${repeatNum.text}",
-            Toast.LENGTH_LONG
-        ).show()
-
         startActivity(Intent(this, TrainingActivity::class.java))
     }
     private fun setupActionBar() {
