@@ -10,34 +10,30 @@ import com.example.myfitneesnote.model.Workout
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import kotlinx.android.synthetic.main.item_training.view.*
+import java.text.SimpleDateFormat
 
-class TrainingItemAdapter(options: FirestoreRecyclerOptions<Workout>) : FirestoreRecyclerAdapter<Workout,TrainingItemAdapter.MyViewHolder>(options){
-
+class TrainingItemAdapter(options: FirestoreRecyclerOptions<Workout>)
+    : FirestoreRecyclerAdapter<Workout,TrainingItemAdapter.MyViewHolder>(options){
+    val sdf = SimpleDateFormat("yyyy.MM.dd.HH.mm.ss")
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder{
-
         val itemView = LayoutInflater.from(parent.context).inflate((R.layout.item_training), parent, false)
-
         return  MyViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int, training: Workout) {
-
-        //holder.user_id.text   = training.user_id
         holder.gymName.text   = training.GymType
         holder.muskelName.text= training.MuskelName
         holder.sets.text      = "${training.set} x"
         holder.weight.text    = "${training.weight } kg"
         holder.repeat.text    = "${training.repeat} x"
         holder.breakTime.text = "${training.BreakTime} min"
-        holder.date.text      = "${training.date}"
+        holder.date.text      = "${training.currentDateTime}"
     }
      fun deleteItem(i: Int){
         snapshots.getSnapshot(i).reference.delete()
         notifyDataSetChanged()
     }
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-
-        //  val user_id    =   itemView.tv_user_id
         val gymName    =   itemView.tv_GymName
         val muskelName =   itemView.tv_Muscle
         val sets       =   itemView.tv_Sets

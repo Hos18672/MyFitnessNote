@@ -6,18 +6,13 @@ import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.widget.EditText
-import android.widget.Toast
-import androidx.annotation.RequiresApi
 import com.example.myfitneesnote.firebase.FirestoreClass
 import com.example.myfitneesnote.model.Workout
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_add_workout.*
-import kotlinx.android.synthetic.main.item_training.*
-import java.sql.Timestamp
-import java.time.Instant
-import java.time.Instant.now
-import java.time.LocalDate
-import java.time.LocalDateTime.now
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -71,6 +66,9 @@ class AddWorkoutActivity : BaseActivity() {
         val hour = c.get(Calendar.HOUR_OF_DAY)
         val minute = c.get(Calendar.MINUTE)
         var currentDate : String = "${year}/${month}/${day} - ${hour}:${minute}"
+         val currentDateAndTime = Timestamp.now()
+         val sdf = SimpleDateFormat("yyyy.MM.dd.HH.mm.ss")
+
 
         var workout : Workout
         val user   = FirebaseAuth.getInstance().currentUser
@@ -86,7 +84,8 @@ class AddWorkoutActivity : BaseActivity() {
             weightNum.text.toString(),
             breakNum.text.toString(),
             repeatNum.text.toString(),
-            currentDate)
+            currentDate,
+            currentDateAndTime)
         FirestoreClass().createNewTraining(this, workout)
         startActivity(Intent(this, TrainingActivity::class.java))
     }

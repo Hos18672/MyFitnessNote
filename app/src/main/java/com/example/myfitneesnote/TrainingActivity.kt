@@ -5,13 +5,12 @@ import android.os.Bundle
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.request.RequestOptions
+
 import com.example.myfitneesnote.adapters.SwipeToDelete
 import com.example.myfitneesnote.adapters.TrainingItemAdapter
 import com.example.myfitneesnote.model.Workout
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.*
-import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.activity_training.*
 
 class TrainingActivity : BaseActivity() {
@@ -20,7 +19,7 @@ class TrainingActivity : BaseActivity() {
     private lateinit var trainingItemAdapter : TrainingItemAdapter
     private lateinit var db : FirebaseFirestore
     private lateinit var recyclerView: RecyclerView
-    private lateinit var workout: Workout
+    private lateinit var workout : Workout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,16 +28,15 @@ class TrainingActivity : BaseActivity() {
         setupActionBar()
         btnback_training.setOnClickListener { onBackPressed() }
         recyclerView = findViewById(R.id.rv_trainings_list)
-        list = arrayListOf()
+        //list = arrayListOf()
         // trainingItemAdapter = TrainingItemAdapter(list)       recyclerView.adapter = trainingItemAdapter
         getTrainingsFromFireStore2()
     }
 
-
     fun getTrainingsFromFireStore2(){
 
         db = FirebaseFirestore.getInstance()
-        var query : Query = db.collection("Trainings").orderBy("date", Query.Direction.ASCENDING)
+        var query : Query = db.collection("Trainings").orderBy("date", Query.Direction.DESCENDING)
         var fireStoreRecyclerOption : FirestoreRecyclerOptions<Workout> = FirestoreRecyclerOptions.Builder<Workout>()
             .setQuery(query, Workout::class.java)
             .build()

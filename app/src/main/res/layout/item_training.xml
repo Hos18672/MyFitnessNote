@@ -8,6 +8,8 @@
     android:orientation="vertical"
     app:cardCornerRadius="10dp"
     android:layout_marginTop="5dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
     android:layout_marginBottom="5dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,21 +34,25 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray"
+            android:layout_height="0.6dp"
+            android:layout_marginTop="-5dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:background="@android:color/darker_gray"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_GymName"
+            app:layout_constraintVertical_bias="0.217"
             tools:ignore="MissingConstraints" />
 
         <TextView
             android:id="@+id/tv_date"
-            android:layout_width="111dp"
-            android:layout_height="22dp"
+            android:layout_width="95dp"
+            android:layout_height="39dp"
             android:layout_gravity="bottom"
             android:layout_margin="5dp"
-            android:gravity="bottom|center"
+            android:gravity="bottom|right"
             android:text="Date"
             android:textColor="#000000"
             android:textSize="13sp"
@@ -59,10 +65,10 @@
 
         <LinearLayout
             android:id="@+id/linearLayout3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="91dp"
+            android:layout_height="111dp"
             android:layout_margin="5dp"
-            android:layout_marginBottom="4dp"
+            android:layout_marginBottom="5dp"
             android:gravity="bottom"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -72,7 +78,7 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="22dp"
                 android:gravity="left"
                 android:text="Muscle: "
                 android:textColor="#000000"
@@ -81,7 +87,7 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="22dp"
                 android:gravity="left"
                 android:text="Sets: "
                 android:textColor="#000000"
@@ -90,7 +96,7 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="22dp"
                 android:gravity="left"
                 android:text="Weight: "
                 android:textColor="#000000"
@@ -99,7 +105,7 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="22dp"
                 android:gravity="left"
                 android:text="BreakTime: "
                 android:textColor="#000000"
@@ -108,7 +114,7 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="22dp"
                 android:gravity="left"
                 android:text="Repeat: "
                 android:textColor="#000000"
@@ -119,9 +125,9 @@
 
         <LinearLayout
             android:id="@+id/linearLayout"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_width="152dp"
+            android:layout_height="109dp"
+            android:layout_marginBottom="5dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -132,7 +138,7 @@
             <TextView
                 android:id="@+id/tv_Muscle"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="22dp"
                 android:gravity="left"
                 android:text=""
                 android:textColor="#000000"
@@ -141,7 +147,7 @@
             <TextView
                 android:id="@+id/tv_Sets"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="22dp"
                 android:gravity="left"
                 android:text=""
                 android:textColor="#000000"
@@ -150,7 +156,7 @@
             <TextView
                 android:id="@+id/tv_weight"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="22dp"
                 android:gravity="left"
                 android:text=""
                 android:textColor="#000000"
@@ -159,7 +165,7 @@
             <TextView
                 android:id="@+id/tv_break"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="22dp"
                 android:gravity="left"
                 android:text=""
                 android:textColor="#000000"
@@ -168,7 +174,7 @@
             <TextView
                 android:id="@+id/tv_repeat"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="22dp"
                 android:gravity="left"
                 android:text=""
                 android:textColor="#000000"

@@ -1,40 +1,50 @@
 package com.example.myfitneesnote
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.GravityCompat
+import com.example.myfitneesnote.ChatLogActivity.Companion.TAG
 import com.example.myfitneesnote.R.*
-import com.example.myfitneesnote.firebase.FirestoreClass
 import com.example.myfitneesnote.model.User
+import com.example.myfitneesnote.utils.Constant
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QuerySnapshot
 import com.squareup.picasso.Picasso
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.nav_header_main.*
 import kotlinx.android.synthetic.main.nav_header_main.view.*
-import kotlinx.coroutines.delay
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var rocketAnimation: AnimationDrawable
+    private val simpleDateFormat = SimpleDateFormat("yyyy/MM/dd - HH:mm")
     val database = FirebaseDatabase.getInstance()
+    val db = FirebaseFirestore.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
         //This call the parent constructor
         super.onCreate(savedInstanceState)
@@ -59,6 +69,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             startActivity(intent)
             finish()
         }
+        getDataFromFireStore()
         fullscreen()
         onClick()
         setupLineChartData()
@@ -78,48 +89,30 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             }
         }
         add_main.setOnClickListener {
-            add_main.animate().apply {
-                duration =100
-                scaleYBy(.3f)
-                scaleXBy(.3f)
-            }.withEndAction {
-                add_main.animate().apply {
-                    duration = 100
-                    scaleYBy(-.3f)
-                    scaleXBy(-.3f)
-                }
-            }.start()
-
+            animate(add_main)
             startActivity(Intent(this, WorkoutActivity::class.java))
         }
         chat_main.setOnClickListener {
-            chat_main.animate().apply {
-                duration =100
-                scaleYBy(.3f)
-                scaleXBy(.3f)
-            }.withEndAction {
-                chat_main.animate().apply {
-                    duration = 100
-                    scaleYBy(-.3f)
-                    scaleXBy(-.3f)
-                }
-            }.start()
+            animate(chat_main)
             startActivity(Intent(this, ChatActivity::class.java))
         }
         diagram_main.setOnClickListener {
-            diagram_main.animate().apply {
-                duration =100
-                scaleYBy(.3f)
-                scaleXBy(.3f)
-            }.withEndAction {
-                diagram_main.animate().apply {
-                    duration = 100
-                    scaleYBy(-.3f)
-                    scaleXBy(-.3f)
-                }
-            }.start()
+            animate(diagram_main)
             startActivity(Intent(this, TrainingActivity::class.java))
         }
+    }
+    fun animate(btn: ImageView){
+        btn.animate().apply {
+            duration =100
+            scaleYBy(.3f)
+            scaleXBy(.3f)
+        }.withEndAction {
+            btn.animate().apply {
+                duration = 100
+                scaleYBy(-.3f)
+                scaleXBy(-.3f)
+            }
+        }.start()
     }
     companion object {
         //A unique code for starting the activity for result
@@ -164,6 +157,39 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
              }
          })
      }
+
+    @SuppressLint("NewApi")
+    private fun getDataFromFireStore() {
+        var list1 = arrayListOf<String>()
+        var list2 = arrayListOf<String>()
+        db.collection(Constant.TRAININGS).get()
+            .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
+                if (task.isSuccessful) {
+                    val list: MutableList<String> = ArrayList()
+                    for (document in task.result!!) {
+                        if(document.get("user_id").toString() == getCurrentUserID()) {
+                            val input = document.get("currentDateTime").toString()
+                            val inputFormatter: DateFormat =
+                                SimpleDateFormat("yyyy/MM/dd - HH:mm")
+                            val date: Date = inputFormatter.parse(input)
+
+                            val outputFormatter: DateFormat = SimpleDateFormat("MM/dd/yyyy")
+                            val output: String = outputFormatter.format(date) // Output : 01/20/2012
+
+                            list1.add(output)
+                            list2.add(document.get("set").toString())
+                        }
+                    }
+                    Log.d("--------salam1------", list1.toString())
+                    Log.d("--------salam2------", list2.toString())
+                } else {
+                    Log.d(TAG, "Error getting documents: ", task.exception)
+                }
+            })
+    }
+
+    private fun getDateString(time: Long) : String = simpleDateFormat.format(time * 1000L)
+
     private fun setupLineChartData() {
         val yVals = ArrayList<Entry>()
         var lineChart : LineChart = findViewById(R.id.lineChart)
