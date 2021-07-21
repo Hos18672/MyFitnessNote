@@ -14,11 +14,16 @@ import com.example.myfitneesnote.ChatLogActivity.Companion.TAG
 import com.example.myfitneesnote.R.*
 import com.example.myfitneesnote.model.User
 import com.example.myfitneesnote.utils.Constant
+import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.LineChart
+import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
+import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.navigation.NavigationView
@@ -33,11 +38,13 @@ import com.squareup.picasso.Picasso
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main_layout.*
 import kotlinx.android.synthetic.main.nav_header_main.*
 import kotlinx.android.synthetic.main.nav_header_main.view.*
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -72,8 +79,9 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         getDataFromFireStore()
         fullscreen()
         onClick()
-        setupLineChartData()
         updateNavigationUserDetails()
+        setupLineChartData2()
+
     }
     fun onClick() {
         var main_menu: ImageView = findViewById(id.main_menu)
@@ -169,8 +177,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                     for (document in task.result!!) {
                         if(document.get("user_id").toString() == getCurrentUserID()) {
                             val input = document.get("currentDateTime").toString()
-                            val inputFormatter: DateFormat =
-                                SimpleDateFormat("yyyy/MM/dd - HH:mm")
+                            val inputFormatter: DateFormat = SimpleDateFormat("yyyy/MM/dd - HH:mm")
                             val date: Date = inputFormatter.parse(input)
 
                             val outputFormatter: DateFormat = SimpleDateFormat("MM/dd/yyyy")
@@ -180,8 +187,8 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                             list2.add(document.get("set").toString())
                         }
                     }
-                    Log.d("--------salam1------", list1.toString())
-                    Log.d("--------salam2------", list2.toString())
+                    Log.d("--------Test1------", list1.toString())
+                    Log.d("--------Test2------", list2.toString())
                 } else {
                     Log.d(TAG, "Error getting documents: ", task.exception)
                 }
@@ -190,49 +197,81 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
     private fun getDateString(time: Long) : String = simpleDateFormat.format(time * 1000L)
 
-    private fun setupLineChartData() {
-        val yVals = ArrayList<Entry>()
-        var lineChart : LineChart = findViewById(R.id.lineChart)
-        yVals.add(Entry(0f, 30f, "0"))
-        yVals.add(Entry(1f, 2f, "1"))
-        yVals.add(Entry(2f, 4f, "2"))
-        yVals.add(Entry(3f, 6f, "3"))
-        yVals.add(Entry(4f, 8f, "4"))
-        yVals.add(Entry(5f, 10f, "5"))
-        yVals.add(Entry(6f, 22f, "6"))
-        yVals.add(Entry(7f, 12.5f, "7"))
-        yVals.add(Entry(8f, 22f, "8"))
-        yVals.add(Entry(9f, 32f, "9"))
-        yVals.add(Entry(10f, 54f, "10"))
-        yVals.add(Entry(11f, 28f, "11"))
 
-        val set1: LineDataSet
-        set1 = LineDataSet(yVals, "DataSet 1")
+    fun setupLineChartData2() {
 
-        set1.color = Color.BLUE
-        set1.setCircleColor(Color.BLUE)
-        set1.lineWidth = 1f
-        set1.circleRadius = 3f
-        set1.setDrawCircleHole(false)
-        set1.valueTextSize = 0f
-        set1.setDrawFilled(false)
+        var listXDate = arrayListOf<String>()
+        var listYData = arrayListOf<String>()
 
-        val dataSets = ArrayList<ILineDataSet>()
-        dataSets.add(set1)
-        val data = LineData(dataSets)
+        var yVals = ArrayList<Entry>()
+        db.collection(Constant.TRAININGS).orderBy("date").get()
+            .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
+                if (task.isSuccessful) {
+                    for (document in task.result!!) {
+                        if(document.get("user_id").toString() == getCurrentUserID()) {
+                            val input = document.get("currentDateTime").toString()
+                            val inputFormatter: DateFormat = SimpleDateFormat("yyyy/MM/dd - HH:mm")
+                            val date: Date = inputFormatter.parse(input)
+                            val outputFormatter: DateFormat = SimpleDateFormat("dd/MM/yyyy")
+                            val output: String = outputFormatter.format(date) // Output : 01/20/2012
 
-        // set data
-        lineChart.setData(data)
-        lineChart.description.isEnabled = false
-        lineChart.legend.isEnabled = false
-        lineChart.setPinchZoom(true)
-        lineChart.xAxis.enableGridDashedLine(5f, 5f, 0f)
-        lineChart.axisRight.enableGridDashedLine(5f, 5f, 0f)
-        lineChart.axisLeft.enableGridDashedLine(5f, 5f, 0f)
-        //lineChart.setDrawGridBackground()
-        lineChart.xAxis.labelCount = 11
-        lineChart.xAxis.position = XAxis.XAxisPosition.BOTTOM
+                            listXDate.add(output.substring(0, output.length - 8).toInt().toString())
+                            listYData.add(document.get("set").toString())
+                        }
+                    }
+                    var i = 0
+                    while( i < listXDate.size){
+                        yVals.add(Entry(listXDate[i].toFloat(),listYData[i].toFloat(),i))
+                        i++
+                    }
+
+
+                    val set1: LineDataSet
+                    set1 = LineDataSet(yVals, "DataSet 1")
+
+                    set1.color = Color.BLUE
+                    set1.setCircleColor(Color.BLUE)
+                    set1.lineWidth = 1f
+                    set1.circleRadius = 3f
+                    lineChart.setScaleEnabled(false);
+                    set1.setDrawCircleHole(false)
+                    set1.valueTextSize = 0f
+                    set1.setDrawFilled(true)
+
+
+                    val dataSets = ArrayList<ILineDataSet>()
+                    dataSets.add(set1)
+                    val data = LineData(dataSets)
+
+                    // set data
+                    lineChart.setData(data)
+                    lineChart.description.isEnabled = false
+                    lineChart.legend.isEnabled = false
+                    lineChart.setPinchZoom(true)
+                    lineChart.xAxis.enableGridDashedLine(5f, 5f, 0f)
+                    lineChart.axisRight.enableGridDashedLine(5f, 5f, 0f)
+                    lineChart.axisLeft.enableGridDashedLine(5f, 5f, 0f)
+                    //lineChart.setDrawGridBackground()
+                    lineChart.xAxis.labelCount = 11
+                    lineChart.xAxis.position = XAxis.XAxisPosition.BOTTOM
+                    val yAxisRight: YAxis =   lineChart.getAxisRight()
+                    yAxisRight.isEnabled = false
+                    lineChart.xAxis.position = XAxis.XAxisPosition.BOTTOM
+                    lineChart.getXAxis().setDrawGridLines(false);
+                    lineChart.getAxisLeft().setDrawGridLines(false);
+                    lineChart.getAxisRight().setDrawGridLines(false);
+/*
+                    val xAxisValues: ArrayList<Int> = ArrayList(arrayListOf(1,2,3,4,5,6,7))
+                    val xAxis: XAxis = lineChart.getXAxis()
+                    xAxis.setLabelCount(xAxisValues.size)*/
+
+                } else {
+                    Log.d(TAG, "Error getting documents: ", task.exception)
+                }
+            })
+
     }
+
     fun updateNavigationUserDetails(user: User) {
         var mUserName = user.name
         // The instance of the header view of the navigation view.
@@ -244,6 +283,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 }
 
+
 class UserLoged(val user: User): Item<ViewHolder>(){
     override fun bind(viewHolder: ViewHolder, position: Int) {
         // load our user image into the picture
@@ -253,6 +293,14 @@ class UserLoged(val user: User): Item<ViewHolder>(){
     }
     override fun getLayout(): Int {
         return R.layout.chat_from_row
+    }
+
+
+}
+class MyFormatter : ValueFormatter() {
+
+    override fun getAxisLabel(value: Float, axis: AxisBase): String {
+        return "ABC"
     }
 }
 

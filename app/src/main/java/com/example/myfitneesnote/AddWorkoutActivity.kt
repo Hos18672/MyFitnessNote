@@ -18,7 +18,6 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 
 class AddWorkoutActivity : BaseActivity() {
-
     var uuid : UUID= UUID.randomUUID()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

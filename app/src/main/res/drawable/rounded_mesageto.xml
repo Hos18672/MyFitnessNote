@@ -8,5 +8,5 @@ android:shape="rectangle">
     android:topLeftRadius="50dp"
     android:topRightRadius="3dp"
     android:bottomLeftRadius="50dp"
-    android:bottomRightRadius="50dp" />
+    android:bottomRightRadius="40dp" />
 </shape>
