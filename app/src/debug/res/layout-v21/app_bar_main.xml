@@ -4,37 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main_back"
+    android:background="@drawable/back8"
     android:orientation="vertical"
     tools:context=".MainActivity">
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolBar_muscle_gruppe_activity"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_alignParentTop="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.009"
-        tools:ignore="MissingConstraints"/>
-    <RelativeLayout
-        android:layout_width="70dp"
-        android:layout_height="50dp"
-        android:background="@drawable/rounded2"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:padding="10dp"
-        app:layout_constraintBottom_toBottomOf="@+id/toolBar_muscle_gruppe_activity"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/main_menu"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@drawable/menu2" />
-    </RelativeLayout>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -42,79 +15,55 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <ImageView
+            android:id="@+id/tv_main_profile_image"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="36dp"
+            android:layout_marginRight="36dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_main_username"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.357"
+            app:srcCompat="@drawable/circle_profile" />
+
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
-            android:layout_width="370dp"
+            android:id="@+id/cv_lineChart"
+            android:layout_width="match_parent"
             android:layout_height="270dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
             android:background="@drawable/shapetransparent_message"
             app:cardCornerRadius="15dp"
             app:layout_constraintBottom_toTopOf="@+id/cardView2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.847"
+            app:layout_constraintVertical_bias="0.895"
             tools:ignore="MissingConstraints,NotSibling">
+
             <com.github.mikephil.charting.charts.LineChart
                 android:id="@+id/lineChart"
-                android:layout_width="351dp"
-                android:layout_height="175dp"
-                android:layout_margin="10dp"/>
-            <LinearLayout
-                android:id="@+id/lcard"
-                android:layout_width="370dp"
-                android:layout_height="80dp"
-                android:layout_gravity="bottom"
-                android:layout_margin="5dp"
-                android:gravity="bottom"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toTopOf="@+id/nav_bar_bottom"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardView"
-                app:layout_constraintVertical_bias="0.088">
-                <Button
-                    android:id="@+id/cardv1"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_marginLeft="10dp"
-                    android:background="@android:color/transparent"
-                    android:text="MO"/>
-                <Button
-                    android:id="@+id/cardv2"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_marginLeft="10dp"
-                    android:background="@android:color/transparent"
-                    android:text="DI" />
-                <Button
-                    android:id="@+id/cardv3"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_marginLeft="10dp"
-                    android:background="@android:color/transparent"
-                    android:text="MI" />
-                <Button
-                    android:id="@+id/cardv4"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_marginLeft="10dp"
-                    android:background="@android:color/transparent"
-                    android:text="DO" />
-                <Button
-                    android:id="@+id/cardv5"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginBottom="2dp"
-                    android:background="@android:color/transparent"
-                    android:text="FR" />
-            </LinearLayout>
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="5dp">
+
+            </com.github.mikephil.charting.charts.LineChart>
+
+
         </androidx.cardview.widget.CardView>
+
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView2"
             android:layout_width="match_parent"
@@ -127,6 +76,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:ignore="MissingConstraints">
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/lcard2"
                 android:layout_width="match_parent"
@@ -138,6 +88,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardView">
+
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/chat_main"
                     android:layout_width="45dp"
@@ -149,6 +100,7 @@
                     app:layout_constraintHorizontal_bias="0.273"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/Add_main"
                     android:layout_width="45dp"
@@ -159,6 +111,7 @@
                     app:layout_constraintHorizontal_bias="0.498"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/main_diagramm"
                     android:layout_width="40dp"
@@ -176,5 +129,40 @@
                     app:layout_constraintVertical_bias="1.0" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="68dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_main_username"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints">
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/main_menu"
+                android:layout_width="40dp"
+                android:layout_height="30dp"
+                android:background="@drawable/white_menu" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_main_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="72dp"
+            android:text=""
+            android:textSize="30sp"
+            app:layout_constraintEnd_toStartOf="@+id/tv_main_profile_image"
+            app:layout_constraintHorizontal_bias="0.482"
+            app:layout_constraintStart_toEndOf="@+id/relativeLayout"
+            app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

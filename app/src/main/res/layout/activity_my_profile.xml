@@ -7,7 +7,7 @@
     android:layout_gravity="center"
     android:gravity="center"
     android:orientation="vertical"
-    android:background="@drawable/blue_white"
+    android:background="@drawable/back7"
     tools:context=".myProfileActivity">
 
     <androidx.appcompat.widget.Toolbar

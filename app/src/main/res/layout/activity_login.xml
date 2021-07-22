@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:layout_alignParentBottom="true"
     android:fitsSystemWindows="true"
-    android:background="@drawable/blue_white"
+    android:background="@drawable/back7"
     tools:context="com.example.myfitneesnote.LoginActivity">
 
     <androidx.appcompat.widget.Toolbar

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ic_splash_background"
+    android:background="@drawable/back7"
     tools:context=".AddWorkoutActivity">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar_add_workout_activity"

@@ -1,20 +1,41 @@
 package com.example.myfitneesnote
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.ProgressBar
 import android.widget.Toast
 import com.example.myfitneesnote.firebase.FirestoreClass
 import com.example.myfitneesnote.model.User
+import com.example.myfitneesnote.utils.Constant
+import com.github.mikephil.charting.components.Legend
+import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.components.YAxis
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QuerySnapshot
 
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_main_layout.*
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class LoginActivity : BaseActivity() {
+    val database = FirebaseDatabase.getInstance()
+    val db = FirebaseFirestore.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -71,6 +92,7 @@ class LoginActivity : BaseActivity() {
                             intent.putExtra("email_id", email)
                             startActivity(intent)
                             finish()
+
                         } else {
                             pb.visibility = View.GONE
                             Toast.makeText(
@@ -104,6 +126,9 @@ class LoginActivity : BaseActivity() {
             }
         }
     }
+
+
+
     override fun onBackPressed() {
         finish()
     }

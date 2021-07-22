@@ -9,20 +9,20 @@ import android.util.Log
 import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.core.view.GravityCompat
 import com.example.myfitneesnote.ChatLogActivity.Companion.TAG
 import com.example.myfitneesnote.R.*
 import com.example.myfitneesnote.model.User
 import com.example.myfitneesnote.utils.Constant
-import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.AxisBase
+import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
-import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.google.android.gms.tasks.OnCompleteListener
@@ -39,6 +39,7 @@ import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main_layout.*
+import kotlinx.android.synthetic.main.activity_my_profile.*
 import kotlinx.android.synthetic.main.nav_header_main.*
 import kotlinx.android.synthetic.main.nav_header_main.view.*
 import java.text.DateFormat
@@ -48,16 +49,19 @@ import kotlin.collections.ArrayList
 
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
-    private lateinit var rocketAnimation: AnimationDrawable
+
     private val simpleDateFormat = SimpleDateFormat("yyyy/MM/dd - HH:mm")
     val database = FirebaseDatabase.getInstance()
     val db = FirebaseFirestore.getInstance()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         //This call the parent constructor
         super.onCreate(savedInstanceState)
         setContentView(layout.activity_main)
+        setupLineChartData2()
         nav_view.setNavigationItemSelectedListener(this)
         // FirestoreClass().loginUser(this)
+        userData()
         btn_sing_out_draw_layout.setOnClickListener {
             btn_sing_out_draw_layout.animate().apply {
                 duration =100
@@ -76,20 +80,48 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             startActivity(intent)
             finish()
         }
+
         getDataFromFireStore()
         fullscreen()
         onClick()
         updateNavigationUserDetails()
-        setupLineChartData2()
 
+    }
+
+    private fun userData() {
+        val uid = FirebaseAuth.getInstance().uid
+        var MainUsername : TextView = findViewById(R.id.tv_main_username)
+        val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
+        ref.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val username = snapshot.child("username").getValue(String::class.java)
+                MainUsername.setText(username)
+            }
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
     }
     fun onClick() {
         var main_menu: ImageView = findViewById(id.main_menu)
         var add_main: ImageView = findViewById(id.Add_main)
         var chat_main: ImageView = findViewById(id.chat_main)
+        var cv_chart: CardView = findViewById(id.cv_lineChart)
+        var main_image: ImageView = findViewById(id.tv_main_profile_image)
         var diagram_main: ImageView = findViewById(id.main_diagramm)
+        var cv_lineChart: LineChart = findViewById(id.lineChart)
 
+        main_image.setOnClickListener {
+            animate(main_image)
+            startActivity(Intent(this,myProfileActivity::class.java))
+        }
+
+        cv_lineChart.setOnClickListener {
+            animateCV(cv_chart)
+            startActivity(Intent(this,TrainingActivity::class.java))
+        }
         main_menu.setOnClickListener {
+            animate(main_menu)
             if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
                 drawer_layout.closeDrawer(GravityCompat.START)
             } else {
@@ -119,6 +151,19 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 duration = 100
                 scaleYBy(-.3f)
                 scaleXBy(-.3f)
+            }
+        }.start()
+    }
+    fun animateCV(btn: CardView){
+        btn.animate().apply {
+            duration =100
+            scaleYBy(.1f)
+            scaleXBy(.1f)
+        }.withEndAction {
+            btn.animate().apply {
+                duration = 100
+                scaleYBy(-.1f)
+                scaleXBy(-.1f)
             }
         }.start()
     }
@@ -197,12 +242,9 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
     private fun getDateString(time: Long) : String = simpleDateFormat.format(time * 1000L)
 
-
     fun setupLineChartData2() {
-
         var listXDate = arrayListOf<String>()
         var listYData = arrayListOf<String>()
-
         var yVals = ArrayList<Entry>()
         db.collection(Constant.TRAININGS).orderBy("date").get()
             .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
@@ -225,17 +267,17 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                         i++
                     }
 
-
                     val set1: LineDataSet
                     set1 = LineDataSet(yVals, "DataSet 1")
 
                     set1.color = Color.BLUE
                     set1.setCircleColor(Color.BLUE)
-                    set1.lineWidth = 1f
+                    set1.lineWidth = 2f
                     set1.circleRadius = 3f
                     lineChart.setScaleEnabled(false);
                     set1.setDrawCircleHole(false)
                     set1.valueTextSize = 0f
+                    set1.mode = LineDataSet.Mode.CUBIC_BEZIER
                     set1.setDrawFilled(true)
 
 
@@ -247,26 +289,71 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                     lineChart.setData(data)
                     lineChart.description.isEnabled = false
                     lineChart.legend.isEnabled = false
-                    lineChart.setPinchZoom(true)
-                    lineChart.xAxis.enableGridDashedLine(5f, 5f, 0f)
-                    lineChart.axisRight.enableGridDashedLine(5f, 5f, 0f)
-                    lineChart.axisLeft.enableGridDashedLine(5f, 5f, 0f)
                     //lineChart.setDrawGridBackground()
                     lineChart.xAxis.labelCount = 11
                     lineChart.xAxis.position = XAxis.XAxisPosition.BOTTOM
                     val yAxisRight: YAxis =   lineChart.getAxisRight()
                     yAxisRight.isEnabled = false
                     lineChart.xAxis.position = XAxis.XAxisPosition.BOTTOM
-                    lineChart.getXAxis().setDrawGridLines(false);
-                    lineChart.getAxisLeft().setDrawGridLines(false);
-                    lineChart.getAxisRight().setDrawGridLines(false);
-/*
-                    val xAxisValues: ArrayList<Int> = ArrayList(arrayListOf(1,2,3,4,5,6,7))
+
+
+                    //----------------------------------------------------------------------
+
+                    lineChart.getAxisLeft().setDrawLabels(false)
+                    lineChart.getAxisRight().setDrawLabels(false)
+                    //lineChart.getXAxis().setDrawLabels(true)
+                    // https://stackoverflow.com/questions/31263097/mpandroidchart-hide-background-grid
+                    // https://stackoverflow.com/questions/31263097/mpandroidchart-hide-background-grid
+                    lineChart.getAxisLeft().setDrawGridLines(false)
+                    lineChart.getXAxis().setDrawGridLines(false)
+                    lineChart.getAxisRight().setDrawGridLines(false)
+                    lineChart.getData().setHighlightEnabled(false)
+
                     val xAxis: XAxis = lineChart.getXAxis()
-                    xAxis.setLabelCount(xAxisValues.size)*/
+                    xAxis.isEnabled = true
+
+                    val yAxis: YAxis = lineChart.getAxisLeft()
+                    yAxis.isEnabled = false
+
+                    val yAxis2: YAxis = lineChart.getAxisRight()
+                    yAxis2.isEnabled = false
+
+                    lineChart.setDrawBorders(false)
+                    lineChart.setDrawGridBackground(false)
+
+                    lineChart.getLegend().setEnabled(false)
+                    // no description text
+                    // no description text
+                    lineChart.getDescription().setEnabled(false)
+
+                    // enable touch gestures
+
+                    // enable touch gestures
+                    lineChart.setTouchEnabled(true)
+
+                    // enable scaling and dragging
+
+                    // enable scaling and dragging
+                    lineChart.setDragEnabled(false)
+                    lineChart.setScaleEnabled(false)
+                    // mChart.setScaleXEnabled(true);
+                    // mChart.setScaleYEnabled(true);
+
+                    // if disabled, scaling can be done on x- and y-axis separately
+                    // mChart.setScaleXEnabled(true);
+                    // mChart.setScaleYEnabled(true);
+
+                    // if disabled, scaling can be done on x- and y-axis separately
+                    lineChart.setPinchZoom(false)
+                    lineChart.setAutoScaleMinMaxEnabled(true)
+                    lineChart.invalidate();
+                    // hide legend
+                    // hide legend
+                    val legend: Legend = lineChart.getLegend()
+                    legend.isEnabled = false
 
                 } else {
-                    Log.d(TAG, "Error getting documents: ", task.exception)
+                    Log.d(ChatLogActivity.TAG, "Error getting documents: ", task.exception)
                 }
             })
 
