@@ -17,7 +17,7 @@
         app:layout_constraintHorizontal_bias="0.138"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/man2" />
+        app:srcCompat="@drawable/circle_profile" />
 
     <TextView
         android:id="@+id/tv_username"

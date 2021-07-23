@@ -27,6 +27,7 @@ import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -62,6 +63,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         nav_view.setNavigationItemSelectedListener(this)
         // FirestoreClass().loginUser(this)
         userData()
+        userWorkoutsData()
         btn_sing_out_draw_layout.setOnClickListener {
             btn_sing_out_draw_layout.animate().apply {
                 duration =100
@@ -101,6 +103,52 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 TODO("Not yet implemented")
             }
         })
+    }
+
+    private fun userWorkoutsData() {
+        var gymeType : String = ""
+        var musclename: String= ""
+        var sets: String= ""
+        var weight: String= ""
+        var breakTime: String= ""
+        var repeat: String= ""
+        var date: String= ""
+        var tv_gymeName :TextView = findViewById(R.id.tv_main_GymName)
+        var tv_muskelName :TextView = findViewById(R.id.tv_main_muscle)
+        var tv_set :TextView = findViewById(R.id.tv_main_sets)
+        var tv_weight:TextView = findViewById(R.id.tv_main_weight)
+        var tv_break :TextView = findViewById(R.id.tv_main_break)
+        var tv_repeat :TextView = findViewById(R.id.tv_main_repeat)
+        var tv_date :TextView = findViewById(R.id.tv_main_date)
+
+        val currentDateAndTime = Timestamp.now()
+        var list1 = arrayListOf<String>()
+        db.collection(Constant.TRAININGS).get()
+            .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
+                if (task.isSuccessful) {
+                    val list: MutableList<String> = ArrayList()
+                    for (document in task.result!!) {
+                        if(document.get("user_id").toString() == getCurrentUserID()) {
+                                gymeType = document.get("gymType").toString()
+                                musclename = document.get("muskelName").toString()
+                                sets = document.get("set").toString()
+                                weight = document.get("weight").toString()
+                                breakTime = document.get("breakTime").toString()
+                                repeat = document.get("repeat").toString()
+                                date = document.get("currentDateTime").toString()
+                        }
+                    }
+                    tv_gymeName.text= gymeType
+                    tv_muskelName.text= musclename
+                    tv_set.text=    "${sets} x"
+                    tv_weight.text= "${weight} kg"
+                    tv_break.text=  "${breakTime} min"
+                    tv_repeat.text= "${repeat} x"
+                    tv_date.text= date
+                } else {
+                    Log.d(TAG, "Error getting documents: ", task.exception)
+                }
+            })
     }
     fun onClick() {
         var main_menu: ImageView = findViewById(id.main_menu)
