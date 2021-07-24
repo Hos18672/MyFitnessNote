@@ -12,7 +12,6 @@ abstract class SwipeToDelete(context: Context, dragDir: Int, swipDir: Int): Item
     ): Boolean {
        return false
     }
-
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
         TODO("Not yet implemented")
     }

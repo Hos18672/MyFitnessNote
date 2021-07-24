@@ -18,53 +18,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
-        <RelativeLayout
-            android:id="@+id/relativeLayout"
-            android:layout_width="70dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="68dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:padding="10dp"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_main_username"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints">
-
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/main_menu"
-                android:layout_width="40dp"
-                android:layout_height="30dp"
-                android:background="@drawable/white_menu" />
-        </RelativeLayout>
-
-
-        <TextView
-            android:id="@+id/tv_main_username"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="72dp"
-            android:text=""
-            android:textSize="30sp"
-            app:layout_constraintEnd_toStartOf="@+id/tv_main_profile_image"
-            app:layout_constraintHorizontal_bias="0.482"
-            app:layout_constraintStart_toEndOf="@+id/relativeLayout"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/tv_main_profile_image"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginTop="60dp"
-            android:layout_marginEnd="36dp"
-            android:layout_marginRight="36dp"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_main_username"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.357"
-            app:srcCompat="@drawable/circle_profile" />
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -76,7 +29,7 @@
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0">
@@ -85,14 +38,14 @@
                 android:id="@+id/chat_main"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
                 android:background="@drawable/chat"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/Add_main"
-                app:layout_constraintHorizontal_bias="0.395"
+                app:layout_constraintHorizontal_bias="0.455"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cv_lineChart"
-                app:layout_constraintVertical_bias="0.864" />
+                app:layout_constraintVertical_bias="1.0" />
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/Add_main"
@@ -106,35 +59,32 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.956" />
 
+
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/main_diagramm"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginStart="35dp"
-                android:layout_marginLeft="35dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/history"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.581"
+                app:layout_constraintHorizontal_bias="0.503"
                 app:layout_constraintStart_toEndOf="@+id/Add_main"
                 app:layout_constraintTop_toBottomOf="@+id/cv_lineChart"
                 app:layout_constraintVertical_bias="1.0" />
-
 
             <TextView
                 android:id="@+id/today"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="72dp"
                 android:text="Today"
-                android:textColor="#000000"
-                android:textSize="25sp"
+                android:textColor="#0090FF"
+                android:textSize="30sp"
                 app:layout_constraintBottom_toTopOf="@+id/cardView4"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.042"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
                 app:layout_constraintVertical_bias="0.927" />
 
             <androidx.cardview.widget.CardView
@@ -142,16 +92,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="170dp"
                 android:layout_margin="15dp"
+                android:layout_marginBottom="1dp"
                 android:background="?attr/selectableItemBackground"
                 android:orientation="vertical"
                 app:cardCornerRadius="10dp"
                 app:layout_constraintBottom_toTopOf="@+id/Chart"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="15dp">
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="MissingConstraints">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <TextView
+                    android:id="@+id/tv_no_trainings"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text=" No Trainings for today available "
+                    android:textColor="#0090FF"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_main_GymName" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/const_layout_main"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
                     android:layout_margin="5dp"
                     android:orientation="horizontal">
 
@@ -161,7 +128,7 @@
                         android:layout_height="20dp"
                         android:gravity="center"
                         android:text=" "
-                        android:textColor="#000000"
+                        android:textColor="#0090FF"
                         android:textSize="17sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
@@ -170,6 +137,7 @@
                         app:layout_constraintVertical_bias="0.159" />
 
                     <View
+                        android:id="@+id/view"
                         android:layout_width="match_parent"
                         android:layout_height="0.6dp"
                         android:layout_marginLeft="10dp"
@@ -327,8 +295,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text="Progress"
-                android:textColor="#000000"
-                android:textSize="25sp"
+                android:textColor="#0090FF"
+                android:textSize="30sp"
                 app:layout_constraintBottom_toTopOf="@+id/cv_lineChart"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.051"
@@ -344,7 +312,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
-                android:layout_marginBottom="24dp"
+                android:layout_marginBottom="16dp"
                 android:background="@android:color/transparent"
                 app:cardCornerRadius="15dp"
                 app:layout_constraintBottom_toTopOf="@+id/Add_main"
@@ -367,6 +335,58 @@
 
 
             </androidx.cardview.widget.CardView>
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout"
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="60dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_main_username"
+                app:layout_constraintEnd_toStartOf="@+id/tv_main_profile_image"
+                app:layout_constraintHorizontal_bias="0.033"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0">
+                >
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/main_menu"
+                    android:layout_width="54dp"
+                    android:layout_height="34dp"
+                    android:background="@drawable/white_menu" />
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/tv_main_profile_image"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+
+                android:layout_marginTop="48dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/circle_profile" />
+
+            <TextView
+                android:id="@+id/tv_main_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                android:text=""
+                android:textColor="#000000"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_main_profile_image"
+                app:layout_constraintEnd_toStartOf="@+id/tv_main_profile_image"
+                app:layout_constraintHorizontal_bias="0.506"
+                app:layout_constraintStart_toEndOf="@+id/relativeLayout"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.666" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

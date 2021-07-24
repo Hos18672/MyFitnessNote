@@ -9,12 +9,12 @@ import com.example.myfitneesnote.R
 import com.example.myfitneesnote.model.Workout
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
-import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.item_training.view.*
 import java.text.SimpleDateFormat
 
 class TrainingItemAdapter(options: FirestoreRecyclerOptions<Workout>)
     : FirestoreRecyclerAdapter<Workout,TrainingItemAdapter.MyViewHolder>(options){
+
     val sdf = SimpleDateFormat("yyyy.MM.dd.HH.mm.ss")
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder{
         val itemView = LayoutInflater.from(parent.context).inflate((R.layout.item_training), parent, false)
@@ -22,13 +22,13 @@ class TrainingItemAdapter(options: FirestoreRecyclerOptions<Workout>)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int, training: Workout) {
-            holder.gymName.text = training.GymType
+            holder.gymName.text    = training.GymType
             holder.muskelName.text = training.MuskelName
-            holder.sets.text = "${training.set} x"
-            holder.weight.text = "${training.weight} kg"
-            holder.repeat.text = "${training.repeat} x"
-            holder.breakTime.text = "${training.BreakTime} min"
-            holder.date.text = "${training.currentDateTime}"
+            holder.sets.text       = "${training.set} x"
+            holder.weight.text     = "${training.weight} kg"
+            holder.repeat.text     = "${training.repeat} x"
+            holder.breakTime.text  = "${training.BreakTime} min"
+            holder.date.text       = "${training.currentDateTime}"
     }
      fun deleteItem(i: Int){
         snapshots.getSnapshot(i).reference.delete()
@@ -43,9 +43,6 @@ class TrainingItemAdapter(options: FirestoreRecyclerOptions<Workout>)
         val breakTime  =   itemView.tv_break
         val date       =   itemView.tv_date
     }
-
-
-
 }
 
 

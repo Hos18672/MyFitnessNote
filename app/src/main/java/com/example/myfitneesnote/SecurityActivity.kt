@@ -10,7 +10,6 @@ import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_security.*
 import kotlinx.android.synthetic.main.activity_security.btnSave
-import kotlinx.android.synthetic.main.activity_training.*
 
 class SecurityActivity : BaseActivity() {
     private var mFirebaseDatabase: DatabaseReference? = null

@@ -16,8 +16,10 @@ class WorkoutActivity : BaseActivity(){
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         fullscreen()
         setupActionBar()
+        onClick()
+    }
+    private  fun onClick(){
         btn_gym_workout.setOnClickListener{
-
             btn_gym_workout.animate().apply {
                 duration =400
                 scaleYBy(.2f)
