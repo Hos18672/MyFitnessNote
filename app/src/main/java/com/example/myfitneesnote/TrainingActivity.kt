@@ -3,6 +3,7 @@ package com.example.myfitneesnote
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,6 +13,7 @@ import com.example.myfitneesnote.model.Workout
 import com.example.myfitneesnote.utils.Constant
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.*
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_training.*
 
 class TrainingActivity : BaseActivity() {
@@ -69,5 +71,8 @@ class TrainingActivity : BaseActivity() {
         toolBar_workouts_activity.setNavigationOnClickListener{
             onBackPressed()
         }
+    }
+    override fun onBackPressed() {
+            finish()
     }
 }

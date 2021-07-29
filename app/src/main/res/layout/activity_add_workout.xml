@@ -54,29 +54,33 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:orientation="vertical">
-            <TextView
-                android:id="@+id/WorkoutName"
-                android:layout_width="210dp"
-                android:layout_height="60dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="35dp"
-                android:gravity="center"
-                android:text="New Training"
-                android:textColor="@android:color/black"
-                android:textSize="25dp"
-                android:textStyle="bold" />
+
+            <com.vivekkaushik.datepicker.DatePickerTimeline
+                android:id="@+id/datePickerTimeline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
                 android:orientation="horizontal">
                 <TextView
                     android:id="@+id/tv_set"
                     android:layout_width="120dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:gravity="left|center"
+                    android:gravity="left"
                     android:padding="20dp"
                     android:text="Set"
                     android:textColor="@android:color/black"
@@ -126,15 +130,16 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
                 android:layout_marginTop="20dp"
-                android:gravity="bottom"
+                android:gravity="center"
                 android:orientation="horizontal">
                 <TextView
                     android:id="@+id/tv_weight"
                     android:layout_width="120dp"
                     android:layout_height="match_parent"
                     android:gravity="left|center"
-                    android:padding="20dp"
+                    android:paddingLeft="10dp"
                     android:text="Weight"
                     android:textColor="@android:color/black"
                     android:textSize="25dp" />
@@ -183,7 +188,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
                 android:layout_marginTop="20dp"
+                android:gravity="center"
                 android:orientation="horizontal">
                 <TextView
                     android:id="@+id/tv_break"
@@ -239,7 +246,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
                 android:layout_marginTop="20dp"
+                android:gravity="center"
                 android:orientation="horizontal">
                 <TextView
                     android:id="@+id/tv_repeat"

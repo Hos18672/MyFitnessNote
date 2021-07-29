@@ -11,7 +11,6 @@ import android.view.View.VISIBLE
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
-import androidx.constraintlayout.motion.utils.Easing
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.GravityCompat
 import com.example.myfitneesnote.ChatLogActivity.Companion.TAG
@@ -44,15 +43,18 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main_layout.*
 import kotlinx.android.synthetic.main.nav_header_main.*
 import kotlinx.android.synthetic.main.nav_header_main.view.*
+import java.sql.Timestamp
 import java.text.DateFormat
 import java.text.SimpleDateFormat
+import java.time.Instant.now
+import java.time.LocalDate.now
 import java.util.*
 import kotlin.collections.ArrayList
-
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
     val database = FirebaseDatabase.getInstance()
     val db = FirebaseFirestore.getInstance()
+    val currentDateAndTime = com.google.firebase.Timestamp.now()
     override fun onCreate(savedInstanceState: Bundle?) {
         //This call the parent constructor
         super.onCreate(savedInstanceState)
@@ -81,15 +83,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             }
         })
     }
-    @SuppressLint("SimpleDateFormat")
     private fun userWorkoutsData() {
-        var gymeType  = ""
-        var musclename= ""
-        var sets= ""
-        var weight= ""
-        var breakTime= ""
-        var repeat= ""
-        var date= ""
         val tv_gymeName :TextView = findViewById(R.id.tv_main_GymName)
         val tv_muskelName :TextView = findViewById(R.id.tv_main_muscle)
         val tv_set :TextView = findViewById(R.id.tv_main_sets)
@@ -101,42 +95,56 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         val tv_no_trainings:TextView = findViewById(R.id.tv_no_trainings)
         //get current Day of month
         val c= Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
         val day = c.get(Calendar.DAY_OF_MONTH)
-        db.collection(Constant.USERS).document(getCurrentUserID()).collection(Constant.TRAININGS).get()
-            .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
-                if (task.isSuccessful) {
-                    for (document in task.result!!) {
-                           gymeType = document.get("gymType").toString()
-                           musclename = document.get("muskelName").toString()
-                           sets = document.get("set").toString()
-                           weight = document.get("weight").toString()
-                           breakTime = document.get("breakTime").toString()
-                           repeat = document.get("repeat").toString()
-                           date = document.get("currentDateTime").toString()
+        val month = c.get(Calendar.MONTH)
+        var currentDate = "${year}/${month.toInt()+1}/${day}"
+       // var output = ""
+        var gymeType  = ""
+        var musclename= ""
+        var sets= ""
+        var weight= ""
+        var breakTime= ""
+        var repeat= ""
+        var date= ""
+        val inputFormatter: DateFormat? = SimpleDateFormat("yyyy/MM/dd")
+       // val outputFormatter: DateFormat = SimpleDateFormat("dd/MM/yyyy")
+        if (inputFormatter != null) {
+            db.collection(Constant.USERS)
+                .document(getCurrentUserID())
+                .collection(Constant.TRAININGS).whereEqualTo("currentDateTime", currentDate)
+                .get()
+                .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
+                    if (task.isSuccessful) {
+                        for (document in task.result!!) {
+                            if (document.exists()) {
+                                gymeType = document.get("gymType").toString()
+                                musclename = document.get("muskelName").toString()
+                                sets = document.get("set").toString()
+                                weight = document.get("weight").toString()
+                                breakTime = document.get("breakTime").toString()
+                                repeat = document.get("repeat").toString()
+                                date = document.get("currentDateTime").toString()
+                                tv_gymeName.text = gymeType
+                                // set Data to the TextViews
+                                tv_muskelName.text = musclename
+                                tv_set.text = "${sets} x"
+                                tv_weight.text = "${weight} kg"
+                                tv_break.text = "${breakTime} min"
+                                tv_repeat.text = "${repeat} x"
+                                tv_date.text = date
+                                tv_no_trainings.visibility = GONE
+                                constraintLayout.visibility = VISIBLE
+                            } else {
+                                tv_no_trainings.visibility = VISIBLE
+                                constraintLayout.visibility = GONE
+                            }
+                        }
+                    } else {
+                        Log.d(TAG, "Error getting documents:" , task.exception)
                     }
-                    val input = date
-                    val inputFormatter: DateFormat = SimpleDateFormat("yyyy/MM/dd - HH:mm")
-                    val date1: Date = inputFormatter.parse(input)
-                    val outputFormatter: DateFormat = SimpleDateFormat("dd/MM/yyyy")
-                    val output: String = outputFormatter.format(date1) // Output : 01/20/2012
-                    if( output.substring(0, output.length - 8).toInt().toString() == day.toString()) {
-                        tv_gymeName.text= gymeType
-                        tv_muskelName.text= musclename
-                        tv_set.text=    "${sets} x"
-                        tv_weight.text= "${weight} kg"
-                        tv_break.text=  "${breakTime} min"
-                        tv_repeat.text= "${repeat} x"
-                        tv_date.text= date
-                        tv_no_trainings.visibility = GONE
-                        constraintLayout.visibility = VISIBLE
-                    }else{
-                        tv_no_trainings.visibility = VISIBLE
-                        constraintLayout.visibility = GONE
-                    }
-                } else {
-                    Log.d(TAG, "Error getting documents: ", task.exception)
-                }
-            })
+                })
+        }
     }
     fun onClick() {
         val main_menu: ImageView = findViewById(id.main_menu)
@@ -193,7 +201,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             finish()
         }
     }
-    fun animate(btn: ImageView){
+    private fun animate(btn: ImageView){
         btn.animate().apply {
                 duration =100
                 scaleYBy(.3f)
@@ -206,7 +214,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             }
         }.start()
     }
-    fun animateCV(btn: CardView){
+    private fun animateCV(btn: CardView){
         btn.animate().apply {
                 duration =100
                 scaleYBy(.1f)
@@ -267,7 +275,8 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                     val list: MutableList<String> = ArrayList()
                     for (document in task.result!!) {
                             val input = document.get("currentDateTime").toString()
-                            val inputFormatter: DateFormat = SimpleDateFormat("yyyy/MM/dd - HH:mm")
+                           // val inputFormatter: DateFormat = SimpleDateFormat("yyyy/MM/dd - HH:mm")
+                            val inputFormatter: DateFormat = SimpleDateFormat("yyyy/MM/dd")
                             val date: Date = inputFormatter.parse(input)
                             val outputFormatter: DateFormat = SimpleDateFormat("MM/dd/yyyy")
                             val output: String = outputFormatter.format(date) // Output : 01/20/2012
@@ -281,17 +290,28 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 }
             })
     }
-    fun setupLineChartData2() {
+    private fun setupLineChartData2() {
         val listXDate = arrayListOf<String>()
         val listYData = arrayListOf<String>()
         val yVals = ArrayList<Entry>()
         var outputMonth: String = ""
-        db.collection(Constant.USERS).document(getCurrentUserID()).collection(Constant.TRAININGS).orderBy("date").get()
+
+        val c= Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+        val month = c.get(Calendar.MONTH)
+        var datum :Date = Date(year,month,day)
+
+        db.collection(Constant.USERS).document(getCurrentUserID()).collection(Constant.TRAININGS)
+            .whereLessThanOrEqualTo("date", currentDateAndTime)
+            .orderBy("date", Query.Direction.ASCENDING)
+            .get()
             .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
                 if (task.isSuccessful) {
                     for (document in task.result!!) {
                             val input = document.get("currentDateTime").toString()
-                            val inputFormatter: DateFormat = SimpleDateFormat("yyyy/MM/dd - HH:mm")
+                            //val inputFormatter: DateFormat = SimpleDateFormat("yyyy/MM/dd - HH:mm")
+                            val inputFormatter: DateFormat = SimpleDateFormat("yyyy/MM/dd")
                             val date: Date = inputFormatter.parse(input)
                             val outputFormatter: DateFormat = SimpleDateFormat("dd/MM/yyyy")
                             val output: String = outputFormatter.format(date) // Output : 01/20/2012
@@ -300,9 +320,11 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                             listXDate.add(output.substring(0, output.length - 8).toInt().toString())
 
                             listYData.add(document.get("set").toString())
+
                     }
                     var i = 0
                     while( i < listXDate.size){
+                        if (listXDate.get(i)<= day.toString())
                         yVals.add(Entry(listXDate[i].toFloat(),listYData[i].toFloat(),i))
                         i++
                     }
@@ -343,17 +365,14 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                     lineChart.getAxisRight().setDrawGridLines(false)
                     lineChart.getData().setHighlightEnabled(false)
 
-
-
-
                     val xAxis: XAxis = lineChart.getXAxis()
                     xAxis.isEnabled = true
                     val yAxis: YAxis = lineChart.getAxisLeft()
                     yAxis.isEnabled = false
                     val yAxis2: YAxis = lineChart.getAxisRight()
-                    // get current Month
+
                     val c= Calendar.getInstance()
-                    val currentMonth = c.get(Calendar.MONTH)
+                    val currentMonth = c.get(Calendar.MONTH)+1
                     var month : String =currentMonth.toString()
 
                     val vf: ValueFormatter = object : ValueFormatter() {
@@ -395,6 +414,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             })
     }
 }
+
 class UserLoged(val user: User): Item<ViewHolder>(){
     override fun bind(viewHolder: ViewHolder, position: Int) {
         // load our user image into the picture

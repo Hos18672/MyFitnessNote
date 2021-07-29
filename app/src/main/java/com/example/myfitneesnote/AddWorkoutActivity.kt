@@ -2,25 +2,73 @@ package com.example.myfitneesnote
 
 
 import android.content.Intent
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.widget.EditText
+import androidx.annotation.RequiresApi
+import com.example.myfitneesnote.R.*
 import com.example.myfitneesnote.firebase.FirestoreClass
 import com.example.myfitneesnote.model.Workout
 import com.google.firebase.Timestamp
+import com.vivekkaushik.datepicker.OnDateSelectedListener
 import kotlinx.android.synthetic.main.activity_add_workout.*
+import kotlinx.android.synthetic.main.activity_add_workout.view.*
+import java.text.DateFormat
+import java.text.SimpleDateFormat
 import java.util.*
+
 
 class AddWorkoutActivity : BaseActivity() {
     var uuid : UUID= UUID.randomUUID()
+    private lateinit var currentDate :String
+
+    @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_workout)
+        setContentView(layout.activity_add_workout)
         onClick()
         fullscreen()
         setupActionBar()
         var trainingsName: String? = intent.getStringExtra("MuskelName")
         TrainingName.text = trainingsName
+        // Set a Start date (Default, 1 Jan 1970)
+        // Set a Start date (Default, 1 Jan 1970)
+        val c= Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+        datePickerTimeline.setInitialDate(year,month,day)
+        currentDate = "${year}/${month+1}/${day}"
+      //  datePickerTimeline.setActiveDate(Calendar.getInstance())
+        // Set a date Selected Listener
+        // Set a date Selected Listener
+        datePickerTimeline.setOnDateSelectedListener(object : OnDateSelectedListener {
+            override fun onDateSelected(year: Int, month: Int, day: Int, dayOfWeek: Int) {
+                // Do Something
+                 currentDate = "${year}/${month+1}/${day}"
+            }
+            override fun onDisabledDateSelected(
+                year: Int,
+                month: Int,
+                day: Int,
+                dayOfWeek: Int,
+                isDisabled: Boolean
+            ) {
+                // Do Something
+               // datePickerTimeline.setInitialDate(Calendar.YEAR, Calendar.MONTH,Calendar.DATE)
+              //  currentDate = "${year}/${month+1}/${day}"
+            }
+        })
+
+// Disable date
+
+// Disable date
+        datePickerTimeline.setDisabledDateColor(Color.BLUE)
+        val dates = arrayOf(Calendar.getInstance().time)
+        datePickerTimeline.deactivateDates(dates)
+
     }
     private fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
     private fun onClick(){
@@ -52,7 +100,12 @@ class AddWorkoutActivity : BaseActivity() {
         val day = c.get(Calendar.DAY_OF_MONTH)
         val hour = c.get(Calendar.HOUR_OF_DAY)
         val minute = c.get(Calendar.MINUTE)
-        var currentDate = "${year}/${month}/${day} - ${hour}:${minute}"
+       //- ${hour}:${minute}
+
+        val str_date ="${year}/${month+1}/${day}"
+        val formatter: DateFormat = SimpleDateFormat("yyyy/MM/dd")
+        val date = formatter.parse(str_date) as Date
+
         val currentDateAndTime = Timestamp.now()
         var workout : Workout
         var gymType    : String = intent.getStringExtra("GymName").toString()
@@ -76,7 +129,7 @@ class AddWorkoutActivity : BaseActivity() {
         if(actionBar!=null)
         {
             actionBar.setDisplayHomeAsUpEnabled(true)
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_navigate_before_black_24dp)
+            actionBar.setHomeAsUpIndicator(drawable.ic_navigate_before_black_24dp)
         }
         toolBar_add_workout_activity.setNavigationOnClickListener{
             onBackPressed()

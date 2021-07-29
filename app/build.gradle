@@ -22,7 +22,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.myfitneesnote"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -109,6 +109,9 @@ dependencies {
     // Declare the dependency for the Firebase Authentication library
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation 'com.google.firebase:firebase-auth-ktx'
+
+    // Calendar
+    implementation 'com.vivekkaushik.datepicker:datePickerTimeline:0.0.4'
 
 
 
