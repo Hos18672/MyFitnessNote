@@ -15,7 +15,7 @@
             android:id="@+id/toolBar_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Training"
+            android:text="@string/new_training"
             android:gravity="center"
             android:textColor="#000000"
             android:textSize="15sp"
@@ -29,7 +29,7 @@
         android:layout_gravity="center"
         android:textColor="@android:color/black"
         android:gravity="center"
-        android:textSize="25dp"
+        android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/CV"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,24 +54,25 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:orientation="vertical">
-
-            <com.vivekkaushik.datepicker.DatePickerTimeline
-                android:id="@+id/datePickerTimeline"
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginEnd="15dp"
-                android:layout_marginBottom="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_marginBottom="5dp"
+                app:cardCornerRadius="10dp">
+                <com.vivekkaushik.datepicker.DatePickerTimeline
+                    android:id="@+id/datePickerTimeline"
+                    android:layout_width="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_height="match_parent" />
+             </androidx.cardview.widget.CardView>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="15dp"
+                android:layout_marginEnd="15dp"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:orientation="horizontal">
@@ -82,9 +83,10 @@
                     android:layout_gravity="center"
                     android:gravity="left"
                     android:padding="20dp"
-                    android:text="Set"
+                    android:text="@string/sets"
                     android:textColor="@android:color/black"
-                    android:textSize="25dp" />
+                    android:textSize="25sp"
+                    tools:ignore="RtlHardcoded" />
                 <Button
                     android:id="@+id/btn_set_minus"
                     android:layout_width="50dp"
@@ -104,19 +106,21 @@
                     android:maxHeight="50dp"
                     android:maxLength="2"
                     android:minWidth="60dp"
-                    android:text="0"
+                    android:text="@string/_0"
                     android:textSize="30sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:autofillHints=""
+                    tools:ignore="LabelFor" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="-5dp"
-                    android:layout_marginRight="30dp"
+                    android:layout_marginStart="-5dp"
+                    android:layout_marginEnd="30dp"
                     android:background="@color/cardview_light_background"
                     android:gravity="center"
                     android:minHeight="40dp"
-                    android:text="X"
+                    android:text="@string/x"
                     android:textSize="20sp"
                     android:textStyle="bold" />
                 <Button
@@ -130,7 +134,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="15dp"
+                android:layout_marginEnd="15dp"
                 android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:orientation="horizontal">
@@ -140,9 +144,10 @@
                     android:layout_height="match_parent"
                     android:gravity="left|center"
                     android:paddingLeft="10dp"
-                    android:text="Weight"
+                    android:text="@string/weight"
                     android:textColor="@android:color/black"
-                    android:textSize="25dp" />
+                    android:textSize="25sp"
+                    tools:ignore="RtlHardcoded,RtlSymmetry" />
                 <Button
                     android:id="@+id/btn_weight_minus"
                     android:layout_width="50dp"
@@ -162,19 +167,21 @@
                     android:maxHeight="50dp"
                     android:maxLength="2"
                     android:minWidth="60dp"
-                    android:text="0"
+                    android:text="@string/_0"
                     android:textSize="30sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:autofillHints=""
+                    tools:ignore="LabelFor" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="-10dp"
-                    android:layout_marginRight="21dp"
+                    android:layout_marginStart="-10dp"
+                    android:layout_marginEnd="21dp"
                     android:background="@color/cardview_light_background"
                     android:gravity="center"
                     android:minHeight="40dp"
-                    android:text="Kg"
+                    android:text="@string/kg"
                     android:textSize="20sp"
                     android:textStyle="bold" />
                 <Button
@@ -188,7 +195,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="15dp"
+                android:layout_marginEnd="15dp"
                 android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:orientation="horizontal">
@@ -198,9 +205,10 @@
                     android:layout_height="match_parent"
                     android:gravity="left|center"
                     android:padding="20dp"
-                    android:text="Break"
+                    android:text="@string/Break"
                     android:textColor="@android:color/black"
-                    android:textSize="25dp" />
+                    android:textSize="25sp"
+                    tools:ignore="RtlHardcoded" />
                 <Button
                     android:id="@+id/btn_break_minus"
                     android:layout_width="50dp"
@@ -220,19 +228,21 @@
                     android:maxHeight="50dp"
                     android:maxLength="2"
                     android:minWidth="60dp"
-                    android:text="0"
+                    android:text="@string/_0"
                     android:textSize="30sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:autofillHints=""
+                    tools:ignore="LabelFor" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="-10dp"
-                    android:layout_marginRight="14dp"
+                    android:layout_marginStart="-10dp"
+                    android:layout_marginEnd="14dp"
                     android:background="@color/cardview_light_background"
                     android:gravity="center"
                     android:minHeight="40dp"
-                    android:text="min"
+                    android:text="@string/min"
                     android:textSize="20sp"
                     android:textStyle="bold" />
                 <Button
@@ -246,7 +256,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="15dp"
+                android:layout_marginEnd="15dp"
                 android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:orientation="horizontal">
@@ -256,9 +266,10 @@
                     android:layout_height="match_parent"
                     android:gravity="left|center"
                     android:padding="20dp"
-                    android:text="Repeat"
+                    android:text="@string/repeat"
                     android:textColor="@android:color/black"
-                    android:textSize="25dp" />
+                    android:textSize="25sp"
+                    tools:ignore="RtlHardcoded" />
                 <Button
                     android:id="@+id/btn_repeat_minus"
                     android:layout_width="50dp"
@@ -278,19 +289,21 @@
                     android:maxHeight="50dp"
                     android:maxLength="2"
                     android:minWidth="60dp"
-                    android:text="0"
+                    android:text="@string/_0"
                     android:textSize="30sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:autofillHints=""
+                    tools:ignore="LabelFor" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="-6dp"
-                    android:layout_marginRight="30dp"
+                    android:layout_marginStart="-6dp"
+                    android:layout_marginEnd="30dp"
                     android:background="@color/cardview_light_background"
                     android:gravity="center"
                     android:minHeight="40dp"
-                    android:text="X"
+                    android:text="@string/x"
                     android:textSize="20sp"
                     android:textStyle="bold" />
                 <Button
@@ -317,13 +330,12 @@
             android:id="@+id/save_btn"
             android:layout_width="350dp"
             android:layout_height="50dp"
-            android:layout_above="@+id/btnBackNewWorkout"
             android:background="@drawable/ic_save_shape"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:textSize="25sp"
-            android:text="save" />
+            android:text="@string/save" />
         <Button
             android:id="@+id/btnBackNewWorkout"
             android:layout_width="350dp"

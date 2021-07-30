@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="Sign in"
+            android:text="@string/sign_in"
             android:textColor="#000000"
             android:textSize="15sp"
             tools:layout_editor_absoluteX="165dp"
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="-200dp"
             android:layout_marginBottom="50dp"
-            android:text="Sign in"
+            android:text="@string/sign_in"
             android:textColor="#000000"
             android:textSize="50sp"
             tools:layout_editor_absoluteX="165dp"
@@ -108,10 +108,10 @@
 
             <ProgressBar
                 android:id="@+id/progressBar_login"
-                android:layout_width="90px"
+                android:layout_width="10dp"
                 android:layout_height="@dimen/progress_bar_size"
-                android:layout_marginLeft="-60dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginStart="-10dp"
+                android:layout_marginEnd="20dp"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/tv_progress_text"
@@ -123,9 +123,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Sign in"
+                android:layout_marginStart="-15dp"
+                android:text="@string/sign_in"
                 android:textColor="#000000"
-                android:textSize="50px" />
+                android:textSize="20sp" />
         </LinearLayout>
 
         <TextView

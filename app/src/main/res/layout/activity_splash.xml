@@ -15,7 +15,7 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
-        tools:ignore="UselessParent">
+        tools:ignore="UseCompoundDrawables,UselessParent">
 
         <ImageView
             android:id="@+id/splash_imageView"
@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:text="My Fitness Note"
+            android:text="@string/my_fitness_note"
             android:textColor="#000000"
             android:textSize="40sp"
             tools:layout_editor_absoluteX="165dp"

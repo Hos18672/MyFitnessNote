@@ -65,7 +65,7 @@ class ChatLogActivity : BaseActivity() {
                          adapter.add(ChatFromItem(chatMessage.text, currentUser!!, chatMessage.timestamp))
                          recyclerView_chat_log.scrollToPosition(adapter.itemCount -1)
                      } else {
-                         adapter.add(ChatToItem(chatMessage.text, toUser!!,chatMessage.timestamp))
+                         adapter.add(ChatToItem(chatMessage.text, toUser!!,chatMessage.timestamp,intent.getStringExtra("name").toString()))
                          recyclerView_chat_log.scrollToPosition(adapter.itemCount -1)
                      }
                  }
@@ -135,6 +135,7 @@ class ChatFromItem(val text: String, val user: User, val time: String): Item<Vie
     override fun bind(viewHolder: ViewHolder, position: Int) {
         viewHolder.itemView.textView_from_row.text = text
         viewHolder.itemView.textview_to_row_date_from.text = time
+
     }
     override fun getLayout(): Int {
         return R.layout.chat_from_row
@@ -150,11 +151,12 @@ class ChatFromItem(val text: String, val user: User, val time: String): Item<Vie
         return formatter.format(calendar.time)
     }
 }
-class ChatToItem(val text: String, val user: User, val time: String): Item<ViewHolder>(){
+class ChatToItem(val text: String, val user: User, val time: String, val name: String): Item<ViewHolder>(){
 
     override fun bind(viewHolder: ViewHolder, position: Int) {
         viewHolder.itemView.textview_to_row.text = text
         viewHolder.itemView.textview_to_row_date_to.text= time
+        viewHolder.itemView.textview_to_row__name.text = name
     }
     override fun getLayout(): Int {
         return R.layout.chat_to_row

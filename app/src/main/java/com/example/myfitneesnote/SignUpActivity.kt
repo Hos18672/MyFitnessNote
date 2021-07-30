@@ -51,7 +51,7 @@ class SignUpActivity : BaseActivity() {
         val password2: String = signUp_password_input2.text.toString().trim{ it <= ' '}
         //val Image : String = signUp_image.toString().trim{ it <= ' '}
         if(validateForm(name, username, email, password) ) {
-            if (password.equals(password2)) {
+            if (password == password2) {
                 // Toast.makeText(this, "Now we register User",Toast.LENGTH_SHORT).show()
                 //password encryption
                 val hashPass = BCrypt.withDefaults().hashToString(12, password.toCharArray())
@@ -60,7 +60,7 @@ class SignUpActivity : BaseActivity() {
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             val firebaseUser: FirebaseUser = task.result!!.user!!
-                            val signUpedEmail = firebaseUser.email!!
+                            firebaseUser.email!!
                             val user = com.example.myfitneesnote.model.User(
                                 firebaseUser.uid,
                                 name,
@@ -134,7 +134,7 @@ class SignUpActivity : BaseActivity() {
     }
     private fun setupActionBar() {
         setSupportActionBar(toolBar_sign_up_activity)
-        var actionBar = supportActionBar
+        val actionBar = supportActionBar
         if(actionBar!=null) {
             actionBar.setDisplayHomeAsUpEnabled(true)
             actionBar.setHomeAsUpIndicator(R.drawable.ic_navigate_before_black_24dp)

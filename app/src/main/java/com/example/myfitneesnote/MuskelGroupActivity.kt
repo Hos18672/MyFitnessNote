@@ -34,14 +34,14 @@ class MuskelGroupActivity : BaseActivity() {
     }
 
     private  fun setOnclickMuscle(btn : Button){
-        var intent = Intent (this, AddWorkoutActivity::class.java)
+        val intent = Intent (this, AddWorkoutActivity::class.java)
         intent.putExtra("MuskelName", btn.text)
         intent.putExtra("GymName", GymType)
         startActivity(intent)
     }
     private fun setupActionBar() {
         setSupportActionBar(toolBar_muscle_gruppe_activity)
-        var actionBar = supportActionBar
+        val actionBar = supportActionBar
         if(actionBar!=null)
         {
             actionBar.setDisplayHomeAsUpEnabled(true)

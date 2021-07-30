@@ -6,6 +6,6 @@
         android:id="@+id/action_add_member"
         android:icon="@drawable/ic_vector_add_24dp"
         android:orderInCategory="100"
-        android:title="add_member"
+        android:title="@string/add_member"
         app:showAsAction="always" />
 </menu>

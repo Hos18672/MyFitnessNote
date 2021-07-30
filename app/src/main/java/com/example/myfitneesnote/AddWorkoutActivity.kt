@@ -14,16 +14,11 @@ import com.example.myfitneesnote.model.Workout
 import com.google.firebase.Timestamp
 import com.vivekkaushik.datepicker.OnDateSelectedListener
 import kotlinx.android.synthetic.main.activity_add_workout.*
-import kotlinx.android.synthetic.main.activity_add_workout.view.*
-import java.text.DateFormat
-import java.text.SimpleDateFormat
 import java.util.*
-
 
 class AddWorkoutActivity : BaseActivity() {
     var uuid : UUID= UUID.randomUUID()
     private lateinit var currentDate :String
-
     @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,9 +26,8 @@ class AddWorkoutActivity : BaseActivity() {
         onClick()
         fullscreen()
         setupActionBar()
-        var trainingsName: String? = intent.getStringExtra("MuskelName")
+        val trainingsName: String? = intent.getStringExtra("MuskelName")
         TrainingName.text = trainingsName
-        // Set a Start date (Default, 1 Jan 1970)
         // Set a Start date (Default, 1 Jan 1970)
         val c= Calendar.getInstance()
         val year = c.get(Calendar.YEAR)
@@ -41,8 +35,7 @@ class AddWorkoutActivity : BaseActivity() {
         val day = c.get(Calendar.DAY_OF_MONTH)
         datePickerTimeline.setInitialDate(year,month,day)
         currentDate = "${year}/${month+1}/${day}"
-      //  datePickerTimeline.setActiveDate(Calendar.getInstance())
-        // Set a date Selected Listener
+        //  datePickerTimeline.setActiveDate(Calendar.getInstance())
         // Set a date Selected Listener
         datePickerTimeline.setOnDateSelectedListener(object : OnDateSelectedListener {
             override fun onDateSelected(year: Int, month: Int, day: Int, dayOfWeek: Int) {
@@ -56,15 +49,11 @@ class AddWorkoutActivity : BaseActivity() {
                 dayOfWeek: Int,
                 isDisabled: Boolean
             ) {
-                // Do Something
                // datePickerTimeline.setInitialDate(Calendar.YEAR, Calendar.MONTH,Calendar.DATE)
               //  currentDate = "${year}/${month+1}/${day}"
             }
         })
-
-// Disable date
-
-// Disable date
+        // Disable date
         datePickerTimeline.setDisabledDateColor(Color.BLUE)
         val dates = arrayOf(Calendar.getInstance().time)
         datePickerTimeline.deactivateDates(dates)
@@ -86,30 +75,18 @@ class AddWorkoutActivity : BaseActivity() {
     private fun minusButton(et: EditText){
         var num = et.text.toString().toInt()
         num--
-        et.text= "${num}".toEditable()
+        et.text= "$num".toEditable()
     }
     private fun plusButton(et: EditText){
         var num = et.text.toString().toInt()
         num++
-        et.text= "${num}".toEditable()
+        et.text= "$num".toEditable()
     }
     private fun createTraining(){
-        val c= Calendar.getInstance()
-        val year = c.get(Calendar.YEAR)
-        val month = c.get(Calendar.MONTH)
-        val day = c.get(Calendar.DAY_OF_MONTH)
-        val hour = c.get(Calendar.HOUR_OF_DAY)
-        val minute = c.get(Calendar.MINUTE)
-       //- ${hour}:${minute}
-
-        val str_date ="${year}/${month+1}/${day}"
-        val formatter: DateFormat = SimpleDateFormat("yyyy/MM/dd")
-        val date = formatter.parse(str_date) as Date
-
         val currentDateAndTime = Timestamp.now()
-        var workout : Workout
-        var gymType    : String = intent.getStringExtra("GymName").toString()
-        var muskelName : String = intent.getStringExtra("MuskelName").toString()
+        val workout : Workout
+        val gymType    : String = intent.getStringExtra("GymName").toString()
+        val muskelName : String = intent.getStringExtra("MuskelName").toString()
         workout= Workout(
             uuid.toString(),
             gymType,
@@ -125,7 +102,7 @@ class AddWorkoutActivity : BaseActivity() {
     }
     private fun setupActionBar() {
         setSupportActionBar(toolBar_add_workout_activity)
-        var actionBar = supportActionBar
+        val actionBar = supportActionBar
         if(actionBar!=null)
         {
             actionBar.setDisplayHomeAsUpEnabled(true)

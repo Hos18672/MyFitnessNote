@@ -15,7 +15,6 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.GravityCompat
 import com.example.myfitneesnote.ChatLogActivity.Companion.TAG
 import com.example.myfitneesnote.R.*
-import com.example.myfitneesnote.model.User
 import com.example.myfitneesnote.utils.Constant
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.Legend
@@ -26,7 +25,6 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -35,26 +33,18 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
-import com.google.firebase.firestore.QuerySnapshot
-import com.squareup.picasso.Picasso
-import com.xwray.groupie.Item
-import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main_layout.*
 import kotlinx.android.synthetic.main.nav_header_main.*
-import kotlinx.android.synthetic.main.nav_header_main.view.*
-import java.sql.Timestamp
 import java.text.DateFormat
 import java.text.SimpleDateFormat
-import java.time.Instant.now
-import java.time.LocalDate.now
 import java.util.*
 import kotlin.collections.ArrayList
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
     val database = FirebaseDatabase.getInstance()
-    val db = FirebaseFirestore.getInstance()
-    val currentDateAndTime = com.google.firebase.Timestamp.now()
+    private val db = FirebaseFirestore.getInstance()
+    private val currentDateAndTime = com.google.firebase.Timestamp.now()
     override fun onCreate(savedInstanceState: Bundle?) {
         //This call the parent constructor
         super.onCreate(savedInstanceState)
@@ -71,115 +61,114 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
     private fun userData() {
         val uid = FirebaseAuth.getInstance().uid
-        var MainUsername : TextView = findViewById(R.id.tv_main_username)
+        val mainUsername : TextView = findViewById(id.tv_main_username)
         val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val username = snapshot.child("username").getValue(String::class.java)
-                MainUsername.setText(username)
+                mainUsername.text = username
             }
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
         })
     }
+    @SuppressLint("SimpleDateFormat", "SetTextI18n")
     private fun userWorkoutsData() {
-        val tv_gymeName :TextView = findViewById(R.id.tv_main_GymName)
-        val tv_muskelName :TextView = findViewById(R.id.tv_main_muscle)
-        val tv_set :TextView = findViewById(R.id.tv_main_sets)
-        val tv_weight:TextView = findViewById(R.id.tv_main_weight)
-        val tv_break :TextView = findViewById(R.id.tv_main_break)
-        val tv_repeat :TextView = findViewById(R.id.tv_main_repeat)
-        val tv_date :TextView = findViewById(R.id.tv_main_date)
-        val constraintLayout :ConstraintLayout = findViewById(R.id.const_layout_main)
-        val tv_no_trainings:TextView = findViewById(R.id.tv_no_trainings)
+        val tvGymename :TextView = findViewById(id.tv_main_GymName)
+        val tvMuskelname :TextView = findViewById(id.tv_main_muscle)
+        val tvSet :TextView = findViewById(id.tv_main_sets)
+        val tvWeight:TextView = findViewById(id.tv_main_weight)
+        val tvBreak :TextView = findViewById(id.tv_main_break)
+        val tvRepeat :TextView = findViewById(id.tv_main_repeat)
+        val tvDate :TextView = findViewById(id.tv_main_date)
+        val constraintLayout :ConstraintLayout = findViewById(id.const_layout_main)
+        val tvNoTrainings:TextView = findViewById(id.tv_no_trainings)
         //get current Day of month
         val c= Calendar.getInstance()
         val year = c.get(Calendar.YEAR)
         val day = c.get(Calendar.DAY_OF_MONTH)
         val month = c.get(Calendar.MONTH)
-        var currentDate = "${year}/${month.toInt()+1}/${day}"
+        val currentDate = "${year}/${month +1}/${day}"
        // var output = ""
-        var gymeType  = ""
-        var musclename= ""
-        var sets= ""
-        var weight= ""
-        var breakTime= ""
-        var repeat= ""
-        var date= ""
-        val inputFormatter: DateFormat? = SimpleDateFormat("yyyy/MM/dd")
+        var gymeType: String
+        var musclename: String
+        var sets: String
+        var weight: String
+        var breakTime: String
+        var repeat: String
+        var date: String
        // val outputFormatter: DateFormat = SimpleDateFormat("dd/MM/yyyy")
-        if (inputFormatter != null) {
-            db.collection(Constant.USERS)
-                .document(getCurrentUserID())
-                .collection(Constant.TRAININGS).whereEqualTo("currentDateTime", currentDate)
-                .get()
-                .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
-                    if (task.isSuccessful) {
-                        for (document in task.result!!) {
-                            if (document.exists()) {
-                                gymeType = document.get("gymType").toString()
-                                musclename = document.get("muskelName").toString()
-                                sets = document.get("set").toString()
-                                weight = document.get("weight").toString()
-                                breakTime = document.get("breakTime").toString()
-                                repeat = document.get("repeat").toString()
-                                date = document.get("currentDateTime").toString()
-                                tv_gymeName.text = gymeType
-                                // set Data to the TextViews
-                                tv_muskelName.text = musclename
-                                tv_set.text = "${sets} x"
-                                tv_weight.text = "${weight} kg"
-                                tv_break.text = "${breakTime} min"
-                                tv_repeat.text = "${repeat} x"
-                                tv_date.text = date
-                                tv_no_trainings.visibility = GONE
-                                constraintLayout.visibility = VISIBLE
-                            } else {
-                                tv_no_trainings.visibility = VISIBLE
-                                constraintLayout.visibility = GONE
-                            }
+        db.collection(Constant.USERS)
+            .document(getCurrentUserID())
+            .collection(Constant.TRAININGS).whereEqualTo("currentDateTime", currentDate)
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    for (document in task.result!!) {
+                        if (document.exists()) {
+                            gymeType = document.get("gymType").toString()
+                            musclename = document.get("muskelName").toString()
+                            sets = document.get("set").toString()
+                            weight = document.get("weight").toString()
+                            breakTime = document.get("breakTime").toString()
+                            repeat = document.get("repeat").toString()
+                            date = document.get("currentDateTime").toString()
+                            tvGymename.text = gymeType
+                            // set Data to the TextViews
+                            tvMuskelname.text = musclename
+                            tvSet.text = "$sets x"
+                            tvWeight.text = "$weight kg"
+                            tvBreak.text = "$breakTime min"
+                            tvRepeat.text = "$repeat x"
+                            tvDate.text = date
+                            tvNoTrainings.visibility = GONE
+                            constraintLayout.visibility = VISIBLE
+                        } else {
+                            tvNoTrainings.visibility = VISIBLE
+                            constraintLayout.visibility = GONE
                         }
-                    } else {
-                        Log.d(TAG, "Error getting documents:" , task.exception)
                     }
-                })
-        }
+                } else {
+                    Log.d(TAG, "Error getting documents:", task.exception)
+                }
+            }
     }
-    fun onClick() {
-        val main_menu: ImageView = findViewById(id.main_menu)
-        val add_main: ImageView = findViewById(id.Add_main)
-        val chat_main: ImageView = findViewById(id.chat_main)
-        val cv_chart: CardView = findViewById(id.cv_lineChart)
-        val main_image: ImageView = findViewById(id.tv_main_profile_image)
-        val diagram_main: ImageView = findViewById(id.main_diagramm)
-        val cv_lineChart: LineChart = findViewById(id.lineChart)
-        main_image.setOnClickListener {
-            animate(main_image)
+    private fun onClick() {
+        val mainMenu: ImageView = findViewById(id.main_menu)
+        val addMenu: ImageView = findViewById(id.Add_main)
+        val chatMain: ImageView = findViewById(id.chat_main)
+        val cvChart: CardView = findViewById(id.cv_lineChart)
+        val mainImage: ImageView = findViewById(id.tv_main_profile_image)
+        val diagramMain: ImageView = findViewById(id.main_diagramm)
+        val cvLinechart: LineChart = findViewById(id.lineChart)
+        mainImage.setOnClickListener {
+            animate(mainImage)
             startActivity(Intent(this,myProfileActivity::class.java))
         }
-        cv_lineChart.setOnClickListener {
-            animateCV(cv_chart)
+
+        cvLinechart.setOnClickListener {
+            animateCV(cvChart)
             startActivity(Intent(this,TrainingActivity::class.java))
         }
-        main_menu.setOnClickListener {
-            animate(main_menu)
+        mainMenu.setOnClickListener {
+            animate(mainMenu)
             if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
                 drawer_layout.closeDrawer(GravityCompat.START)
             } else {
                 drawer_layout.openDrawer(GravityCompat.START)
             }
         }
-        add_main.setOnClickListener {
-            animate(add_main)
+        addMenu.setOnClickListener {
+            animate(addMenu)
             startActivity(Intent(this, WorkoutActivity::class.java))
         }
-        chat_main.setOnClickListener {
-            animate(chat_main)
+        chatMain.setOnClickListener {
+            animate(chatMain)
             startActivity(Intent(this, ChatActivity::class.java))
         }
-        diagram_main.setOnClickListener {
-            animate(diagram_main)
+        diagramMain.setOnClickListener {
+            animate(diagramMain)
             startActivity(Intent(this, TrainingActivity::class.java))
         }
         btn_sing_out_draw_layout.setOnClickListener {
@@ -270,66 +259,63 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         val list1 = arrayListOf<String>()
         val list2 = arrayListOf<String>()
         db.collection(Constant.USERS).document(getCurrentUserID()).collection(Constant.TRAININGS).get()
-            .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
+            .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    val list: MutableList<String> = ArrayList()
                     for (document in task.result!!) {
-                            val input = document.get("currentDateTime").toString()
-                           // val inputFormatter: DateFormat = SimpleDateFormat("yyyy/MM/dd - HH:mm")
-                            val inputFormatter: DateFormat = SimpleDateFormat("yyyy/MM/dd")
-                            val date: Date = inputFormatter.parse(input)
-                            val outputFormatter: DateFormat = SimpleDateFormat("MM/dd/yyyy")
-                            val output: String = outputFormatter.format(date) // Output : 01/20/2012
-                            list1.add(output)
-                            list2.add(document.get("set").toString())
+                        val input = document.get("currentDateTime").toString()
+                        // val inputFormatter: DateFormat = SimpleDateFormat("yyyy/MM/dd - HH:mm")
+                        val inputFormatter: DateFormat = SimpleDateFormat("yyyy/MM/dd")
+                        val date: Date = inputFormatter.parse(input)
+                        val outputFormatter: DateFormat = SimpleDateFormat("MM/dd/yyyy")
+                        val output: String = outputFormatter.format(date) // Output : 01/20/2012
+                        list1.add(output)
+                        list2.add(document.get("set").toString())
                     }
                     Log.d("--------Test1------", list1.toString())
                     Log.d("--------Test2------", list2.toString())
                 } else {
                     Log.d(TAG, "Error getting documents: ", task.exception)
                 }
-            })
+            }
     }
+    @SuppressLint("SimpleDateFormat")
     private fun setupLineChartData2() {
         val listXDate = arrayListOf<String>()
         val listYData = arrayListOf<String>()
         val yVals = ArrayList<Entry>()
-        var outputMonth: String = ""
-
+        var outputMonth: String
         val c= Calendar.getInstance()
         val year = c.get(Calendar.YEAR)
         val day = c.get(Calendar.DAY_OF_MONTH)
         val month = c.get(Calendar.MONTH)
-        var datum :Date = Date(year,month,day)
 
         db.collection(Constant.USERS).document(getCurrentUserID()).collection(Constant.TRAININGS)
             .whereLessThanOrEqualTo("date", currentDateAndTime)
             .orderBy("date", Query.Direction.ASCENDING)
             .get()
-            .addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
-                if (task.isSuccessful) {
+            .addOnCompleteListener { task ->
+                val any = if (task.isSuccessful) {
                     for (document in task.result!!) {
-                            val input = document.get("currentDateTime").toString()
-                            //val inputFormatter: DateFormat = SimpleDateFormat("yyyy/MM/dd - HH:mm")
-                            val inputFormatter: DateFormat = SimpleDateFormat("yyyy/MM/dd")
-                            val date: Date = inputFormatter.parse(input)
-                            val outputFormatter: DateFormat = SimpleDateFormat("dd/MM/yyyy")
-                            val output: String = outputFormatter.format(date) // Output : 01/20/2012
-                            outputMonth = outputFormatter.format(date)
+                        val input = document.get("currentDateTime").toString()
+                        //val inputFormatter: DateFormat = SimpleDateFormat("yyyy/MM/dd - HH:mm")
+                        val inputFormatter: DateFormat = SimpleDateFormat("yyyy/MM/dd")
+                        val date: Date = inputFormatter.parse(input)
+                        val outputFormatter: DateFormat = SimpleDateFormat("dd/MM/yyyy")
+                        val output: String = outputFormatter.format(date) // Output : 01/20/2012
+                        outputMonth = outputFormatter.format(date)
 
-                            listXDate.add(output.substring(0, output.length - 8).toInt().toString())
+                        listXDate.add(output.substring(0, output.length - 8).toInt().toString())
 
-                            listYData.add(document.get("set").toString())
+                        listYData.add(document.get("set").toString())
 
                     }
                     var i = 0
-                    while( i < listXDate.size){
-                        if (listXDate.get(i)<= day.toString())
-                        yVals.add(Entry(listXDate[i].toFloat(),listYData[i].toFloat(),i))
+                    while (i < listXDate.size) {
+                        if (listXDate[i] <= day.toString())
+                            yVals.add(Entry(listXDate[i].toFloat(), listYData[i].toFloat(), i))
                         i++
                     }
-                    val set1: LineDataSet
-                    set1 = LineDataSet(yVals, "DataSet 1")
+                    val set1: LineDataSet = LineDataSet(yVals, "DataSet 1")
                     set1.color = Color.BLUE
                     set1.setCircleColor(Color.BLUE)
                     set1.lineWidth = 2f
@@ -345,35 +331,35 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                     val data = LineData(dataSets)
 
                     // set data
-                    lineChart.setData(data)
+                    lineChart.data = data
                     lineChart.description.isEnabled = false
                     lineChart.legend.isEnabled = false
                     //lineChart.setDrawGridBackground()
-                    lineChart.xAxis.labelCount = listXDate.size+1
+                    lineChart.xAxis.labelCount = listXDate.size + 1
                     lineChart.xAxis.position = XAxis.XAxisPosition.BOTTOM
-                    val yAxisRight: YAxis =   lineChart.getAxisRight()
+                    val yAxisRight: YAxis = lineChart.axisRight
                     yAxisRight.isEnabled = false
                     lineChart.xAxis.position = XAxis.XAxisPosition.BOTTOM
                     //----------------------------------------------------------------------
-                    lineChart.getAxisLeft().setDrawLabels(false)
-                    lineChart.getAxisRight().setDrawLabels(false)
+                    lineChart.axisLeft.setDrawLabels(false)
+                    lineChart.axisRight.setDrawLabels(false)
                     //lineChart.getXAxis().setDrawLabels(true)
                     // https://stackoverflow.com/questions/31263097/mpandroidchart-hide-background-grid
                     // https://stackoverflow.com/questions/31263097/mpandroidchart-hide-background-grid
-                    lineChart.getAxisLeft().setDrawGridLines(false)
-                    lineChart.getXAxis().setDrawGridLines(false)
-                    lineChart.getAxisRight().setDrawGridLines(false)
-                    lineChart.getData().setHighlightEnabled(false)
+                    lineChart.axisLeft.setDrawGridLines(false)
+                    lineChart.xAxis.setDrawGridLines(false)
+                    lineChart.axisRight.setDrawGridLines(false)
+                    lineChart.data.isHighlightEnabled = false
 
-                    val xAxis: XAxis = lineChart.getXAxis()
+                    val xAxis: XAxis = lineChart.xAxis
                     xAxis.isEnabled = true
-                    val yAxis: YAxis = lineChart.getAxisLeft()
+                    val yAxis: YAxis = lineChart.axisLeft
                     yAxis.isEnabled = false
-                    val yAxis2: YAxis = lineChart.getAxisRight()
+                    lineChart.axisRight
 
-                    val c= Calendar.getInstance()
-                    val currentMonth = c.get(Calendar.MONTH)+1
-                    var month : String =currentMonth.toString()
+                    val c = Calendar.getInstance()
+                    val currentMonth = c.get(Calendar.MONTH) + 1
+                    val month: String = currentMonth.toString()
 
                     val vf: ValueFormatter = object : ValueFormatter() {
                         //value format here, here is the overridden method
@@ -381,19 +367,19 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                             return "${month}/" + value.toInt()
                         }
                     }
-                    xAxis.setValueFormatter(vf)
+                    xAxis.valueFormatter = vf
                     lineChart.setDrawBorders(false)
                     lineChart.setDrawGridBackground(false)
-                    lineChart.getLegend().setEnabled(false)
+                    lineChart.legend.isEnabled = false
                     // no description text
                     // no description text
-                    lineChart.getDescription().setEnabled(false)
+                    lineChart.description.isEnabled = false
                     // enable touch gestures
                     // enable touch gestures
                     lineChart.setTouchEnabled(true)
                     // enable scaling and dragging
                     // enable scaling and dragging
-                    lineChart.setDragEnabled(false)
+                    lineChart.isDragEnabled = false
                     lineChart.setScaleEnabled(false)
                     // mChart.setScaleXEnabled(true);
                     // mChart.setScaleYEnabled(true);
@@ -402,20 +388,20 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                     // mChart.setScaleYEnabled(true);
                     // if disabled, scaling can be done on x- and y-axis separately
                     lineChart.setPinchZoom(false)
-                    lineChart.setAutoScaleMinMaxEnabled(true)
-                    lineChart.invalidate();
+                    lineChart.isAutoScaleMinMaxEnabled = true
+                    lineChart.invalidate()
                     // hide legend
                     // hide legend
-                    val legend: Legend = lineChart.getLegend()
+                    val legend: Legend = lineChart.legend
                     legend.isEnabled = false
                 } else {
-                    Log.d(ChatLogActivity.TAG, "Error getting documents: ", task.exception)
+                    Log.d(TAG, "Error getting documents: ", task.exception)
                 }
-            })
+            }
     }
 }
 
-class UserLoged(val user: User): Item<ViewHolder>(){
+/*class UserLoged(val user: User): Item<ViewHolder>(){
     override fun bind(viewHolder: ViewHolder, position: Int) {
         // load our user image into the picture
         val uri = user.image
@@ -425,7 +411,7 @@ class UserLoged(val user: User): Item<ViewHolder>(){
     override fun getLayout(): Int {
         return R.layout.chat_from_row
     }
-}
+}*/
 
 
 

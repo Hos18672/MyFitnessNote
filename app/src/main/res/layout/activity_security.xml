@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:textColor="#000000"
-            android:text="Change Security Info"
+            android:text="@string/change_security_info"
             android:textSize="15sp"
             tools:layout_editor_absoluteX="165dp"
             tools:layout_editor_absoluteY="218dp" />
@@ -38,7 +38,7 @@
             android:layout_height="56dp"
             android:layout_marginTop="60dp"
             android:gravity="center_horizontal"
-            android:text="Change Security Info"
+            android:text="@string/change_security_info"
             android:textAlignment="center"
             android:textColor="#0E0E0E"
             android:textSize="40sp"
@@ -94,7 +94,7 @@
                         android:id="@+id/editTextTextEmailAddress"
                         android:layout_width="match_parent"
                         android:layout_height="49dp"
-                        android:hint="Change Email"
+                        android:hint="@string/change_email"
                         app:layout_goneMarginBottom="10dp"
                         tools:ignore="DuplicateIds" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -111,7 +111,7 @@
                         android:id="@+id/editTextTextPassword"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="New Password"
+                        android:hint="@string/new_password"
                         tools:ignore="DuplicateIds" />
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
@@ -127,7 +127,7 @@
                         android:id="@+id/editTextTextPasswordAgain"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="Repeat password"
+                        android:hint="@string/repeat_password"
                         tools:ignore="DuplicateIds" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
@@ -138,7 +138,7 @@
             android:layout_width="350dp"
             android:layout_height="50dp"
             android:background="@drawable/ic_save_shape"
-            android:text="Save"
+            android:text="@string/save"
             android:textSize="25sp"
             android:layout_marginBottom="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -152,7 +152,7 @@
             android:layout_height="50dp"
             android:layout_marginBottom="25dp"
             android:background="@drawable/shape"
-            android:text="back"
+            android:text="@string/back"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -27,14 +27,14 @@ class SecurityActivity : BaseActivity() {
         mFirebaseInstance = FirebaseDatabase.getInstance()
         // get reference to 'users' node
         mFirebaseDatabase = mFirebaseInstance!!.getReference("users")
-        val user = FirebaseAuth.getInstance().getCurrentUser()
+        val user = FirebaseAuth.getInstance().currentUser
         // add it only if it is not saved to database
-        userId = user?.getUid()
+        userId = user?.uid
         btnSave.setOnClickListener { onUpdateClicked() }
         btnback.setOnClickListener { onBackPressed() }
         auth = Firebase.auth
     }
-    private fun updateUser2(currentPassword :String, password1: String,password2: String, email: String) {
+/*    private fun updateUser2(currentPassword :String, password1: String,password2: String, email: String) {
         if (validateForm(currentPassword, password1, password2, email) && password1.equals(password2)) {
             val user = FirebaseAuth.getInstance().currentUser
             val currentPW = CurrentPassword.text.toString()
@@ -49,7 +49,7 @@ class SecurityActivity : BaseActivity() {
                                 println("Error Update")
                             }
                         }
-                        user!!.updateEmail(email).addOnCompleteListener { task ->
+                        user.updateEmail(email).addOnCompleteListener { task ->
                             if (task.isSuccessful) {
                                 println("Update Success")
                             } else {
@@ -63,10 +63,10 @@ class SecurityActivity : BaseActivity() {
                     }
                 }
         }
-    }
+    }*/
     private  fun updateUser(currentPassword :String, password1: String,password2: String, email: String){
         if(validateForm(currentPassword, password1, password2, email)) {
-            if (password1.equals(password2)) {
+            if (password1 == password2) {
                 val user = FirebaseAuth.getInstance().currentUser
                 val currentPW = CurrentPassword.text.toString()
                 auth.signInWithEmailAndPassword(email, currentPW)
@@ -80,7 +80,7 @@ class SecurityActivity : BaseActivity() {
                                     println("Error Update")
                                 }
                             }
-                            user!!.updateEmail(email).addOnCompleteListener { task ->
+                            user.updateEmail(email).addOnCompleteListener { task ->
                                 if (task.isSuccessful) {
                                     println("Update Success")
                                 } else {
@@ -98,7 +98,7 @@ class SecurityActivity : BaseActivity() {
             }
         }
     }
-    fun onUpdateClicked() {
+    private fun onUpdateClicked() {
         val currentPassword= CurrentPassword.text.toString()
         val pass1 = editTextTextPassword.text.toString()
         val pass2 = editTextTextPasswordAgain.text.toString()
@@ -144,7 +144,7 @@ class SecurityActivity : BaseActivity() {
 
     private fun setupActionBar() {
         setSupportActionBar(toolBar_security_activity)
-        var actionBar = supportActionBar
+        val actionBar = supportActionBar
         if(actionBar!=null)
         {
             actionBar.setDisplayHomeAsUpEnabled(true)

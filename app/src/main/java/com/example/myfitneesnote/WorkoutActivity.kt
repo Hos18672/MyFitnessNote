@@ -31,7 +31,7 @@ class WorkoutActivity : BaseActivity(){
                     scaleXBy(-.2f)
                 }
             }.start()
-            var intent = Intent( this,  MuskelGroupActivity::class.java)
+            val intent = Intent( this,  MuskelGroupActivity::class.java)
             intent.putExtra("WorkoutType",btn_gym_workout.text)
             startActivity(intent) }
         btn_home_workout.setOnClickListener{
@@ -46,14 +46,14 @@ class WorkoutActivity : BaseActivity(){
                     scaleXBy(-.2f)
                 }
             }.start()
-            var intent = Intent( this,  MuskelGroupActivity::class.java)
+            val intent = Intent( this,  MuskelGroupActivity::class.java)
             intent.putExtra("WorkoutType",btn_home_workout.text)
             startActivity(intent)}
         btnBack1.setOnClickListener{ onBackPressed() }
     }
     private fun setupActionBar() {
         setSupportActionBar(toolBar_workout_activity)
-        var actionBar = supportActionBar
+        val actionBar = supportActionBar
         if(actionBar!=null) {
             actionBar.setDisplayHomeAsUpEnabled(true)
             actionBar.setHomeAsUpIndicator(R.drawable.ic_navigate_before_black_24dp)

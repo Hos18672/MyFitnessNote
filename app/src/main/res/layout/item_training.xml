@@ -23,8 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="20dp"
             android:gravity="center"
-            android:text=" "
-            android:textColor="#000000"
+           android:textColor="#000000"
             android:textSize="17sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout"
@@ -53,7 +52,7 @@
             android:layout_gravity="bottom"
             android:layout_margin="5dp"
             android:gravity="bottom|right"
-            android:text="Date"
+            android:text="@string/date"
             android:textColor="#000000"
             android:textSize="13sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -61,7 +60,8 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/linearLayout"
             app:layout_constraintTop_toBottomOf="@+id/tv_GymName"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintVertical_bias="1.0"
+            tools:ignore="RtlHardcoded" />
 
         <LinearLayout
             android:id="@+id/linearLayout3"
@@ -80,46 +80,51 @@
                 android:layout_width="wrap_content"
                 android:layout_height="22dp"
                 android:gravity="left"
-                android:text="Muscle: "
+                android:text="@string/muscle"
                 android:textColor="#000000"
                 android:textSize="17sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="RtlHardcoded" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="22dp"
                 android:gravity="left"
-                android:text="Sets: "
+                android:text="@string/sets_"
                 android:textColor="#000000"
                 android:textSize="17sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="RtlHardcoded" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="22dp"
                 android:gravity="left"
-                android:text="Weight: "
+                android:text="@string/weight_"
                 android:textColor="#000000"
                 android:textSize="17sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="RtlHardcoded" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="22dp"
                 android:gravity="left"
-                android:text="BreakTime: "
+                android:text="@string/breaktime"
                 android:textColor="#000000"
                 android:textSize="17sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="RtlHardcoded" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="22dp"
                 android:gravity="left"
-                android:text="Repeat: "
+                android:text="@string/repeat_"
                 android:textColor="#000000"
                 android:textSize="17sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="RtlHardcoded" />
 
         </LinearLayout>
 
@@ -140,45 +145,45 @@
                 android:layout_width="match_parent"
                 android:layout_height="22dp"
                 android:gravity="left"
-                android:text=""
                 android:textColor="#000000"
-                android:textSize="17sp" />
+                android:textSize="17sp"
+                tools:ignore="RtlHardcoded" />
 
             <TextView
                 android:id="@+id/tv_Sets"
                 android:layout_width="match_parent"
                 android:layout_height="22dp"
                 android:gravity="left"
-                android:text=""
                 android:textColor="#000000"
-                android:textSize="17sp" />
+                android:textSize="17sp"
+                tools:ignore="RtlHardcoded" />
 
             <TextView
                 android:id="@+id/tv_weight"
                 android:layout_width="match_parent"
                 android:layout_height="22dp"
                 android:gravity="left"
-                android:text=""
                 android:textColor="#000000"
-                android:textSize="17sp" />
+                android:textSize="17sp"
+                tools:ignore="RtlHardcoded" />
 
             <TextView
                 android:id="@+id/tv_break"
                 android:layout_width="match_parent"
                 android:layout_height="22dp"
                 android:gravity="left"
-                android:text=""
                 android:textColor="#000000"
-                android:textSize="17sp" />
+                android:textSize="17sp"
+                tools:ignore="RtlHardcoded" />
 
             <TextView
                 android:id="@+id/tv_repeat"
                 android:layout_width="match_parent"
                 android:layout_height="22dp"
                 android:gravity="left"
-                android:text=""
                 android:textColor="#000000"
-                android:textSize="17sp" />
+                android:textSize="17sp"
+                tools:ignore="RtlHardcoded" />
         </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

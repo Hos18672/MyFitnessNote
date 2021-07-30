@@ -1,45 +1,26 @@
 package com.example.myfitneesnote
 
+import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
 import android.view.View
 import android.view.WindowManager
+import android.view.WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE
 import android.widget.ProgressBar
 import android.widget.Toast
-import com.example.myfitneesnote.firebase.FirestoreClass
-import com.example.myfitneesnote.model.User
-import com.example.myfitneesnote.utils.Constant
-import com.github.mikephil.charting.components.Legend
-import com.github.mikephil.charting.components.XAxis
-import com.github.mikephil.charting.components.YAxis
-import com.github.mikephil.charting.data.Entry
-import com.github.mikephil.charting.data.LineData
-import com.github.mikephil.charting.data.LineDataSet
-import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.QuerySnapshot
-
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_main_layout.*
-import java.text.DateFormat
-import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 class LoginActivity : BaseActivity() {
     val database = FirebaseDatabase.getInstance()
-    val db = FirebaseFirestore.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE or WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE or SOFT_INPUT_ADJUST_RESIZE)
         fullscreen()
         setupActionBar()
         login_signUpTv.setOnClickListener {
@@ -65,10 +46,11 @@ class LoginActivity : BaseActivity() {
     /**
      * A function to login the user.
      */
+    @SuppressLint("SetTextI18n")
     private fun loginUser() {
         val email: String = login_email_input.text.toString().trim { it <= ' ' }
         val password: String = login_password_input.text.toString().trim { it <= ' ' }
-        val pb = findViewById(R.id.progressBar_login) as ProgressBar
+        val pb = findViewById<ProgressBar>(R.id.progressBar_login)
 
         if (validateForm(email, password)) {
                 //showProgressDialog(resources.getString(R.string.please_wait))
@@ -79,7 +61,6 @@ class LoginActivity : BaseActivity() {
                     .addOnCompleteListener { task ->
                         //hideProgressDialog()
                         if (task.isSuccessful) {
-                            val firebaseUser: FirebaseUser = task.result!!.user!!
                             Toast.makeText(
                                 this@LoginActivity,
                                 "Your are logged in successfully.",
@@ -103,14 +84,10 @@ class LoginActivity : BaseActivity() {
                     }
         } else {
             //pb.visibility = View.GONE
-            sign_in_btn_text.setText("Sign in")
+            sign_in_btn_text.text = "Sign in"
         }
     }
-    fun logInSuccess(user: User) {
-        //hideProgressDialog1()
-        startActivity(Intent(this, MainActivity::class.java))
-        finish()
-    }
+
     private fun validateForm(email: String, password: String): Boolean {
         return when {
             TextUtils.isEmpty(email) -> {

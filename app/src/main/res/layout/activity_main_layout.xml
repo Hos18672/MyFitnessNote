@@ -21,76 +21,6 @@
         app:layout_constraintVertical_bias="0.009"
         tools:ignore="MissingConstraints" />
 
-
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView_traininigs"
-        android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:layout_margin="10dp"
-        android:background="@drawable/rounded_mesage"
-        app:cardCornerRadius="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/cardView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolBar_muscle_gruppe_activity">
-
-        <LinearLayout
-            android:id="@+id/llt"
-            android:layout_width="match_parent"
-            android:layout_height="75dp"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/c1"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_margin="9dp"
-                android:background="@drawable/rounded_cards"
-                android:text="1"
-                android:textSize="30dp" />
-
-            <Button
-                android:id="@+id/c2"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_margin="9dp"
-                android:background="@drawable/rounded_cards"
-                android:text="2"
-                android:textSize="30dp" />
-
-            <Button
-                android:id="@+id/c3"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_margin="9dp"
-                android:background="@drawable/rounded_cards"
-                android:text="3"
-                android:textSize="30dp" />
-
-            <Button
-                android:id="@+id/c4"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_margin="9dp"
-                android:background="@drawable/rounded_cards"
-                android:text="4"
-                android:textSize="30dp" />
-
-            <Button
-                android:id="@+id/c5"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_margin="9dp"
-                android:background="@drawable/rounded_cards"
-                android:text="5"
-                android:textSize="30dp" />
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="369dp"
@@ -98,9 +28,7 @@
         android:layout_above="@+id/nav_bar_bottom"
 
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:background="@drawable/shapetransparent_message"
         app:cardCornerRadius="15dp"
         app:layout_constraintBottom_toTopOf="@+id/nav_bar_bottom"
@@ -116,62 +44,6 @@
             android:layout_height="175dp"
             android:layout_margin="10dp" />
 
-        <LinearLayout
-            android:id="@+id/lcard"
-            android:layout_width="370dp"
-            android:layout_height="80dp"
-            android:layout_gravity="bottom"
-            android:layout_margin="5dp"
-            android:gravity="bottom"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toTopOf="@+id/nav_bar_bottom"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView"
-            app:layout_constraintVertical_bias="0.088">
-
-            <Button
-                android:id="@+id/cardv1"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginLeft="10dp"
-                android:background="@android:color/transparent"
-                android:text="MO" />
-
-            <Button
-                android:id="@+id/cardv2"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginLeft="10dp"
-                android:background="@android:color/transparent"
-                android:text="DI" />
-
-            <Button
-                android:id="@+id/cardv3"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginLeft="10dp"
-                android:background="@android:color/transparent"
-                android:text="MI" />
-
-            <Button
-                android:id="@+id/cardv4"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginLeft="10dp"
-                android:background="@android:color/transparent"
-                android:text="DO" />
-
-            <Button
-                android:id="@+id/cardv5"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginBottom="2dp"
-                android:background="@android:color/transparent"
-                android:text="FR" />
-        </LinearLayout>
-
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -179,13 +51,10 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="6dp"
-        android:layout_marginLeft="6dp"
         android:layout_marginEnd="5dp"
         app:cardCornerRadius="30dp"
-        android:layout_marginRight="5dp"
         android:layout_marginBottom="15dp"
         android:dividerHeight="0.0px"
         android:orientation="horizontal"
@@ -224,7 +93,6 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="35dp"
-                android:layout_marginLeft="35dp"
                 android:layout_marginTop="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

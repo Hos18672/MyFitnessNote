@@ -14,7 +14,7 @@ class SplashActivity : BaseActivity() {
         fullscreen()
         animat()
         Handler().postDelayed({
-            var currentUserID = FirestoreClass().getCurrentUserId()
+            val currentUserID = FirestoreClass().getCurrentUserId()
             if (currentUserID.isNotEmpty()) {
                 startActivity(Intent(this, MainActivity::class.java))
             } else {

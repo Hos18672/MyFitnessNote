@@ -71,6 +71,7 @@ class ChatActivity : BaseActivity() {
                 adapter.setOnItemClickListener{ item, view ->
                     val userItem= item as UserItem
                     val intent = Intent( view.context, ChatLogActivity:: class.java)
+                    intent.putExtra("name",userItem.user.name)
                     // intent.putExtra(USER_KEY, userItem.user.username)
                     intent.putExtra(USER_KEY, userItem.user)
                     startActivity(intent)

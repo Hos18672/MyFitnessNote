@@ -12,15 +12,11 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_marginStart="1dp"
-        android:layout_marginLeft="1dp"
         android:layout_marginTop="0dp"
         android:layout_marginEnd="-1dp"
-        android:layout_marginRight="-1dp"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,13 +30,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="130dp"
             android:layout_marginBottom="10dp"
-            android:text="Messages "
+            android:text="@string/messages"
             android:textColor="#000000"
             android:textSize="17sp"
             android:textStyle="bold"
             tools:layout_editor_absoluteX="165dp"
-            tools:layout_editor_absoluteY="218dp"
-            android:layout_marginLeft="130dp" />
+            tools:layout_editor_absoluteY="218dp" />
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -50,14 +45,10 @@
         android:layout_above="@+id/ll1"
         android:layout_below="@+id/toolBar_Chat_activity"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_marginStart="0dp"
-        android:layout_marginLeft="0dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="-4dp"
-        android:layout_marginRight="-4dp"
         android:layout_marginBottom="16dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
@@ -66,12 +57,10 @@
         android:layout_width="370dp"
         android:layout_height="50dp"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
         android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="5dp"
+        android:layout_marginEnd="5dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/shapetransparent_message"
         android:gravity="bottom"
@@ -96,7 +85,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:autofillHints="" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -106,15 +96,11 @@
         android:layout_height="52dp"
         android:layout_alignTop="@+id/ll1"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
         android:layout_marginTop="0dp"
         android:layout_marginEnd="15dp"
-        android:layout_marginRight="30dp"
         android:layout_marginBottom="10dp"
         android:layout_toEndOf="@+id/ll1"
-        android:layout_toRightOf="@+id/ll1"
         android:background="@drawable/send_icon" />
 </RelativeLayout>

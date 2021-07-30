@@ -3,7 +3,6 @@ package com.example.myfitneesnote
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,7 +12,6 @@ import com.example.myfitneesnote.model.Workout
 import com.example.myfitneesnote.utils.Constant
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.*
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_training.*
 
 class TrainingActivity : BaseActivity() {
@@ -30,13 +28,13 @@ class TrainingActivity : BaseActivity() {
         recyclerView = findViewById(R.id.rv_trainings_list)
         getTrainingsFromFireStore()
     }
-    fun getTrainingsFromFireStore(){
+    private fun getTrainingsFromFireStore(){
         db = FirebaseFirestore.getInstance()
-        var query : Query = db.collection(Constant.USERS)
+        val query : Query = db.collection(Constant.USERS)
             .document(getCurrentUserID())
             .collection(Constant.TRAININGS)
             .orderBy("date",Query.Direction.DESCENDING)
-        var fireStoreRecyclerOption : FirestoreRecyclerOptions<Workout> = FirestoreRecyclerOptions.Builder<Workout>()
+        val fireStoreRecyclerOption : FirestoreRecyclerOptions<Workout> = FirestoreRecyclerOptions.Builder<Workout>()
             .setQuery(query, Workout::class.java)
             .build()
 
@@ -44,26 +42,26 @@ class TrainingActivity : BaseActivity() {
         recyclerView.layoutManager= LinearLayoutManager(this)
         recyclerView.adapter= trainingItemAdapter
 
-        val Item = object : SwipeToDelete(this, 0,ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT){
+        val item = object : SwipeToDelete(this, 0,ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT){
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                trainingItemAdapter.deleteItem(viewHolder.adapterPosition)
             }
         }
-        val itemTouchHelper= ItemTouchHelper(Item)
+        val itemTouchHelper= ItemTouchHelper(item)
         itemTouchHelper.attachToRecyclerView(recyclerView)
         trainingItemAdapter.notifyDataSetChanged()
     }
     override fun onStart() {
         super.onStart()
-        trainingItemAdapter!!.startListening()
+        trainingItemAdapter.startListening()
     }
     override fun onStop() {
         super.onStop()
-        trainingItemAdapter!!.stopListening()
+        trainingItemAdapter.stopListening()
     }
     private fun setupActionBar() {
         setSupportActionBar(toolBar_workouts_activity)
-        var actionBar = supportActionBar
+        val actionBar = supportActionBar
         if(actionBar!=null) {
             actionBar.setDisplayHomeAsUpEnabled(true)
             actionBar.setHomeAsUpIndicator(R.drawable.ic_navigate_before_black_24dp)

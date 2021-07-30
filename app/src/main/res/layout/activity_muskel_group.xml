@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="Muscle group"
+            android:text="@string/muscle_group"
             android:textColor="#000000"
             android:textSize="15sp"
             tools:layout_editor_absoluteX="165dp"
@@ -51,7 +51,7 @@
             android:layout_marginTop="-30dp"
             android:layout_marginBottom="70dp"
             android:gravity="center"
-            android:text="MUSCLE GROUP"
+            android:text="@string/muscle_group"
             android:textAlignment="center"
             android:textColor="@android:color/black"
             android:textSize="30sp"
@@ -71,13 +71,14 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="10dp"
                 android:background="@drawable/shape3"
-                android:text="CHEST"
+                android:text="@string/chest"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/scroll_bar"
                 app:layout_constraintHorizontal_bias="0.492"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.369" />
+                app:layout_constraintVertical_bias="0.369"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/biceps_btn"
@@ -87,13 +88,14 @@
                 android:layout_margin="10dp"
                 android:layout_marginTop="18dp"
                 android:background="@drawable/shape3"
-                android:text="BICEPS"
+                android:text="@string/biceps"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/scroll_bar"
                 app:layout_constraintHorizontal_bias="0.51"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.547" />
+                app:layout_constraintVertical_bias="0.547"
+                style="?android:attr/buttonBarButtonStyle" />
         </LinearLayout>
 
         <LinearLayout
@@ -110,12 +112,13 @@
                 android:layout_margin="10dp"
                 android:layout_marginTop="18dp"
                 android:background="@drawable/shape3"
-                android:text="TRICEPS"
+                android:text="@string/triceps"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/scroll_bar"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.727" />
+                app:layout_constraintVertical_bias="0.727"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/forearms_btn"
@@ -125,12 +128,13 @@
                 android:layout_margin="10dp"
                 android:layout_marginTop="18dp"
                 android:background="@drawable/shape3"
-                android:text="FOREARMS"
+                android:text="@string/forearms"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/scroll_bar"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.905" />
+                app:layout_constraintVertical_bias="0.905"
+                style="?android:attr/buttonBarButtonStyle" />
         </LinearLayout>
 
         <LinearLayout
@@ -147,12 +151,13 @@
                 android:layout_margin="10dp"
                 android:layout_marginTop="18dp"
                 android:background="@drawable/shape3"
-                android:text="TRAPS"
+                android:text="@string/traps"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/scroll_bar"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.905" />
+                app:layout_constraintVertical_bias="0.905"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/upperabs_btn"
@@ -162,12 +167,13 @@
                 android:layout_margin="10dp"
                 android:layout_marginTop="18dp"
                 android:background="@drawable/shape3"
-                android:text="UPPERABS"
+                android:text="@string/upperabs"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/scroll_bar"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.905" />
+                app:layout_constraintVertical_bias="0.905"
+                style="?android:attr/buttonBarButtonStyle" />
         </LinearLayout>
 
         <LinearLayout
@@ -184,12 +190,13 @@
                 android:layout_margin="10dp"
                 android:layout_marginTop="18dp"
                 android:background="@drawable/shape3"
-                android:text="LOWERABS"
+                android:text="@string/lowerabs"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/scroll_bar"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.905" />
+                app:layout_constraintVertical_bias="0.905"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/shoulder_btn"
@@ -199,12 +206,13 @@
                 android:layout_margin="10dp"
                 android:layout_marginTop="18dp"
                 android:background="@drawable/shape3"
-                android:text="SHOULDER"
+                android:text="@string/shoulder"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/scroll_bar"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.905" />
+                app:layout_constraintVertical_bias="0.905"
+                style="?android:attr/buttonBarButtonStyle" />
         </LinearLayout>
     </LinearLayout>
 
@@ -215,7 +223,7 @@
         android:background="@drawable/shape"
         android:gravity="center"
         android:layout_marginBottom="20dp"
-        android:text="BACK"
+        android:text="@string/back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

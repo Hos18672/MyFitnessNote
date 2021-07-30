@@ -18,7 +18,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.476"
-        app:srcCompat="@drawable/circle_profile" />
+        app:srcCompat="@drawable/circle_profile"
+        android:contentDescription="@string/todo" />
 
 
     <TextView
