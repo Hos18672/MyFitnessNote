@@ -112,7 +112,7 @@ dependencies {
 
     // Calendar
     implementation 'com.vivekkaushik.datepicker:datePickerTimeline:0.0.4'
-
+    compile 'com.github.toanvc:floatingactionmenu:0.8.9'
 
 
 }

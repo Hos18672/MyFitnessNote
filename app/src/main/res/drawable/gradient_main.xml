@@ -7,5 +7,5 @@
         android:startColor="#00E5FF"
         android:angle="@integer/material_motion_duration_long_2"
         android:centerColor="#00E2FF"
-        android:endColor="#2196F3"/>
+        android:endColor="#00B7FF"/>
 </shape>

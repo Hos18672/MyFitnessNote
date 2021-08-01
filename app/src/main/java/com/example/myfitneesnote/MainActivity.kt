@@ -3,6 +3,7 @@ package com.example.myfitneesnote
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
@@ -390,6 +391,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                     lineChart.setPinchZoom(false)
                     lineChart.isAutoScaleMinMaxEnabled = true
                     lineChart.invalidate()
+                    lineChart.setNoDataTextColor(Color.BLUE)
                     // hide legend
                     // hide legend
                     val legend: Legend = lineChart.legend
