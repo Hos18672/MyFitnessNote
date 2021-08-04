@@ -8,287 +8,82 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-            <TextView
-                android:id="@+id/today"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/today"
-                android:textColor="#0090FF"
-                android:textSize="30sp"
-                app:layout_constraintBottom_toTopOf="@+id/cardView4"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.045"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout3"
-                app:layout_constraintVertical_bias="0.743" />
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardView4"
-                android:layout_width="match_parent"
-                android:layout_height="170dp"
-                android:layout_margin="15dp"
-                android:background="?attr/selectableItemBackground"
-                android:orientation="vertical"
-                app:cardCornerRadius="10dp"
-                app:layout_constraintBottom_toTopOf="@+id/Chart"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:ignore="MissingConstraints">
-
-                <TextView
-                    android:id="@+id/tv_no_trainings"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="@string/no_trainings_for_today_available"
-                    android:textColor="#0090FF"
-                    android:textSize="17sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_main_GymName" />
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/const_layout_main"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:visibility="gone"
-                    android:layout_margin="5dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/tv_main_GymName"
-                        android:layout_width="match_parent"
-                        android:layout_height="20dp"
-                        android:gravity="center"
-                        android:textColor="#0090FF"
-                        android:textSize="17sp"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.159" />
-
-                    <View
-                        android:id="@+id/view"
-                        android:layout_width="match_parent"
-                        android:layout_height="0.6dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="-5dp"
-                        android:layout_marginRight="10dp"
-                        android:background="@android:color/darker_gray"
-                        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tv_main_GymName"
-                        app:layout_constraintVertical_bias="0.217"
-                        tools:ignore="MissingConstraints" />
-
-                    <TextView
-                        android:id="@+id/tv_main_date"
-                        android:layout_width="95dp"
-                        android:layout_height="39dp"
-                        android:layout_gravity="bottom"
-                        android:layout_margin="5dp"
-                        android:gravity="bottom|right"
-                        android:text="@string/date"
-                        android:textColor="#000000"
-                        android:textSize="13sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toEndOf="@+id/linearLayout"
-                        app:layout_constraintTop_toBottomOf="@+id/tv_main_GymName"
-                        app:layout_constraintVertical_bias="1.0"
-                        tools:ignore="RtlHardcoded" />
-
-                    <LinearLayout
-                        android:id="@+id/linearLayout3"
-                        android:layout_width="91dp"
-                        android:layout_height="111dp"
-                        android:layout_margin="5dp"
-                        android:layout_marginBottom="5dp"
-                        android:gravity="bottom"
-                        android:orientation="vertical"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/linearLayout"
-                        app:layout_constraintHorizontal_bias="0.416"
-                        app:layout_constraintStart_toStartOf="parent">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="22dp"
-                            android:gravity="left"
-                            android:text="@string/muscle"
-                            android:textColor="#000000"
-                            android:textSize="17sp"
-                            android:textStyle="bold"
-                            tools:ignore="RtlHardcoded" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="22dp"
-                            android:gravity="left"
-                            android:text="@string/sets_"
-                            android:textColor="#000000"
-                            android:textSize="17sp"
-                            android:textStyle="bold"
-                            tools:ignore="RtlHardcoded" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="22dp"
-                            android:gravity="left"
-                            android:text="@string/weight_"
-                            android:textColor="#000000"
-                            android:textSize="17sp"
-                            android:textStyle="bold"
-                            tools:ignore="RtlHardcoded" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="22dp"
-                            android:gravity="left"
-                            android:text="@string/breaktime"
-                            android:textColor="#000000"
-                            android:textSize="17sp"
-                            android:textStyle="bold"
-                            tools:ignore="RtlHardcoded" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="22dp"
-                            android:gravity="left"
-                            android:text="@string/repeat_"
-                            android:textColor="#000000"
-                            android:textSize="17sp"
-                            android:textStyle="bold"
-                            tools:ignore="RtlHardcoded" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/linearLayout"
-                        android:layout_width="152dp"
-                        android:layout_height="109dp"
-                        android:layout_marginBottom="5dp"
-                        android:orientation="vertical"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/linearLayout3">
-
-
-                        <TextView
-                            android:id="@+id/tv_main_muscle"
-                            android:layout_width="match_parent"
-                            android:layout_height="22dp"
-                            android:gravity="left"
-                            android:text=""
-                            android:textColor="#000000"
-                            android:textSize="17sp"
-                            tools:ignore="RtlHardcoded" />
-
-                        <TextView
-                            android:id="@+id/tv_main_sets"
-                            android:layout_width="match_parent"
-                            android:layout_height="22dp"
-                            android:gravity="left"
-                            android:text=""
-                            android:textColor="#000000"
-                            android:textSize="17sp"
-                            tools:ignore="RtlHardcoded" />
-
-                        <TextView
-                            android:id="@+id/tv_main_weight"
-                            android:layout_width="match_parent"
-                            android:layout_height="22dp"
-                            android:gravity="left"
-                            android:text=""
-                            android:textColor="#000000"
-                            android:textSize="17sp"
-                            tools:ignore="RtlHardcoded" />
-
-                        <TextView
-                            android:id="@+id/tv_main_break"
-                            android:layout_width="match_parent"
-                            android:layout_height="22dp"
-                            android:gravity="left"
-                            android:text=""
-                            android:textColor="#000000"
-                            android:textSize="17sp"
-                            tools:ignore="RtlHardcoded" />
-
-                        <TextView
-                            android:id="@+id/tv_main_repeat"
-                            android:layout_width="match_parent"
-                            android:layout_height="22dp"
-                            android:gravity="left"
-                            android:text=""
-                            android:textColor="#000000"
-                            android:textSize="17sp"
-                            tools:ignore="RtlHardcoded" />
-                    </LinearLayout>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
-
     <TextView
-        android:id="@+id/Chart"
+        android:id="@+id/today"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        android:text="@string/progress"
+        android:text="@string/today"
         android:textColor="#0090FF"
+        android:layout_marginTop="10dp"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/cv_lineChart"
+        app:layout_constraintBottom_toTopOf="@+id/rv_trainings_list_main"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.051"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cv_lineChart"
-        android:layout_width="match_parent"
-        android:layout_height="270dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginBottom="50dp"
-        android:background="@android:color/transparent"
-        app:cardCornerRadius="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.533"
+        app:layout_constraintHorizontal_bias="0.045"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints,NotSibling">
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
 
-        <com.github.mikephil.charting.charts.LineChart
-            android:id="@+id/lineChart"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_trainings_list_main"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/Chart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/today"
+        tools:ignore="MissingConstraints" />
+        <TextView
+            android:id="@+id/Chart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:text="@string/progress"
+            android:textColor="#0090FF"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toTopOf="@+id/cv_lineChart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.051"
+            app:layout_constraintStart_toStartOf="parent" />
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_lineChart"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="20dp"
-            android:background="@android:color/transparent" />
-
-    </androidx.cardview.widget.CardView>
-
+            android:layout_height="270dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="50dp"
+            android:background="@android:color/transparent"
+            app:cardCornerRadius="15dp"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.533"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints,NotSibling">
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/lineChart"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@android:color/transparent" />
+        </androidx.cardview.widget.CardView>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout3"
         android:layout_width="match_parent"
-        android:layout_height="115dp"
+        android:layout_height="130dp"
         android:background="@drawable/ic_round_top_navbar"
         android:gravity="bottom|center"
-        app:layout_constraintBottom_toTopOf="@+id/cardView4"
+        app:layout_constraintBottom_toTopOf="@+id/rv_trainings_list_main"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
-
         <RelativeLayout
             android:id="@+id/relativeLayout"
             android:layout_width="60dp"
@@ -302,25 +97,22 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.493"
             tools:ignore="MissingConstraints">
-
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/main_menu"
                 android:layout_width="54dp"
                 android:layout_height="34dp"
                 android:background="@drawable/white_menu" />
         </RelativeLayout>
-
         <ImageView
             android:id="@+id/tv_main_profile_image"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_marginEnd="40dp"
+            android:contentDescription="@string/todo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/circle_profile"
-            android:contentDescription="@string/todo" />
-
+            app:srcCompat="@drawable/circle_profile" />
         <TextView
             android:id="@+id/tv_main_username"
             android:layout_width="wrap_content"
@@ -332,14 +124,12 @@
             app:layout_constraintStart_toEndOf="@+id/relativeLayout"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout6"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:background="@drawable/ic_round_top_nav_bottom"
         app:layout_constraintBottom_toBottomOf="parent">
-
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/chat_main"
             android:layout_width="55dp"
@@ -349,8 +139,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/main_diagramm"
             android:layout_width="55dp"
@@ -361,7 +149,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/Add_main"
         android:layout_width="65dp"
@@ -382,5 +169,4 @@
         app:tint="@color/white"
         tools:ignore="MissingConstraints,VectorDrawableCompat"
         android:contentDescription="@string/todo" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
