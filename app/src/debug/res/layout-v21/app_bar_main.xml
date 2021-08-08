@@ -4,9 +4,57 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E8E8E8"
+    android:background="#ECF8FD"
     android:orientation="vertical"
     tools:context=".MainActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:background="@drawable/ic_round_top_navbar"
+        android:gravity="bottom|center"
+        android:layout_marginTop="-1dp"
+        app:layout_constraintBottom_toTopOf="@+id/rv_trainings_list_main"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="30dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.493"
+            tools:ignore="MissingConstraints">
+
+            <Button
+                android:id="@+id/main_menu"
+                android:layout_width="54dp"
+                android:layout_height="34dp"
+                android:background="@drawable/white_menu" />
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/tv_main_profile_image"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginEnd="28dp"
+            android:contentDescription="@string/todo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/circle_profile" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/today"
@@ -21,35 +69,33 @@
         app:layout_constraintHorizontal_bias="0.045"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_trainings_list_main"
         android:layout_width="match_parent"
         android:layout_height="180dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layoutAnimation="@anim/layout_animation"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/Chart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/today"
         tools:ignore="MissingConstraints" />
-        <TextView
-            android:id="@+id/Chart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:text="@string/progress"
-            android:textColor="#0090FF"
-            android:textSize="30sp"
-            app:layout_constraintBottom_toTopOf="@+id/cv_lineChart"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.051"
-            app:layout_constraintStart_toStartOf="parent" />
-        <androidx.cardview.widget.CardView
+    <TextView
+        android:id="@+id/Chart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:text="@string/progress"
+        android:textColor="#0090FF"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/cv_lineChart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.054"
+        app:layout_constraintStart_toStartOf="parent" />
+    <androidx.cardview.widget.CardView
             android:id="@+id/cv_lineChart"
             android:layout_width="match_parent"
-            android:layout_height="270dp"
+            android:layout_height="220dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_marginLeft="15dp"
@@ -62,75 +108,29 @@
             app:layout_constraintHorizontal_bias="0.533"
             app:layout_constraintStart_toStartOf="parent"
             tools:ignore="MissingConstraints,NotSibling">
-            <com.github.mikephil.charting.charts.LineChart
-                android:id="@+id/lineChart"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="20dp"
-                android:background="@android:color/transparent" />
-        </androidx.cardview.widget.CardView>
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout3"
-        android:layout_width="match_parent"
-        android:layout_height="130dp"
-        android:background="@drawable/ic_round_top_navbar"
-        android:gravity="bottom|center"
-        app:layout_constraintBottom_toTopOf="@+id/rv_trainings_list_main"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
-        <RelativeLayout
-            android:id="@+id/relativeLayout"
-            android:layout_width="60dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="40dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:padding="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.493"
-            tools:ignore="MissingConstraints">
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/main_menu"
-                android:layout_width="54dp"
-                android:layout_height="34dp"
-                android:background="@drawable/white_menu" />
-        </RelativeLayout>
-        <ImageView
-            android:id="@+id/tv_main_profile_image"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginEnd="40dp"
-            android:contentDescription="@string/todo"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/circle_profile" />
-        <TextView
-            android:id="@+id/tv_main_username"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#000000"
-            android:textSize="30sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/tv_main_profile_image"
-            app:layout_constraintStart_toEndOf="@+id/relativeLayout"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/lineChart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="20dp"
+            android:background="@android:color/transparent" />
+    </androidx.cardview.widget.CardView>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout6"
         android:layout_width="match_parent"
         android:layout_height="80dp"
+        android:layout_marginBottom="-1dp"
         android:background="@drawable/ic_round_top_nav_bottom"
-        app:layout_constraintBottom_toBottomOf="parent">
-        <androidx.appcompat.widget.AppCompatImageButton
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
             android:id="@+id/chat_main"
             android:layout_width="55dp"
             android:layout_height="55dp"
@@ -139,7 +139,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-        <androidx.appcompat.widget.AppCompatImageButton
+
+        <Button
             android:id="@+id/main_diagramm"
             android:layout_width="55dp"
             android:layout_height="55dp"
@@ -149,6 +150,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/Add_main"
         android:layout_width="65dp"

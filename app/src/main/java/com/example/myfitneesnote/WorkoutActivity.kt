@@ -32,7 +32,7 @@ class WorkoutActivity : BaseActivity(){
                 }
             }.start()
             val intent = Intent( this,  MuskelGroupActivity::class.java)
-            intent.putExtra("WorkoutType",btn_gym_workout.text)
+            intent.putExtra("WorkoutType",txt_gym_workout.text)
             startActivity(intent) }
         btn_home_workout.setOnClickListener{
             btn_home_workout.animate().apply {
@@ -47,7 +47,7 @@ class WorkoutActivity : BaseActivity(){
                 }
             }.start()
             val intent = Intent( this,  MuskelGroupActivity::class.java)
-            intent.putExtra("WorkoutType",btn_home_workout.text)
+            intent.putExtra("WorkoutType",txt_home_workout.text)
             startActivity(intent)}
         btnBack1.setOnClickListener{ onBackPressed() }
     }

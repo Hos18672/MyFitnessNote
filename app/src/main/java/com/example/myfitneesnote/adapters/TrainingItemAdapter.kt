@@ -2,12 +2,20 @@ package com.example.myfitneesnote.adapters
 
 
 import android.annotation.SuppressLint
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewTreeObserver
+import android.view.animation.AccelerateInterpolator
+import android.view.animation.TranslateAnimation
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myfitneesnote.R
+import com.example.myfitneesnote.R.*
+import com.example.myfitneesnote.R.drawable.bench_press
+import com.example.myfitneesnote.R.drawable.workout_home
 import com.example.myfitneesnote.model.Workout
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
@@ -16,11 +24,23 @@ import kotlinx.android.synthetic.main.item_training.view.*
 class TrainingItemAdapter(options: FirestoreRecyclerOptions<Workout>)
     : FirestoreRecyclerAdapter<Workout,TrainingItemAdapter.MyViewHolder>(options){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder{
-        val itemView = LayoutInflater.from(parent.context).inflate((R.layout.item_training), parent, false)
+        val itemView = LayoutInflater.from(parent.context).inflate((layout.item_training), parent, false)
         return  MyViewHolder(itemView)
     }
-    @SuppressLint("SetTextI18n")
+
+    inline fun <T: View> T.afterMeasured(crossinline f: T.() -> Unit) {
+        viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
+            override fun onGlobalLayout() {
+                if (measuredWidth > 0 && measuredHeight > 0) {
+                    viewTreeObserver.removeOnGlobalLayoutListener(this)
+                    f()
+                }
+            }
+        })
+    }
+    @SuppressLint("SetTextI18n", "ResourceType")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int, training: Workout) {
+
             holder.gymName.text    = training.GymType
             holder.muskelName.text = training.MuskelName
             holder.sets.text       = "${training.set} x"
@@ -28,6 +48,13 @@ class TrainingItemAdapter(options: FirestoreRecyclerOptions<Workout>)
             holder.repeat.text     = "${training.repeat} x"
             holder.breakTime.text  = "${training.BreakTime} min"
             holder.date.text       = training.currentDateTime
+        if (training.GymType == "HOME") {
+            holder.image.setImageResource(workout_home)
+        }else{
+            holder.image.setImageResource(bench_press)
+        }
+
+
     }
      fun deleteItem(i: Int){
         snapshots.getSnapshot(i).reference.delete()
@@ -41,8 +68,11 @@ class TrainingItemAdapter(options: FirestoreRecyclerOptions<Workout>)
         val repeat    : TextView = itemView.tv_repeat
         val breakTime : TextView = itemView.tv_break
         val date      : TextView = itemView.tv_date
+        val image      : ImageView = itemView.workout_image
     }
 }
+
+
 
 
 

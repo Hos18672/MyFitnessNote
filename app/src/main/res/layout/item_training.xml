@@ -67,7 +67,7 @@
             android:id="@+id/linearLayout3"
             android:layout_width="91dp"
             android:layout_height="111dp"
-            android:layout_margin="5dp"
+            android:layout_marginStart="15dp"
             android:layout_marginBottom="5dp"
             android:gravity="bottom"
             android:orientation="vertical"
@@ -185,6 +185,16 @@
                 android:textSize="17sp"
                 tools:ignore="RtlHardcoded" />
         </LinearLayout>
+
+        <ImageView
+            android:id="@+id/workout_image"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_date"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.545"
+            app:layout_constraintStart_toEndOf="@+id/linearLayout"
+            app:srcCompat="@drawable/workout" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

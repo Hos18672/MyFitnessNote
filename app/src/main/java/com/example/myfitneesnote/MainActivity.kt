@@ -6,8 +6,8 @@ import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.widget.Button
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -40,13 +40,10 @@ import kotlinx.android.synthetic.main.activity_main_layout.*
 import kotlinx.android.synthetic.main.nav_header_main.*
 import java.text.DateFormat
 import java.text.SimpleDateFormat
-import java.time.Instant.now
-import java.time.LocalDate.now
 import java.util.*
 import kotlin.collections.ArrayList
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
-    val database = FirebaseDatabase.getInstance()
     private val db = FirebaseFirestore.getInstance()
     private val currentDateAndTime = com.google.firebase.Timestamp.now()
     private lateinit var trainingItemAdapterMain : TrainingItemAdapterMain
@@ -57,12 +54,11 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         setContentView(layout.activity_main)
         setupLineChartData2()
         nav_view.setNavigationItemSelectedListener(this)
-        // FirestoreClass().loginUser(this)
+        //FirestoreClass().loginUser(this)
         fullscreen()
         onClick()
         userData()
-        recyclerView = findViewById(R.id.rv_trainings_list_main)
-
+        recyclerView = findViewById(id.rv_trainings_list_main)
         getTrainingsFromFireStore()
        // userWorkoutsData()
         getDataFromFireStore()
@@ -70,12 +66,12 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
     private fun userData() {
         val uid = FirebaseAuth.getInstance().uid
-        val mainUsername : TextView = findViewById(id.tv_main_username)
+        //val mainUsername : TextView = findViewById(id.tv_main_username)
         val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val username = snapshot.child("username").getValue(String::class.java)
-                mainUsername.text = username
+                //mainUsername.text = username
             }
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
@@ -144,12 +140,12 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
            }
    }*/
    private fun onClick() {
-       val mainMenu: ImageView = findViewById(id.main_menu)
+       val mainMenu: Button = findViewById(id.main_menu)
        val addMenu: ImageView = findViewById(id.Add_main)
-       val chatMain: ImageView = findViewById(id.chat_main)
+       val chatMain: Button = findViewById(id.chat_main)
        val cvChart: CardView = findViewById(id.cv_lineChart)
-       val mainImage: ImageView = findViewById(id.tv_main_profile_image)
-       val diagramMain: ImageView = findViewById(id.main_diagramm)
+       val mainImage: Button = findViewById(id.tv_main_profile_image)
+       val diagramMain: Button = findViewById(id.main_diagramm)
        val cvLinechart: LineChart = findViewById(id.lineChart)
        mainImage.setOnClickListener {
            animate(mainImage)
@@ -169,7 +165,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
            }
        }
        addMenu.setOnClickListener {
-           animate(addMenu)
            startActivity(Intent(this, WorkoutActivity::class.java))
        }
        chatMain.setOnClickListener {
@@ -199,7 +194,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
            finish()
        }
    }
-   private fun animate(btn: ImageView){
+   private fun animate(btn: Button){
        btn.animate().apply {
                duration =100
                scaleYBy(.3f)
@@ -297,6 +292,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
        val year = c.get(Calendar.YEAR)
        val day = c.get(Calendar.DAY_OF_MONTH)
        val month = c.get(Calendar.MONTH)
+       var datelocal : String = "${year}/${month +1}/${day}"
 
        db.collection(Constant.USERS).document(getCurrentUserID()).collection(Constant.TRAININGS)
            .whereLessThan("date", currentDateAndTime)
@@ -309,14 +305,14 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                        //val inputFormatter: DateFormat = SimpleDateFormat("yyyy/MM/dd - HH:mm")
                        val inputFormatter: DateFormat = SimpleDateFormat("yyyy/MM/dd")
                        val date: Date = inputFormatter.parse(input)
+                       val d : Date = inputFormatter.parse(datelocal)
                        val outputFormatter: DateFormat = SimpleDateFormat("dd/MM/yyyy")
                        val output: String = outputFormatter.format(date) // Output : 01/20/2012
                        outputMonth = outputFormatter.format(date)
-
-                       listXDate.add(output.substring(0, output.length - 8).toInt().toString())
-
-                       listYData.add(document.get("set").toString())
-
+                       if (d > date) {
+                           listXDate.add(output.substring(0, output.length - 8).toInt().toString())
+                           listYData.add(document.get("set").toString())
+                       }
                    }
                    var i = 0
                    while (i < listXDate.size) {
@@ -354,7 +350,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                    lineChart.axisRight.setDrawLabels(false)
                    //lineChart.getXAxis().setDrawLabels(true)
                    // https://stackoverflow.com/questions/31263097/mpandroidchart-hide-background-grid
-                   // https://stackoverflow.com/questions/31263097/mpandroidchart-hide-background-grid
                    lineChart.axisLeft.setDrawGridLines(false)
                    lineChart.xAxis.setDrawGridLines(false)
                    lineChart.axisRight.setDrawGridLines(false)
@@ -381,26 +376,17 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                    lineChart.setDrawGridBackground(false)
                    lineChart.legend.isEnabled = false
                    // no description text
-                   // no description text
                    lineChart.description.isEnabled = false
-                   // enable touch gestures
                    // enable touch gestures
                    lineChart.setTouchEnabled(true)
                    // enable scaling and dragging
-                   // enable scaling and dragging
                    lineChart.isDragEnabled = false
                    lineChart.setScaleEnabled(false)
-                   // mChart.setScaleXEnabled(true);
-                   // mChart.setScaleYEnabled(true);
-                   // if disabled, scaling can be done on x- and y-axis separately
-                   // mChart.setScaleXEnabled(true);
-                   // mChart.setScaleYEnabled(true);
                    // if disabled, scaling can be done on x- and y-axis separately
                    lineChart.setPinchZoom(false)
                    lineChart.isAutoScaleMinMaxEnabled = true
                    lineChart.invalidate()
                    lineChart.setNoDataTextColor(Color.BLUE)
-                   // hide legend
                    // hide legend
                    val legend: Legend = lineChart.legend
                    legend.isEnabled = false
@@ -410,7 +396,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
            }
    }
     private fun getTrainingsFromFireStore(){
-
         val c= Calendar.getInstance()
         val year = c.get(Calendar.YEAR)
         val day = c.get(Calendar.DAY_OF_MONTH)
@@ -438,9 +423,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         super.onStop()
         trainingItemAdapterMain.stopListening()
     }
-
 }
-
 /*class UserLoged(val user: User): Item<ViewHolder>(){
    override fun bind(viewHolder: ViewHolder, position: Int) {
        // load our user image into the picture

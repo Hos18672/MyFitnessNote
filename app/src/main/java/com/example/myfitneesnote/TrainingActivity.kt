@@ -1,8 +1,11 @@
 package com.example.myfitneesnote
 
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.animation.AnimationUtils
+import android.view.animation.LayoutAnimationController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -27,6 +30,7 @@ class TrainingActivity : BaseActivity() {
         btnback_training.setOnClickListener { startActivity(Intent(this,MainActivity::class.java)) }
         recyclerView = findViewById(R.id.rv_trainings_list)
         getTrainingsFromFireStore()
+        layoutAnimation(recyclerView)
     }
     private fun getTrainingsFromFireStore(){
         db = FirebaseFirestore.getInstance()
@@ -72,5 +76,17 @@ class TrainingActivity : BaseActivity() {
     }
     override fun onBackPressed() {
             finish()
+    }
+
+    private fun layoutAnimation(recyclerview :RecyclerView){ var context : Context? = recyclerview.context
+       var layoutAnimationcontroller : LayoutAnimationController =
+           AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
+
+        recyclerview.layoutAnimation = layoutAnimationcontroller
+        recyclerview.adapter?.notifyDataSetChanged()
+        recyclerview.scheduleLayoutAnimation()
+
+
+
     }
 }

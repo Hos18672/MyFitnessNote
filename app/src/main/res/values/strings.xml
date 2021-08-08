@@ -22,8 +22,8 @@
     <string name="enter_message">Type a message</string>
     <string name="button">Button</string>
     <string name="back">Back</string>
-    <string name="gymwork1">GYM WORKOUT</string>
-    <string name="homeworkout1">HOME WORKOUT</string>
+    <string name="gymwork1">GYM</string>
+    <string name="homeworkout1">HOME</string>
     <string name="_1">1</string>
     <string name="_3">3</string>
     <string name="full_name">Full name</string>
@@ -80,7 +80,7 @@
     <string name="hi_max_how_are_you_doing">Hi Max How are you doing?</string>
     <string name="no_boards_are_available">no boards are available</string>
     <string name="your_name">Your Name</string>
-    <string name="welcome">welcome</string>
+    <string name="welcome">Welcome</string>
     <string name="add_member">add_member</string>
     <string name="members">members</string>
     <string name="todo">TODO</string>

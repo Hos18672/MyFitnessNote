@@ -24,7 +24,7 @@ class SplashActivity : BaseActivity() {
             finish()
         }, 2500)
     }
-    fun animat(){
+    private fun animat(){
         val btt = AnimationUtils.loadAnimation(this, R.anim.btt)
         splash_textView.startAnimation(btt)
         val ttb = AnimationUtils.loadAnimation(this, R.anim.ttb)
