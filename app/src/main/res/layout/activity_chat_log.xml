@@ -7,6 +7,7 @@
     android:background="@drawable/ic_background"
     android:orientation="vertical"
     tools:context=".ChatLogActivity">
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar_Chat_activity"
         android:layout_width="match_parent"
@@ -15,7 +16,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="-3dp"
         android:layout_marginEnd="-1dp"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -24,6 +25,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints">
+
         <TextView
             android:id="@+id/Chat_log_textView"
             android:layout_width="wrap_content"
@@ -40,67 +42,39 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_chat_log"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/ll1"
+        android:layout_above="@+id/editTextChatLog"
         android:layout_below="@+id/toolBar_Chat_activity"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="-4dp"
-        android:layout_marginBottom="16dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/ll1"
-        android:layout_width="370dp"
-        android:layout_height="50dp"
+    <EditText
+        android:id="@+id/editTextChatLog"
+        android:layout_width="340dp"
+        android:layout_height="55dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_gravity="bottom"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/shapetransparent_message"
-        android:gravity="bottom"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.991">
-
-        <EditText
-            android:id="@+id/editTextChatLog"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="bottom"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@android:color/transparent"
-            android:hint="@string/enter_message"
-            android:inputType="text|textNoSuggestions"
-            android:padding="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:autofillHints="" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="13dp"
+        android:paddingTop="5dp"
+        android:hint="@string/type_a_message"
+        android:paddingBottom="5dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:layout_marginBottom="27dp"
+        android:layout_toStartOf="@+id/SendeBtn"
+        android:background="@drawable/shapetransparent_message" />
 
     <Button
         android:id="@+id/SendeBtn"
-        android:layout_width="30dp"
-        android:layout_height="52dp"
-        android:layout_alignTop="@+id/ll1"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="10dp"
-        android:layout_toEndOf="@+id/ll1"
+        android:layout_marginEnd="11dp"
+        android:layout_marginBottom="29dp"
         android:background="@drawable/send_icon" />
 </RelativeLayout>

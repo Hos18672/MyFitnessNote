@@ -251,7 +251,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 val username = snapshot.child("username").getValue(String::class.java)
                // val imageUri = snapshot.child("image").getValue(String::class.java)
                // Picasso.get().load(imageUri!!).into(main_drawer_profile_photo)
-                tv_username.text = username
+                //tv_username.text = username
             }
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")

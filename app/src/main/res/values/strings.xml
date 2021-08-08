@@ -84,4 +84,5 @@
     <string name="add_member">add_member</string>
     <string name="members">members</string>
     <string name="todo">TODO</string>
+    <string name="type_a_message">Type a message</string>
 </resources>

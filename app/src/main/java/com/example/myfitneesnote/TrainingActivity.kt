@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.animation.AnimationUtils
 import android.view.animation.LayoutAnimationController
+import androidx.core.view.postOnAnimationDelayed
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,6 +17,7 @@ import com.example.myfitneesnote.utils.Constant
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.*
 import kotlinx.android.synthetic.main.activity_training.*
+import com.example.myfitneesnote.R.anim.layout_animation
 
 class TrainingActivity : BaseActivity() {
     private lateinit var trainingItemAdapter : TrainingItemAdapter
@@ -25,12 +27,15 @@ class TrainingActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_training)
+
         fullscreen()
         setupActionBar()
         btnback_training.setOnClickListener { startActivity(Intent(this,MainActivity::class.java)) }
         recyclerView = findViewById(R.id.rv_trainings_list)
         getTrainingsFromFireStore()
-        layoutAnimation(recyclerView)
+        recyclerView.startLayoutAnimation()
+
+
     }
     private fun getTrainingsFromFireStore(){
         db = FirebaseFirestore.getInstance()
@@ -41,10 +46,13 @@ class TrainingActivity : BaseActivity() {
         val fireStoreRecyclerOption : FirestoreRecyclerOptions<Workout> = FirestoreRecyclerOptions.Builder<Workout>()
             .setQuery(query, Workout::class.java)
             .build()
-
         trainingItemAdapter = TrainingItemAdapter(fireStoreRecyclerOption)
         recyclerView.layoutManager= LinearLayoutManager(this)
         recyclerView.adapter= trainingItemAdapter
+        val lac = LayoutAnimationController(AnimationUtils.loadAnimation(this,R.anim.slide_out_left))
+        lac.delay = 0.20f
+        lac.order = LayoutAnimationController.ORDER_NORMAL
+        recyclerView.layoutAnimation = lac
 
         val item = object : SwipeToDelete(this, 0,ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT){
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
@@ -54,6 +62,7 @@ class TrainingActivity : BaseActivity() {
         val itemTouchHelper= ItemTouchHelper(item)
         itemTouchHelper.attachToRecyclerView(recyclerView)
         trainingItemAdapter.notifyDataSetChanged()
+        recyclerView.startLayoutAnimation()
     }
     override fun onStart() {
         super.onStart()
@@ -78,15 +87,4 @@ class TrainingActivity : BaseActivity() {
             finish()
     }
 
-    private fun layoutAnimation(recyclerview :RecyclerView){ var context : Context? = recyclerview.context
-       var layoutAnimationcontroller : LayoutAnimationController =
-           AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
-
-        recyclerview.layoutAnimation = layoutAnimationcontroller
-        recyclerview.adapter?.notifyDataSetChanged()
-        recyclerview.scheduleLayoutAnimation()
-
-
-
-    }
 }

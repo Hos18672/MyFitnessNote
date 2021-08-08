@@ -34,6 +34,7 @@
             app:layout_constraintVertical_bias="0.159" />
 
         <View
+            android:id="@+id/view"
             android:layout_width="match_parent"
             android:layout_height="0.6dp"
             android:layout_marginLeft="10dp"
@@ -67,9 +68,9 @@
 
         <LinearLayout
             android:id="@+id/linearLayout3"
-            android:layout_width="91dp"
+            android:layout_width="69dp"
             android:layout_height="111dp"
-            android:layout_marginStart="15dp"
+            android:layout_marginStart="35dp"
             android:layout_marginBottom="5dp"
             android:gravity="bottom"
             android:orientation="vertical"
@@ -85,7 +86,7 @@
                 android:text="@string/muscle"
                 android:textColor="#000000"
                 android:textSize="17sp"
-                android:textStyle="bold"
+                android:textStyle="normal"
                 tools:ignore="RtlHardcoded" />
 
             <TextView
@@ -95,7 +96,7 @@
                 android:text="@string/sets_"
                 android:textColor="#000000"
                 android:textSize="17sp"
-                android:textStyle="bold"
+                android:textStyle="normal"
                 tools:ignore="RtlHardcoded" />
 
             <TextView
@@ -105,7 +106,7 @@
                 android:text="@string/weight_"
                 android:textColor="#000000"
                 android:textSize="17sp"
-                android:textStyle="bold"
+                android:textStyle="normal"
                 tools:ignore="RtlHardcoded" />
 
             <TextView
@@ -115,7 +116,6 @@
                 android:text="@string/breaktime"
                 android:textColor="#000000"
                 android:textSize="17sp"
-                android:textStyle="bold"
                 tools:ignore="RtlHardcoded" />
 
             <TextView
@@ -125,7 +125,6 @@
                 android:text="@string/repeat_"
                 android:textColor="#000000"
                 android:textSize="17sp"
-                android:textStyle="bold"
                 tools:ignore="RtlHardcoded" />
         </LinearLayout>
 
@@ -196,5 +195,66 @@
             app:layout_constraintHorizontal_bias="0.783"
             app:layout_constraintStart_toEndOf="@+id/linearLayout"
             tools:ignore="MissingConstraints" />
+
+
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            app:layout_constraintBottom_toTopOf="@+id/imageView4"
+            app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
+            app:layout_constraintHorizontal_bias="0.47"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view"
+            app:layout_constraintVertical_bias="0.894"
+            app:srcCompat="@drawable/six_pack" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginBottom="4dp"
+            app:layout_constraintBottom_toTopOf="@+id/imageView2"
+            app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
+            app:layout_constraintHorizontal_bias="0.466"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/weight_kilogram_icon_138014" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginBottom="5dp"
+            app:layout_constraintBottom_toTopOf="@+id/imageView3"
+            app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
+            app:layout_constraintHorizontal_bias="0.272"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/baseline_timer_black_24dp"
+            tools:ignore="MissingConstraints" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginBottom="4dp"
+            app:layout_constraintBottom_toTopOf="@+id/imageView5"
+            app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
+            app:layout_constraintHorizontal_bias="0.47"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/baseline_fitness_center_black_24dp" />
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginBottom="6dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
+            app:layout_constraintHorizontal_bias="0.466"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/baseline_loop_black_24dp"
+            tools:ignore="MissingConstraints,VectorDrawableCompat" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
