@@ -74,13 +74,16 @@ class AddWorkoutActivity : BaseActivity() {
     }
     private fun minusButton(et: EditText){
         var num = et.text.toString().toInt()
-        num--
-        et.text= "$num".toEditable()
+        if(num  > 0 ) {
+            num--
+            et.text = "$num".toEditable()
+        }
     }
     private fun plusButton(et: EditText){
         var num = et.text.toString().toInt()
         num++
-        et.text= "$num".toEditable()
+        et.text = "$num".toEditable()
+
     }
     private fun createTraining(){
         val currentDateAndTime = Timestamp.now()

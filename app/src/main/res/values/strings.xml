@@ -85,4 +85,9 @@
     <string name="members">members</string>
     <string name="todo">TODO</string>
     <string name="type_a_message">Type a message</string>
+    <string name="trainings">Trainings</string>
+    <string name="Leg_presses">Leg presses</string>
+    <string name="Seated_rows">Seated rows</string>
+    <string name="Leg_extensions">Leg extensions</string>
+    <string name="Seated_biceps_curls">Seated biceps curls</string>
 </resources>

@@ -77,13 +77,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginEnd="10dp"
-                    app:cardCornerRadius="10dp"
+                    app:cardCornerRadius="15dp"
                     app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/constraintLayout"
-                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.0">
@@ -98,10 +98,11 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:layout_marginBottom="12dp"
+                    android:layout_height="60dp"
+                    android:layout_marginBottom="20dp"
                     app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
-                    tools:layout_editor_absoluteX="0dp">
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
 
                     <ImageView
                         android:id="@+id/imageView4"
@@ -121,8 +122,8 @@
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:layout_marginStart="40dp"
-                        android:gravity="left"
-                        android:padding="20dp"
+                        android:gravity="center"
+                        android:padding="0dp"
                         android:text="@string/sets"
                         android:textColor="@android:color/black"
                         android:textSize="25sp"
@@ -134,8 +135,8 @@
 
                     <Button
                         android:id="@+id/btn_set_minus"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
                         android:layout_gravity="center"
                         android:background="@drawable/ic_minus"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -145,9 +146,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/SetNum"
                         android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_height="match_parent"
                         android:layout_gravity="center"
-                        android:layout_margin="10dp"
                         android:gravity="center"
                         android:inputType="number"
                         android:maxLength="2"
@@ -156,15 +156,15 @@
                         android:textSize="30sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintHorizontal_bias="0.086"
                         app:layout_constraintStart_toEndOf="@+id/btn_set_minus"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="1.0" />
+                        app:layout_constraintVertical_bias="0.0" />
 
                     <TextView
                         android:id="@+id/textView2"
                         android:layout_width="wrap_content"
-                        android:layout_height="50dp"
+                        android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:background="@color/cardview_light_background"
                         android:gravity="center"
@@ -180,8 +180,8 @@
 
                     <Button
                         android:id="@+id/btn_set_plus"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
                         android:layout_gravity="center"
                         android:layout_marginEnd="20dp"
                         android:background="@drawable/ic_plus"
@@ -194,8 +194,8 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout2"
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:layout_marginBottom="12dp"
+                    android:layout_height="60dp"
+                    android:layout_marginBottom="20dp"
                     app:layout_constraintBottom_toTopOf="@+id/constraintLayout4"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -219,8 +219,7 @@
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:layout_marginStart="40dp"
-                        android:gravity="left"
-                        android:padding="20dp"
+                        android:gravity="center"
                         android:text="@string/Break"
                         android:textColor="@android:color/black"
                         android:textSize="25sp"
@@ -231,10 +230,10 @@
 
                     <Button
                         android:id="@+id/btn_break_minus"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
                         android:layout_gravity="center"
-                           android:background="@drawable/ic_minus"
+                        android:background="@drawable/ic_minus"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/tv_break"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -260,7 +259,7 @@
                     <TextView
                         android:id="@+id/textView4"
                         android:layout_width="wrap_content"
-                        android:layout_height="50dp"
+                        android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:background="@color/cardview_light_background"
                         android:gravity="center"
@@ -276,8 +275,8 @@
 
                     <Button
                         android:id="@+id/btn_break_plus"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
                         android:layout_gravity="center"
                         android:layout_marginEnd="20dp"
                         android:background="@drawable/ic_plus"
@@ -290,9 +289,11 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout3"
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:layout_marginBottom="12dp"
+                    android:layout_height="60dp"
+                    android:layout_marginBottom="20dp"
                     app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent">
 
                     <ImageView
@@ -313,8 +314,7 @@
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:layout_marginStart="40dp"
-                        android:gravity="left"
-                        android:padding="20dp"
+                        android:gravity="center"
                         android:text="@string/weight"
                         android:textColor="@android:color/black"
                         android:textSize="25sp"
@@ -326,8 +326,8 @@
 
                     <Button
                         android:id="@+id/btn_weight_minus"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
                         android:layout_gravity="center"
                         android:background="@drawable/ic_minus"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -337,9 +337,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/weightNum"
                         android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_height="match_parent"
                         android:layout_gravity="center"
-                        android:layout_margin="10dp"
                         android:gravity="center"
                         android:inputType="number"
                         android:maxLength="2"
@@ -348,15 +347,15 @@
                         android:textSize="30sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintHorizontal_bias="0.086"
                         app:layout_constraintStart_toEndOf="@+id/btn_weight_minus"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.8" />
+                        app:layout_constraintVertical_bias="1.0" />
 
                     <TextView
                         android:id="@+id/textView3"
                         android:layout_width="wrap_content"
-                        android:layout_height="50dp"
+                        android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:background="@color/cardview_light_background"
                         android:gravity="center"
@@ -371,8 +370,8 @@
 
                     <Button
                         android:id="@+id/btn_weight_plus"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
                         android:layout_marginEnd="20dp"
                         android:background="@drawable/ic_plus"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -386,8 +385,8 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout4"
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:layout_marginBottom="40dp"
+                    android:layout_height="60dp"
+                    android:layout_marginBottom="60dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -411,9 +410,8 @@
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:layout_marginStart="40dp"
-                        android:gravity="left"
-                        android:padding="20dp"
-                        android:text="@string/repeat_"
+                        android:gravity="center"
+                        android:text="@string/repeat"
                         android:textColor="@android:color/black"
                         android:textSize="25sp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -424,8 +422,8 @@
 
                     <Button
                         android:id="@+id/btn_repeat_minus"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
                         android:layout_gravity="center"
                         android:background="@drawable/ic_minus"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -435,9 +433,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/repeatNum"
                         android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_height="match_parent"
                         android:layout_gravity="center"
-                        android:layout_margin="10dp"
                         android:gravity="center"
                         android:inputType="number"
                         android:maxLength="2"
@@ -446,14 +443,15 @@
                         android:textSize="30sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintHorizontal_bias="0.095"
                         app:layout_constraintStart_toEndOf="@+id/btn_repeat_minus"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0" />
 
                     <TextView
                         android:id="@+id/textView6"
                         android:layout_width="wrap_content"
-                        android:layout_height="50dp"
+                        android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:background="@color/cardview_light_background"
                         android:gravity="center"
@@ -470,8 +468,8 @@
 
                     <Button
                         android:id="@+id/btn_repeat_plus"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
                         android:layout_gravity="center"
                         android:layout_marginEnd="20dp"
                         android:background="@drawable/ic_plus"
