@@ -47,7 +47,6 @@ class ChatLogActivity : BaseActivity() {
             if(editTextChatLog.text.toString() != ""){
                 performSendMessage()
             }
-
         }
     }
     private  fun listenForMessages(){
@@ -57,7 +56,6 @@ class ChatLogActivity : BaseActivity() {
          ref.addChildEventListener(object : ChildEventListener {
              override fun onChildAdded(p0: DataSnapshot, p1: String?) {
                  val chatMessage = p0.getValue(ChatMessage::class.java)
-
                  if (chatMessage != null) {
                      Log.d(TAG, chatMessage!!.text)
                      if (chatMessage.formId == FirebaseAuth.getInstance().uid) {
@@ -85,7 +83,6 @@ class ChatLogActivity : BaseActivity() {
          })
     }
     private fun performSendMessage(){
-
         val c= Calendar.getInstance()
         val year = c.get(Calendar.YEAR)
         val month = c.get(Calendar.MONTH)
@@ -129,18 +126,13 @@ class ChatLogActivity : BaseActivity() {
 }
 // --------------- Outer Class -------------------
 class ChatFromItem(val text: String, val user: User, val time: String): Item<ViewHolder>(){
-
-
-
     override fun bind(viewHolder: ViewHolder, position: Int) {
         viewHolder.itemView.textView_from_row.text = text
         viewHolder.itemView.textview_to_row_date_from.text = time
-
     }
     override fun getLayout(): Int {
         return R.layout.chat_from_row
     }
-
     fun getDate(milliSeconds: Long, dateFormat: String?): String? {
         // Create a DateFormatter object for displaying date in specified format.
         val formatter = SimpleDateFormat(dateFormat)
@@ -161,11 +153,9 @@ class ChatToItem(val text: String, val user: User, val time: String, val name: S
     override fun getLayout(): Int {
         return R.layout.chat_to_row
     }
-
     fun getDate(milliSeconds: Long, dateFormat: String?): String? {
         // Create a DateFormatter object for displaying date in specified format.
         val formatter = SimpleDateFormat(dateFormat)
-
         // Create a calendar object that will convert the date and time value in milliseconds to date.
         val calendar = Calendar.getInstance()
         calendar.timeInMillis = milliSeconds

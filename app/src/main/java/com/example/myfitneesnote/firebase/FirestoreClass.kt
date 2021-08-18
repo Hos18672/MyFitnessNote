@@ -19,7 +19,6 @@ class FirestoreClass {
                 activity.userRegisteredSuccess()
             }
     }
-
     fun getCurrentUserId(): String {
         val currentUser = FirebaseAuth.getInstance().currentUser
         var currentUserID = ""
@@ -28,7 +27,6 @@ class FirestoreClass {
         }
         return currentUserID
     }
-
     fun createNewTraining(activity: AddWorkoutActivity, workout: Workout){
         mFireStore.collection(Constant.USERS)
             .document(getCurrentUserId()).collection(Constant.TRAININGS)
@@ -42,5 +40,4 @@ class FirestoreClass {
                 Toast.makeText(activity, "Training's creation failed", Toast.LENGTH_SHORT).show()
             }
     }
-
 }

@@ -7,8 +7,6 @@
     android:layout_gravity="center"
     android:background="@drawable/ic_splash_background"
     tools:context="com.example.myfitneesnote.SplashActivity">
-
-
     <LinearLayout
         android:id="@+id/splash_lll"
         android:layout_width="match_parent"
@@ -16,14 +14,12 @@
         android:gravity="center"
         android:orientation="vertical"
         tools:ignore="UseCompoundDrawables,UselessParent">
-
         <ImageView
             android:id="@+id/splash_imageView"
             android:layout_width="350dp"
             android:layout_height="270dp"
             android:contentDescription="@string/app_name"
             app:srcCompat="@drawable/logo1" />
-
         <TextView
             android:id="@+id/splash_textView"
             android:layout_width="wrap_content"
@@ -34,7 +30,5 @@
             android:textSize="40sp"
             tools:layout_editor_absoluteX="165dp"
             tools:layout_editor_absoluteY="218dp" />
-
-
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

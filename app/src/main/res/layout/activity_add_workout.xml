@@ -22,7 +22,6 @@
             tools:layout_editor_absoluteX="165dp"
             tools:layout_editor_absoluteY="218dp" />
     </androidx.appcompat.widget.Toolbar>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="650dp"
@@ -31,7 +30,6 @@
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintTop_toBottomOf="@+id/toolBar_add_workout_activity"
         tools:ignore="MissingConstraints">
-
         <TextView
             android:id="@+id/TrainingName"
             android:layout_width="210dp"
@@ -41,14 +39,13 @@
             android:textColor="@android:color/black"
             android:textSize="25sp"
             android:textStyle="bold"
-            android:text="Test"
+            android:text="@string/test"
             app:layout_constraintBottom_toTopOf="@+id/CV"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.625"
             tools:ignore="MissingConstraints" />
-
         <androidx.cardview.widget.CardView
             android:id="@+id/CV"
             android:layout_width="375dp"
@@ -61,7 +58,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.83">
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -70,8 +66,6 @@
                 app:layout_constraintEnd_toStartOf="@+id/constraintLayout"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:ignore="MissingConstraints">
-
-
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardView4"
                     android:layout_width="match_parent"
@@ -87,14 +81,12 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.0">
-
                     <com.vivekkaushik.datepicker.DatePickerTimeline
                         android:id="@+id/datePickerTimeline"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="5dp" />
                 </androidx.cardview.widget.CardView>
-
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout"
                     android:layout_width="match_parent"
@@ -103,7 +95,6 @@
                     app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent">
-
                     <ImageView
                         android:id="@+id/imageView4"
                         android:layout_width="30dp"
@@ -114,8 +105,8 @@
                         app:layout_constraintHorizontal_bias="0.47"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/baseline_fitness_center_black_24dp" />
-
+                        app:srcCompat="@drawable/baseline_fitness_center_black_24dp"
+                        tools:ignore="ContentDescription" />
                     <TextView
                         android:id="@+id/tv_set"
                         android:layout_width="120dp"
@@ -132,17 +123,16 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.0"
                         tools:ignore="RtlHardcoded" />
-
-                    <Button
+                    <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btn_set_minus"
                         android:layout_width="45dp"
                         android:layout_height="45dp"
                         android:layout_gravity="center"
+                        android:backgroundTint="@null"
                         android:background="@drawable/ic_minus"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/tv_set"
                         app:layout_constraintTop_toTopOf="parent" />
-
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/SetNum"
                         android:layout_width="50dp"
@@ -160,7 +150,6 @@
                         app:layout_constraintStart_toEndOf="@+id/btn_set_minus"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.0" />
-
                     <TextView
                         android:id="@+id/textView2"
                         android:layout_width="wrap_content"
@@ -177,8 +166,7 @@
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toEndOf="@+id/SetNum"
                         app:layout_constraintTop_toTopOf="parent" />
-
-                    <Button
+                    <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btn_set_plus"
                         android:layout_width="45dp"
                         android:layout_height="45dp"
@@ -188,9 +176,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
-
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout2"
                     android:layout_width="match_parent"
@@ -200,7 +186,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent">
-
                     <ImageView
                         android:id="@+id/imageView6"
                         android:layout_width="30dp"
@@ -211,8 +196,8 @@
                         app:layout_constraintHorizontal_bias="0.47"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/baseline_timer_black_24dp" />
-
+                        app:srcCompat="@drawable/baseline_timer_black_24dp"
+                        android:contentDescription="@string/todo" />
                     <TextView
                         android:id="@+id/tv_break"
                         android:layout_width="120dp"
@@ -227,8 +212,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:ignore="RtlHardcoded" />
-
-                    <Button
+                    <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btn_break_minus"
                         android:layout_width="45dp"
                         android:layout_height="45dp"
@@ -237,7 +221,6 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/tv_break"
                         app:layout_constraintTop_toTopOf="parent" />
-
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/breakNum"
                         android:layout_width="50dp"
@@ -255,7 +238,6 @@
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toEndOf="@+id/btn_break_minus"
                         app:layout_constraintTop_toTopOf="parent" />
-
                     <TextView
                         android:id="@+id/textView4"
                         android:layout_width="wrap_content"
@@ -272,8 +254,7 @@
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toEndOf="@+id/breakNum"
                         app:layout_constraintTop_toTopOf="parent" />
-
-                    <Button
+                    <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btn_break_plus"
                         android:layout_width="45dp"
                         android:layout_height="45dp"
@@ -283,9 +264,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
-
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout3"
                     android:layout_width="match_parent"
@@ -295,7 +274,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent">
-
                     <ImageView
                         android:id="@+id/imageView5"
                         android:layout_width="30dp"
@@ -306,8 +284,8 @@
                         app:layout_constraintHorizontal_bias="0.47"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/weight_kilogram_icon_138014" />
-
+                        app:srcCompat="@drawable/weight_kilogram_icon_138014"
+                        android:contentDescription="@string/todo" />
                     <TextView
                         android:id="@+id/tv_weight"
                         android:layout_width="120dp"
@@ -323,8 +301,7 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.0"
                         tools:ignore="RtlHardcoded" />
-
-                    <Button
+                    <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btn_weight_minus"
                         android:layout_width="45dp"
                         android:layout_height="45dp"
@@ -333,7 +310,6 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/tv_weight"
                         app:layout_constraintTop_toTopOf="parent" />
-
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/weightNum"
                         android:layout_width="50dp"
@@ -351,7 +327,6 @@
                         app:layout_constraintStart_toEndOf="@+id/btn_weight_minus"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="1.0" />
-
                     <TextView
                         android:id="@+id/textView3"
                         android:layout_width="wrap_content"
@@ -367,8 +342,7 @@
                         app:layout_constraintStart_toEndOf="@+id/weightNum"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:ignore="NotSibling" />
-
-                    <Button
+                    <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btn_weight_plus"
                         android:layout_width="45dp"
                         android:layout_height="45dp"
@@ -379,7 +353,6 @@
                         app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toEndOf="@+id/textView3"
                         app:layout_constraintTop_toTopOf="parent" />
-
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -391,7 +364,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent">
-
                     <ImageView
                         android:id="@+id/imageView7"
                         android:layout_width="30dp"
@@ -402,8 +374,8 @@
                         app:layout_constraintHorizontal_bias="0.47"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/baseline_loop_black_24dp" />
-
+                        app:srcCompat="@drawable/baseline_loop_black_24dp"
+                        android:contentDescription="@string/todo" />
                     <TextView
                         android:id="@+id/tv_repeat"
                         android:layout_width="120dp"
@@ -419,8 +391,7 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.0"
                         tools:ignore="RtlHardcoded" />
-
-                    <Button
+                    <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btn_repeat_minus"
                         android:layout_width="45dp"
                         android:layout_height="45dp"
@@ -429,7 +400,6 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/tv_repeat"
                         app:layout_constraintTop_toTopOf="parent" />
-
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/repeatNum"
                         android:layout_width="50dp"
@@ -447,7 +417,6 @@
                         app:layout_constraintStart_toEndOf="@+id/btn_repeat_minus"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.0" />
-
                     <TextView
                         android:id="@+id/textView6"
                         android:layout_width="wrap_content"
@@ -460,13 +429,11 @@
                         android:textSize="18sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
-
                         app:layout_constraintEnd_toStartOf="@+id/btn_repeat_plus"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toEndOf="@+id/repeatNum"
                         app:layout_constraintTop_toTopOf="parent" />
-
-                    <Button
+                    <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btn_repeat_plus"
                         android:layout_width="45dp"
                         android:layout_height="45dp"
@@ -476,14 +443,10 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
-
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
@@ -494,24 +457,29 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/save_btn"
             android:layout_width="350dp"
-            android:layout_height="50dp"
-            android:background="@drawable/ic_save_shape"
+            android:layout_height="60dp"
+            android:backgroundTint="@color/colorPrimaryGreen"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:textSize="25sp"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            app:cornerRadius="10dp"
             android:text="@string/save" />
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnBackNewWorkout"
             android:layout_width="350dp"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:layout_gravity="center"
             android:layout_margin="20dp"
             app:layout_constraintVertical_bias="1.0"
-            android:background="@drawable/shape"
-            android:text="@string/BtnBackNew" />
+            android:backgroundTint="@color/colorPrimaryBlue"
+            android:text="@string/BtnBackNew"
+            android:textColor="@color/black"
+            app:cornerRadius="10dp"
+            android:textSize="20sp"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

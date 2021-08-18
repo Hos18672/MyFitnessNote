@@ -7,7 +7,6 @@
     android:background="@drawable/gradient"
     android:orientation="vertical"
     tools:context=".MainActivity">
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar_muscle_gruppe_activity"
         android:layout_width="match_parent"
@@ -20,13 +19,11 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.009"
         tools:ignore="MissingConstraints" />
-
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="369dp"
         android:layout_height="270dp"
         android:layout_above="@+id/nav_bar_bottom"
-
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:background="@drawable/shapetransparent_message"
@@ -37,15 +34,12 @@
         app:layout_constraintTop_toBottomOf="@+id/toolBar_muscle_gruppe_activity"
         app:layout_constraintVertical_bias="0.895"
         tools:ignore="MissingConstraints,NotSibling">
-
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/lineChart"
             android:layout_width="351dp"
             android:layout_height="175dp"
             android:layout_margin="10dp" />
-
     </androidx.cardview.widget.CardView>
-
     <androidx.cardview.widget.CardView
         android:id="@+id/nav_bar_bottom"
         android:layout_width="match_parent"
@@ -66,7 +60,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="bottom|center">
-
             <Button
                 android:id="@+id/chat_main"
                 android:layout_width="50dp"
@@ -77,7 +70,6 @@
                 app:layout_constraintHorizontal_bias="0.133"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
             <Button
                 android:id="@+id/Add_main"
                 android:layout_width="60dp"
@@ -87,7 +79,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
-
             <Button
                 android:id="@+id/main_diagramm"
                 android:layout_width="40dp"
@@ -102,7 +93,6 @@
                 app:layout_constraintVertical_bias="0.0" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
-
     <RelativeLayout
         android:layout_width="70dp"
         android:layout_height="50dp"
@@ -114,12 +104,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0">
-
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/main_menu"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@drawable/menu2" />
     </RelativeLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

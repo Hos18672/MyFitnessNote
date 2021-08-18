@@ -6,16 +6,14 @@
     android:layout_height="match_parent"
     android:background="@drawable/ic_background"
     tools:context="com.example.myfitneesnote.ChatActivity">
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar_Chat_activity"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints">
-
         <TextView
             android:id="@+id/toolBar_textView"
             android:layout_width="wrap_content"
@@ -26,7 +24,6 @@
             android:textSize="15sp"
             tools:layout_editor_absoluteX="165dp"
             tools:layout_editor_absoluteY="218dp" />
-
         <TextView
             android:id="@+id/Massage_textView"
             android:layout_width="wrap_content"
@@ -35,32 +32,68 @@
             android:gravity="center"
             android:text="@string/your_chats"
             android:textColor="#000000"
-            android:textSize="15sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
     </androidx.appcompat.widget.Toolbar>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline1Chat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="819dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="740dp"
+        android:layout_height="0dp"
         android:layout_margin="5dp"
-        android:layout_marginBottom="152dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@+id/btnBack_ChatList"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2chat"
+        app:layout_constraintEnd_toEndOf="@id/guideline2chat"
+        app:layout_constraintEnd_toStartOf="@+id/guideline1chat"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolBar_Chat_activity"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="UnknownId"/>
 
-    </androidx.recyclerview.widget.RecyclerView>
 
-    <Button
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2chat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="68dp" />
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/Add_ChatUser"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="96dp"
+        android:contentDescription="@string/todo"
+        android:foregroundGravity="center"
+        android:scaleType="center"
+        app:backgroundTint="#00B7FF"
+        app:fabCustomSize="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.883"
+        app:layout_constraintStart_toStartOf="parent"
+        app:maxImageSize="60dp"
+        app:srcCompat="@drawable/ic_baseline_add_24"
+        app:tint="@color/white"
+        tools:ignore="MissingConstraints,VectorDrawableCompat" />
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnBack_ChatList"
         android:layout_width="350dp"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/shape"
+        android:backgroundTint="@color/colorPrimaryBlue"
         android:text="@string/back"
+        android:textColor="@color/black"
+        app:cornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"

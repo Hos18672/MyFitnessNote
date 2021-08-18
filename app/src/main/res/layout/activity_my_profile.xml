@@ -60,6 +60,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/login_username_input"
                     android:layout_width="match_parent"
+                    android:background="@android:color/transparent"
                     android:layout_height="match_parent"
                     android:hint="@string/username" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -78,6 +79,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="@string/full_name"
+                    android:background="@android:color/transparent"
                     tools:layout_editor_absoluteX="0dp"
                     tools:layout_editor_absoluteY="0dp" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -95,6 +97,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="@string/birthdate"
+                    android:background="@android:color/transparent"
                     android:inputType="textEmailAddress" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -111,47 +114,58 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="@string/gender"
+                    android:background="@android:color/transparent"
                     android:inputType="textEmailAddress" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-    <Button
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnSave"
-        android:layout_width="260dp"
-        android:layout_height="50dp"
+        android:layout_width="255dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="5dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/ic_save_shape"
+        android:backgroundTint="@color/colorPrimaryGreen"
         android:text="@string/save"
-        android:textSize="25sp"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:cornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.258"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pcard"
-        app:layout_constraintVertical_bias="0.269" />
-    <Button
+        app:layout_constraintVertical_bias="0.27" />
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnChangeEmailOrPassword"
         android:layout_width="80dp"
-        android:layout_height="50dp"
-        android:background="@drawable/shape"
+        android:layout_height="60dp"
         android:text="@string/more"
+        android:textColor="@color/black"
+        app:cornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="@+id/btnSave"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toEndOf="@+id/btnSave"/>
-    <Button
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnback_profile"
         android:layout_width="350dp"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:layout_marginBottom="25dp"
-        android:background="@drawable/shape"
+        android:backgroundTint="@color/colorPrimaryBlue"
         android:text="@string/back"
+        android:textColor="@color/black"
         android:textSize="20sp"
+        app:cornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.54"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnSave"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.948" />
 
     <ImageView
         android:id="@+id/imageView8"
@@ -163,5 +177,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolBar_my_profile_activity"
         app:layout_constraintVertical_bias="0.529"
-        app:srcCompat="@drawable/circle_profile" />
+        app:srcCompat="@drawable/circle_profile"
+        android:contentDescription="@string/todo" />
 </androidx.constraintlayout.widget.ConstraintLayout>

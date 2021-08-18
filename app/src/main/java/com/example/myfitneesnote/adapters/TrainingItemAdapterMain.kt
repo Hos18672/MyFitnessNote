@@ -12,7 +12,6 @@ import com.example.myfitneesnote.R
 import com.example.myfitneesnote.model.Workout
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
-import kotlinx.android.synthetic.main.item_training.view.*
 import kotlinx.android.synthetic.main.item_training.view.tv_GymName
 import kotlinx.android.synthetic.main.item_training.view.tv_Muscle
 import kotlinx.android.synthetic.main.item_training.view.tv_Sets

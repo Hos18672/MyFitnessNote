@@ -27,7 +27,6 @@ class TrainingItemAdapter(options: FirestoreRecyclerOptions<Workout>)
         val itemView = LayoutInflater.from(parent.context).inflate((layout.item_training), parent, false)
         return  MyViewHolder(itemView)
     }
-
     inline fun <T: View> T.afterMeasured(crossinline f: T.() -> Unit) {
         viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
             override fun onGlobalLayout() {
@@ -53,8 +52,6 @@ class TrainingItemAdapter(options: FirestoreRecyclerOptions<Workout>)
         }else{
             holder.image.setImageResource(bench_press)
         }
-
-
     }
      fun deleteItem(i: Int){
         snapshots.getSnapshot(i).reference.delete()

@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimary">#03D9FF</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#010922</color>
     <color name="snackBar_error_color">#FF0A0A</color>
     <color name="statusColor">#FFFFFF</color>
+
+
+    <color name="colorPrimaryGreen">#03FF4A</color>
+    <color name="colorPrimaryBlue">#00D9FF</color>
+    <color name="colorAccentWhite">#FFFFFF</color>
 
 </resources>

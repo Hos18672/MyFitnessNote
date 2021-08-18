@@ -57,7 +57,6 @@ class AddWorkoutActivity : BaseActivity() {
         datePickerTimeline.setDisabledDateColor(Color.BLUE)
         val dates = arrayOf(Calendar.getInstance().time)
         datePickerTimeline.deactivateDates(dates)
-
     }
     private fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
     private fun onClick(){
@@ -83,7 +82,6 @@ class AddWorkoutActivity : BaseActivity() {
         var num = et.text.toString().toInt()
         num++
         et.text = "$num".toEditable()
-
     }
     private fun createTraining(){
         val currentDateAndTime = Timestamp.now()

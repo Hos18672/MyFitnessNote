@@ -15,18 +15,17 @@ open class BaseActivity : AppCompatActivity() {
 
     private var doubleBackToExitPressedOnce = false;
     private lateinit var mProgressDialog : Dialog
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_base)
     }
-/*    fun showProgressDialog(text :String) {
+    /*    fun showProgressDialog(text :String) {
         mProgressDialog = Dialog(this)
         mProgressDialog.setContentView(R.layout.dialog_progress)
         mProgressDialog.tv_progress_text.text = text
         mProgressDialog.show()
     }*/
-/*    fun hideProgressDialog1() {
+    /*    fun hideProgressDialog1() {
         mProgressDialog.dismiss()
     }*/
     fun getCurrentUserID() :String{

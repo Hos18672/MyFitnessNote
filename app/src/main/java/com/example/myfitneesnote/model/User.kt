@@ -18,7 +18,6 @@ data class User(
         parcel.readString()!!
     ) {
     }
-
     override fun writeToParcel(parcel: Parcel, flags: Int) = with(parcel) {
         writeString(user_id)
         writeString(name)
@@ -27,11 +26,9 @@ data class User(
         writeString(password)
         writeString(image)
     }
-
     override fun describeContents(): Int {
         return 0
     }
-
     companion object CREATOR : Parcelable.Creator<User> {
         override fun createFromParcel(parcel: Parcel): User {
             return User(parcel)

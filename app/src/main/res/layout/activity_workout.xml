@@ -23,6 +23,7 @@
                     tools:layout_editor_absoluteX="165dp"
                     tools:layout_editor_absoluteY="218dp" />
         </androidx.appcompat.widget.Toolbar>
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/ll1"
             android:layout_width="match_parent"
@@ -31,9 +32,12 @@
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.8"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
             tools:ignore="UselessParent">
+
                 <TextView
                     android:id="@+id/textView"
                     android:layout_width="350dp"
@@ -51,24 +55,31 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.551" />
 
-                <androidx.cardview.widget.CardView
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/btn_gym_workout"
                     android:layout_width="355dp"
                     android:layout_height="190dp"
                     android:layout_margin="10dp"
                     android:layout_marginBottom="12dp"
-                    app:cardCornerRadius="15dp"
                     android:background="@drawable/ic_gym_out"
-                    android:textSize="30sp"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:textColor="@android:color/background_light"
+                    android:textSize="30sp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="2dp"
+                    app:cardUseCompatPadding="true"
                     app:layout_constraintBottom_toTopOf="@+id/btn_home_workout"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.939">
+                    app:layout_constraintVertical_bias="0.93"
+                    app:rippleColor="#EEF1F3">
+
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
+
                                 <TextView
                                     android:id="@+id/txt_gym_workout"
                                     android:layout_width="100dp"
@@ -98,22 +109,28 @@
                                     app:layout_constraintTop_toTopOf="parent"
                                     app:srcCompat="@drawable/bench_press" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
-                </androidx.cardview.widget.CardView>
+                </com.google.android.material.card.MaterialCardView>
 
-                <androidx.cardview.widget.CardView
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/btn_home_workout"
                     android:layout_width="355dp"
                     android:layout_height="190dp"
                     android:layout_margin="10dp"
-                    app:cardCornerRadius="15dp"
                     android:background="@drawable/imageedit_5_6040594024"
+                    android:clickable="true"
                     android:textSize="30sp"
-                    android:textColor="@android:color/white"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="2dp"
+                    app:cardUseCompatPadding="true"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.583"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.669" >
+                    app:layout_constraintVertical_bias="0.681"
+                    app:rippleColor="#EEF1F3"
+                    tools:ignore="MissingConstraints">
+
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
@@ -148,14 +165,18 @@
                                     app:layout_constraintTop_toTopOf="parent"
                                     app:srcCompat="@drawable/workout_home" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
-                </androidx.cardview.widget.CardView>
-                <Button
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnBack1"
                     android:layout_width="350dp"
-                    android:layout_height="50dp"
+                    android:layout_height="60dp"
                     android:layout_marginBottom="20dp"
-                    android:background="@drawable/shape"
+                    android:backgroundTint="@color/colorPrimaryBlue"
                     android:text="@string/back"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:cornerRadius="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

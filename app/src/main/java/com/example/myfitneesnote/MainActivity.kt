@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.cardview.widget.CardView
 import androidx.core.view.GravityCompat
@@ -18,7 +19,6 @@ import com.example.myfitneesnote.adapters.TrainingItemAdapterMain
 import com.example.myfitneesnote.model.Workout
 import com.example.myfitneesnote.utils.Constant
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
-import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.components.YAxis
@@ -27,6 +27,7 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -35,6 +36,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import kotlinx.android.synthetic.main.activity_add_workout.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main_layout.*
 import kotlinx.android.synthetic.main.nav_header_main.*
@@ -44,17 +46,18 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
-    private val db = FirebaseFirestore.getInstance()
-    private val currentDateAndTime = com.google.firebase.Timestamp.now()
-    private lateinit var trainingItemAdapterMain : TrainingItemAdapterMain
-    private lateinit var recyclerView: RecyclerView
-    override fun onCreate(savedInstanceState: Bundle?) {
+   private val db = FirebaseFirestore.getInstance()
+   private val currentDateAndTime = com.google.firebase.Timestamp.now()
+   private lateinit var trainingItemAdapterMain : TrainingItemAdapterMain
+   private lateinit var recyclerView: RecyclerView
+   override fun onCreate(savedInstanceState: Bundle?) {
         //This call the parent constructor
         super.onCreate(savedInstanceState)
         setContentView(layout.activity_main)
         setupLineChartData2()
         nav_view.setNavigationItemSelectedListener(this)
         //FirestoreClass().loginUser(this)
+        constraintLayout3.bringToFront()
         fullscreen()
         onClick()
         userData()
@@ -63,8 +66,9 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
        // userWorkoutsData()
         getDataFromFireStore()
         updateNavigationUserDetails()
+        val mySet = linkedMapOf("label1" to 4F, "label2" to 7F, "label3" to 2F)
     }
-    private fun userData() {
+   private fun userData() {
         val uid = FirebaseAuth.getInstance().uid
         //val mainUsername : TextView = findViewById(id.tv_main_username)
         val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
@@ -78,7 +82,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             }
         })
     }
-/*   @SuppressLint("SimpleDateFormat", "SetTextI18n")
+   /*   @SuppressLint("SimpleDateFormat", "SetTextI18n")
     private fun userWorkoutsData() {
        val tvGymename :TextView = findViewById(id.tv_main_GymName)
        val tvMuskelname :TextView = findViewById(id.tv_main_muscle)
@@ -140,24 +144,43 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
            }
    }*/
    private fun onClick() {
-       val mainMenu: Button = findViewById(id.main_menu)
+       val mainMenu: ImageButton = findViewById(id.main_menu)
        val addMenu: ImageView = findViewById(id.Add_main)
-       val chatMain: Button = findViewById(id.chat_main)
-       val cvChart: CardView = findViewById(id.cv_lineChart)
-       val mainImage: Button = findViewById(id.tv_main_profile_image)
-       val diagramMain: Button = findViewById(id.main_diagramm)
-       val cvLinechart: LineChart = findViewById(id.lineChart)
+       val chatMain: ImageButton = findViewById(id.chat_main)
+       //val cvChart: CardView = findViewById(id.cv_lineChart)
+       val mainImage: ImageButton = findViewById(id.tv_main_profile_image)
+       val diagramMain: ImageButton = findViewById(id.main_diagramm)
+       //val cvLinechart: LineChart = findViewById(id.lineChart)
+       val tip1 : CardView = findViewById(id.tip1)
+       val tip2 : CardView = findViewById(id.tip2)
+       val tip3 : CardView = findViewById(id.tip3)
+       val tip4 : CardView = findViewById(id.tip4)
+        tip1.setOnClickListener {
+            animateConst(tip1)
+            startActivity(Intent(this,tipsActivity::class.java))
+        }
+        tip2.setOnClickListener {
+            animateConst(tip2)
+            startActivity(Intent(this,tipsActivity::class.java))
+        }
+        tip3.setOnClickListener {
+            animateConst(tip3)
+            startActivity(Intent(this,tipsActivity::class.java))
+        }
+        tip4.setOnClickListener {
+            animateConst(tip4)
+            startActivity(Intent(this,tipsActivity::class.java))
+        }
+
        mainImage.setOnClickListener {
            animate(mainImage)
            startActivity(Intent(this,myProfileActivity::class.java))
        }
-
-       cvLinechart.setOnClickListener {
-           animateCV(cvChart)
-           startActivity(Intent(this,TrainingActivity::class.java))
-       }
+//       cvLinechart.setOnClickListener {
+//           animateCV(cvChart)
+//           startActivity(Intent(this,TrainingActivity::class.java))
+//       }
        mainMenu.setOnClickListener {
-           animate(mainMenu)
            if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
                drawer_layout.closeDrawer(GravityCompat.START)
            } else {
@@ -194,7 +217,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
            finish()
        }
    }
-   private fun animate(btn: Button){
+   private fun animate(btn: ImageButton){
        btn.animate().apply {
                duration =100
                scaleYBy(.3f)
@@ -207,6 +230,19 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
            }
        }.start()
    }
+   private fun animateConst(btn: CardView){
+        btn.animate().apply {
+            duration =100
+            scaleYBy(.1f)
+            scaleXBy(.1f)
+        }.withEndAction {
+            btn.animate().apply {
+                duration = 100
+                scaleYBy(-.1f)
+                scaleXBy(-.1f)
+            }
+        }.start()
+    }
    private fun animateCV(btn: CardView){
        btn.animate().apply {
                duration =100
@@ -243,7 +279,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
            doubleBackToExit()
        }
    }
-    private fun updateNavigationUserDetails() {
+   private fun updateNavigationUserDetails() {
         val uid = FirebaseAuth.getInstance().uid
         val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -251,7 +287,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 val username = snapshot.child("username").getValue(String::class.java)
                // val imageUri = snapshot.child("image").getValue(String::class.java)
                // Picasso.get().load(imageUri!!).into(main_drawer_profile_photo)
-                //tv_username.text = username
+                tv_username.text = username
             }
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
@@ -285,17 +321,19 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
    @SuppressLint("SimpleDateFormat")
    private fun setupLineChartData2() {
        val listXDate = arrayListOf<String>()
+       val listXDate2 = arrayListOf<String>()
        val listYData = arrayListOf<String>()
+       val listYData2 = arrayListOf<String>()
        val yVals = ArrayList<Entry>()
        var outputMonth: String
-       val c= Calendar.getInstance()
+       val c = Calendar.getInstance()
+       val currentMonth = c.get(Calendar.MONTH) + 1
        val year = c.get(Calendar.YEAR)
+       val month: String = currentMonth.toString()
        val day = c.get(Calendar.DAY_OF_MONTH)
-       val month = c.get(Calendar.MONTH)
-       var datelocal : String = "${year}/${month +1}/${day}"
+       var datelocal : String = "${year}/${month}/${day}"
 
        db.collection(Constant.USERS).document(getCurrentUserID()).collection(Constant.TRAININGS)
-           .whereLessThan("date", currentDateAndTime)
            .orderBy("date", Query.Direction.ASCENDING)
            .get()
            .addOnCompleteListener { task ->
@@ -308,39 +346,80 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                        val d : Date = inputFormatter.parse(datelocal)
                        val outputFormatter: DateFormat = SimpleDateFormat("dd/MM/yyyy")
                        val output: String = outputFormatter.format(date) // Output : 01/20/2012
+                       val dayNum = output.substring(0, output.length - 8).toInt().toString()
                        outputMonth = outputFormatter.format(date)
+                       var m = document.get("set").toString().toInt()
+
                        if (d > date) {
-                           listXDate.add(output.substring(0, output.length - 8).toInt().toString())
-                           listYData.add(document.get("set").toString())
+                           listXDate.add(dayNum)
+                           listYData.add(m.toString())
                        }
                    }
+                   /*  var j = 0
+                  var sum = 0
+                  var m = 0
+                  var n =0
+                  var k = 1
+                  while ( j < listXDate.size) {
+                      n = listYData.get(j).toInt()
+                      while (k  < listXDate.size ) {
+                          if (listXDate.get(j).toInt().equals(listXDate.get(k).toInt()) && j != k ) {
+                              m += listYData.get(k).toInt()
+                              m += n
+                              sum +=  m
+                              m = 0
+                              n = 0
+                          }
+                          k++
+
+                      }
+                       k = 0
+                       n = 0
+
+                      if(sum == 0 ){
+                       sum = listYData.get(j).toInt()
+                          listXDate2.add(listXDate.get(j))
+                          listYData2.add(sum.toString())
+                          sum = 0
+                          j++
+                      }else {
+                          listXDate2.add(listXDate.get(j))
+                          listYData2.add(sum.toString())
+                          sum = 0
+                          j++
+                      }
+                  }
+                  // delete duplication in List X
+                  val hashSet: Set<String> = LinkedHashSet(listXDate2)
+                  val removedDuplicates = ArrayList(hashSet)
+                  // delete duplication in List Y
+               val hashSet2: Set<String> = LinkedHashSet(listYData2)
+                  val removedDuplicates2 = ArrayList(hashSet2)*/
                    var i = 0
-                   while (i < listXDate.size) {
-                       if (listXDate[i] <= day.toString())
+                   while (i <= listXDate.size-1) {
                            yVals.add(Entry(listXDate[i].toFloat(), listYData[i].toFloat(), i))
                        i++
                    }
                    val set1: LineDataSet = LineDataSet(yVals, "DataSet 1")
                    set1.color = Color.BLUE
-                   set1.setCircleColor(Color.BLUE)
                    set1.lineWidth = 2f
                    set1.circleRadius = 3f
-                   lineChart.setScaleEnabled(false);
-                   set1.setDrawCircleHole(false)
+                   lineChart.setScaleEnabled(true);
                    set1.valueTextSize = 0f
                    set1.mode = LineDataSet.Mode.CUBIC_BEZIER
                    set1.setDrawFilled(true)
-
+                   set1.setDrawCircleHole(true)
+                   set1.gradientColor
+                   set1.setCircleColor(Color.BLACK)
                    val dataSets = ArrayList<ILineDataSet>()
                    dataSets.add(set1)
                    val data = LineData(dataSets)
-
                    // set data
                    lineChart.data = data
                    lineChart.description.isEnabled = false
-                   lineChart.legend.isEnabled = false
+                   lineChart.legend.isEnabled = true
                    //lineChart.setDrawGridBackground()
-                   lineChart.xAxis.labelCount = listXDate.size + 1
+                   //lineChart.xAxis.labelCount = listXDate2.size+2
                    lineChart.xAxis.position = XAxis.XAxisPosition.BOTTOM
                    val yAxisRight: YAxis = lineChart.axisRight
                    yAxisRight.isEnabled = false
@@ -348,30 +427,37 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                    //----------------------------------------------------------------------
                    lineChart.axisLeft.setDrawLabels(false)
                    lineChart.axisRight.setDrawLabels(false)
-                   //lineChart.getXAxis().setDrawLabels(true)
+                   lineChart.getXAxis().setDrawLabels(true)
                    // https://stackoverflow.com/questions/31263097/mpandroidchart-hide-background-grid
                    lineChart.axisLeft.setDrawGridLines(false)
                    lineChart.xAxis.setDrawGridLines(false)
                    lineChart.axisRight.setDrawGridLines(false)
                    lineChart.data.isHighlightEnabled = false
-
                    val xAxis: XAxis = lineChart.xAxis
                    xAxis.isEnabled = true
+
                    val yAxis: YAxis = lineChart.axisLeft
-                   yAxis.isEnabled = false
+                   yAxis.isEnabled = true
+                   yAxis.setDrawLabels(true)
+                   yAxis.labelCount = 10
                    lineChart.axisRight
-
-                   val c = Calendar.getInstance()
-                   val currentMonth = c.get(Calendar.MONTH) + 1
-                   val month: String = currentMonth.toString()
-
                    val vf: ValueFormatter = object : ValueFormatter() {
                        //value format here, here is the overridden method
                        override fun getFormattedValue(value: Float): String {
-                           return "${month}/" + value.toInt()
+                           return "" + value.toInt()
+                           //${month}/
+                       }
+                   }
+                   val vf2: ValueFormatter = object : ValueFormatter() {
+                       //value format here, here is the overridden method
+                       override fun getFormattedValue(value: Float): String {
+                           return "" + value.toInt()
                        }
                    }
                    xAxis.valueFormatter = vf
+                   yAxis.valueFormatter = vf2
+                   xAxis.labelCount = listXDate.size
+                   yAxis.setDrawLabels(true)
                    lineChart.setDrawBorders(false)
                    lineChart.setDrawGridBackground(false)
                    lineChart.legend.isEnabled = false
@@ -384,7 +470,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                    lineChart.setScaleEnabled(false)
                    // if disabled, scaling can be done on x- and y-axis separately
                    lineChart.setPinchZoom(false)
-                   lineChart.isAutoScaleMinMaxEnabled = true
+                   lineChart.isAutoScaleMinMaxEnabled = false
                    lineChart.invalidate()
                    lineChart.setNoDataTextColor(Color.BLUE)
                    // hide legend
@@ -395,7 +481,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                }
            }
    }
-    private fun getTrainingsFromFireStore(){
+   private fun getTrainingsFromFireStore(){
         val c= Calendar.getInstance()
         val year = c.get(Calendar.YEAR)
         val day = c.get(Calendar.DAY_OF_MONTH)
@@ -409,17 +495,16 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         val fireStoreRecyclerOption : FirestoreRecyclerOptions<Workout> = FirestoreRecyclerOptions.Builder<Workout>()
             .setQuery(query, Workout::class.java)
             .build()
-
         trainingItemAdapterMain = TrainingItemAdapterMain(fireStoreRecyclerOption)
         recyclerView.layoutManager= LinearLayoutManager(this)
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         recyclerView.adapter= trainingItemAdapterMain
     }
-    override fun onStart() {
+   override fun onStart() {
         super.onStart()
         trainingItemAdapterMain.startListening()
     }
-    override fun onStop() {
+   override fun onStop() {
         super.onStop()
         trainingItemAdapterMain.stopListening()
     }

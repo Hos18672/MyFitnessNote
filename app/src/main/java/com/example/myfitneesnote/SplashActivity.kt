@@ -22,7 +22,7 @@ class SplashActivity : BaseActivity() {
                 overridePendingTransition(R.anim.slidetoright, R.anim.slide_out_left);
             }
             finish()
-        }, 2500)
+        }, 900)
     }
     private fun animat(){
         val btt = AnimationUtils.loadAnimation(this, R.anim.btt)

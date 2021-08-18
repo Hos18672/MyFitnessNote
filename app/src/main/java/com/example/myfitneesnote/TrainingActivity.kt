@@ -1,12 +1,10 @@
 package com.example.myfitneesnote
 
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.animation.AnimationUtils
 import android.view.animation.LayoutAnimationController
-import androidx.core.view.postOnAnimationDelayed
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,7 +15,6 @@ import com.example.myfitneesnote.utils.Constant
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.*
 import kotlinx.android.synthetic.main.activity_training.*
-import com.example.myfitneesnote.R.anim.layout_animation
 
 class TrainingActivity : BaseActivity() {
     private lateinit var trainingItemAdapter : TrainingItemAdapter
@@ -54,7 +51,7 @@ class TrainingActivity : BaseActivity() {
         lac.order = LayoutAnimationController.ORDER_NORMAL
         recyclerView.layoutAnimation = lac
 
-        val item = object : SwipeToDelete(this, 0,ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT){
+        val item = object : SwipeToDelete(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT){
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                trainingItemAdapter.deleteItem(viewHolder.adapterPosition)
             }

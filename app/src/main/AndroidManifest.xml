@@ -9,11 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".scroll"></activity>
+        <activity android:name=".tipsActivity"></activity>
         <activity
             android:name=".TrainingActivity"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"></activity>
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".AddWorkoutActivity"
             android:screenOrientation="portrait"

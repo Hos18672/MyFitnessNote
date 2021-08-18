@@ -1,10 +1,9 @@
 package com.example.myfitneesnote.adapters
 
-import android.content.Context
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 
-abstract class SwipeToDelete(context: Context, dragDir: Int, swipDir: Int): ItemTouchHelper.SimpleCallback(dragDir,swipDir) {
+abstract class SwipeToDelete(dragDir: Int, swipDir: Int): ItemTouchHelper.SimpleCallback(dragDir,swipDir) {
     override fun onMove(
         recyclerView: RecyclerView,
         viewHolder: RecyclerView.ViewHolder,

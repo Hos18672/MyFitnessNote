@@ -57,7 +57,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="15dp"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -74,6 +76,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="300"
+                    android:background="@android:color/transparent"
                     android:hint="@string/full_name"
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -91,6 +94,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="300"
+                    android:background="@android:color/transparent"
                     android:hint="@string/username"
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -108,6 +112,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="300"
+                    android:background="@android:color/transparent"
                     android:hint="@string/email"
                     android:inputType="textEmailAddress" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -126,6 +131,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="300"
                     android:autofillHints=""
+                    android:background="@android:color/transparent"
                     android:ems="10"
                     android:hint="@string/password"
                     android:inputType="textPassword" />
@@ -141,37 +147,43 @@
                 android:layout_marginBottom="10dp"
                 android:textColorHint="#8D8D8E"
                 app:boxStrokeColor="#0287FB">
-
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/signUp_password_input2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="300"
+                    android:background="@android:color/transparent"
                     android:hint="@string/retype_password"
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/sigUp_button"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
+        android:layout_width="355dp"
+        android:layout_height="60dp"
         android:layout_marginBottom="40dp"
+        android:layout_marginTop="-50dp"
         android:layout_weight="300"
-        android:background="@drawable/shape"
+        android:backgroundTint="@color/colorPrimaryBlue"
         android:text="@string/sign_up"
+        app:cornerRadius="10dp"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/signUp_loginText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/signUp_loginText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="52dp"
         android:text="@string/have_an_account"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?attr/selectableItemBackgroundBorderless"
         android:textColor="#000000"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
