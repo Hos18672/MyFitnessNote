@@ -9,7 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".tipsActivity"></activity>
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar.NoActionBar"
+            tools:ignore="LockedOrientationActivity">
+
+        </activity>
+        <activity android:name=".tipsActivity" />
         <activity
             android:name=".TrainingActivity"
             android:screenOrientation="portrait"
@@ -56,11 +63,6 @@
         <activity
             android:name=".BaseActivity"
             android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
-        <activity
-            android:name=".MainActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar.NoActionBar"
-            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".IntroActivity"
             android:screenOrientation="portrait"

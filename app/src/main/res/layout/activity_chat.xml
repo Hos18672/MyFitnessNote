@@ -56,35 +56,12 @@
         app:layout_constraintTop_toBottomOf="@+id/toolBar_Chat_activity"
         app:layout_constraintVertical_bias="0.0"
         tools:ignore="UnknownId"/>
-
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2chat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_end="68dp" />
-
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/Add_ChatUser"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="96dp"
-        android:contentDescription="@string/todo"
-        android:foregroundGravity="center"
-        android:scaleType="center"
-        app:backgroundTint="#00B7FF"
-        app:fabCustomSize="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.883"
-        app:layout_constraintStart_toStartOf="parent"
-        app:maxImageSize="60dp"
-        app:srcCompat="@drawable/ic_baseline_add_24"
-        app:tint="@color/white"
-        tools:ignore="MissingConstraints,VectorDrawableCompat" />
-
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnBack_ChatList"
         android:layout_width="350dp"
@@ -92,6 +69,7 @@
         android:layout_marginBottom="16dp"
         android:backgroundTint="@color/colorPrimaryBlue"
         android:text="@string/back"
+        android:textSize="20sp"
         android:textColor="@color/black"
         app:cornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"

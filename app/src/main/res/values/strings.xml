@@ -91,4 +91,9 @@
     <string name="Leg_extensions">Leg extensions</string>
     <string name="Seated_biceps_curls">Seated biceps curls</string>
     <string name="test">Test</string>
+    <string name="_1m">1M</string>
+    <string name="_2m">2m</string>
+    <string name="_3m">3m</string>
+    <string name="_6m">6m</string>
+    <string name="_1w">1W</string>
 </resources>

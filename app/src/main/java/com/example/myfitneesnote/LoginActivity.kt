@@ -12,7 +12,7 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_main_layout.*
+import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
 class LoginActivity : BaseActivity() {

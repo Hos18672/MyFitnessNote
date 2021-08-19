@@ -5,5 +5,5 @@
             android:id="@+id/nav_my_profile"
             android:icon="@drawable/man1"
             android:title="My profile" />
-    </group><![CDATA[
-]]></menu>
+    </group>
+</menu>

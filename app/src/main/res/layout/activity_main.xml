@@ -22,6 +22,7 @@
         app:headerLayout="@layout/nav_header_main"
         app:menu="@menu/activity_main_drawer"
         tools:ignore="MissingConstraints">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/btn_sing_out_draw_layout"
             android:layout_width="match_parent"
@@ -31,6 +32,17 @@
             android:foreground="?attr/selectableItemBackground"
             android:layout_marginBottom="10dp"
             android:layout_height="80dp">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/colorAccent"
+                app:layout_constraintBottom_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
             <ImageButton
                 android:id="@+id/nav_sign_out"
                 android:layout_width="40dp"

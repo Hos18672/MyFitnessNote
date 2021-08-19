@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".SecurityActivity"
     android:background="@drawable/back7">
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar_security_activity"
         android:layout_width="match_parent"
