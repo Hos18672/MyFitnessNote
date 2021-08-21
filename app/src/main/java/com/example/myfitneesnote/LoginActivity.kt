@@ -50,13 +50,13 @@ class LoginActivity : BaseActivity() {
     private fun loginUser() {
         val email: String = login_email_input.text.toString().trim { it <= ' ' }
         val password: String = login_password_input.text.toString().trim { it <= ' ' }
-       // val pb = findViewById<ProgressBar>(R.id.progressBar_login)
+        val pb = findViewById<ProgressBar>(R.id.progressBar_login)
 
         if (validateForm(email, password)) {
-                //showProgressDialog(resources.getString(R.string.please_wait))
-                // create an instance and create a register a user with email and password
-               // pb.visibility = View.VISIBLE
-                //sign_in_btn_text.setText("Please wait ...")
+            //login_signInText.text = (resources.getString(R.string.please_wait))
+                 //create an instance and create a register a user with email and password
+                pb.visibility = View.VISIBLE
+             login_signInText.setText("Please wait ...")
                 FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener { task ->
                         //hideProgressDialog()
@@ -75,7 +75,7 @@ class LoginActivity : BaseActivity() {
                             finish()
 
                         } else {
-                            //pb.visibility = View.GONE
+                            pb.visibility = View.GONE
                             Toast.makeText(
                                 this@LoginActivity, task.exception!!.message.toString(),
                                 Toast.LENGTH_SHORT
@@ -83,8 +83,8 @@ class LoginActivity : BaseActivity() {
                         }
                     }
         } else {
-            //pb.visibility = View.GONE
-            //sign_in_btn_text.text = "Sign in"
+            pb.visibility = View.GONE
+            login_signInText.text = "Sign in"
         }
     }
 

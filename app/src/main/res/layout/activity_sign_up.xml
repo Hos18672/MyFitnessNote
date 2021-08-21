@@ -9,7 +9,6 @@
     android:fitsSystemWindows="true"
     android:background="@drawable/back7"
     tools:context="com.example.myfitneesnote.SignUpActivity">
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar_sign_up_activity"
         android:layout_width="match_parent"
@@ -33,10 +32,10 @@
         android:id="@+id/txtRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:text="@string/sign_up"
         android:textColor="#000000"
         android:textSize="55sp"
-        app:layout_constraintBottom_toTopOf="@+id/cardView3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolBar_sign_up_activity" />
@@ -45,12 +44,11 @@
         android:id="@+id/cardView3"
         android:layout_width="360dp"
         android:layout_height="410dp"
-        android:layout_marginBottom="88dp"
+        android:layout_marginTop="44dp"
         app:cardCornerRadius="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/sigUp_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.25">
+        app:layout_constraintTop_toBottomOf="@+id/txtRegister">
 
         <LinearLayout
             android:id="@+id/ll2"
@@ -123,57 +121,77 @@
                 android:layout_height="60dp"
                 android:layout_margin="5dp"
                 android:textColorHint="#8D8D8E"
-                app:boxStrokeColor="#0287FB">
+                app:boxStrokeColor="#0287FB"
+                tools:ignore="DuplicateIds">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/signUp_password_input"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="300"
-                    android:autofillHints=""
                     android:background="@android:color/transparent"
-                    android:ems="10"
                     android:hint="@string/password"
-                    android:inputType="textPassword" />
+                    android:inputType="textEmailAddress" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputpassword2"
                 android:layout_width="300dp"
                 android:layout_height="60dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="10dp"
+                android:layout_margin="5dp"
                 android:textColorHint="#8D8D8E"
                 app:boxStrokeColor="#0287FB">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/signUp_password_input2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="300"
                     android:background="@android:color/transparent"
-                    android:hint="@string/retype_password"
-                    android:inputType="textPassword" />
+                    android:hint="@string/repeat_password"
+                    android:inputType="textEmailAddress" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <com.google.android.material.button.MaterialButton
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/sigUp_button"
         android:layout_width="355dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="40dp"
-        android:layout_marginTop="-50dp"
-        android:layout_weight="300"
+        android:layout_height="65dp"
         android:backgroundTint="@color/colorPrimaryBlue"
-        android:text="@string/sign_up"
-        app:cornerRadius="10dp"
-        android:textColor="@color/black"
+        android:clickable="true"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="2dp"
+        app:cardUseCompatPadding="true"
         app:layout_constraintBottom_toTopOf="@+id/signUp_loginText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView3"
+        app:rippleColor="#98F3FF">
+
+        <ProgressBar
+            android:id="@+id/progressBar_signUp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="90dp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/btn_signUpText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/sign_up"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="174dp"
+            tools:layout_editor_absoluteY="601dp" />
+    </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/signUp_loginText"
@@ -189,5 +207,4 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

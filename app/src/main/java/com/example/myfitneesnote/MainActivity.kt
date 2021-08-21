@@ -1,12 +1,17 @@
 package com.example.myfitneesnote
 
 
+import android.app.ActivityOptions
 import android.content.Intent
+import android.content.IntentFilter.create
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
 import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.GravityCompat
@@ -40,7 +45,9 @@ import kotlinx.android.synthetic.main.activity_add_workout.constraintLayout3
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main_layout.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.item_training_main.*
 import kotlinx.android.synthetic.main.nav_header_main.*
+import java.net.URI.create
 import java.sql.Timestamp
 import java.text.DateFormat
 import java.text.SimpleDateFormat
@@ -54,6 +61,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     private lateinit var recyclerView: RecyclerView
     private lateinit var toggleButton: ToggleButton
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         //This call the parent constructor
         super.onCreate(savedInstanceState)
@@ -96,7 +104,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val username = snapshot.child("username").getValue(String::class.java)
-                //mainUsername.text = username
+                tv_username.text = username
             }
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
@@ -164,6 +172,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 }
             }
     }*/
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     private fun onClick() {
         val mainMenu: ImageButton = findViewById(id.main_menu)
         val addMenu: ImageView = findViewById(id.Add_main)
@@ -195,7 +204,9 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
         mainImage.setOnClickListener {
             animate(mainImage)
-            startActivity(Intent(this,myProfileActivity::class.java))
+            var activityOptions : Bundle? = ActivityOptions.makeSceneTransitionAnimation(
+                this).toBundle()
+            startActivity(Intent(this,myProfileActivity::class.java), activityOptions)
         }
 //       cvLinechart.setOnClickListener {
 //           animateCV(cvChart)
@@ -239,6 +250,8 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             finish()
         }
     }
+
+
     private fun animate(btn: ImageButton){
         btn.animate().apply {
             duration =100
@@ -282,6 +295,10 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         when(item.itemId){
             id.nav_my_profile ->{
                 startActivity(Intent(this, myProfileActivity::class.java))
+            }
+
+            id.nav_Settings ->{
+                startActivity(Intent(this, SecurityActivity::class.java))
             }
             id.btn_sing_out_draw_layout ->{
                 FirebaseAuth.getInstance().signOut()

@@ -9,6 +9,7 @@
 
     <color name="colorPrimaryGreen">#03FF4A</color>
     <color name="colorPrimaryBlue">#00D9FF</color>
+    <color name="colorPrimaryGreenHell">#23FFB9</color>
     <color name="colorAccentPrimaryDark">#151B40</color>
 
 </resources>

@@ -7,11 +7,20 @@
     android:background="@drawable/back7"
     android:gravity="center"
     tools:context=".WorkoutActivity">
+
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolBar_workout_activity"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
+            app:layout_constraintBottom_toTopOf="@+id/textView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
             tools:ignore="MissingConstraints">
+
                 <TextView
                     android:id="@+id/toolBar_textView"
                     android:layout_width="wrap_content"
@@ -24,163 +33,151 @@
                     tools:layout_editor_absoluteY="218dp" />
         </androidx.appcompat.widget.Toolbar>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/ll1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_margin="0dp"
+            android:gravity="center"
+            android:text="@string/workout_choice1"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/btnBack1"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.8"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            tools:ignore="UselessParent">
+            app:layout_constraintVertical_bias="0.112" />
 
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="350dp"
-                    android:layout_height="60dp"
-                    android:layout_margin="20dp"
-                    android:gravity="center"
-                    android:text="@string/workout_choice1"
-                    android:textAlignment="center"
-                    android:textColor="#000000"
-                    android:textSize="30sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toTopOf="@+id/btn_gym_workout"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.551" />
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/btn_gym_workout"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/ic_gym_out"
+            android:clickable="true"
+            android:focusable="true"
+            android:textColor="@android:color/background_light"
+            android:textSize="30sp"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="2dp"
+            app:layout_constraintBottom_toTopOf="@+id/btn_home_workout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:rippleColor="#EEF1F3">
 
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/btn_gym_workout"
-                    android:layout_width="375dp"
-                    android:layout_height="190dp"
-                    android:layout_margin="10dp"
-                    android:layout_marginBottom="12dp"
-                    android:background="@drawable/ic_gym_out"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:textColor="@android:color/background_light"
-                    android:textSize="30sp"
-                    app:cardCornerRadius="10dp"
-                    app:cardElevation="2dp"
-                    app:cardUseCompatPadding="true"
-                    app:layout_constraintBottom_toTopOf="@+id/btn_home_workout"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.93"
-                    app:rippleColor="#EEF1F3">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                        <TextView
+                            android:id="@+id/txt_gym_workout"
+                            android:layout_width="100dp"
+                            android:layout_height="60dp"
+                            android:layout_margin="20dp"
+                            android:layout_marginStart="40dp"
+                            android:fontFamily="sans-serif-smallcaps"
+                            android:gravity="center"
+                            android:text="@string/gymwork1"
+                            android:textAlignment="center"
+                            android:textColor="#000000"
+                            android:textSize="40sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:ignore="MissingConstraints" />
 
-                                <TextView
-                                    android:id="@+id/txt_gym_workout"
-                                    android:layout_width="100dp"
-                                    android:layout_height="60dp"
-                                    android:layout_margin="20dp"
-                                    android:layout_marginStart="40dp"
-                                    android:fontFamily="sans-serif-smallcaps"
-                                    android:gravity="center"
-                                    android:text="@string/gymwork1"
-                                    android:textAlignment="center"
-                                    android:textColor="#000000"
-                                    android:textSize="40sp"
-                                    android:textStyle="bold"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent"
-                                    tools:ignore="MissingConstraints" />
+                        <ImageView
+                            android:id="@+id/gym_image"
+                            android:layout_width="140dp"
+                            android:layout_height="0dp"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_marginBottom="30dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/bench_press" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
 
-                                <ImageView
-                                    android:id="@+id/gym_image"
-                                    android:layout_width="140dp"
-                                    android:layout_height="140dp"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintHorizontal_bias="0.647"
-                                    app:layout_constraintStart_toEndOf="@+id/txt_gym_workout"
-                                    app:layout_constraintTop_toTopOf="parent"
-                                    app:srcCompat="@drawable/bench_press" />
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-                </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/btn_home_workout"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/imageedit_5_6040594024"
+            android:clickable="true"
+            android:textSize="30sp"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_gym_workout"
+            app:rippleColor="#EEF1F3"
+            tools:ignore="MissingConstraints">
 
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/btn_home_workout"
-                    android:layout_width="375dp"
-                    android:layout_height="190dp"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/imageedit_5_6040594024"
-                    android:clickable="true"
-                    android:textSize="30sp"
-                    app:cardCornerRadius="10dp"
-                    app:cardElevation="2dp"
-                    app:cardUseCompatPadding="true"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.583"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.681"
-                    app:rippleColor="#EEF1F3"
-                    tools:ignore="MissingConstraints">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="199dp">
 
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                        <TextView
+                            android:id="@+id/txt_home_workout"
+                            android:layout_width="113dp"
+                            android:layout_height="57dp"
+                            android:layout_margin="20dp"
+                            android:layout_marginStart="24dp"
+                            android:fontFamily="sans-serif-smallcaps"
+                            android:gravity="center"
+                            android:text="@string/homeworkout1"
+                            android:textAlignment="center"
+                            android:textColor="#000000"
+                            android:textSize="40sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.503"
+                            tools:ignore="MissingConstraints" />
 
-                                <TextView
-                                    android:id="@+id/txt_home_workout"
-                                    android:layout_width="113dp"
-                                    android:layout_height="57dp"
-                                    android:layout_margin="20dp"
-                                    android:layout_marginStart="24dp"
-                                    android:fontFamily="sans-serif-smallcaps"
-                                    android:gravity="center"
-                                    android:text="@string/homeworkout1"
-                                    android:textAlignment="center"
-                                    android:textColor="#000000"
-                                    android:textSize="40sp"
-                                    android:textStyle="bold"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent"
-                                    app:layout_constraintVertical_bias="0.503"
-                                    tools:ignore="MissingConstraints" />
+                        <ImageView
+                            android:id="@+id/home_image"
+                            android:layout_width="140dp"
+                            android:layout_height="0dp"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_marginBottom="30dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/workout_home" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
 
-                                <ImageView
-                                    android:id="@+id/home_image"
-                                    android:layout_width="140dp"
-                                    android:layout_height="140dp"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintHorizontal_bias="0.663"
-                                    app:layout_constraintStart_toEndOf="@+id/txt_home_workout"
-                                    app:layout_constraintTop_toTopOf="parent"
-                                    app:srcCompat="@drawable/workout_home" />
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnBack1"
-                    android:layout_width="350dp"
-                    android:layout_height="60dp"
-                    android:layout_marginBottom="20dp"
-                    android:backgroundTint="@color/colorPrimaryBlue"
-                    android:text="@string/back"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    app:cornerRadius="10dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/btn_home_workout"
-                    app:layout_constraintVertical_bias="1.0" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnBack1"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="@color/colorPrimaryBlue"
+            android:text="@string/back"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:cornerRadius="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -46,25 +46,30 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.495" />
+
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView2"
-            android:layout_width="355dp"
+            android:layout_width="0dp"
             android:layout_height="400dp"
-            app:cardCornerRadius="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             android:layout_marginBottom="10dp"
+            app:cardCornerRadius="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="392dp"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:orientation="vertical">
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/editps0"
-                    android:layout_width="300dp"
+                    android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_margin="10dp"
                     android:textColorHint="#8D8D8E"
@@ -72,17 +77,21 @@
                     tools:ignore="MissingConstraints"
                     tools:layout_editor_absoluteX="51dp"
                     tools:layout_editor_absoluteY="48dp">
+
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/CurrentPassword"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="@string/current_password"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
                         android:background="@android:color/transparent"
+                        android:hint="@string/current_password"
                         tools:ignore="DuplicateIds" />
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/editps3"
-                    android:layout_width="300dp"
+                    android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_margin="10dp"
                     android:textColorHint="#8D8D8E"
@@ -90,46 +99,58 @@
                     app:layout_goneMarginBottom="10dp"
                     tools:layout_editor_absoluteX="51dp"
                     tools:layout_editor_absoluteY="309dp">
+
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/editTextTextEmailAddress"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="@string/change_email"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
                         android:background="@android:color/transparent"
+                        android:hint="@string/change_email"
                         tools:ignore="DuplicateIds" />
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/editps"
-                    android:layout_width="300dp"
+                    android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_margin="10dp"
                     android:textColorHint="#8D8D8E"
                     app:boxStrokeColor="#0287FB"
                     tools:layout_editor_absoluteX="50dp"
                     tools:layout_editor_absoluteY="132dp">
+
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/editTextTextPassword"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="@string/new_password"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
                         android:background="@android:color/transparent"
+                        android:hint="@string/new_password"
                         tools:ignore="DuplicateIds" />
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/ed"
-                    android:layout_width="300dp"
+                    android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:layout_margin="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
                     android:textColorHint="#8D8D8E"
                     app:boxStrokeColor="#0287FB"
                     tools:layout_editor_absoluteX="50dp"
                     tools:layout_editor_absoluteY="220dp">
+
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/editTextTextPasswordAgain"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="@string/repeat_password"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
                         android:background="@android:color/transparent"
+                        android:hint="@string/repeat_password"
                         tools:ignore="DuplicateIds" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
@@ -137,29 +158,34 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSave"
-            android:layout_width="350dp"
+            android:layout_width="0dp"
             android:layout_height="60dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/colorPrimaryGreen"
             android:text="@string/save"
+            android:textColor="@color/black"
             android:textSize="20sp"
             app:cornerRadius="10dp"
-            android:textColor="@color/black"
-            android:backgroundTint="@color/colorPrimaryGreen"
-            android:layout_marginBottom="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView2"
             app:layout_constraintVertical_bias="0.27" />
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnback"
-            android:layout_width="350dp"
+            android:layout_width="0dp"
             android:layout_height="60dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
             android:layout_marginBottom="25dp"
+            android:backgroundTint="@color/colorPrimaryBlue"
             android:text="@string/back"
             android:textColor="@color/black"
             android:textSize="20sp"
             app:cornerRadius="10dp"
-            android:backgroundTint="@color/colorPrimaryBlue"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

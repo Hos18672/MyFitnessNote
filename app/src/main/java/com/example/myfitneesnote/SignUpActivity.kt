@@ -4,13 +4,16 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
+import android.view.View
 import android.view.WindowManager
+import android.widget.ProgressBar
 import android.widget.Toast
 import at.favre.lib.crypto.bcrypt.BCrypt
 import com.example.myfitneesnote.firebase.FirestoreClass
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import java.util.*
 
@@ -50,10 +53,14 @@ class SignUpActivity : BaseActivity() {
         val password : String = signUp_password_input.text.toString().trim{ it <= ' '}
         val password2: String = signUp_password_input2.text.toString().trim{ it <= ' '}
         //val Image : String = signUp_image.toString().trim{ it <= ' '}
+
+        val pb = findViewById<ProgressBar>(R.id.progressBar_signUp)
         if(validateForm(name, username, email, password) ) {
             if (password == password2) {
                 // Toast.makeText(this, "Now we register User",Toast.LENGTH_SHORT).show()
                 //password encryption
+                pb.visibility = View.VISIBLE
+                btn_signUpText.setText("Please wait ...")
                 val hashPass = BCrypt.withDefaults().hashToString(12, password.toCharArray())
                 //showProgressDialog(resources.getString(R.string.please_wait))
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
@@ -98,6 +105,8 @@ class SignUpActivity : BaseActivity() {
                         }
                     }
             }else{
+                pb.visibility = View.GONE
+                btn_signUpText.text = "Sign Up"
                 showErrorSnackBar("Passwords not match")
             }
         }

@@ -5,5 +5,9 @@
             android:id="@+id/nav_my_profile"
             android:icon="@drawable/man1"
             android:title="My profile" />
+        <item
+            android:id="@+id/nav_Settings"
+            android:icon="@drawable/settings"
+            android:title="Setting" />
     </group>
 </menu>

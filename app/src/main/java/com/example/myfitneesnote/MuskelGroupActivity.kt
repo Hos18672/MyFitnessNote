@@ -2,8 +2,11 @@ package com.example.myfitneesnote
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
+import androidx.cardview.widget.CardView
+import com.google.android.material.card.MaterialCardView
+import kotlinx.android.synthetic.main.activity_login.view.*
 import kotlinx.android.synthetic.main.activity_muskel_group.*
+import kotlinx.android.synthetic.main.activity_muskel_group.view.*
 
 class MuskelGroupActivity : BaseActivity() {
     var GymType: String? = ""
@@ -16,26 +19,25 @@ class MuskelGroupActivity : BaseActivity() {
         setupActionBar()
         btnBack.setOnClickListener{onBackPressed()}
         //Burst muscle
-        brust_btn.setOnClickListener   { setOnclickMuscle(brust_btn) }
+        brust_btn.setOnClickListener   { setOnclickMuscle(brust_btn as MaterialCardView) }
         //Biceps muscle
-        biceps_btn.setOnClickListener  { setOnclickMuscle(biceps_btn) }
+        biceps_btn.setOnClickListener  { setOnclickMuscle(biceps_btn as MaterialCardView) }
         //Triceps muscle
-        triceps_btn.setOnClickListener { setOnclickMuscle(triceps_btn) }
+        triceps_btn.setOnClickListener { setOnclickMuscle(triceps_btn as MaterialCardView) }
         //Forarms muscle
-        forearms_btn.setOnClickListener{ setOnclickMuscle(forearms_btn) }
+        forearms_btn.setOnClickListener{ setOnclickMuscle(forearms_btn as MaterialCardView) }
         //Traps muscle
-        traps_btn.setOnClickListener   { setOnclickMuscle(traps_btn) }
+        traps_btn.setOnClickListener   { setOnclickMuscle(traps_btn as MaterialCardView) }
         //Upper-abs muscle
-        upperabs_btn.setOnClickListener{ setOnclickMuscle(upperabs_btn) }
-        //Lower-abs muscle
-        lowerabs_btn.setOnClickListener{ setOnclickMuscle(lowerabs_btn) }
+        upperabs_btn.setOnClickListener{ setOnclickMuscle(upperabs_btn as MaterialCardView) }
+
         //shoulder muscle
-        shoulder_btn.setOnClickListener{ setOnclickMuscle(shoulder_btn) }
+        shoulder_btn.setOnClickListener{ setOnclickMuscle(shoulder_btn as CardView) }
     }
 
-    private  fun setOnclickMuscle(btn : Button){
+    private  fun setOnclickMuscle(btn: CardView){
         val intent = Intent (this, AddWorkoutActivity::class.java)
-        intent.putExtra("MuskelName", btn.text)
+        intent.putExtra("MuskelName", btn.contentDescription)
         intent.putExtra("GymName", GymType)
         startActivity(intent)
     }

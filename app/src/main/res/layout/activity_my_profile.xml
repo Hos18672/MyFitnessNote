@@ -31,14 +31,16 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/pcard"
-        android:layout_width="355dp"
+        android:layout_width="0dp"
         android:layout_height="400dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="200dp"
         app:cardCornerRadius="20dp"
-        android:layout_marginBottom="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolBar_my_profile_activity">
+        app:layout_constraintTop_toBottomOf="@+id/imageView8">
 
         <LinearLayout
             android:id="@+id/ll"
@@ -50,7 +52,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputUsername"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_margin="10dp"
                 android:layout_marginTop="12dp"
@@ -60,14 +62,16 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/login_username_input"
                     android:layout_width="match_parent"
-                    android:background="@android:color/transparent"
                     android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@android:color/transparent"
                     android:hint="@string/username" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputName"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_margin="10dp"
                 android:layout_marginTop="12dp"
@@ -78,15 +82,17 @@
                     android:id="@+id/profile_fullName_input"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="@string/full_name"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
                     android:background="@android:color/transparent"
+                    android:hint="@string/full_name"
                     tools:layout_editor_absoluteX="0dp"
                     tools:layout_editor_absoluteY="0dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputBirthDate"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_margin="10dp"
                 android:textColorHint="#8D8D8E"
@@ -96,14 +102,16 @@
                     android:id="@+id/profile_BirthDate_input"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="@string/birthdate"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
                     android:background="@android:color/transparent"
+                    android:hint="@string/birthdate"
                     android:inputType="textEmailAddress" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputBirthEmail"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_margin="10dp"
                 android:textColorHint="#8D8D8E"
@@ -113,8 +121,10 @@
                     android:id="@+id/profile_Email_input"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="@string/gender"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
                     android:background="@android:color/transparent"
+                    android:hint="@string/gender"
                     android:inputType="textEmailAddress" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
@@ -122,39 +132,39 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnSave"
-        android:layout_width="255dp"
+        android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="10dp"
         android:backgroundTint="@color/colorPrimaryGreen"
         android:text="@string/save"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:cornerRadius="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.258"
+        app:layout_constraintBottom_toTopOf="@+id/btnback_profile"
+        app:layout_constraintEnd_toStartOf="@+id/btnChangeEmailOrPassword"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pcard"
-        app:layout_constraintVertical_bias="0.27" />
+        app:layout_constraintTop_toBottomOf="@+id/pcard" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnChangeEmailOrPassword"
-        android:layout_width="80dp"
+        android:layout_width="100dp"
         android:layout_height="60dp"
+        android:layout_marginEnd="20dp"
         android:text="@string/more"
         android:textColor="@color/black"
-        app:cornerRadius="10dp"
         android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="@+id/btnSave"
+        app:cornerRadius="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnback_profile"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
-        app:layout_constraintStart_toEndOf="@+id/btnSave"/>
+        app:layout_constraintTop_toBottomOf="@+id/pcard" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnback_profile"
-        android:layout_width="350dp"
+        android:layout_width="0dp"
         android:layout_height="60dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginBottom="25dp"
         android:backgroundTint="@color/colorPrimaryBlue"
         android:text="@string/back"
@@ -164,20 +174,20 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.54"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSave"
-        app:layout_constraintVertical_bias="0.948" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/imageView8"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:contentDescription="@string/todo"
+        android:transitionName="profileImage"
         app:layout_constraintBottom_toTopOf="@+id/pcard"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolBar_my_profile_activity"
-        app:layout_constraintVertical_bias="0.529"
-        app:srcCompat="@drawable/circle_profile"
-        android:contentDescription="@string/todo" />
+        app:srcCompat="@drawable/circle_profile" />
 </androidx.constraintlayout.widget.ConstraintLayout>

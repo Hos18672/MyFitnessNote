@@ -11,14 +11,17 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout3"
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:minHeight="100dp"
         android:background="@drawable/ic_round_top_navbar"
+        app:layout_constraintBottom_toTopOf="@+id/guideline1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/guideline1"
+        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0">
+
         <RelativeLayout
             android:id="@+id/relativeLayout"
             android:layout_width="60dp"
@@ -32,12 +35,14 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.493"
             tools:ignore="MissingConstraints">
+
             <ImageButton
                 android:id="@+id/main_menu"
                 android:layout_width="54dp"
                 android:layout_height="34dp"
-                android:background="@drawable/white_menu"/>
+                android:background="@drawable/white_menu" />
         </RelativeLayout>
+
         <ImageButton
             android:id="@+id/tv_main_profile_image"
             android:layout_width="70dp"
@@ -45,48 +50,61 @@
             android:layout_marginEnd="28dp"
             android:background="@drawable/circle_profile"
             android:contentDescription="@string/todo"
+            android:transitionName="profileImage"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline1"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_end="845dp"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintGuide_percent="0.13754646"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ScrollView
         android:id="@+id/scrollView4"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline1"
         app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="60dp"
             android:orientation="vertical">
+
             <TextView
                 android:id="@+id/today"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="180dp"
+                android:layout_marginTop="70dp"
                 android:layout_marginBottom="10dp"
                 android:text="@string/today"
                 android:textColor="#0090FF"
-                android:textSize="30sp"/>
+                android:textSize="30sp" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_trainings_list_main"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginTop="10dp"
                 android:layoutAnimation="@anim/layout_animation"
-                android:orientation="horizontal"/>
+                android:orientation="horizontal" />
+
             <TextView
                 android:id="@+id/Chart"
                 android:layout_width="wrap_content"
@@ -97,6 +115,7 @@
                 android:text="@string/progress"
                 android:textColor="#0090FF"
                 android:textSize="30sp" />
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvLineChart"
                 android:layout_width="match_parent"
@@ -105,7 +124,7 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/shape3"
-                app:cardCornerRadius="10dp"
+                app:cardCornerRadius="15dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -114,10 +133,13 @@
                     android:id="@+id/toggleButtonsGroup"
                     android:layout_width="match_parent"
                     android:layout_height="25dp"
-                    app:singleSelection="true"
-                    android:showDividers="end"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="5dp"
                     android:gravity="center"
-                    android:layout_marginTop="5dp">
+                    android:showDividers="end"
+                    app:singleSelection="true">
+
                     <Button
                         android:id="@+id/LastWeek"
                         style="@style/ToggleButton"
@@ -128,6 +150,7 @@
                         android:textColor="@color/black"
                         android:textSize="15sp"
                         tools:ignore="SmallSp" />
+
                     <Button
                         android:id="@+id/TwoWeeks"
                         style="@style/ToggleButton"
@@ -161,6 +184,7 @@
                         android:textColor="@color/black"
                         android:textSize="15sp"
                         tools:ignore="SmallSp" />
+
                     <Button
                         android:id="@+id/TwoMonth"
                         style="@style/ToggleButton"
@@ -171,6 +195,7 @@
                         android:textColor="@color/black"
                         android:textSize="15sp"
                         tools:ignore="SmallSp" />
+
                     <Button
                         android:id="@+id/ThreeMonth"
                         style="@style/ToggleButton"
@@ -183,6 +208,7 @@
                         tools:ignore="SmallSp" />
 
                 </com.google.android.material.button.MaterialButtonToggleGroup>
+
                 <com.github.mikephil.charting.charts.LineChart
                     android:id="@+id/lineChart"
                     android:layout_width="match_parent"
@@ -192,8 +218,9 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginRight="5dp"
                     android:layout_marginBottom="10dp"
-                    android:background="@android:color/transparent"/>
+                    android:background="@android:color/transparent" />
             </androidx.cardview.widget.CardView>
+
             <TextView
                 android:id="@+id/Tips"
                 android:layout_width="wrap_content"
@@ -203,7 +230,8 @@
                 android:layout_marginBottom="10dp"
                 android:text="@string/trainings"
                 android:textColor="#0090FF"
-                android:textSize="30sp"/>
+                android:textSize="30sp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="90dp"
@@ -211,6 +239,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="5dp"
                 android:gravity="center">
+
                 <androidx.cardview.widget.CardView
                     android:id="@+id/tip1"
                     android:layout_width="180dp"
@@ -218,10 +247,11 @@
                     android:layout_marginStart="0dp"
                     android:layout_marginEnd="10dp"
                     android:background="@drawable/shape3"
-                    app:cardCornerRadius="15dp"
+                    app:cardCornerRadius="12dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
+
                     <TextView
                         android:id="@+id/T1"
                         android:layout_width="wrap_content"
@@ -233,8 +263,9 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"/>
+                        app:layout_constraintTop_toTopOf="parent" />
                 </androidx.cardview.widget.CardView>
+
                 <androidx.cardview.widget.CardView
                     android:id="@+id/tip2"
                     android:layout_width="180dp"
@@ -242,11 +273,12 @@
                     android:layout_marginStart="30dp"
                     android:layout_marginEnd="0dp"
                     android:background="@drawable/shape"
-                    app:cardCornerRadius="15dp"
+                    app:cardCornerRadius="12dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tip1"
                     app:layout_constraintTop_toTopOf="parent">
+
                     <TextView
                         android:id="@+id/T2"
                         android:layout_width="wrap_content"
@@ -258,9 +290,10 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"/>
+                        app:layout_constraintTop_toTopOf="parent" />
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="90dp"
@@ -268,6 +301,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="100dp"
                 android:gravity="center">
+
                 <androidx.cardview.widget.CardView
                     android:id="@+id/tip3"
                     android:layout_width="180dp"
@@ -275,10 +309,11 @@
                     android:layout_marginStart="0dp"
                     android:layout_marginEnd="10dp"
                     android:background="@drawable/shape"
-                    app:cardCornerRadius="15dp"
+                    app:cardCornerRadius="12dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
+
                     <TextView
                         android:id="@+id/T3"
                         android:layout_width="wrap_content"
@@ -290,8 +325,9 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"/>
+                        app:layout_constraintTop_toTopOf="parent" />
                 </androidx.cardview.widget.CardView>
+
                 <androidx.cardview.widget.CardView
                     android:id="@+id/tip4"
                     android:layout_width="180dp"
@@ -299,11 +335,12 @@
                     android:layout_marginStart="30dp"
                     android:layout_marginEnd="0dp"
                     android:background="@drawable/shape3"
-                    app:cardCornerRadius="15dp"
+                    app:cardCornerRadius="12dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tip1"
                     app:layout_constraintTop_toTopOf="parent">
+
                     <TextView
                         android:id="@+id/T4"
                         android:layout_width="wrap_content"
@@ -315,17 +352,20 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"/>
+                        app:layout_constraintTop_toTopOf="parent" />
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_end="63dp"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintGuide_end="64dp" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout6"
         android:layout_width="match_parent"
@@ -337,7 +377,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView4"
         app:layout_constraintVertical_bias="1.0">
+
         <ImageButton
             android:id="@+id/chat_main"
             android:layout_width="50dp"
@@ -346,16 +388,17 @@
             android:background="@drawable/chat"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
+
         <ImageButton
-           android:id="@+id/main_diagramm"
+            android:id="@+id/main_diagramm"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginEnd="40dp"
             android:background="@drawable/history"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/Add_main"

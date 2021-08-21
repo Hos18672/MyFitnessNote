@@ -18,9 +18,7 @@
             android:layout_width="354dp"
             android:layout_height="262dp"
             android:contentDescription="@string/app_name"
-            app:srcCompat="@drawable/logo1"
-            tools:layout_editor_absoluteX="58dp"
-            tools:layout_editor_absoluteY="39dp"/>
+            app:srcCompat="@drawable/logo1" />
         <TextView
             android:id="@+id/intro_textView"
             android:layout_width="wrap_content"
@@ -28,9 +26,7 @@
             android:layout_marginBottom="30dp"
             android:text="@string/welcome"
             android:textColor="#000000"
-            android:textSize="50sp"
-            tools:layout_editor_absoluteX="165dp"
-            tools:layout_editor_absoluteY="218dp"/>
+            android:textSize="50sp" />
         <com.google.android.material.button.MaterialButton
             android:id="@+id/intro_login_button"
             android:layout_width="330dp"
@@ -39,9 +35,7 @@
             android:backgroundTint="@color/colorPrimaryBlue"
             app:cornerRadius="10dp"
             android:text="@string/sign_in"
-            android:textColor="@color/black"
-            tools:layout_editor_absoluteX="154dp"
-            tools:layout_editor_absoluteY="508dp" />
+            android:textColor="@color/black" />
         <com.google.android.material.button.MaterialButton
             android:id="@+id/intro_sign_up_button"
             android:layout_width="330dp"
@@ -50,8 +44,6 @@
             android:backgroundTint="@color/colorAccentPrimaryDark"
             app:cornerRadius="10dp"
             android:text="@string/sign_up"
-            android:textColor="@color/white"
-            tools:layout_editor_absoluteX="154dp"
-            tools:layout_editor_absoluteY="508dp" />
+            android:textColor="@color/white" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
