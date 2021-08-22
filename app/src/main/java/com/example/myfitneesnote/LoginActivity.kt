@@ -23,6 +23,7 @@ class LoginActivity : BaseActivity() {
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE or SOFT_INPUT_ADJUST_RESIZE)
         fullscreen()
         setupActionBar()
+
         login_signUpTv.setOnClickListener {
             startActivity(Intent(this, SignUpActivity::class.java))
             finish()
@@ -51,7 +52,6 @@ class LoginActivity : BaseActivity() {
         val email: String = login_email_input.text.toString().trim { it <= ' ' }
         val password: String = login_password_input.text.toString().trim { it <= ' ' }
         val pb = findViewById<ProgressBar>(R.id.progressBar_login)
-
         if (validateForm(email, password)) {
             //login_signInText.text = (resources.getString(R.string.please_wait))
                  //create an instance and create a register a user with email and password
@@ -84,7 +84,7 @@ class LoginActivity : BaseActivity() {
                     }
         } else {
             pb.visibility = View.GONE
-            login_signInText.text = "Sign in"
+            login_signInText.text = "SIGN IN"
         }
     }
 

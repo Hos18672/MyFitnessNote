@@ -24,7 +24,7 @@ class SignUpActivity : BaseActivity() {
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE or WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         fullscreen()
         setupActionBar()
-        signUp_loginText.setOnClickListener {
+        login_signUpText.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }
@@ -60,7 +60,6 @@ class SignUpActivity : BaseActivity() {
                 // Toast.makeText(this, "Now we register User",Toast.LENGTH_SHORT).show()
                 //password encryption
                 pb.visibility = View.VISIBLE
-                btn_signUpText.setText("Please wait ...")
                 val hashPass = BCrypt.withDefaults().hashToString(12, password.toCharArray())
                 //showProgressDialog(resources.getString(R.string.please_wait))
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
@@ -106,7 +105,6 @@ class SignUpActivity : BaseActivity() {
                     }
             }else{
                 pb.visibility = View.GONE
-                btn_signUpText.text = "Sign Up"
                 showErrorSnackBar("Passwords not match")
             }
         }
