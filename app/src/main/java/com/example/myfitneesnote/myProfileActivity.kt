@@ -4,10 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
+import androidx.core.app.ActivityOptionsCompat
 import com.example.myfitneesnote.R.*
 import com.example.myfitneesnote.R.drawable.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_main_layout.*
 import kotlinx.android.synthetic.main.activity_my_profile.*
 
 
@@ -24,7 +26,9 @@ class myProfileActivity : BaseActivity() {
         setupActionBar()
         userProfileData()
         btnback_profile.setOnClickListener {
-            onBackPressed()
+            val intent = Intent(this, MainActivity::class.java)
+            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, imageView8, "profileImage")
+            startActivity(intent, options.toBundle())
             finish()}
         mFirebaseInstance = FirebaseDatabase.getInstance()
         // get reference to 'users' node
@@ -34,9 +38,6 @@ class myProfileActivity : BaseActivity() {
         userId = user?.getUid()
         btnSave.setOnClickListener {
             onUpdateClicked()
-        }
-        btnChangeEmailOrPassword.setOnClickListener {
-            startActivity(Intent(this, SecurityActivity::class.java))
         }
     }
     private fun updateUser(username: String, name: String) {

@@ -72,6 +72,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="horizontal"
+        android:scrollbars="none"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -102,7 +103,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginTop="10dp"
-                android:layoutAnimation="@anim/layout_animation"
                 android:orientation="horizontal" />
 
             <TextView
@@ -123,7 +123,6 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
-                android:background="@drawable/shape3"
                 app:cardCornerRadius="15dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -133,10 +132,11 @@
                     android:id="@+id/toggleButtonsGroup"
                     android:layout_width="match_parent"
                     android:layout_height="25dp"
-                    android:layout_marginStart="5dp"
+                    android:layout_marginStart="25dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="5dp"
-                    android:gravity="center"
+                    android:gravity="left"
+                    app:checkedButton="@id/LastWeek"
                     android:showDividers="end"
                     app:singleSelection="true">
 
@@ -192,6 +192,7 @@
                         android:layout_height="wrap_content"
                         android:backgroundTint="@color/white"
                         android:text="@string/_2m"
+                        android:visibility="gone"
                         android:textColor="@color/black"
                         android:textSize="15sp"
                         tools:ignore="SmallSp" />
@@ -202,7 +203,7 @@
                         android:layout_width="65dp"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@color/white"
-                        android:text="3M"
+                        android:text="All"
                         android:textColor="@color/black"
                         android:textSize="15sp"
                         tools:ignore="SmallSp" />
@@ -246,7 +247,6 @@
                     android:layout_height="80dp"
                     android:layout_marginStart="0dp"
                     android:layout_marginEnd="10dp"
-                    android:background="@drawable/shape3"
                     app:cardCornerRadius="12dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -272,8 +272,8 @@
                     android:layout_height="80dp"
                     android:layout_marginStart="30dp"
                     android:layout_marginEnd="0dp"
-                    android:background="@drawable/shape"
                     app:cardCornerRadius="12dp"
+                    android:transitionName="trainingsBtn"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tip1"
@@ -308,7 +308,6 @@
                     android:layout_height="80dp"
                     android:layout_marginStart="0dp"
                     android:layout_marginEnd="10dp"
-                    android:background="@drawable/shape"
                     app:cardCornerRadius="12dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -334,7 +333,6 @@
                     android:layout_height="80dp"
                     android:layout_marginStart="30dp"
                     android:layout_marginEnd="0dp"
-                    android:background="@drawable/shape3"
                     app:cardCornerRadius="12dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -386,6 +384,7 @@
             android:layout_height="50dp"
             android:layout_marginStart="40dp"
             android:background="@drawable/chat"
+            android:transitionName="chatBtn"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -396,6 +395,7 @@
             android:layout_height="50dp"
             android:layout_marginEnd="40dp"
             android:background="@drawable/history"
+            android:transitionName="trainingsBtn"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -410,6 +410,7 @@
         android:scaleType="center"
         app:backgroundTint="#00B7FF"
         app:fabCustomSize="65dp"
+        android:transitionName="addBtn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

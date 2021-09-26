@@ -3,10 +3,12 @@ package com.example.myfitneesnote
 import android.content.Intent
 import android.os.Bundle
 import androidx.cardview.widget.CardView
+import androidx.core.app.ActivityOptionsCompat
 import com.google.android.material.card.MaterialCardView
 import kotlinx.android.synthetic.main.activity_login.view.*
 import kotlinx.android.synthetic.main.activity_muskel_group.*
 import kotlinx.android.synthetic.main.activity_muskel_group.view.*
+import kotlinx.android.synthetic.main.activity_workout.*
 
 class MuskelGroupActivity : BaseActivity() {
     var GymType: String? = ""
@@ -17,7 +19,12 @@ class MuskelGroupActivity : BaseActivity() {
         muscle_txt.text = GymType
         fullscreen()
         setupActionBar()
-        btnBack.setOnClickListener{onBackPressed()}
+        btnBack.setOnClickListener{
+            val intent = Intent( this,  WorkoutActivity::class.java)
+            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, btnBack, "cvWorkouts")
+            startActivity(intent, options.toBundle())
+          //  finish()
+            }
         //Burst muscle
         brust_btn.setOnClickListener   { setOnclickMuscle(brust_btn as MaterialCardView) }
         //Biceps muscle
@@ -36,10 +43,12 @@ class MuskelGroupActivity : BaseActivity() {
     }
 
     private  fun setOnclickMuscle(btn: CardView){
-        val intent = Intent (this, AddWorkoutActivity::class.java)
+        val intent = Intent( this,  AddWorkoutActivity::class.java)
         intent.putExtra("MuskelName", btn.contentDescription)
         intent.putExtra("GymName", GymType)
-        startActivity(intent)
+        val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, btn, "addTrainingCv")
+        startActivity(intent, options.toBundle())
+       // finish()
     }
     private fun setupActionBar() {
         setSupportActionBar(toolBar_muscle_gruppe_activity)

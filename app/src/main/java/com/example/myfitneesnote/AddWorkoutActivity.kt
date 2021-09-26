@@ -6,14 +6,17 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.text.Editable
+import android.view.animation.AnimationUtils
 import android.widget.EditText
 import androidx.annotation.RequiresApi
+import androidx.core.app.ActivityOptionsCompat
 import com.example.myfitneesnote.R.*
 import com.example.myfitneesnote.firebase.FirestoreClass
 import com.example.myfitneesnote.model.Workout
 import com.google.firebase.Timestamp
 import com.vivekkaushik.datepicker.OnDateSelectedListener
 import kotlinx.android.synthetic.main.activity_add_workout.*
+import kotlinx.android.synthetic.main.activity_main_layout.*
 import java.util.*
 
 class AddWorkoutActivity : BaseActivity() {
@@ -24,6 +27,7 @@ class AddWorkoutActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(layout.activity_add_workout)
         onClick()
+        animat()
         fullscreen()
         setupActionBar()
         val trainingsName: String? = intent.getStringExtra("MuskelName")
@@ -35,7 +39,7 @@ class AddWorkoutActivity : BaseActivity() {
         val day = c.get(Calendar.DAY_OF_MONTH)
         datePickerTimeline.setInitialDate(year,month,day)
         currentDate = "${year}/${month+1}/${day}"
-        //  datePickerTimeline.setActiveDate(Calendar.getInstance())
+        // datePickerTimeline.setActiveDate(Calendar.getInstance())
         // Set a date Selected Listener
         datePickerTimeline.setOnDateSelectedListener(object : OnDateSelectedListener {
             override fun onDateSelected(year: Int, month: Int, day: Int, dayOfWeek: Int) {
@@ -59,8 +63,21 @@ class AddWorkoutActivity : BaseActivity() {
         datePickerTimeline.deactivateDates(dates)
     }
     private fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
+
+
+    fun animat(){
+        val ttb = AnimationUtils.loadAnimation(this, R.anim.ttb)
+        TrainingName.startAnimation(ttb)
+
+    }
     private fun onClick(){
-        btnBackNewWorkout.setOnClickListener {onBackPressed()}
+        btnBackNewWorkout.setOnClickListener {
+            val intent = Intent( this,  MuskelGroupActivity::class.java)
+            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, btnBackNewWorkout, "addTrainingBtn")
+            startActivity(intent, options.toBundle())
+           // finish()
+
+        }
         btn_set_minus.setOnClickListener{minusButton(SetNum)}
         btn_set_plus.setOnClickListener{plusButton(SetNum)}
         btn_weight_minus.setOnClickListener{minusButton(weightNum)}
@@ -69,7 +86,13 @@ class AddWorkoutActivity : BaseActivity() {
         btn_break_plus.setOnClickListener{plusButton(breakNum)}
         btn_repeat_minus.setOnClickListener{minusButton(repeatNum)}
         btn_repeat_plus.setOnClickListener{plusButton(repeatNum)}
-        save_btn.setOnClickListener { createTraining() }
+        save_btn.setOnClickListener {
+
+            createTraining()
+            val intent = Intent(this, TrainingActivity::class.java)
+            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, save_btn, "trainingsBtn")
+            startActivity(intent, options.toBundle())
+            finish()}
     }
     private fun minusButton(et: EditText){
         var num = et.text.toString().toInt()
@@ -99,7 +122,6 @@ class AddWorkoutActivity : BaseActivity() {
             currentDate,
             currentDateAndTime)
         FirestoreClass().createNewTraining(this, workout)
-        startActivity(Intent(this, TrainingActivity::class.java))
     }
     private fun setupActionBar() {
         setSupportActionBar(toolBar_add_workout_activity)

@@ -1,6 +1,7 @@
 package com.example.myfitneesnote
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
@@ -8,6 +9,7 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import at.favre.lib.crypto.bcrypt.BCrypt
 import com.example.myfitneesnote.firebase.FirestoreClass
 import com.google.firebase.auth.FirebaseAuth
@@ -170,4 +172,5 @@ class SignUpActivity : BaseActivity() {
         finish()
     }
     override fun onBackPressed() { finish() }
+
 }

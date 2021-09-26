@@ -3,6 +3,7 @@ package com.example.myfitneesnote
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import androidx.core.app.ActivityOptionsCompat
 import com.example.myfitneesnote.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -13,6 +14,7 @@ import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.activity_chat.*
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import kotlinx.android.synthetic.main.activity_training.*
 import kotlinx.android.synthetic.main.user_row.view.*
 
 class ChatActivity : BaseActivity() {
@@ -28,7 +30,12 @@ class ChatActivity : BaseActivity() {
         setupActionBar()
         fetchUsers()
         fetchCurrentUser()
-        btnBack_ChatList.setOnClickListener { onBackPressed() }
+        btnBack_ChatList.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, btnBack_ChatList, "chatBtn")
+            startActivity(intent, options.toBundle())
+            finish()
+        }
     }
     private fun setupActionBar() {
         setSupportActionBar(toolBar_Chat_activity)
@@ -83,6 +90,7 @@ class ChatActivity : BaseActivity() {
             }
         })
     }
+
 }
 class UserItem(val user: User): Item<ViewHolder>(){
     override fun bind(viewHolder: ViewHolder, position: Int) {

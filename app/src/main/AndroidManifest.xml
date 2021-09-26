@@ -17,20 +17,23 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar.NoActionBar"
             tools:ignore="LockedOrientationActivity">
-
         </activity>
         <activity android:name=".tipsActivity" />
         <activity
             android:name=".TrainingActivity"
+            android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".AddWorkoutActivity"
             android:screenOrientation="portrait"
+            android:parentActivityName=".MuskelGroupActivity"
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".SecurityActivity"
             android:screenOrientation="portrait"
+            android:noHistory = "true"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar.NoActionBar"
             tools:ignore="LockedOrientationActivity" />
         <activity
@@ -41,21 +44,25 @@
         <activity
             android:name=".MuskelGroupActivity"
             android:screenOrientation="portrait"
+            android:parentActivityName=".WorkoutActivity"
             android:theme="@style/AppTheme.NoActionBar.NoActionBar"
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".ChatLogActivity"
             android:screenOrientation="portrait"
+            android:parentActivityName=".ChatActivity"
             android:theme="@style/AppTheme.NoActionBar.NoActionBar"
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".ChatActivity"
             android:screenOrientation="portrait"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar.NoActionBar"
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".myProfileActivity"
             android:screenOrientation="portrait"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar.NoActionBar"
             tools:ignore="LockedOrientationActivity" />
         <activity
@@ -90,7 +97,6 @@
             tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.animation.AnimationUtils
 import android.view.animation.LayoutAnimationController
+import androidx.core.app.ActivityOptionsCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -27,7 +28,11 @@ class TrainingActivity : BaseActivity() {
 
         fullscreen()
         setupActionBar()
-        btnback_training.setOnClickListener { startActivity(Intent(this,MainActivity::class.java)) }
+        btnback_training.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, btnback_training, "trainingsBtn")
+            startActivity(intent, options.toBundle())
+            finish()}
         recyclerView = findViewById(R.id.rv_trainings_list)
         getTrainingsFromFireStore()
         recyclerView.startLayoutAnimation()
@@ -46,7 +51,7 @@ class TrainingActivity : BaseActivity() {
         trainingItemAdapter = TrainingItemAdapter(fireStoreRecyclerOption)
         recyclerView.layoutManager= LinearLayoutManager(this)
         recyclerView.adapter= trainingItemAdapter
-        val lac = LayoutAnimationController(AnimationUtils.loadAnimation(this,R.anim.slide_out_left))
+        val lac = LayoutAnimationController(AnimationUtils.loadAnimation(this,R.anim.slide_in_animation))
         lac.delay = 0.20f
         lac.order = LayoutAnimationController.ORDER_NORMAL
         recyclerView.layoutAnimation = lac

@@ -19,7 +19,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
-            tools:ignore="MissingConstraints">
+            tools:ignore="MissingConstraints,UnknownIdInLayout">
 
                 <TextView
                     android:id="@+id/toolBar_textView"
@@ -34,7 +34,7 @@
         </androidx.appcompat.widget.Toolbar>
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/tv_gymType"
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_margin="0dp"
@@ -59,9 +59,9 @@
             android:layout_marginTop="50dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="10dp"
-            android:background="@drawable/ic_gym_out"
             android:clickable="true"
             android:focusable="true"
+            android:transitionName="cvWorkouts"
             android:textColor="@android:color/background_light"
             android:textSize="30sp"
             app:cardCornerRadius="15dp"
@@ -70,7 +70,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:layout_constraintTop_toBottomOf="@+id/tv_gymType"
             app:rippleColor="#EEF1F3">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -116,9 +116,9 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
-            android:background="@drawable/imageedit_5_6040594024"
             android:clickable="true"
             android:textSize="30sp"
+            android:transitionName="cvWorkouts"
             app:cardCornerRadius="15dp"
             app:cardElevation="2dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -127,11 +127,9 @@
             app:layout_constraintTop_toBottomOf="@+id/btn_gym_workout"
             app:rippleColor="#EEF1F3"
             tools:ignore="MissingConstraints">
-
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="199dp">
-
                         <TextView
                             android:id="@+id/txt_home_workout"
                             android:layout_width="113dp"
@@ -150,7 +148,6 @@
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_bias="0.503"
                             tools:ignore="MissingConstraints" />
-
                         <ImageView
                             android:id="@+id/home_image"
                             android:layout_width="140dp"
@@ -164,7 +161,6 @@
                             app:srcCompat="@drawable/workout_home" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
-
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnBack1"
             android:layout_width="0dp"
@@ -174,6 +170,8 @@
             android:layout_marginBottom="20dp"
             android:backgroundTint="@color/colorPrimaryBlue"
             android:text="@string/back"
+            android:visibility="gone"
+            android:transitionName="addBtn"
             android:textColor="@color/black"
             android:textSize="20sp"
             app:cornerRadius="25dp"

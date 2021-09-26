@@ -41,7 +41,7 @@
     <string name="workout_choice1">Workout Choice</string>
     <string name="sets">Sets</string>
     <string name="_0">0</string>
-    <string name="x">X</string>
+    <string name="x">X    </string>
     <string name="kg">Kg</string>
     <string name="Break">Break</string>
     <string name="min">min</string>
@@ -58,13 +58,13 @@
     <string name="lowerabs">LOWER ABS</string>
     <string name="shoulder">SHOULDER</string>
     <string name="biceps">BICEPS</string>
-    <string name="chest">Chest</string>
+    <string name="chest">CHEST</string>
     <string name="muscle_group">Muscle Group</string>
     <string name="more">More</string>
     <string name="change_email">Change Email</string>
     <string name="new_password">New password</string>
     <string name="repeat_password">Retype password</string>
-    <string name="change_security_info">Change Security</string>
+    <string name="Settings">Settings</string>
     <string name="retype_password">Retype Password</string>
     <string name="my_fitness_note">My Fitness Note</string>
     <string name="your_workouts">Your workouts</string>
@@ -96,4 +96,6 @@
     <string name="_3m">3m</string>
     <string name="_6m">6m</string>
     <string name="_1w">1W</string>
+    <string name="setting">Setting</string>
+    <string name="my_profile">My profile</string>
 </resources>

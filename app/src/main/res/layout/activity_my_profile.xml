@@ -45,6 +45,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             android:gravity="center"
             android:orientation="vertical">
             <com.google.android.material.textfield.TextInputLayout
@@ -119,44 +121,37 @@
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnSave"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="10dp"
         android:backgroundTint="@color/colorPrimaryGreen"
         android:text="@string/save"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:cornerRadius="25dp"
         app:layout_constraintBottom_toTopOf="@+id/btnback_profile"
-        app:layout_constraintEnd_toStartOf="@+id/btnChangeEmailOrPassword"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pcard" />
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnChangeEmailOrPassword"
-        android:layout_width="100dp"
-        android:layout_height="60dp"
-        android:layout_marginEnd="30dp"
-        android:text="@string/more"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        app:cornerRadius="25dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnback_profile"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pcard" />
+        app:layout_constraintEnd_toEndOf="@+id/pcard"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/pcard"
+        app:layout_constraintTop_toBottomOf="@+id/pcard"
+        app:layout_constraintVertical_bias="0.97" />
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnback_profile"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginBottom="25dp"
         android:backgroundTint="@color/colorPrimaryBlue"
         android:text="@string/back"
         android:textColor="@color/black"
         android:textSize="20sp"
+        android:visibility="gone"
         app:cornerRadius="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

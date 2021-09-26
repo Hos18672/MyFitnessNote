@@ -1,19 +1,21 @@
 package com.example.myfitneesnote
 
 
+import android.annotation.SuppressLint
 import android.app.ActivityOptions
 import android.content.Intent
-import android.content.IntentFilter.create
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.util.Pair.create
 import android.view.MenuItem
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
-import androidx.core.content.ContextCompat.startActivity
+import androidx.core.app.ActivityOptionsCompat
 import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -31,7 +33,6 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
-import com.google.android.material.button.MaterialButtonToggleGroup
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -40,19 +41,16 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
-import kotlinx.android.synthetic.main.activity_add_workout.*
 import kotlinx.android.synthetic.main.activity_add_workout.constraintLayout3
+import kotlinx.android.synthetic.main.activity_intro.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main_layout.*
-import kotlinx.android.synthetic.main.app_bar_main.*
-import kotlinx.android.synthetic.main.item_training_main.*
 import kotlinx.android.synthetic.main.nav_header_main.*
-import java.net.URI.create
-import java.sql.Timestamp
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
     private val db = FirebaseFirestore.getInstance()
@@ -66,19 +64,20 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         //This call the parent constructor
         super.onCreate(savedInstanceState)
         setContentView(layout.activity_main)
-        setupLineChartData2()
+        setupLineChartDataLastWeek()
         nav_view.setNavigationItemSelectedListener(this)
         //FirestoreClass().loginUser(this)
         constraintLayout3.bringToFront()
         fullscreen()
         onClick()
         userData()
+        animat()
         recyclerView = findViewById(id.rv_trainings_list_main)
         getTrainingsFromFireStore()
         // userWorkoutsData()
         getDataFromFireStore()
         updateNavigationUserDetails()
-        val mySet = linkedMapOf("label1" to 4F, "label2" to 7F, "label3" to 2F)
+        toggleButtonsGroup.checkedButtonId
         toggleButtonsGroup.addOnButtonCheckedListener { group, checkedId, isChecked ->
             if (isChecked) {
                 when (checkedId) {
@@ -87,13 +86,14 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                     id.ThreeWeeks -> setupLineChartDataLastThreeWeek()
                     id.OneMonth -> setupLineChartDataLastMonth()
                     id.TwoMonth -> setupLineChartDataLastTwoMonth()
-                    id.ThreeMonth -> setupLineChartDataLastThreeMonth()
+                    id.ThreeMonth -> setupLineChartData2()
                 }
             } else {
             }
         }
-
     }
+
+
     private fun showToast(str: String){
         Toast.makeText(this, str, Toast.LENGTH_SHORT).show()
     }
@@ -172,7 +172,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 }
             }
     }*/
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+
     private fun onClick() {
         val mainMenu: ImageButton = findViewById(id.main_menu)
         val addMenu: ImageView = findViewById(id.Add_main)
@@ -204,14 +204,15 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
         mainImage.setOnClickListener {
             animate(mainImage)
-            var activityOptions : Bundle? = ActivityOptions.makeSceneTransitionAnimation(
-                this).toBundle()
-            startActivity(Intent(this,myProfileActivity::class.java), activityOptions)
+            val intent = Intent(this, myProfileActivity::class.java)
+            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, tv_main_profile_image, "profileImage")
+            startActivity(intent, options.toBundle())
         }
 //       cvLinechart.setOnClickListener {
 //           animateCV(cvChart)
 //           startActivity(Intent(this,TrainingActivity::class.java))
 //       }
+
        mainMenu.setOnClickListener {
             if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
                 drawer_layout.closeDrawer(GravityCompat.START)
@@ -220,15 +221,25 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             }
         }
         addMenu.setOnClickListener {
-            startActivity(Intent(this, WorkoutActivity::class.java))
+
+                val intent = Intent(this, WorkoutActivity::class.java)
+                val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, Add_main, "addBtn")
+                startActivity(intent, options.toBundle())
+
+
         }
         chatMain.setOnClickListener {
+            chat_main
             animate(chatMain)
-            startActivity(Intent(this, ChatActivity::class.java))
+            val intent = Intent(this, ChatActivity::class.java)
+            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, chatMain, "chatBtn")
+            startActivity(intent, options.toBundle())
         }
         diagramMain.setOnClickListener {
             animate(diagramMain)
-            startActivity(Intent(this, TrainingActivity::class.java))
+            val intent = Intent(this, TrainingActivity::class.java)
+            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, diagramMain, "trainingsBtn")
+            startActivity(intent, options.toBundle())
         }
 
         btn_sing_out_draw_layout.setOnClickListener {
@@ -247,11 +258,14 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             val intent = Intent(this, IntroActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
-            finish()
         }
     }
 
+    fun animat(){
+        val rtl = AnimationUtils.loadAnimation(this, R.anim.rtl)
+        cvLineChart.startAnimation(rtl)
 
+    }
     private fun animate(btn: ImageButton){
         btn.animate().apply {
             duration =100
@@ -357,6 +371,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             }
     }
 
+    @SuppressLint("SimpleDateFormat")
     private fun setupLineChartData2() {
         val listXDate = arrayListOf<String>()
         val listXDate2 = arrayListOf<String>()
@@ -442,7 +457,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                     set1.color = Color.BLUE
                     set1.lineWidth = 2f
                     set1.circleRadius = 3f
-                    lineChart.setScaleEnabled(true);
+                    lineChart.setScaleEnabled(true)
                     set1.valueTextSize = 0f
                     set1.mode = LineDataSet.Mode.CUBIC_BEZIER
                     set1.setDrawFilled(true)
@@ -519,6 +534,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 }
             }
     }
+    @SuppressLint("SimpleDateFormat")
     private fun setupLineChartDataLastWeek() {
         val listXDate = arrayListOf<String>()
         val listXDate2 = arrayListOf<String>()
@@ -531,7 +547,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         val year = c.get(Calendar.YEAR)
         val month: String = currentMonth.toString()
         val day = c.get(Calendar.DAY_OF_MONTH)
-        var datelocal : String = "${year}/${month}/${day-7}"
+        var datelocal : String = "${year}/${month}/${day-6}"
 
         db.collection(Constant.USERS).document(getCurrentUserID()).collection(Constant.TRAININGS)
             .orderBy("date", Query.Direction.ASCENDING)
@@ -693,7 +709,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         val year = c.get(Calendar.YEAR)
         val month: String = currentMonth.toString()
         val day = c.get(Calendar.DAY_OF_MONTH)
-        var datelocal : String = "${year}/${month}/${day-14}"
+        var datelocal : String = "${year}/${month}/${day-13}"
 
         db.collection(Constant.USERS).document(getCurrentUserID()).collection(Constant.TRAININGS)
             .orderBy("date", Query.Direction.ASCENDING)
@@ -855,7 +871,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         val year = c.get(Calendar.YEAR)
         val month: String = currentMonth.toString()
         val day = c.get(Calendar.DAY_OF_MONTH)
-        var datelocal : String = "${year}/${month}/${day - 21}"
+        var datelocal : String = "${year}/${month}/${day - 20}"
 
         db.collection(Constant.USERS).document(getCurrentUserID()).collection(Constant.TRAININGS)
             .orderBy("date", Query.Direction.ASCENDING)
@@ -1017,7 +1033,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         val year = c.get(Calendar.YEAR)
         val month: String = currentMonth.toString()
         val day = c.get(Calendar.DAY_OF_MONTH)
-        var datelocal : String = "${year}/${month}/${day-30}"
+        var datelocal : String = "${year}/${month}/${day-29}"
 
         db.collection(Constant.USERS).document(getCurrentUserID()).collection(Constant.TRAININGS)
             .orderBy("date", Query.Direction.ASCENDING)
@@ -1179,7 +1195,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         val year = c.get(Calendar.YEAR)
         val month: String = currentMonth.toString()
         val day = c.get(Calendar.DAY_OF_MONTH)
-        var datelocal : String = "${year}/${month}/${day-60}"
+        var datelocal : String = "${year}/${month}/${day-59}"
 
         db.collection(Constant.USERS).document(getCurrentUserID()).collection(Constant.TRAININGS)
             .orderBy("date", Query.Direction.ASCENDING)
@@ -1341,7 +1357,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         val year = c.get(Calendar.YEAR)
         val month: String = currentMonth.toString()
         val day = c.get(Calendar.DAY_OF_MONTH)
-        var datelocal : String = "${year}/${month}/${day-90}"
+        var datelocal : String = "${year}/${month}/${day}"
 
         db.collection(Constant.USERS).document(getCurrentUserID()).collection(Constant.TRAININGS)
             .orderBy("date", Query.Direction.ASCENDING)

@@ -4,7 +4,10 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.WindowManager
+import android.view.animation.AnimationUtils
 import androidx.annotation.RequiresApi
+import androidx.core.app.ActivityOptionsCompat
+import kotlinx.android.synthetic.main.activity_main_layout.*
 import kotlinx.android.synthetic.main.activity_workout.*
 
 class WorkoutActivity : BaseActivity(){
@@ -17,6 +20,16 @@ class WorkoutActivity : BaseActivity(){
         fullscreen()
         setupActionBar()
         onClick()
+        animat()
+    }
+
+    fun animat(){
+        val btt = AnimationUtils.loadAnimation(this, R.anim.btt)
+        btn_home_workout.startAnimation(btt)
+        val ttb = AnimationUtils.loadAnimation(this, R.anim.ttb)
+        btn_gym_workout.startAnimation(ttb)
+        val ttb1 = AnimationUtils.loadAnimation(this, R.anim.ttb)
+        tv_gymType.startAnimation(ttb1)
     }
     private  fun onClick(){
         btn_gym_workout.setOnClickListener{
@@ -32,8 +45,11 @@ class WorkoutActivity : BaseActivity(){
                 }
             }.start()
             val intent = Intent( this,  MuskelGroupActivity::class.java)
+            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, btn_gym_workout, "cvWorkouts")
             intent.putExtra("WorkoutType",txt_gym_workout.text)
-            startActivity(intent) }
+            startActivity(intent, options.toBundle())
+            //finish()
+        }
         btn_home_workout.setOnClickListener{
             btn_home_workout.animate().apply {
                 duration =400
@@ -47,9 +63,19 @@ class WorkoutActivity : BaseActivity(){
                 }
             }.start()
             val intent = Intent( this,  MuskelGroupActivity::class.java)
+            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, btn_home_workout, "cvWorkouts")
             intent.putExtra("WorkoutType",txt_home_workout.text)
-            startActivity(intent)}
-        btnBack1.setOnClickListener{ onBackPressed() }
+            startActivity(intent, options.toBundle())
+            //finish()
+        }
+
+
+        btnBack1.setOnClickListener{
+            val intent = Intent(this, MainActivity::class.java)
+            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, btnBack1, "addBtn")
+            startActivity(intent, options.toBundle())
+            //finish()
+        }
     }
     private fun setupActionBar() {
         setSupportActionBar(toolBar_workout_activity)
@@ -60,6 +86,7 @@ class WorkoutActivity : BaseActivity(){
         }
         toolBar_workout_activity.setNavigationOnClickListener{
             onBackPressed()
+            finish()
         }
     }
 }
