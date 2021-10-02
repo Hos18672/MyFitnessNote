@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/ic_splash_background"
     tools:context="com.example.myfitneesnote.ChatActivity">
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar_Chat_activity"
         android:layout_width="0dp"
@@ -15,18 +14,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints">
-
-        <TextView
-            android:id="@+id/toolBar_textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text=""
-            android:textColor="#000000"
-            android:textSize="15sp"
-            tools:layout_editor_absoluteX="165dp"
-            tools:layout_editor_absoluteY="218dp" />
-
         <TextView
             android:id="@+id/Massage_textView"
             android:layout_width="wrap_content"
@@ -35,17 +22,14 @@
             android:gravity="center"
             android:text="@string/your_chats"
             android:textColor="#000000"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textSize="15sp" />
     </androidx.appcompat.widget.Toolbar>
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline1Chat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_end="819dp" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="0dp"
@@ -64,7 +48,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_end="68dp" />
-
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnBack_ChatList"
         android:layout_width="0dp"

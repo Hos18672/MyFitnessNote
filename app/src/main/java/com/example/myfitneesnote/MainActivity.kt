@@ -75,7 +75,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         recyclerView = findViewById(id.rv_trainings_list_main)
         getTrainingsFromFireStore()
         // userWorkoutsData()
-        getDataFromFireStore()
+        getDataFromFireStoreTest()
         updateNavigationUserDetails()
         toggleButtonsGroup.checkedButtonId
         toggleButtonsGroup.addOnButtonCheckedListener { group, checkedId, isChecked ->
@@ -111,67 +111,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             }
         })
     }
-    /*   @SuppressLint("SimpleDateFormat", "SetTextI18n")
-     private fun userWorkoutsData() {
-        val tvGymename :TextView = findViewById(id.tv_main_GymName)
-        val tvMuskelname :TextView = findViewById(id.tv_main_muscle)
-        val tvSet :TextView = findViewById(id.tv_main_sets)
-        val tvWeight:TextView = findViewById(id.tv_main_weight)
-        val tvBreak :TextView = findViewById(id.tv_main_break)
-        val tvRepeat :TextView = findViewById(id.tv_main_repeat)
-        val tvDate :TextView = findViewById(id.tv_main_date)
-        val constraintLayout :ConstraintLayout = findViewById(id.const_layout_main)
-        val tvNoTrainings:TextView = findViewById(id.tv_no_trainings)
-        //get current Day of month
-        val c= Calendar.getInstance()
-        val year = c.get(Calendar.YEAR)
-        val day = c.get(Calendar.DAY_OF_MONTH)
-        val month = c.get(Calendar.MONTH)
-        val currentDate = "${year}/${month +1}/${day}"
-       // var output = ""
-        var gymeType: String
-        var musclename: String
-        var sets: String
-        var weight: String
-        var breakTime: String
-        var repeat: String
-        var date: String
-       // val outputFormatter: DateFormat = SimpleDateFormat("dd/MM/yyyy")
-        db.collection(Constant.USERS)
-            .document(getCurrentUserID())
-            .collection(Constant.TRAININGS).whereEqualTo("currentDateTime", currentDate)
-            .get()
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    for (document in task.result!!) {
-                        if (document.exists()) {
-                            gymeType = document.get("gymType").toString()
-                            musclename = document.get("muskelName").toString()
-                            sets = document.get("set").toString()
-                            weight = document.get("weight").toString()
-                            breakTime = document.get("breakTime").toString()
-                            repeat = document.get("repeat").toString()
-                            date = document.get("currentDateTime").toString()
-                            tvGymename.text = gymeType
-                            // set Data to the TextViews
-                            tvMuskelname.text = musclename
-                            tvSet.text = "$sets x"
-                            tvWeight.text = "$weight kg"
-                            tvBreak.text = "$breakTime min"
-                            tvRepeat.text = "$repeat x"
-                            tvDate.text = date
-                            tvNoTrainings.visibility = GONE
-                            constraintLayout.visibility = VISIBLE
-                        } else {
-                            tvNoTrainings.visibility = VISIBLE
-                            constraintLayout.visibility = GONE
-                        }
-                    }
-                } else {
-                    Log.d(TAG, "Error getting documents:", task.exception)
-                }
-            }
-    }*/
+
 
     private fun onClick() {
         val mainMenu: ImageButton = findViewById(id.main_menu)
@@ -347,10 +287,13 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             }
         })
     }
-    private fun getDataFromFireStore() {
+    private fun getDataFromFireStoreTest() {
         val list1 = arrayListOf<String>()
+        val ListDays = arrayListOf<String>()
         val list2 = arrayListOf<String>()
-        db.collection(Constant.USERS).document(getCurrentUserID()).collection(Constant.TRAININGS).get()
+        db.collection(Constant.USERS).document(getCurrentUserID()).collection(Constant.TRAININGS)
+            .orderBy("date", Query.Direction.ASCENDING)
+            .get()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     for (document in task.result!!) {
@@ -358,12 +301,15 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                         // val inputFormatter: DateFormat = SimpleDateFormat("yyyy/MM/dd - HH:mm")
                         val inputFormatter: DateFormat = SimpleDateFormat("yyyy/MM/dd")
                         val date: Date = inputFormatter.parse(input)
-                        val outputFormatter: DateFormat = SimpleDateFormat("MM/dd/yyyy")
+                        val outputFormatter: DateFormat = SimpleDateFormat("dd/MM/yyyy")
                         val output: String = outputFormatter.format(date) // Output : 01/20/2012
+                        val dayNum = output.substring(0, output.length - 8).toInt().toString()
+                        ListDays.add(dayNum)
                         list1.add(output)
                         list2.add(document.get("set").toString())
                     }
                     Log.d("--------Test1------", list1.toString())
+                    Log.d("--------Test1------", ListDays.toString())
                     Log.d("--------Test2------", list2.toString())
                 } else {
                     Log.d(TAG, "Error getting documents: ", task.exception)
@@ -396,58 +342,21 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                         //val inputFormatter: DateFormat = SimpleDateFormat("yyyy/MM/dd - HH:mm")
                         val inputFormatter: DateFormat = SimpleDateFormat("yyyy/MM/dd")
                         val date: Date = inputFormatter.parse(input)
-                        val d : Date = inputFormatter.parse(datelocal)
+                        //val d : Date = inputFormatter.parse(datelocal)
                         val outputFormatter: DateFormat = SimpleDateFormat("dd/MM/yyyy")
                         val output: String = outputFormatter.format(date) // Output : 01/20/2012
                         val dayNum = output.substring(0, output.length - 8).toInt().toString()
                         outputMonth = outputFormatter.format(date)
                         var m = document.get("set").toString().toInt()
 
-                        if (d > date) {
+                        //if (d > date) {
                             listXDate.add(dayNum)
                             listYData.add(m.toString())
-                        }
+                      //  }
                     }
-                    /*  var j = 0
-                   var sum = 0
-                   var m = 0
-                   var n =0
-                   var k = 1
-                   while ( j < listXDate.size) {
-                       n = listYData.get(j).toInt()
-                       while (k  < listXDate.size ) {
-                           if (listXDate.get(j).toInt().equals(listXDate.get(k).toInt()) && j != k ) {
-                               m += listYData.get(k).toInt()
-                               m += n
-                               sum +=  m
-                               m = 0
-                               n = 0
-                           }
-                           k++
+                    Log.d("--------TestX------", listXDate.toString())
+                    Log.d("--------TestY------", listYData.toString())
 
-                       }
-                        k = 0
-                        n = 0
-
-                       if(sum == 0 ){
-                        sum = listYData.get(j).toInt()
-                           listXDate2.add(listXDate.get(j))
-                           listYData2.add(sum.toString())
-                           sum = 0
-                           j++
-                       }else {
-                           listXDate2.add(listXDate.get(j))
-                           listYData2.add(sum.toString())
-                           sum = 0
-                           j++
-                       }
-                   }
-                   // delete duplication in List X
-                   val hashSet: Set<String> = LinkedHashSet(listXDate2)
-                   val removedDuplicates = ArrayList(hashSet)
-                   // delete duplication in List Y
-                val hashSet2: Set<String> = LinkedHashSet(listYData2)
-                   val removedDuplicates2 = ArrayList(hashSet2)*/
                     var i = 0
                     while (i <= listXDate.size-1) {
                         yVals.add(Entry(listXDate[i].toFloat(), listYData[i].toFloat(), i))
@@ -509,7 +418,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                     }
                     xAxis.valueFormatter = vf
                     yAxis.valueFormatter = vf2
-                    xAxis.labelCount = listXDate.size
+                    //xAxis.labelCount = listXDate.size
                     yAxis.setDrawLabels(true)
                     lineChart.setDrawBorders(false)
                     lineChart.setDrawGridBackground(false)
@@ -547,7 +456,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         val year = c.get(Calendar.YEAR)
         val month: String = currentMonth.toString()
         val day = c.get(Calendar.DAY_OF_MONTH)
-        var datelocal : String = "${year}/${month}/${day-6}"
+        var datelocal : String = "${year}/${month}/${day.minus(7)}"
 
         db.collection(Constant.USERS).document(getCurrentUserID()).collection(Constant.TRAININGS)
             .orderBy("date", Query.Direction.ASCENDING)
@@ -709,7 +618,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         val year = c.get(Calendar.YEAR)
         val month: String = currentMonth.toString()
         val day = c.get(Calendar.DAY_OF_MONTH)
-        var datelocal : String = "${year}/${month}/${day-13}"
+        var datelocal : String = "${year}/${month}/${day.minus(14)}"
 
         db.collection(Constant.USERS).document(getCurrentUserID()).collection(Constant.TRAININGS)
             .orderBy("date", Query.Direction.ASCENDING)
@@ -871,7 +780,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         val year = c.get(Calendar.YEAR)
         val month: String = currentMonth.toString()
         val day = c.get(Calendar.DAY_OF_MONTH)
-        var datelocal : String = "${year}/${month}/${day - 20}"
+        var datelocal : String = "${year}/${month.toInt()-1}/${day}"
 
         db.collection(Constant.USERS).document(getCurrentUserID()).collection(Constant.TRAININGS)
             .orderBy("date", Query.Direction.ASCENDING)
@@ -1057,46 +966,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                             listYData.add(m.toString())
                         }
                     }
-                    /*  var j = 0
-                   var sum = 0
-                   var m = 0
-                   var n =0
-                   var k = 1
-                   while ( j < listXDate.size) {
-                       n = listYData.get(j).toInt()
-                       while (k  < listXDate.size ) {
-                           if (listXDate.get(j).toInt().equals(listXDate.get(k).toInt()) && j != k ) {
-                               m += listYData.get(k).toInt()
-                               m += n
-                               sum +=  m
-                               m = 0
-                               n = 0
-                           }
-                           k++
-
-                       }
-                        k = 0
-                        n = 0
-
-                       if(sum == 0 ){
-                        sum = listYData.get(j).toInt()
-                           listXDate2.add(listXDate.get(j))
-                           listYData2.add(sum.toString())
-                           sum = 0
-                           j++
-                       }else {
-                           listXDate2.add(listXDate.get(j))
-                           listYData2.add(sum.toString())
-                           sum = 0
-                           j++
-                       }
-                   }
-                   // delete duplication in List X
-                   val hashSet: Set<String> = LinkedHashSet(listXDate2)
-                   val removedDuplicates = ArrayList(hashSet)
-                   // delete duplication in List Y
-                val hashSet2: Set<String> = LinkedHashSet(listYData2)
-                   val removedDuplicates2 = ArrayList(hashSet2)*/
                     var i = 0
                     while (i <= listXDate.size-1) {
                         yVals.add(Entry(listXDate[i].toFloat(), listYData[i].toFloat(), i))
@@ -1219,46 +1088,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                             listYData.add(m.toString())
                         }
                     }
-                    /*  var j = 0
-                   var sum = 0
-                   var m = 0
-                   var n =0
-                   var k = 1
-                   while ( j < listXDate.size) {
-                       n = listYData.get(j).toInt()
-                       while (k  < listXDate.size ) {
-                           if (listXDate.get(j).toInt().equals(listXDate.get(k).toInt()) && j != k ) {
-                               m += listYData.get(k).toInt()
-                               m += n
-                               sum +=  m
-                               m = 0
-                               n = 0
-                           }
-                           k++
-
-                       }
-                        k = 0
-                        n = 0
-
-                       if(sum == 0 ){
-                        sum = listYData.get(j).toInt()
-                           listXDate2.add(listXDate.get(j))
-                           listYData2.add(sum.toString())
-                           sum = 0
-                           j++
-                       }else {
-                           listXDate2.add(listXDate.get(j))
-                           listYData2.add(sum.toString())
-                           sum = 0
-                           j++
-                       }
-                   }
-                   // delete duplication in List X
-                   val hashSet: Set<String> = LinkedHashSet(listXDate2)
-                   val removedDuplicates = ArrayList(hashSet)
-                   // delete duplication in List Y
-                val hashSet2: Set<String> = LinkedHashSet(listYData2)
-                   val removedDuplicates2 = ArrayList(hashSet2)*/
                     var i = 0
                     while (i <= listXDate.size-1) {
                         yVals.add(Entry(listXDate[i].toFloat(), listYData[i].toFloat(), i))
@@ -1357,7 +1186,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         val year = c.get(Calendar.YEAR)
         val month: String = currentMonth.toString()
         val day = c.get(Calendar.DAY_OF_MONTH)
-        var datelocal : String = "${year}/${month}/${day}"
+        var datelocal : String = "${year}/${month}/${day.minus(7)}"
 
         db.collection(Constant.USERS).document(getCurrentUserID()).collection(Constant.TRAININGS)
             .orderBy("date", Query.Direction.ASCENDING)
@@ -1381,46 +1210,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                             listYData.add(m.toString())
                         }
                     }
-                    /*  var j = 0
-                   var sum = 0
-                   var m = 0
-                   var n =0
-                   var k = 1
-                   while ( j < listXDate.size) {
-                       n = listYData.get(j).toInt()
-                       while (k  < listXDate.size ) {
-                           if (listXDate.get(j).toInt().equals(listXDate.get(k).toInt()) && j != k ) {
-                               m += listYData.get(k).toInt()
-                               m += n
-                               sum +=  m
-                               m = 0
-                               n = 0
-                           }
-                           k++
-
-                       }
-                        k = 0
-                        n = 0
-
-                       if(sum == 0 ){
-                        sum = listYData.get(j).toInt()
-                           listXDate2.add(listXDate.get(j))
-                           listYData2.add(sum.toString())
-                           sum = 0
-                           j++
-                       }else {
-                           listXDate2.add(listXDate.get(j))
-                           listYData2.add(sum.toString())
-                           sum = 0
-                           j++
-                       }
-                   }
-                   // delete duplication in List X
-                   val hashSet: Set<String> = LinkedHashSet(listXDate2)
-                   val removedDuplicates = ArrayList(hashSet)
-                   // delete duplication in List Y
-                val hashSet2: Set<String> = LinkedHashSet(listYData2)
-                   val removedDuplicates2 = ArrayList(hashSet2)*/
                     var i = 0
                     while (i <= listXDate.size-1) {
                         yVals.add(Entry(listXDate[i].toFloat(), listYData[i].toFloat(), i))
