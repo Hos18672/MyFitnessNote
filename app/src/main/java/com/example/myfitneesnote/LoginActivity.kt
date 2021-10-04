@@ -2,7 +2,6 @@ package com.example.myfitneesnote
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
@@ -10,13 +9,13 @@ import android.view.WindowManager
 import android.view.WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE
 import android.widget.ProgressBar
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
+@Suppress("DEPRECATION")
 class LoginActivity : BaseActivity() {
     val database = FirebaseDatabase.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,11 +35,13 @@ class LoginActivity : BaseActivity() {
     }
     private fun setupActionBar() {
         setSupportActionBar(toolBar_login_activity)
-        var actionBar = supportActionBar
+        val actionBar = supportActionBar
         if(actionBar!=null)
         {
+            supportActionBar?.setDisplayShowTitleEnabled(false)
             actionBar.setDisplayHomeAsUpEnabled(true)
             actionBar.setHomeAsUpIndicator(R.drawable.ic_navigate_before_black_24dp)
+
         }
         toolBar_login_activity.setNavigationOnClickListener{
             onBackPressed()
@@ -58,7 +59,7 @@ class LoginActivity : BaseActivity() {
             //login_signInText.text = (resources.getString(R.string.please_wait))
                  //create an instance and create a register a user with email and password
                 pb.visibility = View.VISIBLE
-             login_signInText.setText("Please wait ...")
+            login_signInText.text = "Please wait ..."
                 FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener { task ->
                         //hideProgressDialog()
@@ -78,6 +79,7 @@ class LoginActivity : BaseActivity() {
 
                         } else {
                             pb.visibility = View.GONE
+                            login_signInText.text = "Sign in ..."
                             Toast.makeText(
                                 this@LoginActivity, task.exception!!.message.toString(),
                                 Toast.LENGTH_SHORT

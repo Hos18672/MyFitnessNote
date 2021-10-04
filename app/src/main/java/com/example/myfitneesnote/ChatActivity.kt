@@ -14,14 +14,12 @@ import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.activity_chat.*
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import kotlinx.android.synthetic.main.activity_training.*
 import kotlinx.android.synthetic.main.user_row.view.*
 
 class ChatActivity : BaseActivity() {
-
     companion object{
         var currentUser: User?= null
-        val USER_KEY = "USER_KEY"
+        const val USER_KEY = "USER_KEY"
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,8 +37,9 @@ class ChatActivity : BaseActivity() {
     }
     private fun setupActionBar() {
         setSupportActionBar(toolBar_Chat_activity)
-        var actionBar = supportActionBar
+        val actionBar = supportActionBar
         if(actionBar!=null) {
+            supportActionBar?.setDisplayShowTitleEnabled(false)
             actionBar.setDisplayHomeAsUpEnabled(true)
             actionBar.setHomeAsUpIndicator(R.drawable.ic_navigate_before_black_24dp)
         }
@@ -94,7 +93,7 @@ class ChatActivity : BaseActivity() {
 }
 class UserItem(val user: User): Item<ViewHolder>(){
     override fun bind(viewHolder: ViewHolder, position: Int) {
-        val uri = user.image
+        //val uri = user.image
         viewHolder.itemView.User_name.text= user.username
     }
     override fun getLayout(): Int {

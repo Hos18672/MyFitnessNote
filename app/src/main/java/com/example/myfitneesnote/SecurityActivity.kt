@@ -10,6 +10,7 @@ import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_settings.*
 
+@Suppress("NAME_SHADOWING")
 class SecurityActivity : BaseActivity() {
     private var mFirebaseDatabase: DatabaseReference? = null
     private var mFirebaseInstance: FirebaseDatabase? = null
@@ -147,6 +148,7 @@ class SecurityActivity : BaseActivity() {
         val actionBar = supportActionBar
         if(actionBar!=null)
         {
+            supportActionBar?.setDisplayShowTitleEnabled(false)
             actionBar.setDisplayHomeAsUpEnabled(true)
             actionBar.setHomeAsUpIndicator(R.drawable.ic_navigate_before_black_24dp)
         }

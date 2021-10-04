@@ -2,17 +2,12 @@ package com.example.myfitneesnote.adapters
 
 
 import android.annotation.SuppressLint
-import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewTreeObserver
-import android.view.animation.AccelerateInterpolator
-import android.view.animation.TranslateAnimation
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myfitneesnote.R
 import com.example.myfitneesnote.R.*
 import com.example.myfitneesnote.R.drawable.bench_press
 import com.example.myfitneesnote.R.drawable.workout_home
@@ -27,16 +22,7 @@ class TrainingItemAdapter(options: FirestoreRecyclerOptions<Workout>)
         val itemView = LayoutInflater.from(parent.context).inflate((layout.item_training), parent, false)
         return  MyViewHolder(itemView)
     }
-    inline fun <T: View> T.afterMeasured(crossinline f: T.() -> Unit) {
-        viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
-            override fun onGlobalLayout() {
-                if (measuredWidth > 0 && measuredHeight > 0) {
-                    viewTreeObserver.removeOnGlobalLayoutListener(this)
-                    f()
-                }
-            }
-        })
-    }
+
     @SuppressLint("SetTextI18n", "ResourceType")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int, training: Workout) {
 

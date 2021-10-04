@@ -7,6 +7,7 @@ import android.view.animation.AnimationUtils
 import com.example.myfitneesnote.firebase.FirestoreClass
 import kotlinx.android.synthetic.main.activity_splash.*
 
+@Suppress("DEPRECATION")
 class SplashActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,7 +20,7 @@ class SplashActivity : BaseActivity() {
                 startActivity(Intent(this, MainActivity::class.java))
             } else {
                 startActivity(Intent(this, IntroActivity::class.java))
-                overridePendingTransition(R.anim.slidetoright, R.anim.slide_out_left);
+                overridePendingTransition(R.anim.slidetoright, R.anim.slide_out_left)
             }
             finish()
         }, 900)

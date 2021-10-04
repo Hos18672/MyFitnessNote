@@ -71,7 +71,8 @@
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_gymType"
-            app:rippleColor="#EEF1F3">
+            app:rippleColor="#EEF1F3"
+            tools:targetApi="lollipop">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -105,7 +106,8 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/bench_press" />
+                            app:srcCompat="@drawable/bench_press"
+                            android:contentDescription="@string/todo" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -126,7 +128,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_gym_workout"
             app:rippleColor="#EEF1F3"
-            tools:ignore="MissingConstraints">
+            tools:ignore="KeyboardInaccessibleWidget,MissingConstraints"
+            tools:targetApi="lollipop">
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="199dp">
@@ -158,7 +161,8 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/workout_home" />
+                            app:srcCompat="@drawable/workout_home"
+                            android:contentDescription="@string/todo" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
         <com.google.android.material.button.MaterialButton
@@ -177,5 +181,6 @@
             app:cornerRadius="25dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            tools:targetApi="lollipop" />
 </androidx.constraintlayout.widget.ConstraintLayout>

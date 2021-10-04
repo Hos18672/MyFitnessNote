@@ -9,11 +9,10 @@ import com.example.myfitneesnote.R.*
 import com.example.myfitneesnote.R.drawable.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.activity_main_layout.*
 import kotlinx.android.synthetic.main.activity_my_profile.*
 
 
-class myProfileActivity : BaseActivity() {
+class MyProfileActivity : BaseActivity() {
 
     private var mFirebaseDatabase: DatabaseReference? = null
     private var mFirebaseInstance: FirebaseDatabase? = null
@@ -33,9 +32,9 @@ class myProfileActivity : BaseActivity() {
         mFirebaseInstance = FirebaseDatabase.getInstance()
         // get reference to 'users' node
         mFirebaseDatabase = mFirebaseInstance!!.getReference("users")
-        val user = FirebaseAuth.getInstance().getCurrentUser()
+        val user = FirebaseAuth.getInstance().currentUser
         // add it only if it is not saved to database
-        userId = user?.getUid()
+        userId = user?.uid
         btnSave.setOnClickListener {
             onUpdateClicked()
         }
@@ -50,9 +49,9 @@ class myProfileActivity : BaseActivity() {
         else
             Toast.makeText(applicationContext, "Unable to update user", Toast.LENGTH_SHORT).show()
     }
-    fun onUpdateClicked() {
+    private fun onUpdateClicked() {
         val username = login_username_input.text.toString()
-        val name = profile_fullName_input.getText().toString()
+        val name = profile_fullName_input.text.toString()
 
         //Calling updateUser function
         updateUser(username, name)
@@ -62,6 +61,7 @@ class myProfileActivity : BaseActivity() {
         val actionBar = supportActionBar
         if(actionBar!=null)
         {
+            supportActionBar?.setDisplayShowTitleEnabled(false)
             actionBar.setDisplayHomeAsUpEnabled(true)
             actionBar.setHomeAsUpIndicator(ic_navigate_before_black_24dp)
         }

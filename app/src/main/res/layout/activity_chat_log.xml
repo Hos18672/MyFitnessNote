@@ -7,7 +7,6 @@
     android:background="@drawable/ic_splash_background"
     android:orientation="vertical"
     tools:context=".ChatLogActivity">
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar_Chat_activity"
         android:layout_width="match_parent"
@@ -91,5 +90,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editTextChatLog"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView_chat_log" />
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView_chat_log"
+        android:contentDescription="@string/todo" />
 </androidx.constraintlayout.widget.ConstraintLayout>

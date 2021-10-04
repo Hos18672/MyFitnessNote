@@ -51,7 +51,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints">
+            tools:ignore="MissingConstraints"
+            tools:targetApi="lollipop">
 
             <LinearLayout
                 android:id="@+id/scroll_bar"
@@ -102,7 +103,8 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/icons8_chest_100" />
+                            app:srcCompat="@drawable/icons8_chest_100"
+                            tools:ignore="ContentDescription" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
                 <com.google.android.material.card.MaterialCardView
@@ -113,7 +115,7 @@
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="15dp"
                     android:backgroundTint="#84ffff"
-                    android:contentDescription="biceps"
+                    android:contentDescription="@string/biceps"
                     android:paddingStart="20dp"
                     android:text="@string/biceps"
                     android:textSize="20sp"
@@ -148,7 +150,8 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/icons8_biceps_100" />
+                            app:srcCompat="@drawable/icons8_biceps_100"
+                            android:contentDescription="@string/todo" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
                 <com.google.android.material.card.MaterialCardView
@@ -165,7 +168,7 @@
                     android:textSize="20sp"
                     android:transitionName="addTrainingCv"
                     app:cardCornerRadius="15dp"
-                    tools:ignore="RtlHardcoded,RtlSymmetry">
+                    tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry">
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -194,7 +197,8 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/icons8_triceps_100" />
+                            app:srcCompat="@drawable/icons8_triceps_100"
+                            android:contentDescription="@string/todo" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
                 <com.google.android.material.card.MaterialCardView
@@ -211,7 +215,7 @@
                     android:textSize="20sp"
                     android:transitionName="addTrainingCv"
                     app:cardCornerRadius="15dp"
-                    tools:ignore="RtlHardcoded,RtlSymmetry">
+                    tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry">
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -240,7 +244,8 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/icons8_forearm_100" />
+                            app:srcCompat="@drawable/icons8_forearm_100"
+                            android:contentDescription="@string/todo" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
                 <com.google.android.material.card.MaterialCardView
@@ -251,7 +256,7 @@
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="15dp"
                     android:backgroundTint="#84ffff"
-                    android:contentDescription="traps"
+                    android:contentDescription="@string/traps"
                     android:paddingStart="20dp"
                     android:text="@string/traps"
                     android:textSize="20sp"
@@ -286,7 +291,8 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/icons8_trapezius_100" />
+                            app:srcCompat="@drawable/icons8_trapezius_100"
+                            android:contentDescription="@string/todo" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
                 <com.google.android.material.card.MaterialCardView
@@ -297,9 +303,9 @@
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="15dp"
                     android:backgroundTint="#84ffff"
-                    android:contentDescription="ABS"
+                    android:contentDescription="@string/abs"
                     android:paddingStart="20dp"
-                    android:text="ABS"
+                    android:text="@string/abs"
                     android:textSize="20sp"
                     android:transitionName="addTrainingCv"
                     app:cardCornerRadius="15dp"
@@ -316,7 +322,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="left|center"
                             android:layout_marginStart="16dp"
-                            android:text="ABS"
+                            android:text="@string/abs"
                             android:textColor="#000000"
                             android:textSize="35sp"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -333,7 +339,8 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/fitnessabs" />
+                            app:srcCompat="@drawable/fitnessabs"
+                            android:contentDescription="@string/todo" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
                 <com.google.android.material.card.MaterialCardView
@@ -344,7 +351,7 @@
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="15dp"
                     android:backgroundTint="#84ffff"
-                    android:contentDescription="shoulder"
+                    android:contentDescription="@string/shoulder"
                     android:paddingStart="20dp"
                     android:text="@string/shoulder"
                     android:textSize="20sp"
@@ -378,7 +385,8 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/icons8_shoulders_100" />
+                            app:srcCompat="@drawable/icons8_shoulders_100"
+                            android:contentDescription="@string/todo" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
@@ -402,7 +410,8 @@
         android:transitionName="addTrainingBtn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:targetApi="lollipop" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"

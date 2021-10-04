@@ -42,10 +42,6 @@ class TrainingItemAdapterMain(options: FirestoreRecyclerOptions<Workout>)
             holder.image.setImageResource(R.drawable.bench_press)
         }
     }
-     fun deleteItem(i: Int){
-        snapshots.getSnapshot(i).reference.delete()
-        notifyDataSetChanged()
-    }
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val gymName   : TextView = itemView.tv_GymName
         val muskelName: TextView = itemView.tv_Muscle

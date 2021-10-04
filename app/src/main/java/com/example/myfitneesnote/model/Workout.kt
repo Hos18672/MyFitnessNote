@@ -25,8 +25,7 @@ import com.google.firebase.Timestamp
          parcel.readString()!!,
          parcel.readString()!!,
          parcel.readParcelable(Timestamp::class.java.classLoader)
-     ) {
-     }
+     )
      override fun writeToParcel(parcel: Parcel, flags: Int) {
          parcel.writeString(workout_id)
          parcel.writeString(GymType)

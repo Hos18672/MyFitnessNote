@@ -11,7 +11,10 @@ import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_intro.*
 
+
+@Suppress("DEPRECATION")
 class IntroActivity : BaseActivity() {
+    lateinit var m : MainActivity
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,6 +45,7 @@ class IntroActivity : BaseActivity() {
         intro_sign_up_button.startAnimation(btt1)
     }
     override fun onBackPressed() {
-        finish()
+        m.finish()
     }
+
 }

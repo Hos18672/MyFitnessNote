@@ -7,11 +7,11 @@ import android.view.WindowManager
 import android.view.animation.AnimationUtils
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityOptionsCompat
-import kotlinx.android.synthetic.main.activity_main_layout.*
 import kotlinx.android.synthetic.main.activity_workout.*
 
+@Suppress("DEPRECATION")
 class WorkoutActivity : BaseActivity(){
-    @RequiresApi(Build.VERSION_CODES.KITKAT)
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_workout)
@@ -23,7 +23,7 @@ class WorkoutActivity : BaseActivity(){
         animat()
     }
 
-    fun animat(){
+    private fun animat(){
         val btt = AnimationUtils.loadAnimation(this, R.anim.btt)
         btn_home_workout.startAnimation(btt)
         val ttb = AnimationUtils.loadAnimation(this, R.anim.ttb)
@@ -81,6 +81,7 @@ class WorkoutActivity : BaseActivity(){
         setSupportActionBar(toolBar_workout_activity)
         val actionBar = supportActionBar
         if(actionBar!=null) {
+            supportActionBar?.setDisplayShowTitleEnabled(false)
             actionBar.setDisplayHomeAsUpEnabled(true)
             actionBar.setHomeAsUpIndicator(R.drawable.ic_navigate_before_black_24dp)
         }

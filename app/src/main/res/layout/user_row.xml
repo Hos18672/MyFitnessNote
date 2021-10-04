@@ -13,7 +13,8 @@
     card_view:cardElevation="2dp"
     card_view:rippleColor="#cfd8dc"
     card_view:cardCornerRadius="10dp"
-    card_view:cardUseCompatPadding="true">
+    card_view:cardUseCompatPadding="true"
+    android:focusable="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout5"
@@ -44,6 +45,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/mannprofile" />
+            app:srcCompat="@drawable/mannprofile"
+            android:contentDescription="@string/todo"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

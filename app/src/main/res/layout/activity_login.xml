@@ -157,7 +157,7 @@
                             android:layout_height="wrap_content"
                             android:background="@android:color/transparent"
                             android:hint="Password"
-                            android:inputType="text"
+                            android:inputType="textPassword"
                             android:textSize="15sp"
                             tools:ignore="DuplicateIds" />
                     </com.google.android.material.textfield.TextInputLayout>

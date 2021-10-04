@@ -5,10 +5,9 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
     <application
         android:icon="@mipmap/ic_launcher"
-        android:label=""
+        android:label="MFN"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
@@ -18,7 +17,7 @@
             android:theme="@style/AppTheme.NoActionBar.NoActionBar"
             tools:ignore="LockedOrientationActivity">
         </activity>
-        <activity android:name=".tipsActivity" />
+        <activity android:name=".TipsActivity" />
         <activity
             android:name=".TrainingActivity"
             android:parentActivityName=".MainActivity"
@@ -60,18 +59,19 @@
             android:theme="@style/AppTheme.NoActionBar.NoActionBar"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name=".myProfileActivity"
+            android:name=".MyProfileActivity"
             android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar.NoActionBar"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name=".navheaderMain"
+            android:name=".NavheaderMain"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar.NoActionBar"
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".BaseActivity"
+            android:noHistory = "true"
             android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
         <activity
             android:name=".IntroActivity"

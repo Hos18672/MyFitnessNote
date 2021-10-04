@@ -7,7 +7,6 @@ import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.view.MenuItem
-import android.view.animation.AnimationUtils
 import android.widget.EditText
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityOptionsCompat
@@ -35,7 +34,7 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
     private val db = FirebaseFirestore.getInstance()
     private lateinit var trainingItemAdapter : TrainingItemAdapteradd
     private lateinit var recyclerView: RecyclerView
-    var trainingsName: String? = ""
+    private var trainingsName: String? = ""
     @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,15 +81,11 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
     }
     private fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
 
-
-
     private fun onClick(){
         btnBackNewWorkout.setOnClickListener {
             val intent = Intent( this,  MuskelGroupActivity::class.java)
             val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, btnBackNewWorkout, "addTrainingBtn")
             startActivity(intent, options.toBundle())
-
-           // finish()
 
         }
         btn_set_minus.setOnClickListener{minusButton(SetNum)}
@@ -112,7 +107,7 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
             intent.putExtra("MuskelName", muskelName)
             intent.putExtra("GymName", gymType)
             startActivity(intent)
-            overridePendingTransition(0, 0);
+            overridePendingTransition(0, 0)
             finish()
 
            }
@@ -152,6 +147,7 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
         val actionBar = supportActionBar
         if(actionBar!=null)
         {
+            supportActionBar?.setDisplayShowTitleEnabled(false)
             actionBar.setDisplayHomeAsUpEnabled(true)
             actionBar.setHomeAsUpIndicator(drawable.ic_navigate_before_black_24dp)
         }
@@ -161,12 +157,6 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
     }
 
     private fun getTrainingsFromFireStore(){
-        val c= Calendar.getInstance()
-        val year = c.get(Calendar.YEAR)
-        val day = c.get(Calendar.DAY_OF_MONTH)
-        val month = c.get(Calendar.MONTH)
-        val currentDate1 = "${year}/${month +1}/${day}"
-        val currentDate2 = "${year}/${month +1}/${day-1}"
         val query : Query = db.collection(Constant.USERS)
             .document(getCurrentUserID())
             .collection(Constant.TRAININGS)

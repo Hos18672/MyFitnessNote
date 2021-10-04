@@ -8,8 +8,8 @@
     android:orientation="vertical"
     app:cardCornerRadius="15dp"
     android:layout_marginTop="5dp"
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="5dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="5dp"
     android:layout_marginBottom="5dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -65,7 +65,7 @@
             app:layout_constraintStart_toEndOf="@+id/linearLayout"
             app:layout_constraintTop_toBottomOf="@+id/tv_GymName"
             app:layout_constraintVertical_bias="1.0"
-            tools:ignore="RtlHardcoded" />
+            tools:ignore="RtlHardcoded,SmallSp" />
 
         <LinearLayout
             android:id="@+id/linearLayout3"
@@ -197,7 +197,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.674"
             app:layout_constraintStart_toEndOf="@+id/linearLayout"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints"
+            android:contentDescription="@string/todo"/>
 
         <ImageView
             android:id="@+id/imageView6"
@@ -210,7 +211,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view"
             app:layout_constraintVertical_bias="0.894"
-            app:srcCompat="@drawable/six_pack" />
+            app:srcCompat="@drawable/six_pack"
+            android:contentDescription="@string/todo"/>
 
         <ImageView
             android:id="@+id/imageView5"
@@ -221,7 +223,8 @@
             app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
             app:layout_constraintHorizontal_bias="0.466"
             app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/weight_kilogram_icon_138014" />
+            app:srcCompat="@drawable/weight_kilogram_icon_138014"
+            android:contentDescription="@string/todo"/>
 
         <ImageView
             android:id="@+id/imageView2"
@@ -234,7 +237,8 @@
             app:layout_constraintHorizontal_bias="0.375"
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/baseline_timer_black_24dp"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints"
+            android:contentDescription="@string/todo"/>
 
         <ImageView
             android:id="@+id/imageView4"
@@ -245,7 +249,8 @@
             app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
             app:layout_constraintHorizontal_bias="0.47"
             app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/baseline_fitness_center_black_24dp" />
+            app:srcCompat="@drawable/baseline_fitness_center_black_24dp"
+            android:contentDescription="@string/todo"/>
         <ImageView
             android:id="@+id/imageView3"
             android:layout_width="15dp"
@@ -256,7 +261,8 @@
             app:layout_constraintHorizontal_bias="0.466"
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/baseline_loop_black_24dp"
-            tools:ignore="MissingConstraints,VectorDrawableCompat" />
+            tools:ignore="MissingConstraints,VectorDrawableCompat"
+            android:contentDescription="@string/todo"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

@@ -5,13 +5,10 @@ import android.os.Bundle
 import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityOptionsCompat
 import com.google.android.material.card.MaterialCardView
-import kotlinx.android.synthetic.main.activity_login.view.*
 import kotlinx.android.synthetic.main.activity_muskel_group.*
-import kotlinx.android.synthetic.main.activity_muskel_group.view.*
-import kotlinx.android.synthetic.main.activity_workout.*
 
 class MuskelGroupActivity : BaseActivity() {
-    var GymType: String? = ""
+    private var GymType: String? = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_muskel_group)
@@ -55,6 +52,7 @@ class MuskelGroupActivity : BaseActivity() {
         val actionBar = supportActionBar
         if(actionBar!=null)
         {
+            supportActionBar?.setDisplayShowTitleEnabled(false)
             actionBar.setDisplayHomeAsUpEnabled(true)
             actionBar.setHomeAsUpIndicator(R.drawable.ic_navigate_before_black_24dp)
         }

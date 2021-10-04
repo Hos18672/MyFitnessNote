@@ -8,7 +8,7 @@
     android:gravity="center"
     android:orientation="vertical"
     android:background="@drawable/back7"
-    tools:context=".myProfileActivity">
+    tools:context=".MyProfileActivity">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar_my_profile_activity"
         android:layout_width="match_parent"
@@ -139,7 +139,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/pcard"
         app:layout_constraintTop_toBottomOf="@+id/pcard"
-        app:layout_constraintVertical_bias="0.97" />
+        app:layout_constraintVertical_bias="0.97"
+        tools:targetApi="lollipop" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnback_profile"
@@ -156,7 +157,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.54"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:targetApi="lollipop" />
     <ImageView
         android:id="@+id/imageView8"
         android:layout_width="100dp"
@@ -170,5 +172,6 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolBar_my_profile_activity"
-        app:srcCompat="@drawable/circle_profile" />
+        app:srcCompat="@drawable/circle_profile"
+        tools:targetApi="lollipop" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -60,7 +60,8 @@
             app:layout_constraintBottom_toTopOf="@+id/intro_sign_up_button"
             app:layout_constraintEnd_toEndOf="@+id/intro_sign_up_button"
             app:layout_constraintStart_toStartOf="@+id/intro_sign_up_button"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints"
+            tools:targetApi="lollipop" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/intro_sign_up_button"
@@ -75,6 +76,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.493"
             app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints"
+            tools:targetApi="lollipop" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

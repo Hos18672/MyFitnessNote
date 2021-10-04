@@ -21,11 +21,9 @@ class TrainingActivity : BaseActivity() {
     private lateinit var trainingItemAdapter : TrainingItemAdapter
     private lateinit var db : FirebaseFirestore
     private lateinit var recyclerView: RecyclerView
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_training)
-
         fullscreen()
         setupActionBar()
         btnback_training.setOnClickListener {
@@ -78,6 +76,7 @@ class TrainingActivity : BaseActivity() {
         setSupportActionBar(toolBar_workouts_activity)
         val actionBar = supportActionBar
         if(actionBar!=null) {
+            supportActionBar?.setDisplayShowTitleEnabled(false)
             actionBar.setDisplayHomeAsUpEnabled(true)
             actionBar.setHomeAsUpIndicator(R.drawable.ic_navigate_before_black_24dp)
         }

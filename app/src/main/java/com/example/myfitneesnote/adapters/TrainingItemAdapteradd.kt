@@ -23,16 +23,6 @@ class TrainingItemAdapteradd(options: FirestoreRecyclerOptions<Workout>)
         val itemView = LayoutInflater.from(parent.context).inflate((layout.item_training_new_add), parent, false)
         return  MyViewHolder(itemView)
     }
-    inline fun <T: View> T.afterMeasured(crossinline f: T.() -> Unit) {
-        viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
-            override fun onGlobalLayout() {
-                if (measuredWidth > 0 && measuredHeight > 0) {
-                    viewTreeObserver.removeOnGlobalLayoutListener(this)
-                    f()
-                }
-            }
-        })
-    }
     @SuppressLint("SetTextI18n", "ResourceType")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int, training: Workout) {
 

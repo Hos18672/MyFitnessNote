@@ -16,18 +16,17 @@ import kotlinx.android.synthetic.main.activity_chat.toolBar_Chat_activity
 import kotlinx.android.synthetic.main.activity_chat_log.*
 import kotlinx.android.synthetic.main.chat_from_row.view.*
 import kotlinx.android.synthetic.main.chat_to_row.view.*
-import java.text.SimpleDateFormat
 import java.util.*
 
 class ChatLogActivity : BaseActivity() {
-    companion object{ val TAG = "ChatLog" }
+    companion object{ const val TAG = "ChatLog" }
     var toUser: User?= null
     val adapter = GroupAdapter<ViewHolder>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat_log)
         fullscreen()
-        toUser =  intent.getParcelableExtra<User>(ChatActivity.USER_KEY)
+        toUser =  intent.getParcelableExtra(ChatActivity.USER_KEY)
         recyclerView_chat_log.adapter= adapter
         setupActionBar()
         listenForMessages()
@@ -57,10 +56,10 @@ class ChatLogActivity : BaseActivity() {
              override fun onChildAdded(p0: DataSnapshot, p1: String?) {
                  val chatMessage = p0.getValue(ChatMessage::class.java)
                  if (chatMessage != null) {
-                     Log.d(TAG, chatMessage!!.text)
+                     Log.d(TAG, chatMessage.text)
                      if (chatMessage.formId == FirebaseAuth.getInstance().uid) {
                          val currentUser = ChatActivity.currentUser ?: return
-                         adapter.add(ChatFromItem(chatMessage.text, currentUser!!, chatMessage.timestamp))
+                         adapter.add(ChatFromItem(chatMessage.text, currentUser, chatMessage.timestamp))
                          recyclerView_chat_log.scrollToPosition(adapter.itemCount -1)
                      } else {
                          adapter.add(ChatToItem(chatMessage.text, toUser!!,chatMessage.timestamp,intent.getStringExtra("name").toString()))
@@ -84,12 +83,9 @@ class ChatLogActivity : BaseActivity() {
     }
     private fun performSendMessage(){
         val c= Calendar.getInstance()
-        val year = c.get(Calendar.YEAR)
-        val month = c.get(Calendar.MONTH)
-        val day = c.get(Calendar.DAY_OF_MONTH)
         val hour = c.get(Calendar.HOUR_OF_DAY)
         val minute = c.get(Calendar.MINUTE)
-        var time = "${hour}:${minute}"
+        val time = "${hour}:${minute}"
       //How do we actually send a message to firebase
         val text =editTextChatLog.text.toString()
         val fromId = FirebaseAuth.getInstance().uid
@@ -114,8 +110,9 @@ class ChatLogActivity : BaseActivity() {
     }
     private fun setupActionBar() {
         setSupportActionBar(toolBar_Chat_activity)
-        var actionBar = supportActionBar
+        val actionBar = supportActionBar
         if(actionBar!=null) {
+            supportActionBar?.setDisplayShowTitleEnabled(false)
             actionBar.setDisplayHomeAsUpEnabled(true)
             actionBar.setHomeAsUpIndicator(R.drawable.ic_navigate_before_black_24dp)
         }
@@ -133,15 +130,6 @@ class ChatFromItem(val text: String, val user: User, val time: String): Item<Vie
     override fun getLayout(): Int {
         return R.layout.chat_from_row
     }
-    fun getDate(milliSeconds: Long, dateFormat: String?): String? {
-        // Create a DateFormatter object for displaying date in specified format.
-        val formatter = SimpleDateFormat(dateFormat)
-
-        // Create a calendar object that will convert the date and time value in milliseconds to date.
-        val calendar = Calendar.getInstance()
-        calendar.timeInMillis = milliSeconds
-        return formatter.format(calendar.time)
-    }
 }
 class ChatToItem(val text: String, val user: User, val time: String, val name: String): Item<ViewHolder>(){
 
@@ -153,14 +141,7 @@ class ChatToItem(val text: String, val user: User, val time: String, val name: S
     override fun getLayout(): Int {
         return R.layout.chat_to_row
     }
-    fun getDate(milliSeconds: Long, dateFormat: String?): String? {
-        // Create a DateFormatter object for displaying date in specified format.
-        val formatter = SimpleDateFormat(dateFormat)
-        // Create a calendar object that will convert the date and time value in milliseconds to date.
-        val calendar = Calendar.getInstance()
-        calendar.timeInMillis = milliSeconds
-        return formatter.format(calendar.time)
-    }
+
 }
 
 

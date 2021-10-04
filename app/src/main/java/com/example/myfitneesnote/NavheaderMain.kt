@@ -3,9 +3,10 @@ package com.example.myfitneesnote
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-class tipsActivity : AppCompatActivity() {
+class NavheaderMain : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_tips)
+        setContentView(R.layout.nav_header_main)
     }
 }

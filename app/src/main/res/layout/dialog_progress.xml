@@ -12,7 +12,6 @@
         app:layout_constraintEnd_toStartOf="@+id/tv_progress_text"
         app:layout_constraintBottom_toBottomOf="parent"
         android:id="@+id/progressBar"/>
-
     <TextView android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
@@ -24,5 +23,4 @@
         android:text="@string/please_wait"
         android:layout_marginStart="@dimen/progress_text_marginStart"
         tools:ignore="RtlCompat" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

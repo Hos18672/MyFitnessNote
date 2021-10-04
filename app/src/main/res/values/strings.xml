@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="app_name">MyFitnessNote</string>
     <string name="login">Login</string>
     <string name="don_t_have_an_account">Don\'t have an account?</string>
@@ -41,7 +41,6 @@
     <string name="workout_choice1">Workout Choice</string>
     <string name="sets">Sets</string>
     <string name="_0">0</string>
-    <string name="x">X    </string>
     <string name="kg">Kg</string>
     <string name="Break">Break</string>
     <string name="min">min</string>
@@ -98,4 +97,9 @@
     <string name="_1w">1W</string>
     <string name="setting">Setting</string>
     <string name="my_profile">My profile</string>
+    <string name="x">X</string>
+    <string name="abs">ABS</string>
+    <string name="name">Name</string>
+    <string name="hi_how_are_you">Hi, How are you?</string>
+    <string name="already_have_an_account">Already have an Account</string>
 </resources>

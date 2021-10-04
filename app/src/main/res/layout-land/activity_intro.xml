@@ -59,7 +59,8 @@
             app:layout_constraintBottom_toTopOf="@+id/intro_sign_up_button"
             app:layout_constraintEnd_toEndOf="@+id/intro_textView"
             app:layout_constraintHorizontal_bias="0.548"
-            app:layout_constraintStart_toStartOf="@+id/intro_textView" />
+            app:layout_constraintStart_toStartOf="@+id/intro_textView"
+            tools:targetApi="lollipop" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/intro_sign_up_button"
@@ -73,6 +74,7 @@
             app:cornerRadius="25dp"
             app:layout_constraintEnd_toEndOf="@+id/intro_login_button"
             app:layout_constraintStart_toStartOf="@+id/intro_login_button"
-            app:layout_constraintTop_toBottomOf="@+id/intro_login_button" />
+            app:layout_constraintTop_toBottomOf="@+id/intro_login_button"
+            tools:targetApi="lollipop" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
