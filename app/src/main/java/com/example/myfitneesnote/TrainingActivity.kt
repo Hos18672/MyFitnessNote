@@ -24,7 +24,7 @@ class TrainingActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_training)
-        fullscreen()
+        //fullscreen()
         setupActionBar()
         btnback_training.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)

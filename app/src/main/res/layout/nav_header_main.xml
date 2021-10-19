@@ -6,17 +6,19 @@
     android:gravity="bottom"
     android:orientation="vertical"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
     <ImageView
         android:id="@+id/main_drawer_profile_photo"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
+        android:contentDescription="@string/todo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.138"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/circle_profile"
-        android:contentDescription="@string/todo" />
+        app:srcCompat="@drawable/circle_profile" />
+
     <TextView
         android:id="@+id/tv_username"
         android:layout_width="104dp"

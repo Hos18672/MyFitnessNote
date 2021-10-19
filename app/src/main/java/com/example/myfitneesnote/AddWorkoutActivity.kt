@@ -1,6 +1,7 @@
 package com.example.myfitneesnote
 
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Build
@@ -9,24 +10,22 @@ import android.text.Editable
 import android.view.MenuItem
 import android.widget.EditText
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityOptionsCompat
-import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myfitneesnote.R.*
-import com.example.myfitneesnote.adapters.SwipeToDelete
 import com.example.myfitneesnote.adapters.TrainingItemAdapteradd
 import com.example.myfitneesnote.firebase.FirestoreClass
 import com.example.myfitneesnote.model.Workout
-import com.example.myfitneesnote.utils.Constant
-import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
 import com.vivekkaushik.datepicker.OnDateSelectedListener
 import kotlinx.android.synthetic.main.activity_add_workout.*
 import java.util.*
+
 
 class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener  {
     var uuid : UUID= UUID.randomUUID()
@@ -35,20 +34,21 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
     private lateinit var trainingItemAdapter : TrainingItemAdapteradd
     private lateinit var recyclerView: RecyclerView
     private var trainingsName: String? = ""
+
     @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(layout.activity_add_workout)
         onClick()
        // animat()
-        fullscreen()
         setupActionBar()
-        recyclerView = findViewById(id.rv_trainings_list_Add_Training)
-        getTrainingsFromFireStore()
-        trainingItemAdapter.notifyDataSetChanged()
+
+  /*      recyclerView = findViewById(id.rv_trainings_list_Add_Training)
+        getTrainingsFromFireStore() */
+       // trainingItemAdapter.notifyDataSetChanged()
         trainingsName= intent.getStringExtra("MuskelName")
         TrainingName.text = trainingsName
-        // Set a Start date (Default, 1 Jan 1970)
+        //Set a Start date (Default, 1 Jan 1970)
         val c= Calendar.getInstance()
         val year = c.get(Calendar.YEAR)
         val month = c.get(Calendar.MONTH)
@@ -57,6 +57,13 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
         currentDate = "${year}/${month+1}/${day}"
         // datePickerTimeline.setActiveDate(Calendar.getInstance())
         // Set a date Selected Listener
+        val trainingsFragment = trainings_fragment()
+
+        supportFragmentManager.beginTransaction().apply {
+            replace(id.root_container, trainingsFragment).commit()
+        }
+
+
         datePickerTimeline.setOnDateSelectedListener(object : OnDateSelectedListener {
             override fun onDateSelected(year: Int, month: Int, day: Int, dayOfWeek: Int) {
                 // Do Something
@@ -77,8 +84,10 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
         datePickerTimeline.setDisabledDateColor(Color.BLUE)
         val dates = arrayOf(Calendar.getInstance().time)
         datePickerTimeline.deactivateDates(dates)
-
     }
+
+
+
     private fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
 
     private fun onClick(){
@@ -96,22 +105,48 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
         btn_break_plus.setOnClickListener{plusButton(breakNum)}
         btn_repeat_minus.setOnClickListener{minusButton(repeatNum)}
         btn_repeat_plus.setOnClickListener{plusButton(repeatNum)}
+        val trainingsFragment =   trainings_fragment()
+
 
         save_btn.setOnClickListener {
-            createTraining()
             //this might be helpful
             // layoutManager.reverseLayout = true
-            val gymType    : String = intent.getStringExtra("GymName").toString()
-            val muskelName : String = intent.getStringExtra("MuskelName").toString()
-            val intent = Intent(this, AddWorkoutActivity::class.java)
-            intent.putExtra("MuskelName", muskelName)
-            intent.putExtra("GymName", gymType)
-            startActivity(intent)
-            overridePendingTransition(0, 0)
-            finish()
+            /*         val gymType    : String = intent.getStringExtra("GymName").toString()
+                     val muskelName : String = intent.getStringExtra("MuskelName").toString()
+                     val intent = Intent(this, AddWorkoutActivity::class.java)
+                     intent.putExtra("MuskelName", muskelName)
+                     intent.putExtra("GymName", gymType)
+                     startActivity(intent)
+                     overridePendingTransition(0, 0)
+                     finish()  }*/
+            createTraining()
+            supportFragmentManager.beginTransaction().apply {
+                replace(id.root_container, trainingsFragment).commit()
 
-           }
+            }
+
+
+
+        }
+
     }
+
+
+    private fun refreshFragment(context : Context){
+        context?.let {
+            val fragmentManager = (context as? AppCompatActivity)?.supportFragmentManager
+            fragmentManager?.let {
+                val currentFragment = fragmentManager.findFragmentById(id.root_container)
+                currentFragment?.let {
+                    val fragmentTransaction = fragmentManager.beginTransaction()
+                    fragmentTransaction.detach(it)
+                    fragmentTransaction.attach(it)
+                    fragmentTransaction.commit()
+                }
+            }
+        }
+    }
+
     private fun minusButton(et: EditText){
         var num = et.text.toString().toInt()
         if(num  > 0 ) {
@@ -125,19 +160,24 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
         et.text = "$num".toEditable()
     }
     private fun createTraining(){
+        val userWeight = 70
         val currentDateAndTime = Timestamp.now()
         val workout : Workout
         val gymType    : String = intent.getStringExtra("GymName").toString()
         val muskelName : String = intent.getStringExtra("MuskelName").toString()
+        var set = SetNum.text.toString()
+        var rep = repeatNum.text.toString()
+        val Calorie = set.toInt()*rep.toInt()*(2*3.5*userWeight)/200
         workout= Workout(
             uuid.toString(),
             gymType,
             muskelName,
-            SetNum.text.toString(),
+            set,
             weightNum.text.toString(),
             breakNum.text.toString(),
-            repeatNum.text.toString(),
+            rep,
             currentDate,
+            Calorie,
             currentDateAndTime)
         FirestoreClass().createNewTraining(this, workout)
 
@@ -156,7 +196,7 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
         }
     }
 
-    private fun getTrainingsFromFireStore(){
+/*    private fun getTrainingsFromFireStore(){
         val query : Query = db.collection(Constant.USERS)
             .document(getCurrentUserID())
             .collection(Constant.TRAININGS)
@@ -185,9 +225,11 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
     override fun onStop() {
         super.onStop()
         trainingItemAdapter.stopListening()
-    }
+    }*/
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         TODO("Not yet implemented")
     }
 }
+
+

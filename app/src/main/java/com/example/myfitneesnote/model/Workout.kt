@@ -14,6 +14,7 @@ import com.google.firebase.Timestamp
      var BreakTime: String= "",
      var repeat: String= "",
      var currentDateTime: String= "",
+     var calorie: Double = 0.0,
      var date: Timestamp? = null ) : Parcelable {
      constructor(parcel: Parcel) : this(
          parcel.readString()!!,
@@ -24,6 +25,7 @@ import com.google.firebase.Timestamp
          parcel.readString()!!,
          parcel.readString()!!,
          parcel.readString()!!,
+         parcel.readDouble(),
          parcel.readParcelable(Timestamp::class.java.classLoader)
      )
      override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -35,6 +37,7 @@ import com.google.firebase.Timestamp
          parcel.writeString(BreakTime)
          parcel.writeString(repeat)
          parcel.writeString(currentDateTime)
+         parcel.writeDouble(calorie)
          parcel.writeParcelable(date, flags)
      }
      override fun describeContents(): Int {

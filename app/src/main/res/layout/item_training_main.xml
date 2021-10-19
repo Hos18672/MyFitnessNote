@@ -7,6 +7,7 @@
     android:background="?attr/selectableItemBackground"
     android:orientation="vertical"
     app:cardCornerRadius="15dp"
+    android:outlineSpotShadowColor="@color/white"
     android:layout_marginTop="5dp"
     android:layout_marginStart="10dp"
     android:layout_marginEnd="5dp"

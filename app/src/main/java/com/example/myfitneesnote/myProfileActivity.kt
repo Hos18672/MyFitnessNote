@@ -21,7 +21,7 @@ class MyProfileActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(layout.activity_my_profile)
-        fullscreen()
+       // fullscreen()
         setupActionBar()
         userProfileData()
         btnback_profile.setOnClickListener {

@@ -6,14 +6,18 @@
     android:layout_height="match_parent"
     android:background="@drawable/ic_splash_background"
     tools:context="com.example.myfitneesnote.ChatActivity">
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar_Chat_activity"
         android:layout_width="0dp"
         android:layout_height="50dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints">
+
         <TextView
             android:id="@+id/Massage_textView"
             android:layout_width="wrap_content"
@@ -30,24 +34,21 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_end="819dp" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_margin="5dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2chat"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolBar_Chat_activity"
-        app:layout_constraintVertical_bias="0.0"
         tools:ignore="UnknownId" />
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2chat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_end="68dp" />
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnBack_ChatList"
         android:layout_width="0dp"

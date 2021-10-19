@@ -20,7 +20,7 @@ class SecurityActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
-        fullscreen()
+        //fullscreen()
         setupActionBar()
 
         userProfileData()

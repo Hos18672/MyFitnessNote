@@ -8,8 +8,10 @@ import android.view.WindowManager
 import android.view.WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS
 import android.view.animation.AnimationUtils
 import androidx.annotation.RequiresApi
+import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_intro.*
+import kotlinx.android.synthetic.main.activity_login.*
 
 
 @Suppress("DEPRECATION")
@@ -24,13 +26,18 @@ class IntroActivity : BaseActivity() {
         window.addFlags(FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         window.statusBarColor = ContextCompat.getColor(this, R.color.statusColor)
-        fullscreen()
+        //fullscreen()
         animat()
         intro_login_button.setOnClickListener {
-            startActivity(Intent(this, LoginActivity::class.java))
+
+            var intent =  Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
         }
         intro_sign_up_button.setOnClickListener {
-            startActivity(Intent(this, SignUpActivity::class.java))
+            var intent =  Intent(this, SignUpActivity::class.java)
+            startActivity(intent)
+            finish()
         }
     }
     fun animat(){

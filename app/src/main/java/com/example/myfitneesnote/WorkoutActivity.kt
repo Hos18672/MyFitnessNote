@@ -17,7 +17,7 @@ class WorkoutActivity : BaseActivity(){
         setContentView(R.layout.activity_workout)
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-        fullscreen()
+        //fullscreen()
         setupActionBar()
         onClick()
         animat()

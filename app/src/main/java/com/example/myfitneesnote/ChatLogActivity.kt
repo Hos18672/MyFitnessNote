@@ -1,7 +1,9 @@
 package com.example.myfitneesnote
 
+import android.app.PendingIntent.getActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.WindowManager
 import com.example.myfitneesnote.model.ChatMessage
 import com.example.myfitneesnote.model.User
 import com.google.firebase.auth.FirebaseAuth
@@ -18,6 +20,7 @@ import kotlinx.android.synthetic.main.chat_from_row.view.*
 import kotlinx.android.synthetic.main.chat_to_row.view.*
 import java.util.*
 
+
 class ChatLogActivity : BaseActivity() {
     companion object{ const val TAG = "ChatLog" }
     var toUser: User?= null
@@ -25,11 +28,11 @@ class ChatLogActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat_log)
-        fullscreen()
         toUser =  intent.getParcelableExtra(ChatActivity.USER_KEY)
         recyclerView_chat_log.adapter= adapter
         setupActionBar()
         listenForMessages()
+        this.window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE or WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         SendeBtn.setOnClickListener{
             SendeBtn.animate().apply {
                 duration = 100

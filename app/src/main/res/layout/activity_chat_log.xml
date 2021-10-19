@@ -40,7 +40,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_chat_log"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_above="@+id/editTextChatLog"
         android:layout_below="@+id/toolBar_Chat_activity"
@@ -48,6 +48,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@+id/editTextChatLog"
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,9 +64,10 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="5dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="5dp"
         android:layout_toStartOf="@+id/SendeBtn"
         android:background="@drawable/shapetransparent_message"
+        android:fitsSystemWindows="true"
         android:hint="@string/type_a_message"
         android:paddingLeft="20dp"
         android:paddingTop="5dp"
@@ -84,12 +86,13 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="10dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="5dp"
         android:background="@drawable/send_icon"
+        android:contentDescription="@string/todo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editTextChatLog"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView_chat_log"
-        android:contentDescription="@string/todo" />
+        app:layout_constraintTop_toTopOf="@+id/editTextChatLog"
+        app:layout_constraintVertical_bias="0.989" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,6 +8,7 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.core.app.ActivityOptionsCompat
 import at.favre.lib.crypto.bcrypt.BCrypt
 import com.example.myfitneesnote.firebase.FirestoreClass
 import com.google.firebase.auth.FirebaseAuth
@@ -22,12 +23,14 @@ class SignUpActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
-        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE or WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
-        fullscreen()
+       // window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE or WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+        //fullscreen()
         setupActionBar()
         login_signUpText.setOnClickListener {
-            startActivity(Intent(this, LoginActivity::class.java))
-            finish()
+            var intent =  Intent(this, LoginActivity::class.java)
+            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, login_signUpText, "tsigIn")
+            startActivity(intent, options.toBundle())
+
         }
         sigUp_button.setOnClickListener {
                  signUpUser()

@@ -5,10 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ECF8FD"
+    android:background="@drawable/gbi2"
     android:orientation="vertical"
     tools:context=".MainActivity">
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout3"
         android:layout_width="0dp"
@@ -17,11 +16,8 @@
         android:background="@drawable/ic_round_top_navbar"
         app:layout_constraintBottom_toTopOf="@+id/guideline1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0">
-
+        app:layout_constraintTop_toTopOf="parent">
         <RelativeLayout
             android:id="@+id/relativeLayout"
             android:layout_width="60dp"
@@ -40,7 +36,8 @@
                 android:id="@+id/main_menu"
                 android:layout_width="54dp"
                 android:layout_height="34dp"
-                android:background="@drawable/white_menu" />
+                android:background="@drawable/white_menu"
+                android:contentDescription="@string/todo" />
         </RelativeLayout>
 
         <ImageButton
@@ -53,7 +50,8 @@
             android:transitionName="profileImage"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="UnusedAttribute" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.Guideline
@@ -84,7 +82,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="10dp"
             android:orientation="vertical">
 
             <TextView
@@ -92,10 +90,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="70dp"
+                android:layout_marginTop="50dp"
                 android:layout_marginBottom="10dp"
                 android:text="@string/today"
-                android:textColor="#0090FF"
+                android:textColor="#00105C"
                 android:textSize="30sp" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -110,10 +108,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginBottom="15dp"
                 android:text="@string/progress"
-                android:textColor="#0090FF"
+                android:textColor="#00105C"
                 android:textSize="30sp" />
 
             <androidx.cardview.widget.CardView
@@ -122,8 +120,10 @@
                 android:layout_height="200dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
                 app:cardCornerRadius="15dp"
+                android:outlineSpotShadowColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -132,58 +132,60 @@
                     android:id="@+id/toggleButtonsGroup"
                     android:layout_width="match_parent"
                     android:layout_height="25dp"
-                    android:layout_marginStart="25dp"
+                    android:layout_marginStart="5dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="5dp"
-                    android:gravity="left"
-                    app:checkedButton="@id/LastWeek"
+                    android:gravity="center"
                     android:showDividers="end"
-                    app:singleSelection="true">
+                    app:checkedButton="@id/LastWeek"
+                    app:singleSelection="true"
+                    tools:ignore="RtlHardcoded">
 
                     <Button
                         android:id="@+id/LastWeek"
                         style="@style/ToggleButton"
-                        android:layout_width="65dp"
+                        android:layout_width="75dp"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@color/white"
                         android:text="@string/_1w"
-                        android:textColor="@color/black"
-                        android:textSize="15sp"
-                        tools:ignore="SmallSp" />
+                        android:textColor="#00002E"
+                        android:textSize="12sp"
+                        tools:ignore="SmallSp,UnusedAttribute" />
 
                     <Button
                         android:id="@+id/TwoWeeks"
                         style="@style/ToggleButton"
-                        android:layout_width="65dp"
+                        android:layout_width="75dp"
                         android:layout_height="wrap_content"
                         android:background="@color/white"
                         android:backgroundTint="@color/white"
-                        android:text="2W"
-                        android:textColor="@color/black"
-                        android:textSize="15sp"
-                        tools:ignore="SmallSp" />
+                        android:text="@string/_2w"
+                        android:textColor="#00002E"
+                        android:textSize="12sp"
+                        tools:ignore="SmallSp,UnusedAttribute" />
 
                     <Button
                         android:id="@+id/ThreeWeeks"
                         style="@style/ToggleButton"
-                        android:layout_width="65dp"
+                        android:layout_width="75dp"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@color/white"
-                        android:text="3W"
-                        android:textColor="@color/black"
-                        android:textSize="15sp"
-                        tools:ignore="SmallSp" />
+                        android:text="@string/_3w"
+                        android:textColor="#00002E"
+                        android:textSize="12sp"
+                        tools:ignore="SmallSp"
+                        tools:targetApi="lollipop" />
 
                     <Button
                         android:id="@+id/OneMonth"
                         style="@style/ToggleButton"
-                        android:layout_width="65dp"
+                        android:layout_width="75dp"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@color/white"
-                        android:text="1M"
-                        android:textColor="@color/black"
-                        android:textSize="15sp"
-                        tools:ignore="SmallSp" />
+                        android:text="@string/_1m"
+                        android:textColor="#00002E"
+                        android:textSize="12sp"
+                        tools:ignore="SmallSp,UnusedAttribute" />
 
                     <Button
                         android:id="@+id/TwoMonth"
@@ -192,21 +194,21 @@
                         android:layout_height="wrap_content"
                         android:backgroundTint="@color/white"
                         android:text="@string/_2m"
-                        android:visibility="gone"
                         android:textColor="@color/black"
                         android:textSize="15sp"
-                        tools:ignore="SmallSp" />
+                        android:visibility="gone"
+                        tools:ignore="SmallSp,UnusedAttribute" />
 
                     <Button
                         android:id="@+id/All"
                         style="@style/ToggleButton"
-                        android:layout_width="65dp"
+                        android:layout_width="75dp"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@color/white"
-                        android:text="All"
-                        android:textColor="@color/black"
-                        android:textSize="15sp"
-                        tools:ignore="SmallSp" />
+                        android:text="@string/all"
+                        android:textColor="#00002E"
+                        android:textSize="12sp"
+                        tools:ignore="SmallSp,UnusedAttribute" />
 
                 </com.google.android.material.button.MaterialButtonToggleGroup>
 
@@ -215,10 +217,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:layout_gravity="bottom"
-                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginBottom="10dp"
                     android:background="@android:color/transparent" />
             </androidx.cardview.widget.CardView>
 
@@ -227,28 +226,32 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="45dp"
                 android:layout_marginBottom="10dp"
                 android:text="@string/trainings"
-                android:textColor="#0090FF"
+                android:textColor="#00105C"
                 android:textSize="30sp" />
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="90dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 android:layout_marginBottom="5dp"
                 android:gravity="center">
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/tip1"
-                    android:layout_width="180dp"
+                    android:layout_width="0dp"
                     android:layout_height="80dp"
-                    android:layout_marginStart="0dp"
-                    android:layout_marginEnd="10dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="15dp"
                     app:cardCornerRadius="12dp"
+                    android:outlineSpotShadowColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/tip2"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
@@ -268,16 +271,17 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/tip2"
-                    android:layout_width="180dp"
+                    android:layout_width="0dp"
                     android:layout_height="80dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginEnd="0dp"
-                    app:cardCornerRadius="12dp"
+                    android:layout_marginEnd="5dp"
                     android:transitionName="trainingsBtn"
+                    app:cardCornerRadius="12dp"
+                    android:outlineSpotShadowColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tip1"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="UnusedAttribute">
 
                     <TextView
                         android:id="@+id/T2"
@@ -292,67 +296,74 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
                 </androidx.cardview.widget.CardView>
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="50dp"
+        android:gravity="center">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="90dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="100dp"
-                android:gravity="center">
+        <androidx.cardview.widget.CardView
+        android:id="@+id/tip3"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="15dp"
+        app:cardCornerRadius="12dp"
+            android:outlineSpotShadowColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tip4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/tip3"
-                    android:layout_width="180dp"
-                    android:layout_height="80dp"
-                    android:layout_marginStart="0dp"
-                    android:layout_marginEnd="10dp"
-                    app:cardCornerRadius="12dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+        <TextView
+            android:id="@+id/T3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/Leg_extensions"
+            android:textColor="#3F51B5"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.cardview.widget.CardView>
 
-                    <TextView
-                        android:id="@+id/T3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="@string/Leg_extensions"
-                        android:textColor="#3F51B5"
-                        android:textSize="20sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/tip4"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:layout_marginEnd="5dp"
+        android:transitionName="trainingsBtn"
+        app:cardCornerRadius="12dp"
+        android:outlineSpotShadowColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tip3"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="UnusedAttribute">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/tip4"
-                    android:layout_width="180dp"
-                    android:layout_height="80dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginEnd="0dp"
-                    app:cardCornerRadius="12dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/tip1"
-                    app:layout_constraintTop_toTopOf="parent">
+        <TextView
+            android:id="@+id/T4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/Seated_biceps_curls"
+            android:textColor="#3F51B5"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <TextView
-                        android:id="@+id/T4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="@string/Seated_biceps_curls"
-                        android:textColor="#3F51B5"
-                        android:textSize="20sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.cardview.widget.CardView>
-            </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 
@@ -362,7 +373,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintGuide_end="64dp" />
+        app:layout_constraintGuide_percent="0.92635214" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout6"
@@ -387,7 +398,9 @@
             android:transitionName="chatBtn"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="UnusedAttribute"
+            android:contentDescription="@string/todo" />
 
         <ImageButton
             android:id="@+id/main_diagramm"
@@ -398,7 +411,9 @@
             android:transitionName="trainingsBtn"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="UnusedAttribute"
+            android:contentDescription="@string/todo" />
     </androidx.constraintlayout.widget.ConstraintLayout>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/Add_main"
@@ -417,5 +432,5 @@
         app:maxImageSize="60dp"
         app:srcCompat="@drawable/ic_baseline_add_24"
         app:tint="@color/white"
-        tools:ignore="MissingConstraints,VectorDrawableCompat"/>
+        tools:ignore="MissingConstraints,UnusedAttribute,VectorDrawableCompat"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

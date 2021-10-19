@@ -24,7 +24,7 @@ class ChatActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
-        fullscreen()
+       // fullscreen()
         setupActionBar()
         fetchUsers()
         fetchCurrentUser()
@@ -95,6 +95,7 @@ class UserItem(val user: User): Item<ViewHolder>(){
     override fun bind(viewHolder: ViewHolder, position: Int) {
         //val uri = user.image
         viewHolder.itemView.User_name.text= user.username
+
     }
     override fun getLayout(): Int {
         return R.layout.user_row

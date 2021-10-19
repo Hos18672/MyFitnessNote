@@ -14,7 +14,7 @@ class MuskelGroupActivity : BaseActivity() {
         setContentView(R.layout.activity_muskel_group)
         GymType= intent.getStringExtra("WorkoutType")
         muscle_txt.text = GymType
-        fullscreen()
+        //fullscreen()
         setupActionBar()
         btnBack.setOnClickListener{
             val intent = Intent( this,  WorkoutActivity::class.java)

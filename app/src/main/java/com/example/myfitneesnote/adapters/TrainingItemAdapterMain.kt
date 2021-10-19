@@ -23,7 +23,10 @@ import kotlinx.android.synthetic.main.item_training_main.view.*
 
 class TrainingItemAdapterMain(options: FirestoreRecyclerOptions<Workout>)
     : FirestoreRecyclerAdapter<Workout,TrainingItemAdapterMain.MyViewHolder>(options){
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder{
+
         val itemView = LayoutInflater.from(parent.context).inflate((R.layout.item_training_main), parent, false)
         return  MyViewHolder(itemView)
     }
@@ -52,6 +55,7 @@ class TrainingItemAdapterMain(options: FirestoreRecyclerOptions<Workout>)
         val date      : TextView = itemView.tv_date
         val image     : ImageView = itemView.main_workout_image
     }
+
 }
 
 

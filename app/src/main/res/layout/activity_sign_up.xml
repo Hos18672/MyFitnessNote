@@ -23,11 +23,11 @@
             android:textColor="#000000"
             android:textSize="15sp"
             tools:layout_editor_absoluteX="165dp"
-            tools:layout_editor_absoluteY="218dp"/>
+            tools:layout_editor_absoluteY="218dp" />
     </androidx.appcompat.widget.Toolbar>
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout13"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="50dp"
@@ -42,7 +42,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="5dp"
             android:gravity="center"
             android:text="@string/sign_up"
             android:textColor="#000000"
@@ -58,18 +57,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
+            android:layout_marginTop="15dp"
             android:layout_marginEnd="32dp"
-            android:layout_marginBottom="150dp"
             android:background="@color/white"
             android:gravity="center"
-            android:paddingTop="30dp"
-            android:paddingBottom="30dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:transitionName="tSignUp"
             app:cardCornerRadius="30dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout8"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolBar_textView">
+            app:layout_constraintTop_toBottomOf="@+id/toolBar_textView"
+            tools:targetApi="lollipop">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout7"
@@ -87,7 +87,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="40dp"
-                    android:layout_marginTop="32dp"
+                    android:layout_marginTop="25dp"
                     android:layout_marginEnd="40dp"
                     android:textColorHint="#8D8D8E"
                     app:boxStrokeColor="#0287FB"
@@ -200,10 +200,11 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
-                    android:layout_marginTop="32dp"
-                    android:layout_marginBottom="32dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="16dp"
                     android:backgroundTint="@color/colorPrimaryBlue"
                     android:clickable="true"
+                    android:focusable="true"
                     app:cardCornerRadius="30dp"
                     app:cardElevation="2dp"
                     app:cardUseCompatPadding="true"
@@ -214,8 +215,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/inputpassword2"
                     app:layout_constraintVertical_bias="0.144"
                     app:rippleColor="#98F3FF"
-                    tools:targetApi="lollipop"
-                    android:focusable="true">
+                    tools:targetApi="lollipop">
 
                     <ProgressBar
                         android:id="@+id/progressBar_signUp"
@@ -253,16 +253,13 @@
             android:gravity="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/constraintLayout9"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/constraintLayout9"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout9"
-            app:layout_constraintVertical_bias="0.515">
+            app:layout_constraintStart_toStartOf="@+id/constraintLayout9">
 
             <TextView
+                android:id="@+id/textView8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
                 android:text="@string/already_have_an_account"
                 android:textAlignment="center"
                 android:textColor="@android:color/black"
@@ -281,15 +278,18 @@
                 android:layout_height="60dp"
                 android:layout_gravity="center"
                 android:layout_marginStart="32dp"
+                android:layout_marginTop="9dp"
                 android:layout_marginEnd="32dp"
-                android:layout_marginBottom="30dp"
-                android:text="@string/sign_in"
+                android:layout_marginBottom="32dp"
                 android:backgroundTint="@color/colorAccentPrimaryDark"
+                android:text="@string/sign_in"
+                android:transitionName="tsigIn"
                 app:cornerRadius="25dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView8"
                 tools:ignore="MissingConstraints"
                 tools:targetApi="lollipop" />
         </androidx.constraintlayout.widget.ConstraintLayout>

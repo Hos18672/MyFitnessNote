@@ -12,7 +12,7 @@ class SplashActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-        fullscreen()
+        //fullscreen()
         animat()
         Handler().postDelayed({
             val currentUserID = FirestoreClass().getCurrentUserId()

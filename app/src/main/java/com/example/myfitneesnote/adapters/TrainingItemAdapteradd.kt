@@ -1,11 +1,9 @@
 package com.example.myfitneesnote.adapters
 
-
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewTreeObserver
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -25,7 +23,6 @@ class TrainingItemAdapteradd(options: FirestoreRecyclerOptions<Workout>)
     }
     @SuppressLint("SetTextI18n", "ResourceType")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int, training: Workout) {
-
             holder.gymName.text    = training.GymType
             holder.muskelName.text = training.MuskelName
             holder.sets.text       = "${training.set} x"
@@ -51,7 +48,7 @@ class TrainingItemAdapteradd(options: FirestoreRecyclerOptions<Workout>)
         val repeat    : TextView = itemView.tv_repeat
         val breakTime : TextView = itemView.tv_break
         val date      : TextView = itemView.tv_date
-        val image      : ImageView = itemView.workout_image
+        val image     : ImageView = itemView.workout_image
     }
 }
 

@@ -9,10 +9,12 @@ import android.view.WindowManager
 import android.view.WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.core.app.ActivityOptionsCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main_layout.*
 import java.util.*
 
 @Suppress("DEPRECATION")
@@ -21,13 +23,15 @@ class LoginActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE or SOFT_INPUT_ADJUST_RESIZE)
-        fullscreen()
+        //window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE or SOFT_INPUT_ADJUST_RESIZE)
+        //fullscreen()
         setupActionBar()
 
-        login_signUpTv.setOnClickListener {
-            startActivity(Intent(this, SignUpActivity::class.java))
-            finish()
+        login_signUpBtn.setOnClickListener {
+            var intent =  Intent(this, SignUpActivity::class.java)
+            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, login_signUpBtn, "tSignUp")
+            startActivity(intent, options.toBundle())
+           // finish()
         }
         sing_in_button.setOnClickListener {
                 loginUser()
@@ -59,7 +63,7 @@ class LoginActivity : BaseActivity() {
             //login_signInText.text = (resources.getString(R.string.please_wait))
                  //create an instance and create a register a user with email and password
                 pb.visibility = View.VISIBLE
-            login_signInText.text = "Please wait ..."
+            login_signInText.text = "Please wait"
                 FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener { task ->
                         //hideProgressDialog()
@@ -79,7 +83,7 @@ class LoginActivity : BaseActivity() {
 
                         } else {
                             pb.visibility = View.GONE
-                            login_signInText.text = "Sign in ..."
+                            login_signInText.text = "Sign in"
                             Toast.makeText(
                                 this@LoginActivity, task.exception!!.message.toString(),
                                 Toast.LENGTH_SHORT
@@ -107,8 +111,6 @@ class LoginActivity : BaseActivity() {
             }
         }
     }
-
-
 
     override fun onBackPressed() {
         finish()
