@@ -12,6 +12,7 @@ import com.google.firebase.firestore.SetOptions
 
 class FirestoreClass {
     private val mFireStore = FirebaseFirestore.getInstance()
+    private val db = FirebaseFirestore.getInstance()
     fun registerUser(activity: SignUpActivity, userInfo: User) {
         mFireStore.collection(Constant.USERS)
             .document(getCurrentUserId())
@@ -29,15 +30,15 @@ class FirestoreClass {
     }
     fun createNewTraining(activity: AddWorkoutActivity, workout: Workout){
         mFireStore.collection(Constant.USERS)
-            .document(getCurrentUserId()).collection(Constant.TRAININGS)
-            .add(workout)
-            .addOnSuccessListener {
-                Log.e(activity.javaClass.simpleName, "Created Successfully")
-                Toast.makeText(activity, "Training created Successfully", Toast.LENGTH_SHORT).show()
-            }.addOnFailureListener{
-                exception ->
-                Log.e(activity.javaClass.simpleName, "Creation failed",exception)
-                Toast.makeText(activity, "Training's creation failed", Toast.LENGTH_SHORT).show()
-            }
-    }
+       .document(getCurrentUserId()).collection(Constant.TRAININGS)
+       .add(workout)
+       .addOnSuccessListener {
+           Log.e(activity.javaClass.simpleName, "Created Successfully")
+           Toast.makeText(activity, "Training created Successfully", Toast.LENGTH_SHORT).show()
+       }.addOnFailureListener{
+               exception ->
+           Log.e(activity.javaClass.simpleName, "Creation failed",exception)
+           Toast.makeText(activity, "Training's creation failed", Toast.LENGTH_SHORT).show()
+       }
+}
 }

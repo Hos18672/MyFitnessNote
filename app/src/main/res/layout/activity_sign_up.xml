@@ -34,14 +34,17 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolBar_sign_up_activity">
+        app:layout_constraintTop_toBottomOf="@+id/toolBar_sign_up_activity"
+        app:layout_constraintVertical_bias="1.0">
 
         <TextView
             android:id="@+id/toolBar_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:layout_marginBottom="3dp"
             android:gravity="center"
             android:text="@string/sign_up"
             android:textColor="#000000"
@@ -62,10 +65,10 @@
             android:background="@color/white"
             android:gravity="center"
             android:paddingTop="20dp"
-            android:paddingBottom="20dp"
+            android:paddingBottom="10dp"
             android:transitionName="tSignUp"
             app:cardCornerRadius="30dp"
-            app:layout_constraintBottom_toTopOf="@+id/constraintLayout8"
+            app:layout_constraintBottom_toTopOf="@+id/sigUp_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolBar_textView"
@@ -87,7 +90,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="40dp"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="40dp"
                     android:textColorHint="#8D8D8E"
                     app:boxStrokeColor="#0287FB"
@@ -103,7 +106,7 @@
                         android:background="@android:color/transparent"
                         android:hint="@string/full_name"
                         android:inputType="text"
-                        android:textSize="15sp" />
+                        android:textSize="14sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -125,7 +128,7 @@
                         android:background="@android:color/transparent"
                         android:hint="@string/username"
                         android:inputType="text"
-                        android:textSize="15sp" />
+                        android:textSize="14sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -148,7 +151,7 @@
                         android:background="@android:color/transparent"
                         android:hint="@string/email"
                         android:inputType="textEmailAddress"
-                        android:textSize="15sp" />
+                        android:textSize="14sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -170,7 +173,7 @@
                         android:background="@android:color/transparent"
                         android:hint="@string/password"
                         android:inputType="textPassword"
-                        android:textSize="15sp" />
+                        android:textSize="14sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -178,8 +181,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
+                    android:layout_marginBottom="35dp"
                     android:textColorHint="#8D8D8E"
                     app:boxStrokeColor="#0287FB"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/inputpassword"
                     app:layout_constraintStart_toStartOf="@+id/inputpassword"
                     app:layout_constraintTop_toBottomOf="@+id/inputpassword"
@@ -192,55 +197,9 @@
                         android:background="@android:color/transparent"
                         android:hint="@string/repeat_password"
                         android:inputType="textPassword"
-                        android:textSize="15sp" />
+                        android:textSize="14sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/sigUp_button"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginBottom="16dp"
-                    android:backgroundTint="@color/colorPrimaryBlue"
-                    android:clickable="true"
-                    android:focusable="true"
-                    app:cardCornerRadius="30dp"
-                    app:cardElevation="2dp"
-                    app:cardUseCompatPadding="true"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/inputpassword2"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/inputpassword2"
-                    app:layout_constraintTop_toBottomOf="@+id/inputpassword2"
-                    app:layout_constraintVertical_bias="0.144"
-                    app:rippleColor="#98F3FF"
-                    tools:targetApi="lollipop">
-
-                    <ProgressBar
-                        android:id="@+id/progressBar_signUp"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_marginEnd="-60dp"
-                        android:textSize="15sp"
-                        android:visibility="gone" />
-
-                    <TextView
-                        android:id="@+id/btn_signUpText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_margin="15dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:text="@string/sign_up"
-                        android:textColor="@android:color/black"
-                        android:textSize="15sp"
-                        tools:layout_editor_absoluteX="174dp"
-                        tools:layout_editor_absoluteY="601dp" />
-                </com.google.android.material.card.MaterialCardView>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -253,6 +212,7 @@
             android:gravity="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/constraintLayout9"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/constraintLayout9">
 
             <TextView
@@ -293,5 +253,51 @@
                 tools:ignore="MissingConstraints"
                 tools:targetApi="lollipop" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/sigUp_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="35dp"
+            android:backgroundTint="@color/colorPrimaryBlue"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardCornerRadius="30dp"
+            app:cardElevation="2dp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout8"
+            app:layout_constraintEnd_toEndOf="@+id/constraintLayout9"
+            app:layout_constraintStart_toStartOf="@+id/constraintLayout9"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout9"
+            app:rippleColor="#98F3FF"
+            tools:targetApi="lollipop">
+
+            <ProgressBar
+                android:id="@+id/progressBar_signUp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginEnd="-70dp"
+                android:textSize="15sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/btn_signUpText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="15dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="@string/sign_up"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                tools:layout_editor_absoluteX="174dp"
+                tools:layout_editor_absoluteY="601dp" />
+        </com.google.android.material.card.MaterialCardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

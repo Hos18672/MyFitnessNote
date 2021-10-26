@@ -28,35 +28,43 @@
             tools:layout_editor_absoluteX="165dp"
             tools:layout_editor_absoluteY="218dp"/>
     </androidx.appcompat.widget.Toolbar>
+
     <androidx.cardview.widget.CardView
         android:id="@+id/pcard"
         android:layout_width="0dp"
-        android:layout_height="400dp"
+        android:layout_height="450dp"
         android:layout_marginStart="30dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginBottom="260dp"
         app:cardCornerRadius="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView8">
-        <LinearLayout
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/ll"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
             android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
             android:layout_marginEnd="20dp"
-            android:gravity="center"
+            android:gravity="left"
             android:orientation="vertical">
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputUsername"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:layout_margin="10dp"
-                android:layout_marginTop="12dp"
+                android:layout_margin="5dp"
                 android:textColorHint="#8D8D8E"
-                app:boxStrokeColor="#0287FB">
+                app:boxStrokeColor="#0287FB"
+                app:layout_constraintBottom_toTopOf="@+id/inputName"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/login_username_input"
                     android:layout_width="match_parent"
@@ -66,14 +74,19 @@
                     android:background="@android:color/transparent"
                     android:hint="@string/username" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputName"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:layout_margin="10dp"
-                android:layout_marginTop="12dp"
+                android:layout_margin="5dp"
                 android:textColorHint="#8D8D8E"
-                app:boxStrokeColor="#0287FB">
+                app:boxStrokeColor="#0287FB"
+                app:layout_constraintBottom_toTopOf="@+id/inputBirthDate"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/inputUsername"
+                tools:ignore="MissingConstraints">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/profile_fullName_input"
                     android:layout_width="match_parent"
@@ -85,41 +98,137 @@
                     tools:layout_editor_absoluteX="0dp"
                     tools:layout_editor_absoluteY="0dp" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputBirthDate"
-                android:layout_width="match_parent"
+                android:layout_width="120dp"
                 android:layout_height="60dp"
-                android:layout_margin="10dp"
+                android:layout_margin="5dp"
                 android:textColorHint="#8D8D8E"
-                app:boxStrokeColor="#0287FB">
+                app:boxStrokeColor="#0287FB"
+                app:layout_constraintBottom_toTopOf="@+id/inputBirthEmail"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/inputName"
+                tools:ignore="MissingConstraints">
+
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/profile_BirthDate_input"
+                    android:id="@+id/age_input_profile"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
                     android:background="@android:color/transparent"
-                    android:hint="@string/birthdate"
+                    android:hint="Age"
                     android:inputType="textEmailAddress" />
             </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/text2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:text="kg"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/weight"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.048"
+                app:layout_constraintStart_toEndOf="@+id/weight"
+                app:layout_constraintTop_toBottomOf="@+id/inputBirthEmail"
+                app:layout_constraintVertical_bias="0.804"
+                tools:ignore="MissingConstraints" />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputBirthEmail"
-                android:layout_width="match_parent"
+                android:layout_width="120dp"
                 android:layout_height="60dp"
-                android:layout_margin="10dp"
+                android:layout_margin="5dp"
                 android:textColorHint="#8D8D8E"
-                app:boxStrokeColor="#0287FB">
+                app:boxStrokeColor="#0287FB"
+                app:layout_constraintBottom_toTopOf="@+id/weight"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/inputBirthDate"
+                tools:ignore="MissingConstraints">
+
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/profile_Email_input"
+                    android:id="@+id/height_input_profile"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
                     android:background="@android:color/transparent"
-                    android:hint="@string/gender"
+                    android:hint="@string/height"
                     android:inputType="textEmailAddress" />
             </com.google.android.material.textfield.TextInputLayout>
-        </LinearLayout>
+
+            <TextView
+                android:id="@+id/text1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@android:color/transparent"
+                android:text="cm"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/inputBirthEmail"
+                app:layout_constraintStart_toEndOf="@+id/inputBirthEmail"
+                app:layout_constraintTop_toTopOf="@+id/inputBirthEmail"
+                app:layout_constraintVertical_bias="0.787" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/weight"
+                android:layout_width="120dp"
+                android:layout_height="60dp"
+                android:layout_margin="5dp"
+                android:layout_marginBottom="8dp"
+                android:textColorHint="#8D8D8E"
+                app:boxStrokeColor="#0287FB"
+                app:layout_constraintBottom_toTopOf="@+id/radioGroup"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/inputBirthEmail"
+                tools:ignore="MissingConstraints">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/weight_input_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/weight"
+                    android:inputType="textEmailAddress" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="230dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="16dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.493"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text2"
+                app:layout_constraintVertical_bias="1.0">
+
+                <RadioButton
+                    android:id="@+id/radio_male_profile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:onClick="onRadioButtonClicked"
+                    android:text="@string/male" />
+
+                <RadioButton
+                    android:id="@+id/radio_female_profile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:onClick="onRadioButtonClicked"
+                    android:text="@string/female" />
+            </RadioGroup>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
     <com.google.android.material.button.MaterialButton
@@ -159,12 +268,13 @@
         app:layout_constraintHorizontal_bias="0.54"
         app:layout_constraintStart_toStartOf="parent"
         tools:targetApi="lollipop" />
+
     <ImageView
         android:id="@+id/imageView8"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="16dp"
         android:contentDescription="@string/todo"
         android:transitionName="profileImage"
         app:layout_constraintBottom_toTopOf="@+id/pcard"

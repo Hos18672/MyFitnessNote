@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gbi2"
+    android:background="@drawable/g"
     android:orientation="vertical"
     tools:context=".MainActivity">
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -93,7 +93,7 @@
                 android:layout_marginTop="50dp"
                 android:layout_marginBottom="10dp"
                 android:text="@string/today"
-                android:textColor="#00105C"
+                android:textColor="#010623"
                 android:textSize="30sp" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -111,7 +111,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="15dp"
                 android:text="@string/progress"
-                android:textColor="#00105C"
+                android:textColor="#010623"
                 android:textSize="30sp" />
 
             <androidx.cardview.widget.CardView
@@ -229,7 +229,7 @@
                 android:layout_marginTop="45dp"
                 android:layout_marginBottom="10dp"
                 android:text="@string/trainings"
-                android:textColor="#00105C"
+                android:textColor="#010623"
                 android:textSize="30sp" />
 
             <androidx.constraintlayout.widget.ConstraintLayout

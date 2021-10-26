@@ -48,7 +48,7 @@
             android:id="@+id/toolBar_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="65dp"
             android:gravity="center"
             android:text="@string/sign_in"
             android:textColor="#000000"
@@ -66,7 +66,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
-            android:layout_marginBottom="150dp"
+            android:layout_marginBottom="270dp"
             android:background="@color/white"
             android:gravity="center"
             android:paddingTop="30dp"
@@ -93,7 +93,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="40dp"
-                    android:layout_marginTop="32dp"
+                    android:layout_marginTop="40dp"
                     android:layout_marginEnd="40dp"
                     android:layout_marginBottom="16dp"
                     android:textColorHint="#8D8D8E"
@@ -119,9 +119,10 @@
                     android:id="@+id/inputname2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="60dp"
                     android:textColorHint="#8D8D8E"
                     app:boxStrokeColor="#0287FB"
-                    app:layout_constraintBottom_toTopOf="@+id/sing_in_button"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/inputname"
                     app:layout_constraintStart_toStartOf="@+id/inputname"
                     app:layout_constraintTop_toBottomOf="@+id/inputname"
@@ -149,51 +150,6 @@
                     android:textSize="15sp"
                     android:visibility="gone" />
 
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/sing_in_button"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="50dp"
-                    android:layout_marginBottom="16dp"
-                    android:backgroundTint="@color/colorPrimaryBlue"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:transitionName="tLogin"
-                    app:cardCornerRadius="30dp"
-                    app:cardElevation="2dp"
-                    app:cardUseCompatPadding="true"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/inputname2"
-                    app:layout_constraintStart_toStartOf="@+id/inputname2"
-                    app:layout_constraintTop_toBottomOf="@+id/inputname2"
-                    app:rippleColor="#98F3FF"
-                    tools:targetApi="lollipop">
-
-                    <ProgressBar
-                        android:id="@+id/progressBar_login"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_marginEnd="-60dp"
-                        android:textSize="15sp"
-                        android:visibility="gone" />
-
-                    <TextView
-                        android:id="@+id/login_signInText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_margin="15dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:text="@string/sign_in"
-                        android:textAllCaps="true"
-                        android:textColor="@android:color/black"
-                        android:textSize="15sp"
-                        tools:layout_editor_absoluteX="174dp"
-                        tools:layout_editor_absoluteY="601dp" />
-                </com.google.android.material.card.MaterialCardView>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -244,6 +200,54 @@
                 tools:ignore="MissingConstraints"
                 tools:targetApi="lollipop" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/sing_in_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="201dp"
+            android:backgroundTint="@color/colorPrimaryBlue"
+            android:clickable="true"
+            android:focusable="true"
+            android:transitionName="tLogin"
+            app:cardCornerRadius="30dp"
+            app:cardElevation="2dp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout10"
+            app:layout_constraintEnd_toEndOf="@+id/LoginCv"
+            app:layout_constraintStart_toStartOf="@+id/LoginCv"
+            app:layout_constraintTop_toBottomOf="@+id/LoginCv"
+            app:rippleColor="#98F3FF"
+            tools:targetApi="lollipop">
+
+            <ProgressBar
+                android:id="@+id/progressBar_login"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginEnd="-70dp"
+                android:textSize="15sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/login_signInText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="15dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="@string/sign_in"
+                android:textAllCaps="true"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                tools:layout_editor_absoluteX="174dp"
+                tools:layout_editor_absoluteY="601dp" />
+        </com.google.android.material.card.MaterialCardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </RelativeLayout>

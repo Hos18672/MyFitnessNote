@@ -90,7 +90,7 @@ class SignUpActivity : BaseActivity() {
                                     Log.d("User", "Failed to set value to database: ${it.message}")
                                 }
                             //  FirebaseAuth.getInstance().signOut()
-                            val intent = Intent(this@SignUpActivity, LoginActivity::class.java)
+                            val intent = Intent(this@SignUpActivity, BodyInfo::class.java)
                             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                             intent.putExtra("user_id", firebaseUser.uid)
                             intent.putExtra("name", signUpNameInput.text.toString())
@@ -174,6 +174,8 @@ class SignUpActivity : BaseActivity() {
         // Finish the Sign-Up Screen
         finish()
     }
-    override fun onBackPressed() { finish() }
+    override fun onBackPressed() {
+       startActivity(Intent(this, IntroActivity::class.java))
+        finish() }
 
 }

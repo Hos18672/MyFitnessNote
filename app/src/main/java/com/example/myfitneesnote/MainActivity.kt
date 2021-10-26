@@ -57,6 +57,8 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     private lateinit var trainingItemAdapterMain : TrainingItemAdapterMain
     private lateinit var recyclerView: RecyclerView
     lateinit var main : MainActivity
+    var list= arrayListOf<String>()
+    var Id = ""
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,12 +66,21 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         nav_view.setNavigationItemSelectedListener(this)
         recyclerView = findViewById(id.rv_trainings_list_main)
         constraintLayout3.bringToFront()
-        setupLineChartData(7)
         onClick()
         userData()
         animat()
         getTrainingsFromFireStore()
         updateNavigationUserDetails()
+        setupLineChartData(365)
+      //  setupLineChartData2()
+    }
+
+
+    private fun getLastWrokoutId(id : ArrayList<String>) : String {
+        var getId = ""
+        getId = id.get(id.size-1)
+        Id = getId
+        return getId
     }
     private fun userData() {
         val uid = FirebaseAuth.getInstance().uid
@@ -261,11 +272,17 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         val year = c.get(Calendar.YEAR)
         val month: String = currentMonth.toString()
         val day = c.get(Calendar.DAY_OF_MONTH)
-        val datelocal = "${year}/${month}/${day - size}"
+        val datelocal = "${year}-${month}-${day - size}"
+        val datelocal2 = "${year}-${month}-${day}"
+
 
         val listCalories = arrayListOf<Double>()
         val listSumCalories = arrayListOf<Double>()
         val listDates = arrayListOf<String>()
+
+        var listDuplicate = arrayListOf<Double>()
+        var listD = arrayListOf<String>()
+        var DuplicationsList = arrayListOf<Double>()
 
         db.collection(Constant.USERS).document(getCurrentUserID()).collection(Constant.TRAININGS)
             .orderBy("date", Query.Direction.ASCENDING)
@@ -275,39 +292,61 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                     for (document in task.result!!) {
                         val caloriesDate = document.get("currentDateTime").toString()
                         val calorie = document.get("calorie").toString()
-                        val inputFormatter: DateFormat = SimpleDateFormat("yyyy/MM/dd")
+                        val wid = document.get("workout_id").toString()
+                        val inputFormatter: DateFormat = SimpleDateFormat("yyyy-MM-dd")
                         val caloriedate: Date = inputFormatter.parse(caloriesDate)
                         val currentDay : Date = inputFormatter.parse(datelocal)
-                        val outputFormatter: DateFormat = SimpleDateFormat("MM/dd")
+                        val currentDate : Date = inputFormatter.parse(datelocal2)
+                        val outputFormatter: DateFormat = SimpleDateFormat("MM-dd")
                         val output: String = outputFormatter.format(caloriedate) // Output : 01/20/2012
-
+                         list.add(wid)
                         if ( currentDay  < caloriedate) {
                             listCalories.add(calorie.toDouble())
-                            listDates.add(output.replace('/','.'))
+                            listDates.add(wid)
                       }
                     }
+                    // find duplication Date and sum Calories
                     var sum = 0.0
                     for ( i  in 0 until listDates.size){
                         for(j in 0 until listDates.size){
-                            if(i != j && listDates[i] == listDates[j]){
-                                sum += (listCalories[i] + listCalories[j])
-                                break
-                            }else {
-                                sum = listCalories[i]
+                            if( i !=j && listDates[i] == listDates[j]){
+                                if(sum == 0.0){
+                                    sum += listCalories[i]+listCalories[j]
+                                }else{
+                                    sum += listCalories[j]
+                                }
                             }
                         }
-                        listSumCalories.add(sum)
+                        listDuplicate.add(sum)
+                        if(sum == 0.0 ){
+                            listDuplicate.add(listCalories[i])
+                        }
+                        sum = 0.0
                     }
-                    val listSumCalories2 =  listSumCalories.distinct()
+
+                    for(i in 0 until listDuplicate.size){
+                        listDuplicate.remove(0.0)
+                    }
+
+                    print(" \n Test Calories = " + listDuplicate.toString()+"\n")
+                    print(" \n Test  Dates  = " + listDates.toString()+"\n")
+
+                    val listSumCalories =  listDuplicate.distinct()
                     val listDates3 = listDates.distinct()
-                    chartSetConfig(listDates3 as ArrayList<String>, listSumCalories2 as ArrayList<Double>)
+
+                    print(" \n Test Calories = " + listSumCalories.toString()+"\n")
+                    print(" \n Test  Dates  = " + listDates3.toString()+"\n")
+                    // add Lists to the SetChart
+                    chartSetConfig(listDates3, listSumCalories)
+
+
                 } else {
                     Log.d(TAG, "Error getting documents: ", task.exception)
                 }
             }
     }
 
-    private fun chartSetConfig(listDates : ArrayList<String>, listCalories : ArrayList<Double> ){
+    private fun chartSetConfig(listDates: List<String>, listCalories: List<Double>){
         var i = 0
         val yVals = ArrayList<Entry>()
         while (i < listDates.size) {
@@ -317,13 +356,12 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         val set1 = LineDataSet(yVals, "DataSet 1")
         set1.color = Color.BLUE
         set1.lineWidth = 0.5f
-        set1.circleRadius = 2f
-        lineChart.setScaleEnabled(true)
-        set1.valueTextSize = 0f
-        //set1.mode = LineDataSet.Mode.CUBIC_BEZIER
-        set1.mode = LineDataSet.Mode.LINEAR
-        set1.setDrawFilled(true)
         set1.setDrawCircleHole(false)
+        set1.setDrawCircles(false)
+        lineChart.setScaleEnabled(false)
+        set1.valueTextSize = 0f
+        set1.mode = LineDataSet.Mode.CUBIC_BEZIER
+        set1.setDrawFilled(true)
         set1.gradientColor
         set1.setCircleColor(Color.BLACK)
         val dataSets = ArrayList<ILineDataSet>()
@@ -352,7 +390,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         xAxis.isEnabled = false
 
         val yAxis: YAxis = lineChart.axisLeft
-        yAxis.isEnabled = false
+        yAxis.isEnabled = true
         yAxis.setDrawLabels(true)
         yAxis.labelCount = 10
         lineChart.axisRight
@@ -366,11 +404,21 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         val vf2: ValueFormatter = object : ValueFormatter() {
             //value format here, here is the overridden method
             override fun getFormattedValue(value: Float): String {
-                return "" + value.toInt()
+                var m = ""
+                var n = 0.3
+                if(value.toString().contains(".30")){
+                    value -n
+                    m = value.toString()
+                }
+
+                return  m
             }
         }
         //xAxis.axisMinimum = 7f
-        //yAxis.valueFormatter = vf2
+        xAxis.valueFormatter = vf2
+
+        xAxis.isGranularityEnabled =  true
+
         xAxis.labelCount = listDates.size +1
         yAxis.setDrawLabels(true)
         lineChart.setDrawBorders(false)
@@ -391,6 +439,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         // hide legend
         val legend: Legend = lineChart.legend
         legend.isEnabled = false
+
     }
 
     private fun getTrainingsFromFireStore(){
@@ -398,7 +447,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         val year = c.get(Calendar.YEAR)
         val day = c.get(Calendar.DAY_OF_MONTH)
         val month = c.get(Calendar.MONTH)
-        val currentDate = "${year}/${month +1}/${day}"
+        val currentDate = "${year}-${month +1}-${day}"
         val query : Query = db.collection(Constant.USERS)
             .document(getCurrentUserID())
             .collection(Constant.TRAININGS)
@@ -421,7 +470,84 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         trainingItemAdapterMain.stopListening()
     }
 
+    private fun setupLineChartData2() {
+
+        var listCalories = arrayListOf<Int>()
+        var listDuplicate = arrayListOf<Int>()
+        var listDates = arrayListOf<String>()
+        var listD = arrayListOf<String>()
+        var DuplicationsList = arrayListOf<Int>()
+
+
+
+        listCalories = arrayListOf<Int>(10,25,20,35,30)
+        listDates = arrayListOf<String>("10","10","10","13","14")
+
+       // find duplication Date and sum Calories
+        var sum = 0
+        for ( i  in 0 until listDates.size){
+            for(j in 0 until listDates.size){
+                if( i !=j && listDates[i] == listDates[j]){
+                    if(sum == 0){
+                        sum += listCalories[i]+listCalories[j]
+                    }else{
+                        sum += listCalories[j]
+                    }
+                }
+            }
+            listDuplicate.add(sum)
+            if(sum == 0 ){
+                listDuplicate.add(listCalories[i])
+            }
+            sum = 0
+        }
+        listDuplicate.remove(0)
+
+        for(i in 0 until listDuplicate.size){
+            listDuplicate.remove(0)
+        }
+
+
+        print(listD.toString()+"\n")
+        print("sum = " + listDuplicate.toString()+"\n")
+
+        // Add duplication to another list
+        for(i in 0 until listDuplicate.size){
+            if (listDuplicate[i] != 0) {
+                DuplicationsList.add(listDuplicate[i])
+            }
+        }
+        // set not duplication v
+        var sum2 = 0
+        for ( i  in 0 until listDates.size){
+            for(j in 0 until listDates.size){
+                if( i !=j && listDates[i] == listDates[j]){
+                    listCalories[i] = 0
+                }
+            }
+            listDuplicate.add(sum2)
+            sum2 = 0
+        }
+        print("sum2 = " + listCalories.toString()+"\n")
+
+        for(i in 0 until listCalories.size){
+                DuplicationsList.add(listCalories[i])
+        }
+        print("sum3 = " + DuplicationsList.toString()+"\n")
+
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
 
 /*class UserLoged(val user: User): Item<ViewHolder>(){
    override fun bind(viewHolder: ViewHolder, position: Int) {
