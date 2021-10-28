@@ -27,13 +27,15 @@
             android:id="@+id/User_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="20dp"
             android:gravity="center"
             android:text="@string/username"
             android:textColor="@android:color/black"
             android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView10"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.521" />
 
         <TextView
             android:id="@+id/last_message"
