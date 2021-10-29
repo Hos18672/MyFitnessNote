@@ -42,7 +42,7 @@ class MyProfileActivity : BaseActivity() {
             onUpdateClicked()
         }
     }
-    private fun updateUser(username: String, age : String, height: String, weight: String,gender :String, name: String) {
+    private fun updateUser(username: String, age : String, height: String, weight: String,gender :String, name: String,fwc : Boolean) {
         // updating the user via child nodes
         if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(name)) {
             mFirebaseDatabase!!.child(userId!!).child("username").setValue(username)
@@ -51,6 +51,7 @@ class MyProfileActivity : BaseActivity() {
             mFirebaseDatabase!!.child(userId!!).child("height").setValue(height)
             mFirebaseDatabase!!.child(userId!!).child("weight").setValue(weight)
             mFirebaseDatabase!!.child(userId!!).child("gender").setValue(gender)
+            mFirebaseDatabase!!.child(userId!!).child("firstWorkoutIsCreated").setValue(fwc)
             Toast.makeText(applicationContext, "Successfully updated user", Toast.LENGTH_SHORT).show()
         }
         else
@@ -63,6 +64,7 @@ class MyProfileActivity : BaseActivity() {
         val height = height_input_profile.text.toString()
         val weight = weight_input_profile.text.toString()
         val gend : String
+        val fwc = false
         if(getGender == true){
           gend = "Male"
         }else{
@@ -71,7 +73,7 @@ class MyProfileActivity : BaseActivity() {
 
 
         //Calling updateUser function
-        updateUser(username,age,height,weight,gend, name)
+        updateUser(username,age,height,weight,gend, name,fwc)
     }
     private fun setupActionBar() {
         setSupportActionBar(toolBar_my_profile_activity)

@@ -1,9 +1,9 @@
 package com.example.myfitneesnote
 
 
-import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+
 import android.os.Build
 import android.os.Bundle
 import android.text.Editable
@@ -11,16 +11,13 @@ import android.util.Log
 import android.view.MenuItem
 import android.widget.EditText
 import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityOptionsCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myfitneesnote.R.*
-import com.example.myfitneesnote.adapters.TrainingItemAdapteradd
 import com.example.myfitneesnote.firebase.FirestoreClass
 import com.example.myfitneesnote.model.Workout
 import com.example.myfitneesnote.utils.Constant
 import com.google.android.material.navigation.NavigationView
-import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.vivekkaushik.datepicker.OnDateSelectedListener
@@ -28,8 +25,7 @@ import kotlinx.android.synthetic.main.activity_add_workout.*
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
-import kotlin.collections.HashMap
+import java.util.concurrent.ThreadLocalRandom
 
 
 class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -37,6 +33,8 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
     private lateinit var currentDate: String
     private var trainingsName: String? = ""
     private val db = FirebaseFirestore.getInstance()
+
+    var createdWorkout = false
     @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,9 +50,7 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
         val day = c.get(Calendar.DAY_OF_MONTH)
         datePickerTimeline.setInitialDate(year, month, day)
         currentDate = "${year}-${month + 1}-${day}"
-
         val trainingsFragment = trainings_fragment()
-
         supportFragmentManager.beginTransaction().apply {
             replace(id.root_container, trainingsFragment).commit()
         }
@@ -63,7 +59,6 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
                 // Do Something
                 currentDate = "${year}-${month + 1}-${day}"
             }
-
             override fun onDisabledDateSelected(
                 year: Int,
                 month: Int,
@@ -80,10 +75,10 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
         val dates = arrayOf(Calendar.getInstance().time)
         datePickerTimeline.deactivateDates(dates)
     }
-
     private fun String.toEditable(): Editable = Editable.Factory.getInstance().newEditable(this)
-
     private fun onClick() {
+        val trainingsFragment = trainings_fragment()
+
         btnBackNewWorkout.setOnClickListener {
             val intent = Intent(this, MuskelGroupActivity::class.java)
             val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
@@ -92,7 +87,16 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
                 "addTrainingBtn"
             )
             startActivity(intent, options.toBundle())
-
+        }
+        btn_back_home.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
+        save_btn.setOnClickListener {
+            createTraining()
+  /*          supportFragmentManager.beginTransaction().apply {
+                replace(id.root_container, trainingsFragment).commit()
+            }*/
         }
         btn_set_minus.setOnClickListener { minusButton(SetNum) }
         btn_set_plus.setOnClickListener { plusButton(SetNum) }
@@ -102,16 +106,9 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
         btn_break_plus.setOnClickListener { plusButton(breakNum) }
         btn_repeat_minus.setOnClickListener { minusButton(repeatNum) }
         btn_repeat_plus.setOnClickListener { plusButton(repeatNum) }
-        val trainingsFragment = trainings_fragment()
 
-        save_btn.setOnClickListener {
-            createTraining()
-            supportFragmentManager.beginTransaction().apply {
-                replace(id.root_container, trainingsFragment).commit()
-            }
-        }
+
     }
-
     private fun minusButton(et: EditText) {
         var num = et.text.toString().toInt()
         if (num > 0) {
@@ -126,66 +123,90 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
         et.text = "$num".toEditable()
     }
 
+    private fun dateFormatter(date: String): Date {
+        val inputFormatter: DateFormat = SimpleDateFormat("yyyy-MM-dd")
+        return inputFormatter.parse(date)
+    }
+
     private fun createTraining() {
         var list= arrayListOf<String>()
-        var getId = 0
-        val c = Calendar.getInstance()
-        val currentMonth = c.get(Calendar.MONTH) + 1
-        val year = c.get(Calendar.YEAR)
-        val month: String = currentMonth.toString()
-        val day = c.get(Calendar.DAY_OF_MONTH)
-        val currentDate2 = "${year}-${month}-${day}"
-
+        var getId = 1
         var getDate = ""
         val userWeight = 70
-        val currentDateAndTime = Timestamp.now()
         var workout: Workout
         val gymType: String = intent.getStringExtra("GymName").toString()
         val muskelName: String = intent.getStringExtra("MuskelName").toString()
         var set = SetNum.text.toString()
         var rep = repeatNum.text.toString()
-        var Calorie = set.toInt() * rep.toInt() * (2 * 3.5001231 * userWeight) / 200.0005
+        val rnds = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            ThreadLocalRandom.current().nextDouble(0.0 , 0.9)
+        } else {
+            TODO("VERSION.SDK_INT < LOLLIPOP")
+        }
+        val randnum = 0.0 + rnds
+        var Calorie = set.toInt() * rep.toInt() * (2 * 3.0+randnum * userWeight) / 200.0005
 
         db.collection(Constant.USERS).document(getCurrentUserID()).collection(Constant.TRAININGS)
-            .orderBy("date", Query.Direction.ASCENDING)
-            .get()
-            .addOnCompleteListener { task ->
-                val any = if (task.isSuccessful) {
-                    for (document in task.result!!) {
-                        getDate = document.get("currentDateTime").toString()
-                        list.add(document.get("workout_id").toString())
-                    }
-                    getId = list.get(list.size-1).toInt()
-
-                    if (currentDate != getDate ||  currentDate > getDate ){
-                        getId = getId+1
-                    }else{
-                        getId = getId
-                    }
-                    if (Calorie == 0.0) {
-                        Calorie = 1.0
-                    }
-                    workout = Workout(
-                        getId.toString(),
-                        gymType,
-                        muskelName,
-                        set,
-                        weightNum.text.toString(),
-                        breakNum.text.toString(),
-                        rep,
-                        currentDate,
-                        Calorie,
-                        currentDateAndTime
-                    )
-                    FirestoreClass().createNewTraining(this, workout)
-
+                .orderBy("date", Query.Direction.ASCENDING)
+                .get()
+                .addOnCompleteListener { task ->
+                    if (task.result?.size()!! > 0) {
+                        val any = if (task.isSuccessful) {
+                            for (document in task.result!!) {
+                                getDate = document.get("currentDateTime").toString()
+                                list.add(document.get("workout_id").toString())
+                            }
+                            getId = list.get(list.size - 1).toInt()
+                            if (currentDate!= getDate  || currentDate  > getDate) {
+                                getId += 1
+                            } else {
+                                getId = getId
+                            }
+                            if (Calorie == 0.0) {
+                                Calorie = 1.0
+                            }
+                            workout = Workout(
+                                getId.toString(),
+                                gymType,
+                                muskelName,
+                                set,
+                                weightNum.text.toString(),
+                                breakNum.text.toString(),
+                                rep,
+                                currentDate,
+                                Calorie,
+                                dateFormatter(currentDate)
+                            )
+                            FirestoreClass().createNewTraining(this, workout)
+                            var recyclerView =  findViewById<RecyclerView>(id.recyclerView_add)
+                            recyclerView.scrollToPosition(0)
+                        } else{
+                            Log.d(ChatLogActivity.TAG, "Error getting documents: ", task.exception)
+                        }
                     } else {
-                        Log.d(ChatLogActivity.TAG, "Error getting documents: ", task.exception)
+
+                        if (!createdWorkout) {
+                            workout = Workout(
+                                getId.toString(),
+                                gymType,
+                                muskelName,
+                                set,
+                                weightNum.text.toString(),
+                                breakNum.text.toString(),
+                                rep,
+                                currentDate,
+                                Calorie,
+                                dateFormatter(currentDate)
+                            )
+                            createdWorkout = true
+                            FirestoreClass().createNewTraining(this, workout)
+                            var recyclerView =  findViewById<RecyclerView>(id.recyclerView_add)
+                            recyclerView.scrollToPosition(0)
+                        }
                     }
                 }
+
     }
-
-
     private fun setupActionBar() {
         setSupportActionBar(toolBar_add_workout_activity)
         val actionBar = supportActionBar
@@ -198,29 +219,8 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
             onBackPressed()
         }
     }
-
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         TODO("Not yet implemented")
-    }
-
-
-    private fun getLastWrokoutId(): String {
-        var Id : String = ""
-        db.collection(Constant.USERS).document(getCurrentUserID()).collection(Constant.TRAININGS)
-            .whereGreaterThan("workout_id", 0)
-            .get()
-            .addOnCompleteListener { task ->
-                val any = if (task.isSuccessful) {
-                    for (document in task.result!!) {
-                       Id = document.get("workout_id").toString()
-                    }
-
-                } else {
-                        Log.d(ChatLogActivity.TAG, "Error getting documents: ", task.exception)
-                    }
-
-            }
-        return Id
     }
 }
 

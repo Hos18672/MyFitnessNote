@@ -17,12 +17,16 @@ import kotlinx.android.synthetic.main.item_training.view.*
 
 class TrainingItemAdapteradd(options: FirestoreRecyclerOptions<Workout>)
     : FirestoreRecyclerAdapter<Workout,TrainingItemAdapteradd.MyViewHolder>(options){
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder{
         val itemView = LayoutInflater.from(parent.context).inflate((layout.item_training_new_add), parent, false)
         return  MyViewHolder(itemView)
     }
     @SuppressLint("SetTextI18n", "ResourceType")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int, training: Workout) {
+
+
+
             holder.gymName.text    = training.GymType
             holder.muskelName.text = training.MuskelName
             holder.sets.text       = "${training.set} x"
@@ -30,13 +34,15 @@ class TrainingItemAdapteradd(options: FirestoreRecyclerOptions<Workout>)
             holder.repeat.text     = "${training.repeat} x"
             holder.breakTime.text  = "${training.BreakTime} min"
             holder.date.text       = training.currentDateTime
-        if (training.GymType == "HOME") {
-            holder.image.setImageResource(workout_home)
-        }else{
-            holder.image.setImageResource(bench_press)
-        }
+            if (training.GymType == "HOME") {
+                holder.image.setImageResource(workout_home)
+            }else{
+                holder.image.setImageResource(bench_press)
+            }
+
     }
      fun deleteItem(i: Int){
+
         snapshots.getSnapshot(i).reference.delete()
         notifyDataSetChanged()
     }

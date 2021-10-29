@@ -12,6 +12,7 @@ import android.view.MenuItem
 import android.view.animation.AnimationUtils
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityOptionsCompat
@@ -25,6 +26,7 @@ import com.example.myfitneesnote.adapters.TrainingItemAdapterMain
 import com.example.myfitneesnote.model.Workout
 import com.example.myfitneesnote.utils.Constant
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
+import com.github.mikephil.charting.components.Description
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.components.YAxis
@@ -44,6 +46,7 @@ import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.activity_add_workout.constraintLayout3
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main_layout.*
+import kotlinx.android.synthetic.main.activity_main_layout.view.*
 import kotlinx.android.synthetic.main.nav_header_main.*
 import java.text.DateFormat
 import java.text.SimpleDateFormat
@@ -59,6 +62,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     lateinit var main : MainActivity
     var list= arrayListOf<String>()
     var Id = ""
+
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,7 +75,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         animat()
         getTrainingsFromFireStore()
         updateNavigationUserDetails()
-        setupLineChartData(365)
+        setupLineChartData(7)
       //  setupLineChartData2()
     }
 
@@ -103,26 +107,16 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         val mainImage: ImageButton = findViewById(id.tv_main_profile_image)
         val diagramMain: ImageButton = findViewById(id.main_diagramm)
         //val cvLinechart: LineChart = findViewById(id.lineChart)
-        val tip1 : CardView = findViewById(id.tip1)
-        val tip2 : CardView = findViewById(id.tip2)
-        val tip3 : CardView = findViewById(id.tip3)
-        val tip4 : CardView = findViewById(id.tip4)
-        tip1.setOnClickListener {
-            animateConst(tip1)
-            startActivity(Intent(this,TipsActivity::class.java))
-        }
-        tip2.setOnClickListener {
-            animateConst(tip2)
-            startActivity(Intent(this,TipsActivity::class.java))
-        }
-        tip3.setOnClickListener {
-            animateConst(tip3)
-            startActivity(Intent(this,TipsActivity::class.java))
-        }
-        tip4.setOnClickListener {
-            animateConst(tip4)
-            startActivity(Intent(this,TipsActivity::class.java))
-        }
+        val tip1 : CardView = findViewById(id.EZ_bar_curl)
+        val tip2 : CardView = findViewById(id.One_arm_dumbbell)
+        val tip3 : CardView = findViewById(id.Dumbbell)
+        val tip4 : CardView = findViewById(id.Seated_biceps_curls)
+
+        tipsItemsClick(tip1)
+        tipsItemsClick(tip2)
+        tipsItemsClick(tip3)
+        tipsItemsClick(tip4)
+
 
         mainImage.setOnClickListener {
             animate(mainImage)
@@ -241,6 +235,97 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
     }
+
+
+    private  fun tipsItemsClick(tip : CardView) {
+
+        var Topic = findViewById<TextView>(id.Topic)
+        //   var Picture = findViewById<ImageView>(id.Picture) as ImageView
+        var Description = findViewById<TextView>(id.Description)
+
+        tip.setOnClickListener { id ->
+            when (id) {
+                id.EZ_bar_curl -> {
+                    var topic = "EZ Bar Curl"
+                    var dic =
+                            "You can use a narrow, medium, or wide grip to emphasize a specific part of the biceps or to increase the difficulty of the exercise.\n" +"\n" +
+                            "A narrow grip will emphasize the outer head and a wide grip will emphasize the inner head.\n" +"\n" +
+                            "Avoid bringing the elbows too far forward although you can move them a little bit forward as it may help to get a better contraction in the biceps. \n" +"\n" +
+                            "Choose a weight that you can curl comfortably without needing to rock back, but it should be heavier enough to cause a good effort during each set. \n" +"\n" +
+                            "Cheat reps can be effective for overloading the muscles and causing a greater stimulus but this technique, should, ideally, only be done by more experienced exercisers. \n" +"\n" +
+                            "Do not move the elbows too far forward and rest at the top of the curl as this may relieve tension from the biceps. \n" +"\n" +
+                            "We recommend to not lock out your elbows during the negative portion of the exercise to keep tension on your biceps."
+
+                    var intent = Intent(this, TipsActivity::class.java)
+                    intent.putExtra("TopicName", topic)
+                    intent.putExtra("DescriptionName", dic)
+                    startActivity(intent)
+                }
+
+                id.Dumbbell -> {
+
+                    var Topic = "Dumbbell Curl"
+                    var   Description  =
+                        "Once you've selected your weights, it's time to get your form down:\n" +
+                                "\n" + "\n" +
+                                "Stand with your feet hip-width apart with a dumbbell in each hand. Bend your knees slightly, engage your core and maintain good upright posture.\n" + "\n" +
+                                "Position your arms so that your palms are facing forward. Hold onto the dumbbells, but don't grip them so tightly that you feel strain in your forearms.\n" + "\n" +
+                                "Bending at the elbow, lift both dumbbells up toward your shoulders by flexing your bicep muscles. Lower the dumbbells the same way you raised them until your arms are fully extended in the same position you started in.\n" + "\n" +
+                                "Repeat eight to 12 repetitions without swinging your weights. In other words, rely on your muscles rather than momentum. If you find yourself needing to add momentum to lift, try using a slightly lighter dumbbell instead, as swinging can lead to injury."
+                    var intent = Intent(this, TipsActivity::class.java)
+                    intent.putExtra("TopicName", Topic.toString())
+                    intent.putExtra("DescriptionName", Description.toString())
+                    startActivity(intent)
+
+                }
+                id.One_arm_dumbbell -> {
+                    var Topic = "One arm dumbbell Curl"
+                    var   Description =
+                        "Experiment with head position and see which option (looking forward vs. packing the neck) works better for you.\n" + "\n" +
+                                "Fight the urge to use your opposing arm to brace against your leg or any other implement.\n" +  "\n" +
+                                "Keep some tone through your abdominals as you pull the dumbbell into your body to ensure you don’t arch excessively through your spine.\n" + "\n" +
+                                "Don’t allow momentum to dictate the movement, control the dumbbells throughout the entirety of each rep.\n" +
+                                "If you feel your biceps being overused and your back remaining under active, consider utilizing a false grip (i.e. don’t wrap the thumb around the dumbbell).\n" + "\n" +
+                                "Don’t allow the head to jut forward as you pull.\n" +
+                                "Similarly, ensure the shoulder blade moves on the rib cage. Don’t lock the shoulder blade down and just move through the glenohumeral joint.\n" + "\n" +
+                                " "
+                    var intent = Intent(this, TipsActivity::class.java)
+                    intent.putExtra("TopicName", Topic.toString())
+                    intent.putExtra("DescriptionName", Description.toString())
+                    startActivity(intent)
+                }
+                id.Seated_biceps_curls -> {
+
+                   var  Topic = "Seated biceps curls"
+                    var   Description  = "Step 1\n" +
+                            "Starting Position: Sit in the machine, placing your arms over the incline pad. Adjust the seat height until the middle of your elbows aligns with the axis of rotation (fulcrum) of the moving lever (part) of the machine.  Grasp the handles firmly with a full grip (thumbs clasped around the handles) and maintain a neutral wrist position (wrists aligned with your forearms).  Your elbows should be extended, but not fully locked. Stiffen (“brace”) your abdominal muscles to stabilize your spine, and attempt to avoid movement in your low back throughout the exercise.  Align your head with your spine, and depress and retract your scapulae (pull shoulders back and down) and attempt to hold this position throughout the exercise.\n" +
+                            "\n" +
+                            "\n" +
+                            "Step 2\n" +
+                            "Gently exhale and slowly curl the bar upwards towards your chest by bending your elbows.  Maintain a neutral wrist position and avoid any movement in your torso during the exercise.\n" +
+                            "\n" +
+                            "\n" +
+                            "Step 3\n" +
+                            "Continue curling the bar upwards until your elbows can flex (bend) no further.  Pause momentarily then slowly return to your starting position, allowing your elbows to extend in a slow, controlled manner, moving the handles back towards the floor, stopping when your arms are extended, but not locked and the backs of your forearms make light contact with the incline pad.  Repeat the movement.\n" +
+                            "\n" +
+                            "\n" +
+                            "Step 4\n" +
+                            "Exercise Variation: This exercise can be performed unilaterally (one arm at a time)\n" +
+                            "\n" +
+                            " \n" +
+                            "\n" +
+                            "While this exercise targets the biceps effectively, proper technique is important to prevent unnecessary stresses placed in low back by swinging your torso backwards during the movement. Follow the instructions provided to avoid potential injury."
+                    var intent = Intent(this, TipsActivity::class.java)
+                    intent.putExtra("TopicName", Topic.toString())
+                    intent.putExtra("DescriptionName", Description.toString())
+                    startActivity(intent)
+                }
+            }
+        }
+    }
+
+
+
     override fun onBackPressed() {
         if(drawer_layout.isDrawerOpen(GravityCompat.START)){
             drawer_layout.closeDrawer(GravityCompat.START)
@@ -264,6 +349,10 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             }
         })
     }
+    private fun dateFormatter(date: String): Date {
+        val inputFormatter: DateFormat = SimpleDateFormat("yyyy-MM-dd")
+        return inputFormatter.parse(date)
+    }
 
     @SuppressLint("SimpleDateFormat")
     private fun setupLineChartData(size : Int) {
@@ -272,17 +361,15 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         val year = c.get(Calendar.YEAR)
         val month: String = currentMonth.toString()
         val day = c.get(Calendar.DAY_OF_MONTH)
+        val currentDays = "${year}-${month}-${day - size}"
+
         val datelocal = "${year}-${month}-${day - size}"
         val datelocal2 = "${year}-${month}-${day}"
 
 
         val listCalories = arrayListOf<Double>()
-        val listSumCalories = arrayListOf<Double>()
         val listDates = arrayListOf<String>()
-
         var listDuplicate = arrayListOf<Double>()
-        var listD = arrayListOf<String>()
-        var DuplicationsList = arrayListOf<Double>()
 
         db.collection(Constant.USERS).document(getCurrentUserID()).collection(Constant.TRAININGS)
             .orderBy("date", Query.Direction.ASCENDING)
@@ -293,27 +380,21 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                         val caloriesDate = document.get("currentDateTime").toString()
                         val calorie = document.get("calorie").toString()
                         val wid = document.get("workout_id").toString()
-                        val inputFormatter: DateFormat = SimpleDateFormat("yyyy-MM-dd")
-                        val caloriedate: Date = inputFormatter.parse(caloriesDate)
-                        val currentDay : Date = inputFormatter.parse(datelocal)
-                        val currentDate : Date = inputFormatter.parse(datelocal2)
-                        val outputFormatter: DateFormat = SimpleDateFormat("MM-dd")
-                        val output: String = outputFormatter.format(caloriedate) // Output : 01/20/2012
-                         list.add(wid)
-                        if ( currentDay  < caloriedate) {
+                        list.add(wid)
+                        if ( dateFormatter(currentDays) < dateFormatter(caloriesDate)  && dateFormatter(caloriesDate) < dateFormatter(datelocal2)  ) {
                             listCalories.add(calorie.toDouble())
                             listDates.add(wid)
-                      }
+                        }
                     }
                     // find duplication Date and sum Calories
                     var sum = 0.0
                     for ( i  in 0 until listDates.size){
                         for(j in 0 until listDates.size){
                             if( i !=j && listDates[i] == listDates[j]){
-                                if(sum == 0.0){
-                                    sum += listCalories[i]+listCalories[j]
+                                sum += if(sum == 0.0){
+                                    listCalories[i]+listCalories[j]
                                 }else{
-                                    sum += listCalories[j]
+                                    listCalories[j]
                                 }
                             }
                         }
