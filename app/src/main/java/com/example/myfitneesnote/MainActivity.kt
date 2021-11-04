@@ -7,7 +7,6 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.view.animation.AnimationUtils
 import android.widget.ImageButton
@@ -19,14 +18,12 @@ import androidx.core.app.ActivityOptionsCompat
 import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myfitneesnote.ChatLogActivity.Companion.TAG
 import com.example.myfitneesnote.R.id
 import com.example.myfitneesnote.R.layout
 import com.example.myfitneesnote.adapters.TrainingItemAdapterMain
 import com.example.myfitneesnote.model.Workout
 import com.example.myfitneesnote.utils.Constant
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
-import com.github.mikephil.charting.components.Description
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.components.YAxis
@@ -35,6 +32,7 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
+import com.google.android.gms.tasks.Task
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -53,6 +51,8 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
+import com.google.firebase.firestore.QuerySnapshot
+
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS", "IMPLICIT_CAST_TO_ANY")
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -61,6 +61,8 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     private lateinit var recyclerView: RecyclerView
     lateinit var main : MainActivity
     var list= arrayListOf<String>()
+    var listCalories = arrayListOf<String>()
+    var listDates = arrayListOf<String>()
     var Id = ""
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
@@ -77,9 +79,53 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         updateNavigationUserDetails()
         setupLineChartData(7)
       //  setupLineChartData2()
+        var map = arrayListOf<Map<String, Objects>>()
+        db.collection(Constant.USERS)
+            .document(getCurrentUserId()).collection("Hashlist").get()
+            .addOnCompleteListener { task: Task<QuerySnapshot> ->
+                if (task.isSuccessful) {
+                    var document : QuerySnapshot? = task.result
+                    if(document != null) {
+                        var sum = 0.0
+                        for (i in document) {
+                            map.add(i.getData() as Map<String, Objects>)
+                        }
+                        for (a in map){
+                            for ( b in a.entries) {
+                                listDates.add(b.key)
+                                for ( c in b.key) {
+                                    var k= b.value as ArrayList<*>
+                                    for ( c in k) {
+                                        sum += c.toString().toDouble()
+                                    }
+                                    listCalories.add(sum.toString())
+                                    sum = 0.0
+                                }
+                            }
+                        }
+                        println("list2 == ${listDates.distinct()}")
+                        println("list2 == ${listCalories.distinct()}")
+
+                    }
+
+
+                }
+            }
+
+
+
     }
 
 
+
+    fun getCurrentUserId(): String {
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        var currentUserID = ""
+        if (currentUser != null) {
+            currentUserID = currentUser.uid
+        }
+        return currentUserID
+    }
     private fun getLastWrokoutId(id : ArrayList<String>) : String {
         var getId = ""
         getId = id.get(id.size-1)
@@ -354,80 +400,68 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         return inputFormatter.parse(date)
     }
 
-    @SuppressLint("SimpleDateFormat")
     private fun setupLineChartData(size : Int) {
-        val c = Calendar.getInstance()
-        val currentMonth = c.get(Calendar.MONTH) + 1
-        val year = c.get(Calendar.YEAR)
-        val month: String = currentMonth.toString()
-        val day = c.get(Calendar.DAY_OF_MONTH)
-        val currentDays = "${year}-${month}-${day - size}"
+        var listCalories2 = arrayListOf<String>()
+        var listDates2 = arrayListOf<String>()
+                    var li = arrayListOf<String>()
+                    var sum2 = 0.0
+                    var map = arrayListOf<Map<String, Objects>>()
+                    db.collection(Constant.USERS)
+                        .document(getCurrentUserId()).collection("Hashlist").get()
+                        .addOnCompleteListener { task: Task<QuerySnapshot> ->
+                            if (task.isSuccessful) {
+                                var document : QuerySnapshot? = task.result
+                                if(document != null) {
+                                    var sum = 0.0
+                                    for (i in document) {
+                                        map.add(i.getData() as Map<String, Objects>)
+                                    }
+                                    for (a in map){
+                                        for ( b in a.entries) {
+                                            listDates.add(b.key)
+                                            for ( c in b.key) {
+                                                var k= b.value as ArrayList<*>
+                                                for ( c in k.distinct()) {
+                                                    sum2 += c.toString().toDouble()
+                                                }
+                                                listCalories.add(sum2.toString())
+                                                sum2 = 0.0
+                                            }
+                                        }
+                                    }
 
-        val datelocal = "${year}-${month}-${day - size}"
-        val datelocal2 = "${year}-${month}-${day}"
+                                    var dm = ""
+                                    val sdf = SimpleDateFormat("yyyy-MM-dd ")
+                                    val cal = Calendar.getInstance()
+                                    cal.add(Calendar.DATE,-size)
+                                    dm =  sdf.format(cal.time)
 
+                                    var k = 0
+                                    for ( i in   listDates.distinct()){
+                                        if (i > dm ){
+                                            listDates2.add(listDates.distinct()[k])
+                                            listCalories2.add(listCalories.distinct()[k])
 
-        val listCalories = arrayListOf<Double>()
-        val listDates = arrayListOf<String>()
-        var listDuplicate = arrayListOf<Double>()
+                                        }
+                                        k++
+                                    }
+                                    for (i in 1 until  listDates2.size+1){
+                                        li.add(i.toString())
+                                    }
+                                    println("list2 == ${listDates2.distinct()}")
+                                    println("list2 == ${listCalories2.distinct()}")
+                                    chartSetConfig( li, listCalories2)
+                                    li.clear()
+                                    listDates2.clear()
+                                    listCalories2.clear()
 
-        db.collection(Constant.USERS).document(getCurrentUserID()).collection(Constant.TRAININGS)
-            .orderBy("date", Query.Direction.ASCENDING)
-            .get()
-            .addOnCompleteListener { task ->
-                val any = if (task.isSuccessful) {
-                    for (document in task.result!!) {
-                        val caloriesDate = document.get("currentDateTime").toString()
-                        val calorie = document.get("calorie").toString()
-                        val wid = document.get("workout_id").toString()
-                        list.add(wid)
-                        if ( dateFormatter(currentDays) < dateFormatter(caloriesDate)  && dateFormatter(caloriesDate) < dateFormatter(datelocal2)  ) {
-                            listCalories.add(calorie.toDouble())
-                            listDates.add(wid)
-                        }
-                    }
-                    // find duplication Date and sum Calories
-                    var sum = 0.0
-                    for ( i  in 0 until listDates.size){
-                        for(j in 0 until listDates.size){
-                            if( i !=j && listDates[i] == listDates[j]){
-                                sum += if(sum == 0.0){
-                                    listCalories[i]+listCalories[j]
-                                }else{
-                                    listCalories[j]
                                 }
                             }
                         }
-                        listDuplicate.add(sum)
-                        if(sum == 0.0 ){
-                            listDuplicate.add(listCalories[i])
-                        }
-                        sum = 0.0
-                    }
 
-                    for(i in 0 until listDuplicate.size){
-                        listDuplicate.remove(0.0)
-                    }
-
-                    print(" \n Test Calories = " + listDuplicate.toString()+"\n")
-                    print(" \n Test  Dates  = " + listDates.toString()+"\n")
-
-                    val listSumCalories =  listDuplicate.distinct()
-                    val listDates3 = listDates.distinct()
-
-                    print(" \n Test Calories = " + listSumCalories.toString()+"\n")
-                    print(" \n Test  Dates  = " + listDates3.toString()+"\n")
-                    // add Lists to the SetChart
-                    chartSetConfig(listDates3, listSumCalories)
-
-
-                } else {
-                    Log.d(TAG, "Error getting documents: ", task.exception)
-                }
-            }
     }
 
-    private fun chartSetConfig(listDates: List<String>, listCalories: List<Double>){
+    private fun chartSetConfig(listDates: List<String>, listCalories: ArrayList<String>){
         var i = 0
         val yVals = ArrayList<Entry>()
         while (i < listDates.size) {
@@ -618,14 +652,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
     }
 }
-
-
-
-
-
-
-
-
 
 
 

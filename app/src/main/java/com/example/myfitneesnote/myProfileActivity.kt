@@ -13,9 +13,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_my_profile.*
 
-
 class MyProfileActivity : BaseActivity() {
-
     private var mFirebaseDatabase: DatabaseReference? = null
     private var mFirebaseInstance: FirebaseDatabase? = null
     private var userId: String? = null
@@ -70,8 +68,6 @@ class MyProfileActivity : BaseActivity() {
         }else{
             gend = "Female"
         }
-
-
         //Calling updateUser function
         updateUser(username,age,height,weight,gend, name,fwc)
     }
@@ -116,13 +112,10 @@ class MyProfileActivity : BaseActivity() {
             }
         })
     }
-
-
     fun onRadioButtonClicked(view: View) {
         if (view is RadioButton) {
             // Is the button now checked?
             val checked = view.isChecked
-
             // Check which radio button was clicked
             when (view.getId()) {
                 R.id.radio_male_profile ->

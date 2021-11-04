@@ -13,8 +13,7 @@ data class User(
     val age: String="",
     val height: String="",
     val weight: String="",
-    val gender: String="",
-    val firstWorkoutIsCreated: Boolean = false) : Parcelable {
+    val gender: String="") : Parcelable {
     @SuppressLint("NewApi")
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
@@ -27,7 +26,7 @@ data class User(
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
-        parcel.readBoolean()!!
+
     )
     @SuppressLint("NewApi")
     override fun writeToParcel(parcel: Parcel, flags: Int) = with(parcel) {
@@ -41,7 +40,7 @@ data class User(
         writeString(height)
         writeString(weight)
         writeString(gender)
-        writeBoolean(firstWorkoutIsCreated)
+
     }
     override fun describeContents(): Int {
         return 0
