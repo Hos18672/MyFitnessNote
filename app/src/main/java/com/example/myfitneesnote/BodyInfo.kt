@@ -1,6 +1,8 @@
 package com.example.myfitneesnote
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
@@ -8,7 +10,9 @@ import android.util.Log
 import android.view.View
 import android.widget.RadioButton
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityOptionsCompat
+import androidx.core.content.ContextCompat
 import com.example.myfitneesnote.firebase.FirestoreClass
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -22,16 +26,19 @@ import kotlinx.android.synthetic.main.activity_my_profile.toolBar_my_profile_act
 
 class BodyInfo : BaseActivity() {
 
-
     private var mFirebaseDatabase: DatabaseReference? = null
     private var mFirebaseInstance: FirebaseDatabase? = null
-    private  var fs  : FirebaseFirestore? = null
+    var fs  : FirebaseFirestore = FirebaseFirestore.getInstance()
     private var userId: String? = null
     private  var getGender : Boolean = true
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_body_info)
+        window.navigationBarColor = android.R.color.white
+        window.statusBarColor = ContextCompat.getColor(this, R.color.Statusbar)
 //        setupActionBar()
         mFirebaseInstance = FirebaseDatabase.getInstance()
         // get reference to 'users' node
@@ -51,6 +58,7 @@ class BodyInfo : BaseActivity() {
             mFirebaseDatabase!!.child(userId!!).child("height").setValue(height)
             mFirebaseDatabase!!.child(userId!!).child("weight").setValue(weight)
             mFirebaseDatabase!!.child(userId!!).child("gender").setValue(gender)
+
             Toast.makeText(applicationContext, "Successfully updated user", Toast.LENGTH_SHORT).show()
 
             fs?.collection("users")?.document(userId!!)?.update("age", age,

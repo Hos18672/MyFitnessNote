@@ -1,5 +1,6 @@
 package com.example.myfitneesnote
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -9,9 +10,11 @@ import kotlinx.android.synthetic.main.activity_splash.*
 
 @Suppress("DEPRECATION")
 class SplashActivity : BaseActivity() {
+    @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+        window.navigationBarColor = android.R.color.white
         //fullscreen()
         animat()
         Handler().postDelayed({

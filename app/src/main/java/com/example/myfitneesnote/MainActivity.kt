@@ -7,6 +7,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.provider.CalendarContract
 import android.view.MenuItem
 import android.view.animation.AnimationUtils
 import android.widget.ImageButton
@@ -46,15 +47,21 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main_layout.*
 import kotlinx.android.synthetic.main.activity_main_layout.view.*
 import kotlinx.android.synthetic.main.nav_header_main.*
-import java.text.DateFormat
-import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
-
 import com.google.firebase.firestore.QuerySnapshot
+import kotlin.collections.HashMap
+import java.time.LocalDate
+import java.time.LocalDate.ofYearDay
+import java.time.LocalDate.parse
+import java.time.Month
+import java.time.Year
+import java.time.chrono.ChronoLocalDate
+import java.time.format.DateTimeFormatter
+import java.time.temporal.TemporalQueries.localDate
+import java.time.temporal.TemporalQueries.zone
 
 
-@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS", "IMPLICIT_CAST_TO_ANY")
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
     private val db = FirebaseFirestore.getInstance()
     private lateinit var trainingItemAdapterMain : TrainingItemAdapterMain
@@ -64,11 +71,12 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     var listCalories = arrayListOf<String>()
     var listDates = arrayListOf<String>()
     var Id = ""
-
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    var w= WorkoutsActivity()
+    @SuppressLint("ResourceAsColor", "NewApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(layout.activity_main)
+        window.navigationBarColor = R.color.white
         nav_view.setNavigationItemSelectedListener(this)
         recyclerView = findViewById(id.rv_trainings_list_main)
         constraintLayout3.bringToFront()
@@ -78,45 +86,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         getTrainingsFromFireStore()
         updateNavigationUserDetails()
         setupLineChartData(7)
-      //  setupLineChartData2()
-        var map = arrayListOf<Map<String, Objects>>()
-        db.collection(Constant.USERS)
-            .document(getCurrentUserId()).collection("Hashlist").get()
-            .addOnCompleteListener { task: Task<QuerySnapshot> ->
-                if (task.isSuccessful) {
-                    var document : QuerySnapshot? = task.result
-                    if(document != null) {
-                        var sum = 0.0
-                        for (i in document) {
-                            map.add(i.getData() as Map<String, Objects>)
-                        }
-                        for (a in map){
-                            for ( b in a.entries) {
-                                listDates.add(b.key)
-                                for ( c in b.key) {
-                                    var k= b.value as ArrayList<*>
-                                    for ( c in k) {
-                                        sum += c.toString().toDouble()
-                                    }
-                                    listCalories.add(sum.toString())
-                                    sum = 0.0
-                                }
-                            }
-                        }
-                        println("list2 == ${listDates.distinct()}")
-                        println("list2 == ${listCalories.distinct()}")
-
-                    }
-
-
-                }
-            }
-
-
-
     }
-
-
 
     fun getCurrentUserId(): String {
         val currentUser = FirebaseAuth.getInstance().currentUser
@@ -146,6 +116,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         })
     }
 
+    @SuppressLint("NewApi")
     private fun onClick() {
         val mainMenu: ImageButton = findViewById(id.main_menu)
         val addMenu: ImageView = findViewById(id.Add_main)
@@ -171,7 +142,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             startActivity(intent, options.toBundle())
         }
 
-       mainMenu.setOnClickListener {
+        mainMenu.setOnClickListener {
             if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
                 drawer_layout.closeDrawer(GravityCompat.START)
             } else {
@@ -179,9 +150,9 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             }
         }
         addMenu.setOnClickListener {
-                val intent = Intent(this, WorkoutActivity::class.java)
-                val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, Add_main, "addBtn")
-                startActivity(intent, options.toBundle())
+            val intent = Intent(this, WorkoutsChoiceActivity::class.java)
+            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, Add_main, "addBtn")
+            startActivity(intent, options.toBundle())
         }
         chatMain.setOnClickListener {
             chat_main
@@ -192,7 +163,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         }
         diagramMain.setOnClickListener {
             animate(diagramMain)
-            val intent = Intent(this, TrainingActivity::class.java)
+            val intent = Intent(this, WorkoutsActivity::class.java)
             val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, diagramMain, "trainingsBtn")
             startActivity(intent, options.toBundle())
         }
@@ -271,7 +242,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 FirebaseAuth.getInstance().signOut()
                 val intent = Intent(this, IntroActivity::class.java)
                 intent.addFlags(
-                       Intent.FLAG_ACTIVITY_CLEAR_TOP or
+                    Intent.FLAG_ACTIVITY_CLEAR_TOP or
                             Intent.FLAG_ACTIVITY_CLEAR_TASK or
                             Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
@@ -286,7 +257,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     private  fun tipsItemsClick(tip : CardView) {
 
         var Topic = findViewById<TextView>(id.Topic)
-        //   var Picture = findViewById<ImageView>(id.Picture) as ImageView
         var Description = findViewById<TextView>(id.Description)
 
         tip.setOnClickListener { id ->
@@ -294,13 +264,13 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 id.EZ_bar_curl -> {
                     var topic = "EZ Bar Curl"
                     var dic =
-                            "You can use a narrow, medium, or wide grip to emphasize a specific part of the biceps or to increase the difficulty of the exercise.\n" +"\n" +
-                            "A narrow grip will emphasize the outer head and a wide grip will emphasize the inner head.\n" +"\n" +
-                            "Avoid bringing the elbows too far forward although you can move them a little bit forward as it may help to get a better contraction in the biceps. \n" +"\n" +
-                            "Choose a weight that you can curl comfortably without needing to rock back, but it should be heavier enough to cause a good effort during each set. \n" +"\n" +
-                            "Cheat reps can be effective for overloading the muscles and causing a greater stimulus but this technique, should, ideally, only be done by more experienced exercisers. \n" +"\n" +
-                            "Do not move the elbows too far forward and rest at the top of the curl as this may relieve tension from the biceps. \n" +"\n" +
-                            "We recommend to not lock out your elbows during the negative portion of the exercise to keep tension on your biceps."
+                        "You can use a narrow, medium, or wide grip to emphasize a specific part of the biceps or to increase the difficulty of the exercise.\n" +"\n" +
+                                "A narrow grip will emphasize the outer head and a wide grip will emphasize the inner head.\n" +"\n" +
+                                "Avoid bringing the elbows too far forward although you can move them a little bit forward as it may help to get a better contraction in the biceps. \n" +"\n" +
+                                "Choose a weight that you can curl comfortably without needing to rock back, but it should be heavier enough to cause a good effort during each set. \n" +"\n" +
+                                "Cheat reps can be effective for overloading the muscles and causing a greater stimulus but this technique, should, ideally, only be done by more experienced exercisers. \n" +"\n" +
+                                "Do not move the elbows too far forward and rest at the top of the curl as this may relieve tension from the biceps. \n" +"\n" +
+                                "We recommend to not lock out your elbows during the negative portion of the exercise to keep tension on your biceps."
 
                     var intent = Intent(this, TipsActivity::class.java)
                     intent.putExtra("TopicName", topic)
@@ -342,7 +312,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 }
                 id.Seated_biceps_curls -> {
 
-                   var  Topic = "Seated biceps curls"
+                    var  Topic = "Seated biceps curls"
                     var   Description  = "Step 1\n" +
                             "Starting Position: Sit in the machine, placing your arms over the incline pad. Adjust the seat height until the middle of your elbows aligns with the axis of rotation (fulcrum) of the moving lever (part) of the machine.  Grasp the handles firmly with a full grip (thumbs clasped around the handles) and maintain a neutral wrist position (wrists aligned with your forearms).  Your elbows should be extended, but not fully locked. Stiffen (“brace”) your abdominal muscles to stabilize your spine, and attempt to avoid movement in your low back throughout the exercise.  Align your head with your spine, and depress and retract your scapulae (pull shoulders back and down) and attempt to hold this position throughout the exercise.\n" +
                             "\n" +
@@ -358,7 +328,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                             "Step 4\n" +
                             "Exercise Variation: This exercise can be performed unilaterally (one arm at a time)\n" +
                             "\n" +
-                            " \n" +
                             "\n" +
                             "While this exercise targets the biceps effectively, proper technique is important to prevent unnecessary stresses placed in low back by swinging your torso backwards during the movement. Follow the instructions provided to avoid potential injury."
                     var intent = Intent(this, TipsActivity::class.java)
@@ -369,8 +338,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             }
         }
     }
-
-
 
     override fun onBackPressed() {
         if(drawer_layout.isDrawerOpen(GravityCompat.START)){
@@ -385,7 +352,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-              //  val username = snapshot.child("username").getValue(String::class.java)
+                //  val username = snapshot.child("username").getValue(String::class.java)
                 // val imageUri = snapshot.child("image").getValue(String::class.java)
                 // Picasso.get().load(imageUri!!).into(main_drawer_profile_photo)
                 //tv_username.text = username
@@ -395,73 +362,78 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             }
         })
     }
-    private fun dateFormatter(date: String): Date {
-        val inputFormatter: DateFormat = SimpleDateFormat("yyyy-MM-dd")
-        return inputFormatter.parse(date)
+    private fun dateFormatter(date: String): ChronoLocalDate? {
+        val currentDate = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            parse(date, DateTimeFormatter.ofPattern("yyyy-MM-d"))
+
+        } else {
+            TODO("VERSION.SDK_INT < O")
+        }
+        return currentDate
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun setupLineChartData(size : Int) {
-        var listCalories2 = arrayListOf<String>()
-        var listDates2 = arrayListOf<String>()
-                    var li = arrayListOf<String>()
-                    var sum2 = 0.0
-                    var map = arrayListOf<Map<String, Objects>>()
-                    db.collection(Constant.USERS)
-                        .document(getCurrentUserId()).collection("Hashlist").get()
-                        .addOnCompleteListener { task: Task<QuerySnapshot> ->
-                            if (task.isSuccessful) {
-                                var document : QuerySnapshot? = task.result
-                                if(document != null) {
-                                    var sum = 0.0
-                                    for (i in document) {
-                                        map.add(i.getData() as Map<String, Objects>)
-                                    }
-                                    for (a in map){
-                                        for ( b in a.entries) {
-                                            listDates.add(b.key)
-                                            for ( c in b.key) {
-                                                var k= b.value as ArrayList<*>
-                                                for ( c in k.distinct()) {
-                                                    sum2 += c.toString().toDouble()
-                                                }
-                                                listCalories.add(sum2.toString())
-                                                sum2 = 0.0
-                                            }
-                                        }
-                                    }
+        val c = Calendar.getInstance()
+        val currentMonth = c.get(Calendar.MONTH) + 1
+        val year = c.get(Calendar.YEAR)
+        val month: String = currentMonth.toString()
+        val day = c.get(Calendar.DAY_OF_MONTH)
+        val currentDate = "${year}-${month}-${day}"
+        var cdate = dateFormatter(currentDate) as LocalDate
 
-                                    var dm = ""
-                                    val sdf = SimpleDateFormat("yyyy-MM-dd ")
-                                    val cal = Calendar.getInstance()
-                                    cal.add(Calendar.DATE,-size)
-                                    dm =  sdf.format(cal.time)
-
-                                    var k = 0
-                                    for ( i in   listDates.distinct()){
-                                        if (i > dm ){
-                                            listDates2.add(listDates.distinct()[k])
-                                            listCalories2.add(listCalories.distinct()[k])
-
-                                        }
-                                        k++
+        var listOfWorkouts: ArrayList<Workout> = arrayListOf<Workout>()
+        var sumCal = 0.0
+        var maplistOfWorkouts = HashMap<LocalDate, String>()
+        db.collection(Constant.USERS)
+            .document(getCurrentUserId()).collection("Workouts").orderBy("currentDateTime",Query.Direction.DESCENDING).get()
+            .addOnCompleteListener { task: Task<QuerySnapshot> ->
+                if (task.isSuccessful) {
+                    var document : QuerySnapshot? = task.result
+                    if(document != null) {
+                        var sum = 0.0
+                        for (i in document) {
+                            listOfWorkouts.add(i.toObject(Workout::class.java))
+                        }
+                        listOfWorkouts.sortBy { it.date }
+                        for (a in   listOfWorkouts){
+                            for ( b in  listOfWorkouts) {
+                                    if ( a.currentDateTime == b.currentDateTime) {
+                                        sumCal += b.calorie
                                     }
-                                    for (i in 1 until  listDates2.size+1){
-                                        li.add(i.toString())
-                                    }
-                                    println("list2 == ${listDates2.distinct()}")
-                                    println("list2 == ${listCalories2.distinct()}")
-                                    chartSetConfig( li, listCalories2)
-                                    li.clear()
-                                    listDates2.clear()
-                                    listCalories2.clear()
-
                                 }
+                                maplistOfWorkouts[dateFormatter(a.currentDateTime) as LocalDate] = sumCal.toString()
+                                sumCal = 0.0
+                            }
+
+                        }
+                        val sorted = maplistOfWorkouts.toSortedMap()
+
+                        var listCalories =  arrayListOf<Double>()
+                        var listDates = arrayListOf<Int>()
+                        var j = 0
+                    val listOfdates = arrayListOf<String>()
+                        for (i in 0 until  sorted.keys.toList().size) {
+                            if (sorted.keys.toList()[i] as LocalDate > cdate.minusDays(size.toLong()) && cdate  > sorted.keys.toList()[i] as LocalDate ) {
+                                listOfdates.add(sorted.keys.toList()[i].toString())
+                                listDates.add(j)
+                                listCalories.add(sorted.values.toList()[i].toDouble())
+                                j++
                             }
                         }
+                        println("listOf Dates == ${listOfdates}")
+                        println("listOf Dates == ${listDates}")
+                        println("listOf Caloreis == ${listCalories}")
+                        chartSetConfig(listDates,listCalories)
 
-    }
+                    }
 
-    private fun chartSetConfig(listDates: List<String>, listCalories: ArrayList<String>){
+
+                }
+            }
+
+
+    private fun chartSetConfig(listDates: List<Int>, listCalories: ArrayList<Double>){
         var i = 0
         val yVals = ArrayList<Entry>()
         while (i < listDates.size) {
@@ -486,6 +458,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         lineChart.data = data
         lineChart.description.isEnabled = false
         lineChart.legend.isEnabled = true
+        lineChart.background.transparentRegion
         //lineChart.setDrawGridBackground()
         //lineChart.xAxis.labelCount = listXDate2.size+2
         lineChart.xAxis.position = XAxis.XAxisPosition.BOTTOM
@@ -551,10 +524,10 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         lineChart.isAutoScaleMinMaxEnabled = false
         lineChart.invalidate()
         lineChart.setNoDataTextColor(Color.BLUE)
+
         // hide legend
         val legend: Legend = lineChart.legend
         legend.isEnabled = false
-
     }
 
     private fun getTrainingsFromFireStore(){
@@ -565,7 +538,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         val currentDate = "${year}-${month +1}-${day}"
         val query : Query = db.collection(Constant.USERS)
             .document(getCurrentUserID())
-            .collection(Constant.TRAININGS)
+            .collection("Workouts")
             .whereEqualTo("currentDateTime", currentDate)
             .orderBy("date",Query.Direction.DESCENDING)
         val fireStoreRecyclerOption : FirestoreRecyclerOptions<Workout> = FirestoreRecyclerOptions.Builder<Workout>()
@@ -586,19 +559,16 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 
     private fun setupLineChartData2() {
-
         var listCalories = arrayListOf<Int>()
         var listDuplicate = arrayListOf<Int>()
         var listDates = arrayListOf<String>()
         var listD = arrayListOf<String>()
         var DuplicationsList = arrayListOf<Int>()
 
-
-
         listCalories = arrayListOf<Int>(10,25,20,35,30)
         listDates = arrayListOf<String>("10","10","10","13","14")
 
-       // find duplication Date and sum Calories
+        // find duplication Date and sum Calories
         var sum = 0
         for ( i  in 0 until listDates.size){
             for(j in 0 until listDates.size){
@@ -621,7 +591,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         for(i in 0 until listDuplicate.size){
             listDuplicate.remove(0)
         }
-
 
         print(listD.toString()+"\n")
         print("sum = " + listDuplicate.toString()+"\n")
@@ -646,13 +615,13 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         print("sum2 = " + listCalories.toString()+"\n")
 
         for(i in 0 until listCalories.size){
-                DuplicationsList.add(listCalories[i])
+            DuplicationsList.add(listCalories[i])
         }
         print("sum3 = " + DuplicationsList.toString()+"\n")
 
     }
-}
 
+}
 
 
 

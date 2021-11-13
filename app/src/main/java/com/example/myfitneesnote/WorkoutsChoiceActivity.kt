@@ -1,5 +1,6 @@
 package com.example.myfitneesnote
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -10,11 +11,13 @@ import androidx.core.app.ActivityOptionsCompat
 import kotlinx.android.synthetic.main.activity_workout.*
 
 @Suppress("DEPRECATION")
-class WorkoutActivity : BaseActivity(){
+class WorkoutsChoiceActivity : BaseActivity(){
+    @SuppressLint("ResourceAsColor")
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_workout)
+        window.navigationBarColor = android.R.color.white
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         //fullscreen()

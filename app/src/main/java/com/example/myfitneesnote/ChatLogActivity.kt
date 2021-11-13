@@ -1,5 +1,6 @@
 package com.example.myfitneesnote
 
+import android.annotation.SuppressLint
 import android.app.PendingIntent.getActivity
 import android.os.Bundle
 import android.util.Log
@@ -25,9 +26,11 @@ class ChatLogActivity : BaseActivity() {
     companion object{ const val TAG = "ChatLog" }
     var toUser: User?= null
     val adapter = GroupAdapter<ViewHolder>()
+    @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat_log)
+        window.navigationBarColor = android.R.color.white
         toUser =  intent.getParcelableExtra(ChatActivity.USER_KEY)
         recyclerView_chat_log.adapter= adapter
         setupActionBar()

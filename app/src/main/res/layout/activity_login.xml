@@ -48,7 +48,8 @@
             android:id="@+id/toolBar_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="65dp"
+            android:layout_marginTop="85dp"
+            android:layout_marginBottom="8dp"
             android:gravity="center"
             android:text="@string/sign_in"
             android:textColor="#000000"
@@ -72,7 +73,7 @@
             android:paddingTop="30dp"
             android:paddingBottom="30dp"
             android:transitionName="tsigIn"
-            app:cardCornerRadius="30dp"
+            app:cardCornerRadius="20dp"
             app:layout_constraintBottom_toTopOf="@+id/constraintLayout10"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -88,55 +89,54 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="MissingConstraints">
 
+
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/inputname"
-                    android:layout_width="0dp"
+                    android:id="@+id/inputEmail"
+                    style="@style/EditText.OutlinedBox"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="40dp"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginEnd="40dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginEnd="32dp"
                     android:layout_marginBottom="16dp"
-                    android:textColorHint="#8D8D8E"
-                    app:boxStrokeColor="#0287FB"
                     app:layout_constraintBottom_toTopOf="@+id/inputname2"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="MissingConstraints">
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/login_email_input"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:hint="@string/email"
-                        android:inputType="text"
-                        android:textSize="15sp"
-                        tools:ignore="DuplicateIds" />
+                        android:layout_gravity="start"
+                        android:hint="email"
+                        android:inputType="textEmailAddress"
+                        android:textAlignment="viewStart" />
                 </com.google.android.material.textfield.TextInputLayout>
+
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/inputname2"
-                    android:layout_width="0dp"
+                    style="@style/EditText.OutlinedBox"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="60dp"
-                    android:textColorHint="#8D8D8E"
-                    app:boxStrokeColor="#0287FB"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginBottom="50dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/inputname"
-                    app:layout_constraintStart_toStartOf="@+id/inputname"
-                    app:layout_constraintTop_toBottomOf="@+id/inputname"
-                    tools:ignore="MissingConstraints">
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/inputEmail">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/login_password_input"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:hint="@string/password"
+                        android:layout_gravity="start"
+                        android:hint="Password"
                         android:inputType="textPassword"
-                        android:textSize="15sp"
-                        tools:ignore="DuplicateIds" />
+                        android:textAlignment="viewStart" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -151,6 +151,7 @@
                     android:visibility="gone" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
         </com.google.android.material.card.MaterialCardView>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -206,7 +207,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="24dp"
             android:layout_marginBottom="201dp"
             android:backgroundTint="@color/colorPrimaryBlue"

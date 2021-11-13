@@ -1,8 +1,11 @@
 package com.example.myfitneesnote
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityOptionsCompat
 import com.example.myfitneesnote.model.User
 import com.google.firebase.auth.FirebaseAuth
@@ -21,10 +24,12 @@ class ChatActivity : BaseActivity() {
         var currentUser: User?= null
         const val USER_KEY = "USER_KEY"
     }
+
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
-       // fullscreen()
         setupActionBar()
         fetchUsers()
         fetchCurrentUser()

@@ -1,6 +1,8 @@
 package com.example.myfitneesnote
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
@@ -8,23 +10,31 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityOptionsCompat
+import androidx.core.content.ContextCompat
 import at.favre.lib.crypto.bcrypt.BCrypt
 import com.example.myfitneesnote.firebase.FirestoreClass
+import com.example.myfitneesnote.utils.Constant
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import java.util.*
 
 @Suppress("DEPRECATION")
 class SignUpActivity : BaseActivity() {
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
+        window.navigationBarColor = android.R.color.white
        // window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE or WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
-        //fullscreen()
+        window.statusBarColor = ContextCompat.getColor(this, R.color.Statusbar)
+
         setupActionBar()
         login_signUpText.setOnClickListener {
             var intent =  Intent(this, LoginActivity::class.java)
@@ -89,6 +99,7 @@ class SignUpActivity : BaseActivity() {
                                 .addOnFailureListener {
                                     Log.d("User", "Failed to set value to database: ${it.message}")
                                 }
+
                             //  FirebaseAuth.getInstance().signOut()
                             val intent = Intent(this@SignUpActivity, BodyInfo::class.java)
                             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

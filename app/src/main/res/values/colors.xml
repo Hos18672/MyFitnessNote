@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#03D9FF</color>
+    <color name="colorPrimary">#00c2ff</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#010922</color>
     <color name="snackBar_error_color">#FF0A0A</color>
     <color name="statusColor">#FFFFFF</color>
     <color name="colorPrimaryGreen">#03FF4A</color>
-    <color name="colorPrimaryBlue">#00D9FF</color>
+    <color name="colorPrimaryBlue">#00c2ff</color>
     <color name="colorPrimaryGreenHell">#23FFB9</color>
     <color name="colorAccentPrimaryDark">#151B40</color>
-    <color name="colorOfStutusBar">#00B7FF</color>
+    <color name="colorOfStutusBar">#00c2ff</color>
+    <color name="Statusbar">  #2998f9</color>
+
 
 
 </resources>

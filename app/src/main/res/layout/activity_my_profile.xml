@@ -47,154 +47,152 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
-            android:layout_marginStart="20dp"
             android:layout_marginTop="5dp"
-            android:layout_marginEnd="20dp"
             android:gravity="left"
             android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputUsername"
+                style="@style/EditText.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_margin="5dp"
-                android:textColorHint="#8D8D8E"
-                app:boxStrokeColor="#0287FB"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="32dp"
                 app:layout_constraintBottom_toTopOf="@+id/inputName"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="MissingConstraints">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/login_username_input"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:background="@android:color/transparent"
-                    android:hint="@string/username" />
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:hint="@string/username"
+                    android:inputType="text"
+                    android:textAlignment="viewStart" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputName"
+                style="@style/EditText.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_margin="5dp"
-                android:textColorHint="#8D8D8E"
-                app:boxStrokeColor="#0287FB"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
                 app:layout_constraintBottom_toTopOf="@+id/inputBirthDate"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/inputUsername"
-                tools:ignore="MissingConstraints">
+                app:layout_constraintTop_toBottomOf="@+id/inputUsername">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/profile_fullName_input"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:background="@android:color/transparent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
                     android:hint="@string/full_name"
-                    tools:layout_editor_absoluteX="0dp"
-                    tools:layout_editor_absoluteY="0dp" />
+                    android:inputType="text"
+                    android:textAlignment="viewStart" />
             </com.google.android.material.textfield.TextInputLayout>
+
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputBirthDate"
-                android:layout_width="120dp"
-                android:layout_height="60dp"
-                android:layout_margin="5dp"
-                android:textColorHint="#8D8D8E"
-                app:boxStrokeColor="#0287FB"
+                style="@style/EditText.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
                 app:layout_constraintBottom_toTopOf="@+id/inputBirthEmail"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/inputName"
-                tools:ignore="MissingConstraints">
+                app:layout_constraintTop_toBottomOf="@+id/inputName">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/age_input_profile"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:background="@android:color/transparent"
-                    android:hint="Age"
-                    android:inputType="textEmailAddress" />
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:hint="@string/your_age"
+                    android:inputType="text"
+                    android:textAlignment="viewStart" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/text2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="52dp"
                 android:background="@android:color/transparent"
                 android:text="kg"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="@+id/weight"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.048"
-                app:layout_constraintStart_toEndOf="@+id/weight"
                 app:layout_constraintTop_toBottomOf="@+id/inputBirthEmail"
-                app:layout_constraintVertical_bias="0.804"
+                app:layout_constraintVertical_bias="0.787"
                 tools:ignore="MissingConstraints" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputBirthEmail"
-                android:layout_width="120dp"
-                android:layout_height="60dp"
-                android:layout_margin="5dp"
-                android:textColorHint="#8D8D8E"
-                app:boxStrokeColor="#0287FB"
+                style="@style/EditText.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="100dp"
                 app:layout_constraintBottom_toTopOf="@+id/weight"
+                app:layout_constraintEnd_toStartOf="@+id/text1"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/inputBirthDate"
-                tools:ignore="MissingConstraints">
+                app:layout_constraintTop_toBottomOf="@+id/inputBirthDate">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/height_input_profile"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:background="@android:color/transparent"
-                    android:hint="@string/height"
-                    android:inputType="textEmailAddress" />
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:hint="@string/your_height"
+                    android:inputType="text"
+                    android:textAlignment="viewStart" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/text1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginEnd="52dp"
                 android:background="@android:color/transparent"
                 android:text="cm"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="@+id/inputBirthEmail"
-                app:layout_constraintStart_toEndOf="@+id/inputBirthEmail"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/inputBirthEmail"
-                app:layout_constraintVertical_bias="0.787" />
+                app:layout_constraintVertical_bias="0.656" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/weight"
-                android:layout_width="120dp"
-                android:layout_height="60dp"
-                android:layout_margin="5dp"
-                android:layout_marginBottom="8dp"
-                android:textColorHint="#8D8D8E"
-                app:boxStrokeColor="#0287FB"
+                style="@style/EditText.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="100dp"
                 app:layout_constraintBottom_toTopOf="@+id/radioGroup"
+                app:layout_constraintEnd_toStartOf="@+id/text2"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/inputBirthEmail"
-                tools:ignore="MissingConstraints">
+                app:layout_constraintTop_toBottomOf="@+id/inputBirthEmail">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/weight_input_profile"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:background="@android:color/transparent"
-                    android:hint="@string/weight"
-                    android:inputType="textEmailAddress" />
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:hint="@string/your_weight"
+                    android:inputType="text"
+                    android:textAlignment="viewStart" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <RadioGroup

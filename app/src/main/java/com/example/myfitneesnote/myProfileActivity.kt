@@ -1,16 +1,21 @@
 package com.example.myfitneesnote
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
 import android.widget.RadioButton
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityOptionsCompat
 import com.example.myfitneesnote.R.*
 import com.example.myfitneesnote.R.drawable.*
+import com.example.myfitneesnote.firebase.FirestoreClass
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_my_profile.*
 
 class MyProfileActivity : BaseActivity() {
@@ -19,9 +24,12 @@ class MyProfileActivity : BaseActivity() {
     private var userId: String? = null
     private  var getGender : Boolean = true
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(layout.activity_my_profile)
+        window.navigationBarColor = android.R.color.white
        // fullscreen()
         setupActionBar()
         userProfileData()
@@ -42,15 +50,22 @@ class MyProfileActivity : BaseActivity() {
     }
     private fun updateUser(username: String, age : String, height: String, weight: String,gender :String, name: String,fwc : Boolean) {
         // updating the user via child nodes
+
+        var fs  : FirebaseFirestore = FirebaseFirestore.getInstance()
         if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(name)) {
-            mFirebaseDatabase!!.child(userId!!).child("username").setValue(username)
-            mFirebaseDatabase!!.child(userId!!).child("name").setValue(name)
-            mFirebaseDatabase!!.child(userId!!).child("age").setValue(age)
-            mFirebaseDatabase!!.child(userId!!).child("height").setValue(height)
-            mFirebaseDatabase!!.child(userId!!).child("weight").setValue(weight)
-            mFirebaseDatabase!!.child(userId!!).child("gender").setValue(gender)
+            mFirebaseDatabase!!.child(userId!!).child("username").setValue(username.trim())
+            mFirebaseDatabase!!.child(userId!!).child("name").setValue(name.trim())
+            mFirebaseDatabase!!.child(userId!!).child("age").setValue(age.trim())
+            mFirebaseDatabase!!.child(userId!!).child("height").setValue(height.trim())
+            mFirebaseDatabase!!.child(userId!!).child("weight").setValue(weight.trim())
+            mFirebaseDatabase!!.child(userId!!).child("gender").setValue(gender.trim())
             mFirebaseDatabase!!.child(userId!!).child("firstWorkoutIsCreated").setValue(fwc)
             Toast.makeText(applicationContext, "Successfully updated user", Toast.LENGTH_SHORT).show()
+            fs?.collection("users")?.document(userId!!)?.update("age", age.trim(),
+                "height", height.trim(),
+                "weight", weight.trim(),
+                "gender", gender.trim())
+
         }
         else
             Toast.makeText(applicationContext, "Unable to update user", Toast.LENGTH_SHORT).show()

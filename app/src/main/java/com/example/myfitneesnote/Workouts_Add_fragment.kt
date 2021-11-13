@@ -19,7 +19,7 @@ import com.google.firebase.firestore.Query
 import java.util.*
 
 
-class trainings_fragment : Fragment() {
+class Workouts_Add_fragment : Fragment() {
 
     var uuid : UUID = UUID.randomUUID()
     private val db = FirebaseFirestore.getInstance()
@@ -42,7 +42,7 @@ class trainings_fragment : Fragment() {
     private fun getTrainingsFromFireStore(){
         val query : Query = db.collection(Constant.USERS)
             .document(getCurrentUserID())
-            .collection(Constant.TRAININGS)
+            .collection("Workouts")
             .orderBy("date", Query.Direction.DESCENDING)
 
         val fireStoreRecyclerOption : FirestoreRecyclerOptions<Workout> = FirestoreRecyclerOptions.Builder<Workout>()
@@ -57,6 +57,7 @@ class trainings_fragment : Fragment() {
 
         val item = object : SwipeToDelete(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT){
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+
                 trainingItemAdapter.deleteItem(viewHolder.adapterPosition)
             }
         }

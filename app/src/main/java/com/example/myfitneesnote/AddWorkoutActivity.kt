@@ -1,37 +1,51 @@
 package com.example.myfitneesnote
 
 
+import android.R
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
-
 import android.os.Build
 import android.os.Bundle
 import android.text.Editable
-import android.util.Log
 import android.view.MenuItem
 import android.widget.EditText
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityOptionsCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myfitneesnote.R.*
 import com.example.myfitneesnote.firebase.FirestoreClass
 import com.example.myfitneesnote.model.Workout
-import com.example.myfitneesnote.utils.Constant
-import com.google.android.gms.tasks.Task
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
-import com.google.firebase.firestore.QuerySnapshot
 import com.vivekkaushik.datepicker.OnDateSelectedListener
 import kotlinx.android.synthetic.main.activity_add_workout.*
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.ThreadLocalRandom
-import kotlin.collections.HashMap
+import android.os.Vibrator
+import android.text.TextUtils
+import com.example.myfitneesnote.model.User
+import com.example.myfitneesnote.utils.Constant
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.activity_my_profile.*
+import java.time.LocalDate
+import com.google.firebase.firestore.DocumentSnapshot
+
+import com.google.android.gms.tasks.OnSuccessListener
+
+
+
 
 
 class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -42,11 +56,14 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
     var gymType: String = ""
     var muskelName: String = ""
     var createdWorkout = false
-
+    private val myVib: Vibrator? = null
+    @SuppressLint("ResourceAsColor")
     @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(layout.activity_add_workout)
+        window.navigationBarColor = R.color.white
+
         onClick()
         setupActionBar()
         gymType = intent.getStringExtra("GymName").toString()
@@ -60,7 +77,7 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
         val day = c.get(Calendar.DAY_OF_MONTH)
         datePickerTimeline.setInitialDate(year, month, day)
         currentDate = "${year}-${month + 1}-${day}"
-        val trainingsFragment = trainings_fragment()
+        val trainingsFragment = Workouts_Add_fragment()
         supportFragmentManager.beginTransaction().apply {
             replace(id.root_container, trainingsFragment).commit()
         }
@@ -87,9 +104,11 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
         datePickerTimeline.deactivateDates(dates)
     }
 
+
+
     private fun String.toEditable(): Editable = Editable.Factory.getInstance().newEditable(this)
     private fun onClick() {
-        val trainingsFragment = trainings_fragment()
+        val trainingsFragment = Workouts_Add_fragment()
 
         btnBackNewWorkout.setOnClickListener {
             val intent = Intent(this, MuskelGroupActivity::class.java)
@@ -106,9 +125,6 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
         }
         save_btn.setOnClickListener {
             createTraining()
-            /*          supportFragmentManager.beginTransaction().apply {
-                replace(id.root_container, trainingsFragment).commit()
-            }*/
         }
         btn_set_minus.setOnClickListener { minusButton(SetNum) }
         btn_set_plus.setOnClickListener { plusButton(SetNum) }
@@ -123,17 +139,29 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
     }
 
     private fun minusButton(et: EditText) {
-        var num = et.text.toString().toInt()
-        if (num > 0) {
-            num--
-            et.text = "$num".toEditable()
+        if (et.text.toString() != " " && et.text.toString() != "" ){
+            var num = et.text.toString().toInt()
+            if (num > 0 && num != null) {
+                num--
+                et.text = "$num".toEditable()
+            }
+        }else
+        {
+            showErrorSnackBar("Fill the field!")
         }
+
     }
 
     private fun plusButton(et: EditText) {
-        var num = et.text.toString().toInt()
-        num++
-        et.text = "$num".toEditable()
+        if (et.text.toString() != " " && et.text.toString() != ""){
+            var num = et.text.toString().toInt()
+            num++
+            et.text = "$num".toEditable()
+        }
+        else
+        {
+            showErrorSnackBar("Fill the field!")
+        }
     }
 
     private fun dateFormatter(date: String): Date {
@@ -142,188 +170,76 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
     }
 
     private fun createTraining() {
-        val mFireStore = FirebaseFirestore.getInstance()
-        var listWorkout = arrayListOf<String>()
-        var hashList = HashMap<String, Any>()
-        var list = arrayListOf<String>()
-        val userWeight = 70
-        var getId = 1
-        var Id = 0
-        var getDate = ""
-        var workout: Workout
-
-        var set = SetNum.text.toString()
-        var rep = repeatNum.text.toString()
-        val rnds = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            ThreadLocalRandom.current().nextDouble(0.0, 0.9)
-        } else {
-            TODO("VERSION.SDK_INT < LOLLIPOP")
-        }
-        val randnum = 0.0 + rnds
-        var s = 20 * set.toInt() * rep.toInt() * (2 * 3.0 + randnum * userWeight)
-        var calories =  s / 200
-
-        db.collection(Constant.USERS).document(getCurrentUserID()).collection("Hashlist")
-            .get()
-            .addOnCompleteListener { task ->
-                if (task.result?.size()!! > 0) {
-                    val any = if (task.isSuccessful) {
-                        if (calories == 0.0) {
-                            calories = 1.0
+        var getId =  FirebaseAuth.getInstance()?.uid
+         var mFirestore = FirebaseFirestore.getInstance()
+            mFirestore.collection("users").document(getId!!).get()
+                .addOnSuccessListener(OnSuccessListener<DocumentSnapshot> { documentSnapshot ->
+                    val weight = documentSnapshot.getString("weight")
+                    var workout: Workout
+                    var weight2 = weightNum.text.toString()
+                    var breakNum = breakNum.text.toString()
+                    var set = SetNum.text.toString()
+                    var rep = repeatNum.text.toString()
+                    if ( validateForm(set, weight2, breakNum, rep)) {
+                        val rnds = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            ThreadLocalRandom.current().nextDouble(0.0, 0.9)
+                        } else {
+                            TODO("VERSION.SDK_INT < LOLLIPOP")
                         }
-                        listWorkout.add(calories.toString())
-                        hashList.put(currentDate, listWorkout)
-                        //  FirestoreClass().createNewTraining(this, workout,hashList)
+                        val randnum = 0.0 + rnds
+                        var s = 20 * set.toInt() * rep.toInt() * (2 * 3.0 + randnum *  weight.toString().toInt())
+                        var calories = s / 200
+
+                        workout = Workout(
+                            getId.toString(),
+                            gymType,
+                            muskelName,
+                            set,
+                            weight2,
+                            breakNum,
+                            rep,
+                            currentDate,
+                            calories,
+                            dateFormatter(currentDate)
+                        )
+                        FirestoreClass().createNewTraining(this@AddWorkoutActivity, workout)
                         var recyclerView = findViewById<RecyclerView>(id.recyclerView_add)
                         recyclerView.scrollToPosition(0)
-                        // ---------------------------------------------------------------
-                        db.collection(Constant.USERS)
-                            .document(getCurrentUserId()).collection("Hashlist").get()
-                            .addOnCompleteListener { task: Task<QuerySnapshot> ->
-                                if (task.isSuccessful) {
-                                    val document: QuerySnapshot? = task.result
-                                    if (document != null) {
-                                        for (i in document) {
-                                            list.add(i.id)
-                                        }
-                                        if (list.size > 0) {
-                                            if (list.contains(currentDate)) {
-                                                mFireStore.collection(Constant.USERS)
-                                                    .document(getCurrentUserId())
-                                                    .collection("Hashlist")
-                                                    .document(currentDate).update(
-                                                        currentDate,
-                                                        FieldValue.arrayUnion(calories)
-                                                    )
-                                                    .addOnSuccessListener {
-                                                        Log.e(
-                                                            this.javaClass.simpleName,
-                                                            "Created Successfully"
-                                                        )
-                                                        Toast.makeText(
-                                                            this,
-                                                            "Training created Successfully",
-                                                            Toast.LENGTH_SHORT
-                                                        ).show()
-                                                    }.addOnFailureListener { exception ->
-                                                        Log.e(
-                                                            this.javaClass.simpleName,
-                                                            "Creation failed",
-                                                            exception
-                                                        )
-                                                        Toast.makeText(
-                                                            this,
-                                                            "Training's creation failed",
-                                                            Toast.LENGTH_SHORT
-                                                        ).show()
-                                                    }
-                                            } else {
-                                                db.collection(Constant.USERS)
-                                                    .document(getCurrentUserId())
-                                                    .collection("Hashlist")
-                                                    .document(currentDate)
-                                                    .set(hashList)
-                                                    .addOnSuccessListener {
-                                                        Log.e(
-                                                            this.javaClass.simpleName,
-                                                            "Created Successfully"
-                                                        )
-                                                        Toast.makeText(
-                                                            this,
-                                                            "Training created Successfully",
-                                                            Toast.LENGTH_SHORT
-                                                        ).show()
-                                                    }.addOnFailureListener { exception ->
-                                                        Log.e(
-                                                            this.javaClass.simpleName,
-                                                            "Creation failed",
-                                                            exception
-                                                        )
-                                                        Toast.makeText(
-                                                            this,
-                                                            "Training's creation failed",
-                                                            Toast.LENGTH_SHORT
-                                                        ).show()
-                                                    }
-                                            }
-                                        }
-
-                                    } else {
-                                       db.collection(Constant.USERS)
-                                            .document(getCurrentUserId()).collection("Hashlist")
-                                            .document(currentDate)
-                                            .set(hashList)
-                                            .addOnSuccessListener {
-                                                Log.e(
-                                                    this.javaClass.simpleName,
-                                                    "Created Successfully"
-                                                )
-                                                Toast.makeText(
-                                                    this,
-                                                    "Training created Successfully",
-                                                    Toast.LENGTH_SHORT
-                                                ).show()
-                                            }.addOnFailureListener { exception ->
-                                                Log.e(
-                                                    this.javaClass.simpleName,
-                                                    "Creation failed",
-                                                    exception
-                                                )
-                                                Toast.makeText(
-                                                    this,
-                                                    "Training's creation failed",
-                                                    Toast.LENGTH_SHORT
-                                                ).show()
-                                            }
-                                    }
-
-                                }
-                            }
-                        //--------------------------------------------------------
-                    } else{
-                        Log.d(ChatLogActivity.TAG, "Error getting documents: ", task.exception)
                     }
-                } else {
-                    mFireStore.collection(Constant.USERS)
-                        .document(getCurrentUserId()).collection("Hashlist")
-                        .document(currentDate)
-                        .set(hashList)
-                        .addOnSuccessListener {
-                            Log.e(this.javaClass.simpleName, "Created Successfully")
-                            Toast.makeText(
-                                this,
-                                "Training created Successfully",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }.addOnFailureListener { exception ->
-                            Log.e(this.javaClass.simpleName, "Creation failed", exception)
-                            Toast.makeText(
-                                this,
-                                "Training's creation failed",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                }
-            }
-        workout = Workout(
-            getId.toString(),
-            gymType,
-            muskelName,
-            set,
-            weightNum.text.toString(),
-            breakNum.text.toString(),
-            rep,
-            currentDate,
-            calories,
-            dateFormatter(currentDate)
-        )
-        listWorkout.add(calories.toString())
-        hashList.put(currentDate, listWorkout)
-        createdWorkout = true
-        FirestoreClass().createNewTraining(this, workout)
-        var recyclerView = findViewById<RecyclerView>(id.recyclerView_add)
-        recyclerView.scrollToPosition(0)
 
+                })
+        }
+
+    fun readData(firebaseCallback: firebaseCallback){
+
+    }
+    interface firebaseCallback{
+        fun onCallBack(m : String)
+    }
+
+
+    private fun validateForm(set: String, weight: String, breakNum: String, repeat: String): Boolean {
+        return when {
+            TextUtils.isEmpty(set)  -> {
+                showErrorSnackBar("Set is empty")
+                false
+            }
+            TextUtils.isEmpty(weight) -> {
+                showErrorSnackBar("Weight is empty")
+                false
+            }
+            TextUtils.isEmpty(breakNum) -> {
+                showErrorSnackBar("BreakTime is empty")
+                false
+            }
+            TextUtils.isEmpty(repeat) -> {
+                showErrorSnackBar("Repeat is empty")
+                false
+            }
+            else -> {
+                true
+            }
+        }
     }
     fun getCurrentUserId(): String {
         val currentUser = FirebaseAuth.getInstance().currentUser

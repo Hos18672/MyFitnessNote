@@ -7,7 +7,8 @@
     android:background="?attr/selectableItemBackground"
     android:orientation="vertical"
     app:cardCornerRadius="15dp"
-    android:outlineSpotShadowColor="@color/white"
+    app:cardElevation="10dp"
+    android:outlineSpotShadowColor="@color/black"
     android:layout_marginTop="5dp"
     android:layout_marginStart="10dp"
     android:layout_marginEnd="5dp"
@@ -51,10 +52,10 @@
 
         <TextView
             android:id="@+id/tv_date"
-            android:layout_width="80dp"
+            android:layout_width="wrap_content"
             android:layout_height="20dp"
             android:layout_gravity="bottom"
-            android:layout_marginRight="15dp"
+            android:layout_marginEnd="20dp"
             android:layout_marginBottom="5dp"
             android:gravity="bottom|right"
             android:text="@string/date"
@@ -193,13 +194,14 @@
             android:id="@+id/main_workout_image"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginBottom="4dp"
+            android:contentDescription="@string/todo"
             app:layout_constraintBottom_toTopOf="@+id/tv_date"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.674"
             app:layout_constraintStart_toEndOf="@+id/linearLayout"
-            tools:ignore="MissingConstraints"
-            android:contentDescription="@string/todo"/>
+            tools:ignore="MissingConstraints" />
 
         <ImageView
             android:id="@+id/imageView6"

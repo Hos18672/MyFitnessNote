@@ -1,6 +1,7 @@
 package com.example.myfitneesnote
 
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
@@ -17,9 +18,11 @@ class SecurityActivity : BaseActivity() {
     private var userId: String? = null
     private lateinit var auth: FirebaseAuth
     // Initialize Firebase Auth
+    @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
+        window.navigationBarColor = android.R.color.white
         //fullscreen()
         setupActionBar()
 
