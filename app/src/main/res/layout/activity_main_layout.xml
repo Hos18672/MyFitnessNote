@@ -11,10 +11,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout3"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="100dp"
         android:minHeight="100dp"
         android:background="@drawable/ic_round_top_navbar"
-        app:layout_constraintBottom_toTopOf="@+id/guideline1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -53,34 +52,30 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="UnusedAttribute" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintGuide_percent="0.13754646"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
     <ScrollView
         android:id="@+id/scrollView4"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="horizontal"
         android:scrollbars="none"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        android:elevation="-1dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline1"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="70dp"
+            android:layout_marginBottom="100dp"
             android:orientation="vertical">
+
             <TextView
                 android:id="@+id/today"
                 android:layout_width="wrap_content"
@@ -88,17 +83,19 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="50dp"
                 android:layout_marginBottom="10dp"
-                android:text="@string/today"
                 android:elevation="15dp"
                 android:shadowColor="@color/black"
+                android:text="@string/today"
                 android:textColor="#010623"
                 android:textSize="30sp" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_trainings_list_main"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal" />
+
             <TextView
                 android:id="@+id/Chart"
                 android:layout_width="wrap_content"
@@ -106,122 +103,140 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="15dp"
-                android:text="@string/progress"
                 android:elevation="15dp"
+                android:text="@string/progress"
                 android:textColor="#010623"
                 android:textSize="30sp" />
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvLineChart"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="20dp"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="10dp"
-                android:outlineSpotShadowColor="@color/black"
                 android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="20dp"
+                android:outlineSpotShadowColor="@color/black"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <com.google.android.material.button.MaterialButtonToggleGroup
-                    android:id="@+id/toggleButtonsGroup"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="25dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="5dp"
-                    android:gravity="center"
-                    android:showDividers="end"
-                    app:checkedButton="@id/LastWeek"
-                    app:singleSelection="true"
-                    tools:ignore="RtlHardcoded">
+                    android:layout_height="match_parent">
 
-                    <Button
-                        android:id="@+id/LastWeek"
-                        style="@style/ToggleButton"
-                        android:layout_width="60dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:backgroundTint="@color/white"
+                    <com.google.android.material.button.MaterialButtonToggleGroup
+                        android:id="@+id/toggleButtonsGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:layout_marginTop="8dp"
                         android:gravity="center"
-                        android:text="@string/_1w"
-                        android:textColor="#00002E"
-                        android:textSize="12sp"
-                        tools:ignore="SmallSp,UnusedAttribute" />
+                        android:showDividers="end"
+                        app:checkedButton="@id/LastWeek"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:singleSelection="true"
+                        tools:ignore="RtlHardcoded">
 
-                    <Button
-                        android:id="@+id/TwoWeeks"
-                        style="@style/ToggleButton"
-                        android:layout_width="60dp"
-                        android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        android:backgroundTint="@color/white"
-                        android:gravity="center"
-                        android:text="@string/_2w"
-                        android:textColor="#00002E"
-                        android:textSize="12sp"
-                        tools:ignore="SmallSp,UnusedAttribute" />
+                        <Button
+                            android:id="@+id/LastWeek"
+                            style="@style/ToggleButton"
+                            android:layout_width="60dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:backgroundTint="@color/white"
+                            android:gravity="center"
+                            android:text="@string/_1w"
+                            android:textColor="#00002E"
+                            android:textSize="12sp"
+                            tools:ignore="SmallSp,UnusedAttribute" />
 
-                    <Button
-                        android:id="@+id/ThreeWeeks"
-                        style="@style/ToggleButton"
-                        android:layout_width="60dp"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@color/white"
-                        android:gravity="center"
-                        android:text="@string/_3w"
-                        android:textColor="#00002E"
-                        android:textSize="12sp"
-                        tools:ignore="SmallSp"
-                        tools:targetApi="lollipop" />
+                        <Button
+                            android:id="@+id/TwoWeeks"
+                            style="@style/ToggleButton"
+                            android:layout_width="60dp"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:backgroundTint="@color/white"
+                            android:gravity="center"
+                            android:text="@string/_2w"
+                            android:textColor="#00002E"
+                            android:textSize="12sp"
+                            tools:ignore="SmallSp,UnusedAttribute" />
 
-                    <Button
-                        android:id="@+id/OneMonth"
-                        style="@style/ToggleButton"
-                        android:layout_width="60dp"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@color/white"
-                        android:gravity="center"
-                        android:text="@string/_1m"
-                        android:textColor="#00002E"
-                        android:textSize="12sp"
-                        tools:ignore="SmallSp,UnusedAttribute" />
+                        <Button
+                            android:id="@+id/ThreeWeeks"
+                            style="@style/ToggleButton"
+                            android:layout_width="60dp"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/white"
+                            android:gravity="center"
+                            android:text="@string/_3w"
+                            android:textColor="#00002E"
+                            android:textSize="12sp"
+                            tools:ignore="SmallSp"
+                            tools:targetApi="lollipop" />
 
-                    <Button
-                        android:id="@+id/TwoMonth"
-                        style="@style/ToggleButton"
-                        android:layout_width="60dp"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@color/white"
-                        android:text="@string/_2m"
-                        android:textColor="@color/black"
-                        android:textSize="15sp"
-                        android:visibility="gone"
-                        tools:ignore="SmallSp,UnusedAttribute" />
+                        <Button
+                            android:id="@+id/OneMonth"
+                            style="@style/ToggleButton"
+                            android:layout_width="60dp"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/white"
+                            android:gravity="center"
+                            android:text="@string/_1m"
+                            android:textColor="#00002E"
+                            android:textSize="12sp"
+                            tools:ignore="SmallSp,UnusedAttribute" />
 
-                    <Button
-                        android:id="@+id/All"
-                        style="@style/ToggleButton"
-                        android:layout_width="60dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="5dp"
-                        android:backgroundTint="@color/white"
-                        android:gravity="center"
-                        android:text="@string/all"
-                        android:textColor="#00002E"
-                        android:textSize="12sp"
-                        tools:ignore="SmallSp,UnusedAttribute" />
-                </com.google.android.material.button.MaterialButtonToggleGroup>
-                <com.github.mikephil.charting.charts.LineChart
-                    android:id="@+id/lineChart"
-                    android:layout_width="match_parent"
-                    android:layout_height="167dp"
-                    android:layout_gravity="bottom"
-                    android:background="@android:color/transparent"
-                    android:paddingTop="3dp" />
+                        <Button
+                            android:id="@+id/TwoMonth"
+                            style="@style/ToggleButton"
+                            android:layout_width="60dp"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/white"
+                            android:text="@string/_2m"
+                            android:textColor="@color/black"
+                            android:textSize="15sp"
+                            android:visibility="gone"
+                            tools:ignore="SmallSp,UnusedAttribute" />
+
+                        <Button
+                            android:id="@+id/All"
+                            style="@style/ToggleButton"
+                            android:layout_width="60dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="5dp"
+                            android:backgroundTint="@color/white"
+                            android:gravity="center"
+                            android:text="@string/all"
+                            android:textColor="#00002E"
+                            android:textSize="12sp"
+                            tools:ignore="SmallSp,UnusedAttribute" />
+                    </com.google.android.material.button.MaterialButtonToggleGroup>
+
+                    <com.github.mikephil.charting.charts.LineChart
+                        android:id="@+id/lineChart"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="bottom"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginEnd="-14dp"
+                        android:background="@android:color/transparent"
+                        android:paddingTop="3dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/toggleButtonsGroup"
+                        app:layout_constraintVertical_bias="1.0" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
+
             <TextView
                 android:id="@+id/Tips"
                 android:layout_width="wrap_content"
@@ -229,19 +244,21 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="10dp"
-                android:text="Training tips"
                 android:elevation="15dp"
+                android:text="Training tips"
                 android:textColor="#010623"
                 android:textSize="30sp" />
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="35dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginTop="35dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="5dp"
                 android:gravity="center">
+
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/EZ_bar_curl"
                     android:layout_width="0dp"
@@ -249,17 +266,18 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="15dp"
                     android:layout_marginBottom="10dp"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="5dp"
                     android:clickable="true"
                     android:focusable="true"
-                    app:rippleColor="#4FB9FF"
-                    tools:targetApi="lollipop"
                     android:outlineSpotShadowColor="@color/black"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="5dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/One_arm_dumbbell"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:rippleColor="#4FB9FF"
+                    tools:targetApi="lollipop">
+
                     <TextView
                         android:id="@+id/T1"
                         android:layout_width="wrap_content"
@@ -273,33 +291,35 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
                 </com.google.android.material.card.MaterialCardView>
+
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/One_arm_dumbbell"
                     android:layout_width="0dp"
                     android:layout_height="80dp"
                     android:layout_marginEnd="5dp"
-                    android:transitionName="trainingsBtn"
                     android:layout_marginBottom="10dp"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="5dp"
                     android:clickable="true"
                     android:focusable="true"
-                    app:rippleColor="#4FB9FF"
-                    tools:targetApi="lollipop"
                     android:outlineSpotShadowColor="@color/black"
+                    android:transitionName="trainingsBtn"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="5dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/EZ_bar_curl"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="UnusedAttribute">
+                    app:rippleColor="#4FB9FF"
+                    tools:ignore="UnusedAttribute"
+                    tools:targetApi="lollipop">
+
                     <TextView
                         android:id="@+id/T2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:gravity="center"
                         android:text="One arm dumbbell "
                         android:textColor="#3F51B5"
-                        android:gravity="center"
                         android:textSize="20sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -307,14 +327,15 @@
                         app:layout_constraintTop_toTopOf="parent" />
                 </com.google.android.material.card.MaterialCardView>
             </androidx.constraintlayout.widget.ConstraintLayout>
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="5dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginBottom="50dp"
+                android:layout_marginBottom="180dp"
                 android:gravity="center">
 
                 <com.google.android.material.card.MaterialCardView
@@ -324,17 +345,17 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="15dp"
                     android:layout_marginBottom="10dp"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="5dp"
                     android:clickable="true"
                     android:focusable="true"
-                    app:rippleColor="#4FB9FF"
-                    tools:targetApi="lollipop"
                     android:outlineSpotShadowColor="@color/black"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="5dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/Seated_biceps_curls"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:rippleColor="#4FB9FF"
+                    tools:targetApi="lollipop">
 
                     <TextView
                         android:id="@+id/T3"
@@ -356,19 +377,19 @@
                     android:layout_height="80dp"
                     android:layout_marginEnd="5dp"
                     android:layout_marginBottom="10dp"
-                    android:transitionName="trainingsBtn"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="5dp"
                     android:clickable="true"
                     android:focusable="true"
-                    app:rippleColor="#4FB9FF"
-                    tools:targetApi="lollipop"
                     android:outlineSpotShadowColor="@color/black"
+                    android:transitionName="trainingsBtn"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="5dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/Dumbbell"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="UnusedAttribute">
+                    app:rippleColor="#4FB9FF"
+                    tools:ignore="UnusedAttribute"
+                    tools:targetApi="lollipop">
 
                     <TextView
                         android:id="@+id/T4"
@@ -388,52 +409,47 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </ScrollView>
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintGuide_end="68dp" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout6"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_marginTop="799dp"
         android:layout_marginBottom="-1dp"
+        android:background="@drawable/ic_round_top_nav_bottom"
         android:elevation="5dp"
         android:outlineAmbientShadowColor="@color/black"
-        android:background="@drawable/ic_round_top_nav_bottom"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView4"
+        app:layout_constraintTop_toTopOf="@+id/Add_main"
         app:layout_constraintVertical_bias="1.0">
+
         <ImageButton
             android:id="@+id/chat_main"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="40dp"
             android:background="@drawable/chat"
+            android:contentDescription="@string/todo"
             android:transitionName="chatBtn"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="UnusedAttribute"
-            android:contentDescription="@string/todo" />
+            tools:ignore="UnusedAttribute" />
+
         <ImageButton
             android:id="@+id/main_diagramm"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginEnd="40dp"
             android:background="@drawable/history"
+            android:contentDescription="@string/todo"
             android:transitionName="trainingsBtn"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="UnusedAttribute"
-            android:contentDescription="@string/todo" />
+            tools:ignore="UnusedAttribute" />
     </androidx.constraintlayout.widget.ConstraintLayout>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/Add_main"

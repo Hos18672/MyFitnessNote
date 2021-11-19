@@ -8,15 +8,12 @@ import com.example.myfitneesnote.model.User
 import com.example.myfitneesnote.model.Workout
 import com.example.myfitneesnote.utils.Constant
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 
 
 class FirestoreClass {
     private val mFireStore = FirebaseFirestore.getInstance()
-    private val db = FirebaseFirestore.getInstance()
-    private val workout1 : Workout? = null
     fun registerUser(activity: SignUpActivity, userInfo: User) {
         mFireStore.collection(Constant.USERS)
             .document(getCurrentUserId())
@@ -27,9 +24,7 @@ class FirestoreClass {
     fun getCurrentUserId(): String {
         val currentUser = FirebaseAuth.getInstance().currentUser
         var currentUserID = ""
-        if (currentUser != null) {
-            currentUserID = currentUser.uid
-        }
+        currentUser?.uid?.also { currentUserID = it }
         return currentUserID
     }
     fun createNewTraining(activity: Activity, workout: Workout) {

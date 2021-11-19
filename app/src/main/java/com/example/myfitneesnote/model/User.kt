@@ -1,6 +1,6 @@
 package com.example.myfitneesnote.model
 
-import android.annotation.SuppressLint
+
 import android.os.Parcel
 import android.os.Parcelable
 data class User(
@@ -14,7 +14,6 @@ data class User(
     val height: String="",
     val weight: String="",
     val gender: String="") : Parcelable {
-    @SuppressLint("NewApi")
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
         parcel.readString()!!,
@@ -28,7 +27,6 @@ data class User(
         parcel.readString()!!,
 
     )
-    @SuppressLint("NewApi")
     override fun writeToParcel(parcel: Parcel, flags: Int) = with(parcel) {
         writeString(user_id)
         writeString(name)

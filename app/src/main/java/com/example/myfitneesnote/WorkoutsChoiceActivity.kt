@@ -17,7 +17,6 @@ class WorkoutsChoiceActivity : BaseActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_workout)
-        window.navigationBarColor = android.R.color.white
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         //fullscreen()
@@ -79,6 +78,11 @@ class WorkoutsChoiceActivity : BaseActivity(){
             startActivity(intent, options.toBundle())
             //finish()
         }
+    }
+    override  fun onBackPressed() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
     }
     private fun setupActionBar() {
         setSupportActionBar(toolBar_workout_activity)

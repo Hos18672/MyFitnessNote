@@ -12,7 +12,6 @@ import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityOptionsCompat
 import com.example.myfitneesnote.R.*
 import com.example.myfitneesnote.R.drawable.*
-import com.example.myfitneesnote.firebase.FirestoreClass
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.firestore.FirebaseFirestore
@@ -29,7 +28,6 @@ class MyProfileActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(layout.activity_my_profile)
-        window.navigationBarColor = android.R.color.white
        // fullscreen()
         setupActionBar()
         userProfileData()
@@ -45,46 +43,29 @@ class MyProfileActivity : BaseActivity() {
         // add it only if it is not saved to database
         userId = user?.uid
         btnSave.setOnClickListener {
-            onUpdateClicked()
-        }
-    }
-    private fun updateUser(username: String, age : String, height: String, weight: String,gender :String, name: String,fwc : Boolean) {
-        // updating the user via child nodes
-
-        var fs  : FirebaseFirestore = FirebaseFirestore.getInstance()
-        if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(name)) {
-            mFirebaseDatabase!!.child(userId!!).child("username").setValue(username.trim())
-            mFirebaseDatabase!!.child(userId!!).child("name").setValue(name.trim())
-            mFirebaseDatabase!!.child(userId!!).child("age").setValue(age.trim())
-            mFirebaseDatabase!!.child(userId!!).child("height").setValue(height.trim())
-            mFirebaseDatabase!!.child(userId!!).child("weight").setValue(weight.trim())
-            mFirebaseDatabase!!.child(userId!!).child("gender").setValue(gender.trim())
-            mFirebaseDatabase!!.child(userId!!).child("firstWorkoutIsCreated").setValue(fwc)
-            Toast.makeText(applicationContext, "Successfully updated user", Toast.LENGTH_SHORT).show()
-            fs?.collection("users")?.document(userId!!)?.update("age", age.trim(),
-                "height", height.trim(),
-                "weight", weight.trim(),
-                "gender", gender.trim())
+            if (checkForInternet(this)) {
+                onUpdateClicked()
+            } else {
+                Toast.makeText(this, "No internet connection!", Toast.LENGTH_SHORT).show()
+            }
 
         }
-        else
-            Toast.makeText(applicationContext, "Unable to update user", Toast.LENGTH_SHORT).show()
     }
+
     private fun onUpdateClicked() {
         val username = login_username_input.text.toString()
         val name = profile_fullName_input.text.toString()
         val age = age_input_profile.text.toString()
         val height = height_input_profile.text.toString()
         val weight = weight_input_profile.text.toString()
-        val gend : String
-        val fwc = false
-        if(getGender == true){
-          gend = "Male"
+        val gender : String
+        if(getGender){
+            gender = "Male"
         }else{
-            gend = "Female"
+            gender = "Female"
         }
         //Calling updateUser function
-        updateUser(username,age,height,weight,gend, name,fwc)
+        updateUser(this, username,age,height,weight,gender, name)
     }
     private fun setupActionBar() {
         setSupportActionBar(toolBar_my_profile_activity)
@@ -133,15 +114,46 @@ class MyProfileActivity : BaseActivity() {
             val checked = view.isChecked
             // Check which radio button was clicked
             when (view.getId()) {
-                R.id.radio_male_profile ->
+                id.radio_male_profile ->
                     if (checked) {
                         getGender = true
                     }
-                R.id.radio_female_profile ->
+                id.radio_female_profile ->
                     if (checked) {
                         getGender = false
                     }
             }
+        }
+    }
+
+    companion object {
+        private fun updateUser(
+            myProfileActivity: MyProfileActivity, username: String,
+            age: String,
+            height: String,
+            weight: String,
+            gender: String,
+            name: String,
+        ) {
+            // updating the user via child nodes
+
+            val fs  : FirebaseFirestore = FirebaseFirestore.getInstance()
+            if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(name)) {
+                myProfileActivity.mFirebaseDatabase!!.child(myProfileActivity.userId!!).child("username").setValue(username.trim())
+                myProfileActivity.mFirebaseDatabase!!.child(myProfileActivity.userId!!).child("name").setValue(name.trim())
+                myProfileActivity.mFirebaseDatabase!!.child(myProfileActivity.userId!!).child("age").setValue(age.trim())
+                myProfileActivity.mFirebaseDatabase!!.child(myProfileActivity.userId!!).child("height").setValue(height.trim())
+                myProfileActivity.mFirebaseDatabase!!.child(myProfileActivity.userId!!).child("weight").setValue(weight.trim())
+                myProfileActivity.mFirebaseDatabase!!.child(myProfileActivity.userId!!).child("gender").setValue(gender.trim())
+                Toast.makeText(myProfileActivity.applicationContext, "Successfully updated user", Toast.LENGTH_SHORT).show()
+                fs.collection("users").document(myProfileActivity.userId!!).update("age", age.trim(),
+                    "height", height.trim(),
+                    "weight", weight.trim(),
+                    "gender", gender.trim())
+
+            }
+            else
+                Toast.makeText(myProfileActivity.applicationContext, "Unable to update user", Toast.LENGTH_SHORT).show()
         }
     }
 }

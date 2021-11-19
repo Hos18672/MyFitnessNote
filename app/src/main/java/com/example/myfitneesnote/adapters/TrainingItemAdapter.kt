@@ -21,7 +21,6 @@ class TrainingItemAdapter(options: FirestoreRecyclerOptions<Workout>) : Firestor
         val itemView = LayoutInflater.from(parent.context).inflate((layout.item_training), parent, false)
         return  MyViewHolder(itemView)
     }
-
     @SuppressLint("SetTextI18n", "ResourceType")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int, training: Workout) {
             holder.gymName.text    = training.GymType

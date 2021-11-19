@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
-import android.view.WindowManager
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -15,11 +14,9 @@ import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
 import at.favre.lib.crypto.bcrypt.BCrypt
 import com.example.myfitneesnote.firebase.FirestoreClass
-import com.example.myfitneesnote.utils.Constant
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import java.util.*
@@ -31,13 +28,12 @@ class SignUpActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
-        window.navigationBarColor = android.R.color.white
        // window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE or WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         window.statusBarColor = ContextCompat.getColor(this, R.color.Statusbar)
-
+        window.navigationBarColor = ContextCompat.getColor(this, R.color.colorOfStutusBar)
         setupActionBar()
         login_signUpText.setOnClickListener {
-            var intent =  Intent(this, LoginActivity::class.java)
+            val intent =  Intent(this, LoginActivity::class.java)
             val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, login_signUpText, "tsigIn")
             startActivity(intent, options.toBundle())
 
@@ -67,9 +63,9 @@ class SignUpActivity : BaseActivity() {
         val password : String = signUp_password_input.text.toString().trim{ it <= ' '}
         val password2: String = signUp_password_input2.text.toString().trim{ it <= ' '}
         //val Image : String = signUp_image.toString().trim{ it <= ' '}
-
         val pb = findViewById<ProgressBar>(R.id.progressBar_signUp)
-        if(validateForm(name, username, email, password) ) {
+
+        if(validateForm(name, username, email, password, password2) ) {
             if (password == password2) {
                 // Toast.makeText(this, "Now we register User",Toast.LENGTH_SHORT).show()
                 //password encryption
@@ -87,7 +83,6 @@ class SignUpActivity : BaseActivity() {
                                 username,
                                 email,
                                 hashPass
-                               // Image
                             )
                             FirestoreClass().registerUser(this, user)
                             val uid = FirebaseAuth.getInstance().uid ?: ""
@@ -99,7 +94,6 @@ class SignUpActivity : BaseActivity() {
                                 .addOnFailureListener {
                                     Log.d("User", "Failed to set value to database: ${it.message}")
                                 }
-
                             //  FirebaseAuth.getInstance().signOut()
                             val intent = Intent(this@SignUpActivity, BodyInfo::class.java)
                             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -133,7 +127,7 @@ class SignUpActivity : BaseActivity() {
                 Log.d("UserUploadImage", "Successfully uploaded${it.metadata?.path}")
             }
     }*/
-    private  fun validateForm(name: String, username: String, email: String, password: String) : Boolean{
+    private  fun validateForm(name: String, username: String, email: String, password1 : String, password2 : String) : Boolean{
         return when{
             TextUtils.isEmpty(name)->{ showErrorSnackBar("Please enter a  name")
                 false
@@ -146,10 +140,15 @@ class SignUpActivity : BaseActivity() {
                 showErrorSnackBar("Please enter a  email address")
                 false
             }
-            TextUtils.isEmpty(password)->{
+            TextUtils.isEmpty(password1)->{
                 showErrorSnackBar("Please enter a  password")
                 false
-            }else ->{
+            }
+            TextUtils.isEmpty(password2)->{
+                showErrorSnackBar("Please retype your password")
+                false
+            }
+            else ->{
                 true
             }
         }

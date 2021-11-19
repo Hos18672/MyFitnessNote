@@ -75,12 +75,12 @@ class ChatActivity : BaseActivity() {
                     val user = it.getValue(User::class.java)
                     if(user != null) {
                         if (user.user_id!= FirebaseAuth.getInstance().uid) {
-                            adapter.add(UserItem(user))
+                            adapter.add(UserItemViewHolder(user))
                         }
                     }
                 }
                 adapter.setOnItemClickListener{ item, view ->
-                    val userItem= item as UserItem
+                    val userItem= item as UserItemViewHolder
                     val intent = Intent( view.context, ChatLogActivity:: class.java)
                     intent.putExtra("name",userItem.user.name)
                     // intent.putExtra(USER_KEY, userItem.user.username)
@@ -94,13 +94,11 @@ class ChatActivity : BaseActivity() {
             }
         })
     }
-
 }
-class UserItem(val user: User): Item<ViewHolder>(){
+class UserItemViewHolder(val user: User): Item<ViewHolder>(){
     override fun bind(viewHolder: ViewHolder, position: Int) {
         //val uri = user.image
         viewHolder.itemView.User_name.text= user.username
-
     }
     override fun getLayout(): Int {
         return R.layout.user_row

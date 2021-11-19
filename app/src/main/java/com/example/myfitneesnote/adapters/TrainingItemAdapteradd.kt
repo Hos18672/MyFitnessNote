@@ -4,15 +4,12 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.DatePicker
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myfitneesnote.R.*
 import com.example.myfitneesnote.R.drawable.bench_press
 import com.example.myfitneesnote.R.drawable.workout_home
-import com.example.myfitneesnote.WorkoutsActivity
 import com.example.myfitneesnote.model.Workout
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
@@ -21,7 +18,6 @@ import kotlinx.android.synthetic.main.item_training.view.*
 
 
  class TrainingItemAdapteradd(options: FirestoreRecyclerOptions<Workout>) :LayoutContainer, FirestoreRecyclerAdapter<Workout,TrainingItemAdapteradd.MyViewHolder>(options) {
-     var wt : WorkoutsActivity = WorkoutsActivity()
      override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder{
         val itemView = LayoutInflater.from(parent.context).inflate((layout.item_training_new_add), parent, false)
         return  MyViewHolder(itemView)
@@ -44,6 +40,7 @@ import kotlinx.android.synthetic.main.item_training.view.*
 
 
     }
+     @SuppressLint("NotifyDataSetChanged")
      fun deleteItem(i: Int){
         snapshots.getSnapshot(i).reference.delete()
         notifyDataSetChanged()
@@ -59,7 +56,7 @@ import kotlinx.android.synthetic.main.item_training.view.*
         val image     : ImageView = itemView.workout_image
     }
 
-     override val containerView: View?
+     override val containerView
          get() = TODO("Not yet implemented")
  }
 

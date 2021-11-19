@@ -26,9 +26,9 @@ class IntroActivity : BaseActivity() {
         setContentView(R.layout.activity_intro)
         val window: Window = this.window
         window.addFlags(FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        window.navigationBarColor = android.R.color.white
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-        window.statusBarColor = ContextCompat.getColor(this, R.color.statusColor)
+        window.navigationBarColor = ContextCompat.getColor(this, R.color.colorOfStutusBar)
+        window.statusBarColor = ContextCompat.getColor(this, R.color.colorOfStutusBar)
         //fullscreen()
         animat()
         intro_login_button.setOnClickListener {

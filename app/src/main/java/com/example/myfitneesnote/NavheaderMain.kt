@@ -1,6 +1,5 @@
 package com.example.myfitneesnote
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
 class NavheaderMain : BaseActivity() {

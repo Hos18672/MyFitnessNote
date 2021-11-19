@@ -1,7 +1,6 @@
 package com.example.myfitneesnote
 
 
-import android.R
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
@@ -25,47 +24,25 @@ import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.ThreadLocalRandom
-import android.os.Vibrator
 import android.text.TextUtils
-import com.example.myfitneesnote.model.User
-import com.example.myfitneesnote.utils.Constant
-import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
-import com.google.firebase.firestore.Query
-import com.google.firebase.firestore.QuerySnapshot
-import com.google.firebase.ktx.Firebase
+import android.widget.Toast
+import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_my_profile.*
-import java.time.LocalDate
-import com.google.firebase.firestore.DocumentSnapshot
-
-import com.google.android.gms.tasks.OnSuccessListener
-
-
-
-
 
 class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
-    var uuid: UUID = UUID.randomUUID()
+
     private lateinit var currentDate: String
     private var trainingsName: String? = ""
-    private val db = FirebaseFirestore.getInstance()
-    var gymType: String = ""
+    private var gymType = ""
     var muskelName: String = ""
-    var createdWorkout = false
-    private val myVib: Vibrator? = null
     @SuppressLint("ResourceAsColor")
     @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(layout.activity_add_workout)
-        window.navigationBarColor = R.color.white
-
         onClick()
         setupActionBar()
+        window.navigationBarColor = ContextCompat.getColor(this, color.colorOfStutusBar)
         gymType = intent.getStringExtra("GymName").toString()
         muskelName = intent.getStringExtra("MuskelName").toString()
         trainingsName = intent.getStringExtra("MuskelName")
@@ -77,7 +54,7 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
         val day = c.get(Calendar.DAY_OF_MONTH)
         datePickerTimeline.setInitialDate(year, month, day)
         currentDate = "${year}-${month + 1}-${day}"
-        val trainingsFragment = Workouts_Add_fragment()
+        val trainingsFragment = AddWorkoutFragment()
         supportFragmentManager.beginTransaction().apply {
             replace(id.root_container, trainingsFragment).commit()
         }
@@ -103,13 +80,15 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
         val dates = arrayOf(Calendar.getInstance().time)
         datePickerTimeline.deactivateDates(dates)
     }
-
-
+  override  fun onBackPressed() {
+        val intent = Intent(this, MuskelGroupActivity::class.java)
+        intent.putExtra("WorkoutType", gymType)
+        startActivity(intent)
+        finish()
+    }
 
     private fun String.toEditable(): Editable = Editable.Factory.getInstance().newEditable(this)
     private fun onClick() {
-        val trainingsFragment = Workouts_Add_fragment()
-
         btnBackNewWorkout.setOnClickListener {
             val intent = Intent(this, MuskelGroupActivity::class.java)
             val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
@@ -121,11 +100,16 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
         }
         btn_back_home.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
-            finish()
+            finishAffinity()
         }
         save_btn.setOnClickListener {
-            createTraining()
+            if (checkForInternet(this)) {
+                createTraining()
+            } else {
+                Toast.makeText(this, "No internet connection!", Toast.LENGTH_SHORT).show()
+            }
         }
+
         btn_set_minus.setOnClickListener { minusButton(SetNum) }
         btn_set_plus.setOnClickListener { plusButton(SetNum) }
         btn_weight_minus.setOnClickListener { minusButton(weightNum) }
@@ -134,14 +118,12 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
         btn_break_plus.setOnClickListener { plusButton(breakNum) }
         btn_repeat_minus.setOnClickListener { minusButton(repeatNum) }
         btn_repeat_plus.setOnClickListener { plusButton(repeatNum) }
-
-
     }
 
     private fun minusButton(et: EditText) {
         if (et.text.toString() != " " && et.text.toString() != "" ){
             var num = et.text.toString().toInt()
-            if (num > 0 && num != null) {
+            if (num > 0) {
                 num--
                 et.text = "$num".toEditable()
             }
@@ -149,7 +131,6 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
         {
             showErrorSnackBar("Fill the field!")
         }
-
     }
 
     private fun plusButton(et: EditText) {
@@ -164,34 +145,35 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
         }
     }
 
+    @SuppressLint("SimpleDateFormat")
     private fun dateFormatter(date: String): Date {
         val inputFormatter: DateFormat = SimpleDateFormat("yyyy-MM-dd")
         return inputFormatter.parse(date)
     }
 
     private fun createTraining() {
-        var getId =  FirebaseAuth.getInstance()?.uid
-         var mFirestore = FirebaseFirestore.getInstance()
-            mFirestore.collection("users").document(getId!!).get()
-                .addOnSuccessListener(OnSuccessListener<DocumentSnapshot> { documentSnapshot ->
+         val mFirestore = FirebaseFirestore.getInstance()
+            mFirestore.collection("users").document(getCurrentUserId()).get()
+                .addOnSuccessListener { documentSnapshot ->
                     val weight = documentSnapshot.getString("weight")
-                    var workout: Workout
-                    var weight2 = weightNum.text.toString()
-                    var breakNum = breakNum.text.toString()
-                    var set = SetNum.text.toString()
-                    var rep = repeatNum.text.toString()
-                    if ( validateForm(set, weight2, breakNum, rep)) {
+                    val workout: Workout
+                    val weight2 = weightNum.text.toString()
+                    val breakNum = breakNum.text.toString()
+                    val set = SetNum.text.toString()
+                    val rep = repeatNum.text.toString()
+                    if (validateForm(set, weight2, breakNum, rep)) {
                         val rnds = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                             ThreadLocalRandom.current().nextDouble(0.0, 0.9)
                         } else {
                             TODO("VERSION.SDK_INT < LOLLIPOP")
                         }
                         val randnum = 0.0 + rnds
-                        var s = 20 * set.toInt() * rep.toInt() * (2 * 3.0 + randnum *  weight.toString().toInt())
-                        var calories = s / 200
-
+                        val s =
+                            20 * set.toInt() * rep.toInt() * (2 * 3.0 + randnum * weight.toString()
+                                .toInt())
+                        val calories = s / 200
                         workout = Workout(
-                            getId.toString(),
+                            getCurrentUserId(),
                             gymType,
                             muskelName,
                             set,
@@ -203,20 +185,11 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
                             dateFormatter(currentDate)
                         )
                         FirestoreClass().createNewTraining(this@AddWorkoutActivity, workout)
-                        var recyclerView = findViewById<RecyclerView>(id.recyclerView_add)
+                        val recyclerView = findViewById<RecyclerView>(id.recyclerView_add)
                         recyclerView.scrollToPosition(0)
                     }
-
-                })
-        }
-
-    fun readData(firebaseCallback: firebaseCallback){
-
+                }
     }
-    interface firebaseCallback{
-        fun onCallBack(m : String)
-    }
-
 
     private fun validateForm(set: String, weight: String, breakNum: String, repeat: String): Boolean {
         return when {

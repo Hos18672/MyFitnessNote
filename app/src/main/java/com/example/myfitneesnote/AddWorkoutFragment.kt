@@ -1,9 +1,11 @@
 package com.example.myfitneesnote
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,17 +18,16 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
 
-class Workouts_Add_fragment : Fragment() {
-
+class AddWorkoutFragment : Fragment() {
     var uuid : UUID = UUID.randomUUID()
     private val db = FirebaseFirestore.getInstance()
     private lateinit var trainingItemAdapter : TrainingItemAdapteradd
     private lateinit var recyclerView: RecyclerView
     private lateinit var _view: View
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -64,7 +65,6 @@ class Workouts_Add_fragment : Fragment() {
         val itemTouchHelper= ItemTouchHelper(item)
         itemTouchHelper.attachToRecyclerView(recyclerView)
         trainingItemAdapter.notifyDataSetChanged()
-
         recyclerView.startLayoutAnimation()
     }
     override fun onStart() {

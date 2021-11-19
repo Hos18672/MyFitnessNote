@@ -22,7 +22,6 @@ class SecurityActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
-        window.navigationBarColor = android.R.color.white
         //fullscreen()
         setupActionBar()
 
@@ -33,7 +32,13 @@ class SecurityActivity : BaseActivity() {
         val user = FirebaseAuth.getInstance().currentUser
         // add it only if it is not saved to database
         userId = user?.uid
-        btnSave.setOnClickListener { onUpdateClicked() }
+        btnSave.setOnClickListener {
+            if (checkForInternet(this)) {
+                onUpdateClicked()
+            } else {
+                Toast.makeText(this, "No internet connection!", Toast.LENGTH_SHORT).show()
+            }
+        }
         btnback.setOnClickListener { onBackPressed()
             finish()}
         auth = Firebase.auth
