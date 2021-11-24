@@ -116,4 +116,7 @@
     <string name="your_weight">Your weight</string>
     <string name="height">Height</string>
     <string name="your_age">Your age</string>
+    <string name="tipps">Tipps</string>
+    <string name="Update">Update</string>
+    <string name="Add">Add</string>
 </resources>

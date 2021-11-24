@@ -12,6 +12,7 @@ class MuskelGroupActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_muskel_group)
+
         GymType= intent.getStringExtra("WorkoutType")
         muscle_txt.text = GymType
         //fullscreen()

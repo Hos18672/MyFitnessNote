@@ -113,8 +113,7 @@
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="@+id/constraintLayout"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.171">
-                    </com.vivekkaushik.datepicker.DatePickerTimeline>
+                        app:layout_constraintVertical_bias="0.171"></com.vivekkaushik.datepicker.DatePickerTimeline>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraintLayout"
@@ -281,7 +280,8 @@
                             android:layout_width="35dp"
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
-                            android:layout_marginEnd="8dp"
+                            android:layout_marginEnd="6dp"
+                            android:layout_marginStart="1dp"
                             android:gravity="center"
                             android:inputType="number"
                             android:maxLength="2"
@@ -488,7 +488,7 @@
                             android:layout_width="35dp"
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
-                            android:layout_marginEnd="8dp"
+                            android:layout_marginEnd="6dp"
                             android:gravity="center"
                             android:inputType="number"
                             android:maxLength="2"
@@ -537,7 +537,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/save_btn"
-                android:layout_width="385dp"
+                android:layout_width="0dp"
                 android:layout_height="57dp"
                 android:layout_gravity="center"
                 android:layout_marginStart="8dp"
@@ -545,15 +545,33 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="16dp"
                 android:backgroundTint="@color/colorPrimaryGreen"
-                android:text="@string/save"
+                android:text="@string/Add"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:transitionName="trainingsBtn"
                 app:cornerRadius="25dp"
+                android:textAllCaps="false"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btn_back_home"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/CV"
+                tools:targetApi="lollipop" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_back_home"
+                android:layout_width="85dp"
+                android:layout_height="57dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:text="Back to Home"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                app:cornerRadius="25dp"
+                android:textAllCaps="false"
+                app:layout_constraintBottom_toBottomOf="@+id/save_btn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/save_btn"
+                app:layout_constraintTop_toTopOf="@+id/save_btn"
                 tools:targetApi="lollipop" />
 
 

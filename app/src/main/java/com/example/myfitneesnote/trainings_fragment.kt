@@ -34,10 +34,8 @@ class trainings_fragment : Fragment() {
     ): View? {
        _view = inflater.inflate(R.layout.fragment_trainings_fragment, container, false)
         getTrainingsFromFireStore()
-        recyclerView = _view.findViewById(R.id.recyclerView);
+        recyclerView = _view.findViewById(R.id.recyclerView_add);
         recyclerView.setHasFixedSize(true);
-
-
         return _view
     }
 
@@ -46,14 +44,15 @@ class trainings_fragment : Fragment() {
             .document(getCurrentUserID())
             .collection(Constant.TRAININGS)
             .orderBy("date", Query.Direction.DESCENDING)
+
         val fireStoreRecyclerOption : FirestoreRecyclerOptions<Workout> = FirestoreRecyclerOptions.Builder<Workout>()
             .setQuery(query, Workout::class.java)
             .build()
-        recyclerView = _view.findViewById(R.id.recyclerView);
+        recyclerView = _view.findViewById(R.id.recyclerView_add);
         trainingItemAdapter = TrainingItemAdapteradd(fireStoreRecyclerOption)
         val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         recyclerView.layoutManager = linearLayoutManager
-        recyclerView.smoothScrollToPosition(trainingItemAdapter.getItemCount())
+        recyclerView.smoothScrollToPosition(0)
         recyclerView.adapter = trainingItemAdapter
 
         val item = object : SwipeToDelete(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT){
@@ -61,13 +60,11 @@ class trainings_fragment : Fragment() {
                 trainingItemAdapter.deleteItem(viewHolder.adapterPosition)
             }
         }
-
         val itemTouchHelper= ItemTouchHelper(item)
         itemTouchHelper.attachToRecyclerView(recyclerView)
         trainingItemAdapter.notifyDataSetChanged()
+
         recyclerView.startLayoutAnimation()
-
-
     }
     override fun onStart() {
         super.onStart()

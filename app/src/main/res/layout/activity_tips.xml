@@ -1,9 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/main_back"
     tools:context=".TipsActivity">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolBar_Tipps"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        tools:ignore="MissingConstraints">
+        <TextView
+            android:id="@+id/toolBar_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textColor="#000000"
+            android:text="@string/tipps"
+            android:textSize="15sp"
+            tools:layout_editor_absoluteX="165dp"
+            tools:layout_editor_absoluteY="218dp" />
+    </androidx.appcompat.widget.Toolbar>
 
+    <ScrollView
+        android:id="@+id/lV"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="5dp">
+        <TextView
+            android:id="@+id/Topic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="This is a Test"
+            android:textColor="#000000"
+            android:textSize="35sp"
+            android:textStyle="bold"
+            android:layout_margin="10dp"
+            tools:ignore="MissingConstraints" />
+        <ImageView
+            android:id="@+id/Picture"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
+            tools:layout_editor_absoluteX="165dp"
+            tools:layout_editor_absoluteY="218dp" />
+
+            <TextView
+                android:id="@+id/Description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="10dp"
+                android:text="This is a Test"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
