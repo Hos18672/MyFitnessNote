@@ -1,6 +1,6 @@
 package com.example.myfitneesnote
 
-import android.app.PendingIntent.getActivity
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.WindowManager
@@ -20,11 +20,11 @@ import kotlinx.android.synthetic.main.chat_from_row.view.*
 import kotlinx.android.synthetic.main.chat_to_row.view.*
 import java.util.*
 
-
 class ChatLogActivity : BaseActivity() {
     companion object{ const val TAG = "ChatLog" }
     var toUser: User?= null
     val adapter = GroupAdapter<ViewHolder>()
+    @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat_log)
@@ -59,13 +59,21 @@ class ChatLogActivity : BaseActivity() {
              override fun onChildAdded(p0: DataSnapshot, p1: String?) {
                  val chatMessage = p0.getValue(ChatMessage::class.java)
                  if (chatMessage != null) {
-                     Log.d(TAG, chatMessage.text)
+                     chatMessage.text.let { Log.d(TAG, it) }
                      if (chatMessage.formId == FirebaseAuth.getInstance().uid) {
                          val currentUser = ChatActivity.currentUser ?: return
-                         adapter.add(ChatFromItem(chatMessage.text, currentUser, chatMessage.timestamp))
+                         ChatFromItem(
+                             chatMessage.text, currentUser,
+                             chatMessage.timestamp
+                         ).let {
+                             adapter.add(it)
+                         }
                          recyclerView_chat_log.scrollToPosition(adapter.itemCount -1)
                      } else {
-                         adapter.add(ChatToItem(chatMessage.text, toUser!!,chatMessage.timestamp,intent.getStringExtra("name").toString()))
+                         ChatToItem(
+                             chatMessage.text, toUser!!,
+                             chatMessage.timestamp,intent.getStringExtra("name").toString())
+                             .let { adapter.add(it) }
                          recyclerView_chat_log.scrollToPosition(adapter.itemCount -1)
                      }
                  }
@@ -89,12 +97,12 @@ class ChatLogActivity : BaseActivity() {
         val hour = c.get(Calendar.HOUR_OF_DAY)
         val minute = c.get(Calendar.MINUTE)
         val time = "${hour}:${minute}"
-      //How do we actually send a message to firebase
+        //How do we actually send a message to firebase
         val text =editTextChatLog.text.toString()
         val fromId = FirebaseAuth.getInstance().uid
         // get ID of the Reciever
         val toId = toUser?.user_id
-       // val refrence = FirebaseDatabase.getInstance().getReference("/messages").push()
+        // val refrence = FirebaseDatabase.getInstance().getReference("/messages").push()
         val refrence = FirebaseDatabase.getInstance().getReference("/user-messages/$fromId/$toId").push()
         val toRefrence = FirebaseDatabase.getInstance().getReference("/user-messages/$toId/$fromId").push()
         val chatMessage= ChatMessage(
@@ -134,7 +142,7 @@ class ChatFromItem(val text: String, val user: User, val time: String): Item<Vie
         return R.layout.chat_from_row
     }
 }
-class ChatToItem(val text: String, val user: User, val time: String, val name: String): Item<ViewHolder>(){
+class ChatToItem(val text: String, val user: User, private val time: String, val name: String): Item<ViewHolder>(){
 
     override fun bind(viewHolder: ViewHolder, position: Int) {
         viewHolder.itemView.textview_to_row.text = text

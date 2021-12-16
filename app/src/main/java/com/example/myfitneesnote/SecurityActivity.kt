@@ -1,6 +1,7 @@
 package com.example.myfitneesnote
 
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
@@ -17,6 +18,7 @@ class SecurityActivity : BaseActivity() {
     private var userId: String? = null
     private lateinit var auth: FirebaseAuth
     // Initialize Firebase Auth
+    @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
@@ -30,7 +32,13 @@ class SecurityActivity : BaseActivity() {
         val user = FirebaseAuth.getInstance().currentUser
         // add it only if it is not saved to database
         userId = user?.uid
-        btnSave.setOnClickListener { onUpdateClicked() }
+        btnSave.setOnClickListener {
+            if (checkForInternet(this)) {
+                onUpdateClicked()
+            } else {
+                Toast.makeText(this, "No internet connection!", Toast.LENGTH_SHORT).show()
+            }
+        }
         btnback.setOnClickListener { onBackPressed()
             finish()}
         auth = Firebase.auth

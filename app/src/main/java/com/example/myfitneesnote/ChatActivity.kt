@@ -1,8 +1,11 @@
 package com.example.myfitneesnote
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityOptionsCompat
 import com.example.myfitneesnote.model.User
 import com.google.firebase.auth.FirebaseAuth
@@ -21,10 +24,12 @@ class ChatActivity : BaseActivity() {
         var currentUser: User?= null
         const val USER_KEY = "USER_KEY"
     }
+
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
-       // fullscreen()
         setupActionBar()
         fetchUsers()
         fetchCurrentUser()
@@ -70,12 +75,12 @@ class ChatActivity : BaseActivity() {
                     val user = it.getValue(User::class.java)
                     if(user != null) {
                         if (user.user_id!= FirebaseAuth.getInstance().uid) {
-                            adapter.add(UserItem(user))
+                            adapter.add(UserItemViewHolder(user))
                         }
                     }
                 }
                 adapter.setOnItemClickListener{ item, view ->
-                    val userItem= item as UserItem
+                    val userItem= item as UserItemViewHolder
                     val intent = Intent( view.context, ChatLogActivity:: class.java)
                     intent.putExtra("name",userItem.user.name)
                     // intent.putExtra(USER_KEY, userItem.user.username)
@@ -89,13 +94,11 @@ class ChatActivity : BaseActivity() {
             }
         })
     }
-
 }
-class UserItem(val user: User): Item<ViewHolder>(){
+class UserItemViewHolder(val user: User): Item<ViewHolder>(){
     override fun bind(viewHolder: ViewHolder, position: Int) {
         //val uri = user.image
         viewHolder.itemView.User_name.text= user.username
-
     }
     override fun getLayout(): Int {
         return R.layout.user_row

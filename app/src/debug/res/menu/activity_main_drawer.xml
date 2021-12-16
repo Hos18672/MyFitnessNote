@@ -10,4 +10,5 @@
             android:icon="@drawable/settings"
             android:title="@string/setting" />
     </group>
+
 </menu>

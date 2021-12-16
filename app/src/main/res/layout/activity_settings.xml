@@ -49,7 +49,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView2"
             android:layout_width="0dp"
-            android:layout_height="400dp"
+            android:layout_height="350dp"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="50dp"
@@ -60,91 +60,106 @@
             app:layout_constraintTop_toTopOf="parent">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="395dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
                 android:gravity="center"
                 android:orientation="vertical">
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/editps0"
+                    style="@style/EditText.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_margin="10dp"
-                    android:textColorHint="#8D8D8E"
-                    app:boxStrokeColor="#0287FB"
-                    tools:ignore="MissingConstraints"
-                    tools:layout_editor_absoluteX="51dp"
-                    tools:layout_editor_absoluteY="48dp">
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="32dp"
+                    app:layout_constraintBottom_toTopOf="@+id/inputName"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/CurrentPassword"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:background="@android:color/transparent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
                         android:hint="@string/current_password"
-                        tools:ignore="DuplicateIds" />
+                        android:inputType="text"
+                        android:textAlignment="viewStart" />
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/editps3"
+                    style="@style/EditText.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_margin="10dp"
-                    android:textColorHint="#8D8D8E"
-                    app:boxStrokeColor="#0287FB"
-                    app:layout_goneMarginBottom="10dp"
-                    tools:layout_editor_absoluteX="51dp"
-                    tools:layout_editor_absoluteY="309dp">
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="32dp"
+                    app:layout_constraintBottom_toTopOf="@+id/inputName"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/editTextTextEmailAddress"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:background="@android:color/transparent"
-                        android:hint="@string/change_email"
-                        tools:ignore="DuplicateIds" />
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:hint="@string/email"
+                        android:inputType="textEmailAddress"
+                        android:textAlignment="viewStart" />
                 </com.google.android.material.textfield.TextInputLayout>
+
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/editps"
+                    style="@style/EditText.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_margin="10dp"
-                    android:textColorHint="#8D8D8E"
-                    app:boxStrokeColor="#0287FB"
-                    tools:layout_editor_absoluteX="50dp"
-                    tools:layout_editor_absoluteY="132dp">
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="32dp"
+                    app:layout_constraintBottom_toTopOf="@+id/inputName"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/editTextTextPassword"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:background="@android:color/transparent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
                         android:hint="@string/new_password"
-                        tools:ignore="DuplicateIds" />
+                        android:inputType="textPassword"
+                        android:textAlignment="viewStart" />
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/ed"
+                    style="@style/EditText.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:textColorHint="#8D8D8E"
-                    app:boxStrokeColor="#0287FB"
-                    tools:layout_editor_absoluteX="50dp"
-                    tools:layout_editor_absoluteY="220dp">
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="32dp"
+                    app:layout_constraintBottom_toTopOf="@+id/inputName"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/editTextTextPasswordAgain"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:background="@android:color/transparent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
                         android:hint="@string/repeat_password"
-                        tools:ignore="DuplicateIds" />
+                        android:inputType="textPassword"
+                        android:textAlignment="viewStart" />
                 </com.google.android.material.textfield.TextInputLayout>
+
+
+
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 

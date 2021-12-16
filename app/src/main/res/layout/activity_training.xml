@@ -5,15 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/ic_splash_background"
+    android:background="#00c2ff"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".TrainingActivity">
+    tools:context=".WorkoutsActivity">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar_workouts_activity"
         android:layout_width="0dp"
         android:layout_height="40dp"
+        android:background="#00c2ff"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints">
@@ -25,18 +25,18 @@
             android:textColor="#000000"
             android:textSize="15sp" />
     </androidx.appcompat.widget.Toolbar>
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_trainings_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:transitionName="addTrainingCv"
         android:layoutAnimation="@anim/layout_animation"
         app:layout_constraintBottom_toTopOf="@+id/btnback_training"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolBar_workouts_activity"
-        tools:targetApi="lollipop" />
+        app:layout_constraintTop_toBottomOf="@+id/toolBar_workouts_activity" />
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnback_training"
         android:layout_width="0dp"

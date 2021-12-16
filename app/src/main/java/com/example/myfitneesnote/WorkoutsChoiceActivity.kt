@@ -1,5 +1,6 @@
 package com.example.myfitneesnote
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -10,7 +11,8 @@ import androidx.core.app.ActivityOptionsCompat
 import kotlinx.android.synthetic.main.activity_workout.*
 
 @Suppress("DEPRECATION")
-class WorkoutActivity : BaseActivity(){
+class WorkoutsChoiceActivity : BaseActivity(){
+    @SuppressLint("ResourceAsColor")
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,6 +78,11 @@ class WorkoutActivity : BaseActivity(){
             startActivity(intent, options.toBundle())
             //finish()
         }
+    }
+    override  fun onBackPressed() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
     }
     private fun setupActionBar() {
         setSupportActionBar(toolBar_workout_activity)

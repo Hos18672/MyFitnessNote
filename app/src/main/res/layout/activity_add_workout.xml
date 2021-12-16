@@ -6,18 +6,14 @@
     android:layout_height="match_parent"
     android:background="@drawable/back7"
     tools:context=".AddWorkoutActivity">
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar_add_workout_activity"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginBottom="5dp"
+        android:layout_height="40dp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout12"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints">
-
+        app:layout_constraintTop_toTopOf="parent">
         <TextView
             android:id="@+id/toolBar_textView"
             android:layout_width="wrap_content"
@@ -25,30 +21,26 @@
             android:gravity="center"
             android:text="@string/new_training"
             android:textColor="#000000"
-            android:textSize="15sp"
-            tools:layout_editor_absoluteX="165dp"
-            tools:layout_editor_absoluteY="218dp" />
+            android:textSize="15sp" />
     </androidx.appcompat.widget.Toolbar>
-
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout12"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="320dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/rv_trainings_list_Add_Training"
+        app:layout_constraintBottom_toTopOf="@+id/root_container"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolBar_add_workout_activity"
         tools:ignore="MissingConstraints">
-
         <TextView
             android:id="@+id/TrainingName"
-            android:layout_width="210dp"
-            android:layout_height="60dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:gravity="center"
             android:text="@string/test"
             android:textAllCaps="true"
@@ -60,7 +52,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints" />
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout11"
             android:layout_width="match_parent"
@@ -70,12 +61,9 @@
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/TrainingName"
             tools:ignore="MissingConstraints">
-
-
             <androidx.cardview.widget.CardView
                 android:id="@+id/CV"
                 android:layout_width="0dp"
@@ -89,19 +77,18 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:cardElevation="10dp"
                 tools:targetApi="lollipop">
-
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="321dp"
+                    android:layout_height="324dp"
                     android:orientation="horizontal"
                     app:layout_constraintEnd_toStartOf="@+id/constraintLayout"
                     app:layout_constraintStart_toStartOf="parent"
                     tools:ignore="MissingConstraints">
-
                     <com.vivekkaushik.datepicker.DatePickerTimeline
                         android:id="@+id/datePickerTimeline"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_marginTop="10dp"
@@ -110,19 +97,19 @@
                         android:outlineAmbientShadowColor="@color/colorPrimaryBlue"
                         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
                         app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
-                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toStartOf="@+id/constraintLayout"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.171"></com.vivekkaushik.datepicker.DatePickerTimeline>
+                        app:layout_constraintVertical_bias="0.171">
+                    </com.vivekkaushik.datepicker.DatePickerTimeline>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraintLayout"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="8dp"
                         android:layout_marginEnd="8dp"
-                        android:layout_marginBottom="2dp"
                         android:foregroundGravity="center"
                         android:orientation="horizontal"
                         app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
@@ -160,18 +147,31 @@
                             app:layout_constraintVertical_bias="0.0"
                             tools:ignore="RtlHardcoded" />
 
-                        <androidx.appcompat.widget.AppCompatButton
+                        <com.google.android.material.card.MaterialCardView
                             android:id="@+id/btn_set_minus"
                             android:layout_width="35dp"
                             android:layout_height="35dp"
                             android:layout_gravity="center"
+                            android:layout_marginStart="2dp"
                             android:layout_marginEnd="10dp"
-                            android:background="@drawable/ic_minus"
-                            android:backgroundTint="@null"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:hapticFeedbackEnabled="true"
+                            android:outlineAmbientShadowColor="@color/black"
+                            app:cardCornerRadius="50dp"
+                            app:cardElevation="3dp"
                             app:layout_constraintBottom_toBottomOf="@+id/SetNum"
                             app:layout_constraintEnd_toStartOf="@+id/SetNum"
                             app:layout_constraintStart_toEndOf="@+id/tv_set"
-                            app:layout_constraintTop_toTopOf="@+id/SetNum" />
+                            app:layout_constraintTop_toTopOf="@+id/SetNum"
+                            app:rippleColor="#4FB9FF">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_minus" />
+                        </com.google.android.material.card.MaterialCardView>
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/SetNum"
@@ -179,12 +179,12 @@
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
                             android:layout_marginEnd="8dp"
-                            android:gravity="center"
+                            android:gravity="bottom|center"
                             android:inputType="number"
                             android:maxLength="2"
                             android:minWidth="60dp"
                             android:text="@string/_1"
-                            android:textSize="20sp"
+                            android:textSize="17sp"
                             app:layout_constraintBottom_toBottomOf="@+id/textView2"
                             app:layout_constraintEnd_toStartOf="@+id/textView2"
                             app:layout_constraintStart_toEndOf="@+id/btn_set_minus"
@@ -208,27 +208,38 @@
                             app:layout_constraintTop_toTopOf="@+id/btn_set_plus"
                             app:layout_constraintVertical_bias="0.466" />
 
-                        <androidx.appcompat.widget.AppCompatButton
+                        <com.google.android.material.card.MaterialCardView
                             android:id="@+id/btn_set_plus"
                             android:layout_width="35dp"
                             android:layout_height="35dp"
                             android:layout_gravity="center"
-                            android:layout_marginEnd="15dp"
-                            android:background="@drawable/ic_plus"
+                            android:layout_marginEnd="16dp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:outlineAmbientShadowColor="@color/black"
+                            app:cardCornerRadius="50dp"
+                            app:cardElevation="3dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@+id/textView2"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:rippleColor="#4FB9FF">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_plus" />
+                        </com.google.android.material.card.MaterialCardView>
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraintLayout2"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:layout_marginStart="8dp"
+                        android:layout_marginStart="10dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="8dp"
-                        android:layout_marginBottom="8dp"
                         app:layout_constraintBottom_toTopOf="@+id/constraintLayout4"
                         app:layout_constraintEnd_toEndOf="@+id/constraintLayout3"
                         app:layout_constraintStart_toStartOf="@+id/constraintLayout3"
@@ -262,32 +273,45 @@
                             app:layout_constraintVertical_bias="0.0"
                             tools:ignore="RtlHardcoded" />
 
-                        <androidx.appcompat.widget.AppCompatButton
+                        <com.google.android.material.card.MaterialCardView
                             android:id="@+id/btn_break_minus"
                             android:layout_width="35dp"
                             android:layout_height="35dp"
                             android:layout_gravity="center"
+                            android:layout_marginStart="2dp"
                             android:layout_marginEnd="8dp"
-                            android:background="@drawable/ic_minus"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:outlineAmbientShadowColor="@color/black"
+                            app:cardCornerRadius="50dp"
+                            app:cardElevation="3dp"
                             app:layout_constraintBottom_toBottomOf="@+id/breakNum"
                             app:layout_constraintEnd_toStartOf="@+id/breakNum"
                             app:layout_constraintStart_toEndOf="@+id/tv_break"
                             app:layout_constraintTop_toTopOf="@+id/breakNum"
-                            app:layout_constraintVertical_bias="0.68" />
+                            app:layout_constraintVertical_bias="0.68"
+                            app:rippleColor="#4FB9FF">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_minus" />
+                        </com.google.android.material.card.MaterialCardView>
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/breakNum"
                             android:layout_width="35dp"
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
-                            android:layout_marginEnd="6dp"
                             android:layout_marginStart="1dp"
+                            android:layout_marginEnd="6dp"
                             android:gravity="center"
                             android:inputType="number"
                             android:maxLength="2"
                             android:minWidth="60dp"
                             android:text="@string/_1"
-                            android:textSize="20sp"
+                            android:textSize="17sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toStartOf="@+id/textView4"
                             app:layout_constraintStart_toEndOf="@+id/btn_break_minus"
@@ -312,27 +336,39 @@
                             app:layout_constraintTop_toTopOf="@+id/btn_break_plus"
                             app:layout_constraintVertical_bias="1.0" />
 
-                        <androidx.appcompat.widget.AppCompatButton
+                        <com.google.android.material.card.MaterialCardView
                             android:id="@+id/btn_break_plus"
                             android:layout_width="35dp"
                             android:layout_height="35dp"
                             android:layout_gravity="center"
-                            android:layout_marginEnd="15dp"
-                            android:background="@drawable/ic_plus"
+                            android:layout_marginStart="1dp"
+                            android:layout_marginEnd="14dp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:outlineAmbientShadowColor="@color/black"
+                            app:cardCornerRadius="50dp"
+                            app:cardElevation="3dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@+id/textView4"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:rippleColor="#4FB9FF">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_plus" />
+                        </com.google.android.material.card.MaterialCardView>
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraintLayout3"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:layout_marginStart="8dp"
+                        android:layout_marginStart="10dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="8dp"
-                        android:layout_marginBottom="2dp"
                         app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
                         app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
                         app:layout_constraintHorizontal_bias="0.0"
@@ -343,6 +379,7 @@
                             android:id="@+id/imageView5"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
+                            android:layout_marginStart="2dp"
                             android:contentDescription="@string/todo"
                             app:layout_constraintBottom_toBottomOf="@+id/tv_weight"
                             app:layout_constraintEnd_toStartOf="@+id/tv_weight"
@@ -368,18 +405,30 @@
                             app:layout_constraintVertical_bias="0.4"
                             tools:ignore="RtlHardcoded" />
 
-                        <androidx.appcompat.widget.AppCompatButton
+                        <com.google.android.material.card.MaterialCardView
                             android:id="@+id/btn_weight_minus"
                             android:layout_width="35dp"
                             android:layout_height="35dp"
                             android:layout_gravity="center"
                             android:layout_marginStart="2dp"
                             android:layout_marginEnd="10dp"
-                            android:background="@drawable/ic_minus"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:outlineAmbientShadowColor="@color/black"
+                            app:cardCornerRadius="50dp"
+                            app:cardElevation="3dp"
                             app:layout_constraintBottom_toBottomOf="@+id/weightNum"
                             app:layout_constraintEnd_toStartOf="@+id/weightNum"
                             app:layout_constraintStart_toEndOf="@+id/tv_weight"
-                            app:layout_constraintTop_toTopOf="@+id/weightNum" />
+                            app:layout_constraintTop_toTopOf="@+id/weightNum"
+                            app:rippleColor="#4FB9FF">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_minus" />
+                        </com.google.android.material.card.MaterialCardView>
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/weightNum"
@@ -392,7 +441,7 @@
                             android:maxLength="2"
                             android:minWidth="60dp"
                             android:text="@string/_1"
-                            android:textSize="20sp"
+                            android:textSize="17sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toStartOf="@+id/textView3"
                             app:layout_constraintStart_toEndOf="@+id/btn_weight_minus"
@@ -417,23 +466,36 @@
                             app:layout_constraintTop_toTopOf="@+id/btn_weight_plus"
                             tools:ignore="NotSibling" />
 
-                        <androidx.appcompat.widget.AppCompatButton
+                        <com.google.android.material.card.MaterialCardView
                             android:id="@+id/btn_weight_plus"
                             android:layout_width="35dp"
                             android:layout_height="35dp"
-                            android:layout_marginEnd="15dp"
-                            android:background="@drawable/ic_plus"
+                            android:layout_marginEnd="16dp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:outlineAmbientShadowColor="@color/black"
+                            app:cardCornerRadius="50dp"
+                            app:cardElevation="3dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@+id/textView3"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:rippleColor="#4FB9FF">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_plus" />
+                        </com.google.android.material.card.MaterialCardView>
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraintLayout4"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:layout_marginStart="8dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="8dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginBottom="20dp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -449,7 +511,6 @@
                             android:contentDescription="@string/todo"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toStartOf="@+id/tv_repeat"
-                            app:layout_constraintHorizontal_bias="0.49"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             app:srcCompat="@drawable/baseline_loop_black_24dp" />
@@ -459,7 +520,6 @@
                             android:layout_width="120dp"
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
-                            android:layout_marginEnd="2dp"
                             android:gravity="center"
                             android:text="@string/repeat"
                             android:textColor="@android:color/black"
@@ -470,18 +530,31 @@
                             app:layout_constraintTop_toTopOf="parent"
                             tools:ignore="RtlHardcoded" />
 
-                        <androidx.appcompat.widget.AppCompatButton
+                        <com.google.android.material.card.MaterialCardView
                             android:id="@+id/btn_repeat_minus"
                             android:layout_width="35dp"
                             android:layout_height="35dp"
                             android:layout_gravity="center"
+                            android:layout_marginStart="2dp"
                             android:layout_marginEnd="10dp"
-                            android:background="@drawable/ic_minus"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:outlineAmbientShadowColor="@color/black"
+                            app:cardCornerRadius="50dp"
+                            app:cardElevation="3dp"
                             app:layout_constraintBottom_toBottomOf="@+id/repeatNum"
                             app:layout_constraintEnd_toStartOf="@+id/repeatNum"
                             app:layout_constraintStart_toEndOf="@+id/tv_repeat"
                             app:layout_constraintTop_toTopOf="@+id/repeatNum"
-                            app:layout_constraintVertical_bias="0.0" />
+                            app:layout_constraintVertical_bias="0.0"
+                            app:rippleColor="#4FB9FF">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_minus" />
+                        </com.google.android.material.card.MaterialCardView>
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/repeatNum"
@@ -494,7 +567,7 @@
                             android:maxLength="2"
                             android:minWidth="60dp"
                             android:text="@string/_1"
-                            android:textSize="20sp"
+                            android:textSize="17sp"
                             app:layout_constraintBottom_toBottomOf="@+id/textView6"
                             app:layout_constraintEnd_toStartOf="@+id/textView6"
                             app:layout_constraintStart_toEndOf="@+id/btn_repeat_minus"
@@ -519,65 +592,85 @@
                             app:layout_constraintTop_toTopOf="@+id/btn_repeat_plus"
                             app:layout_constraintVertical_bias="0.0" />
 
-                        <androidx.appcompat.widget.AppCompatButton
+                        <com.google.android.material.card.MaterialCardView
                             android:id="@+id/btn_repeat_plus"
                             android:layout_width="35dp"
                             android:layout_height="35dp"
                             android:layout_gravity="center"
-                            android:layout_marginStart="3dp"
-                            android:layout_marginEnd="16dp"
-                            android:background="@drawable/ic_plus"
+                            android:layout_marginStart="2dp"
+                            android:layout_marginEnd="14dp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:outlineAmbientShadowColor="@color/black"
+                            app:cardCornerRadius="50dp"
+                            app:cardElevation="3dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@+id/textView6"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:rippleColor="#4FB9FF">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_plus" />
+                        </com.google.android.material.card.MaterialCardView>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
-            <com.google.android.material.button.MaterialButton
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/save_btn"
                 android:layout_width="0dp"
-                android:layout_height="57dp"
+                android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="16dp"
                 android:backgroundTint="@color/colorPrimaryGreen"
-                android:text="@string/Add"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:transitionName="trainingsBtn"
-                app:cornerRadius="25dp"
+                android:hapticFeedbackEnabled="true"
+                android:elevation="5dp"
                 android:textAllCaps="false"
+                android:clickable="true"
+                android:textColor="@color/black"
+                android:transitionName="trainingsBtn"
+                app:cardCornerRadius="50dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/btn_back_home"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/CV"
-                tools:targetApi="lollipop" />
+                tools:targetApi="lollipop">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/plus_icon"/>
 
-            <com.google.android.material.button.MaterialButton
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/btn_back_home"
-                android:layout_width="85dp"
-                android:layout_height="57dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_marginEnd="8dp"
                 android:backgroundTint="@color/colorPrimary"
                 android:text="Back to Home"
-                android:textColor="@color/black"
-                android:textSize="12sp"
-                app:cornerRadius="25dp"
                 android:textAllCaps="false"
+                android:elevation="5dp"
+                app:cardCornerRadius="50dp"
                 app:layout_constraintBottom_toBottomOf="@+id/save_btn"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/save_btn"
                 app:layout_constraintTop_toTopOf="@+id/save_btn"
-                tools:targetApi="lollipop" />
-
-
+                tools:targetApi="lollipop">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/home"/>
+            </com.google.android.material.card.MaterialCardView>
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnBackNewWorkout"
             android:layout_width="match_parent"
@@ -607,9 +700,9 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            android:elevation="5dp"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout11" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_trainings_list_Add_Training"
         android:layout_width="match_parent"
@@ -633,6 +726,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout12" />
-
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout12"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

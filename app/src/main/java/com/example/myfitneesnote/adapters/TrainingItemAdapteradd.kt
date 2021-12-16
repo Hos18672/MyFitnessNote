@@ -13,20 +13,18 @@ import com.example.myfitneesnote.R.drawable.workout_home
 import com.example.myfitneesnote.model.Workout
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
+import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_training.view.*
 
-class TrainingItemAdapteradd(options: FirestoreRecyclerOptions<Workout>)
-    : FirestoreRecyclerAdapter<Workout,TrainingItemAdapteradd.MyViewHolder>(options){
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder{
+ class TrainingItemAdapteradd(options: FirestoreRecyclerOptions<Workout>) :LayoutContainer, FirestoreRecyclerAdapter<Workout,TrainingItemAdapteradd.MyViewHolder>(options) {
+     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder{
         val itemView = LayoutInflater.from(parent.context).inflate((layout.item_training_new_add), parent, false)
         return  MyViewHolder(itemView)
+
     }
     @SuppressLint("SetTextI18n", "ResourceType")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int, training: Workout) {
-
-
-
             holder.gymName.text    = training.GymType
             holder.muskelName.text = training.MuskelName
             holder.sets.text       = "${training.set} x"
@@ -40,9 +38,10 @@ class TrainingItemAdapteradd(options: FirestoreRecyclerOptions<Workout>)
                 holder.image.setImageResource(bench_press)
             }
 
-    }
-     fun deleteItem(i: Int){
 
+    }
+     @SuppressLint("NotifyDataSetChanged")
+     fun deleteItem(i: Int){
         snapshots.getSnapshot(i).reference.delete()
         notifyDataSetChanged()
     }
@@ -56,7 +55,10 @@ class TrainingItemAdapteradd(options: FirestoreRecyclerOptions<Workout>)
         val date      : TextView = itemView.tv_date
         val image     : ImageView = itemView.workout_image
     }
-}
+
+     override val containerView
+         get() = TODO("Not yet implemented")
+ }
 
 
 

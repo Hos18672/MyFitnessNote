@@ -135,6 +135,9 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.6.2'
     implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
 
+    implementation 'com.tbuonomo:morph-bottom-navigation:1.0.1'
+
+
 }
 
 publish {
@@ -145,4 +148,8 @@ publish {
     publishVersion = '2.1.0'
     desc = 'ProgressButton let you add a progress bar to your button without adjusting a layout'
     website = 'https://github.com/razir/ProgressButton'
+}
+
+androidExtensions {
+    experimental = true
 }

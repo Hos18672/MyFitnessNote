@@ -16,16 +16,13 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import kotlinx.android.synthetic.main.item_training.view.*
 
-class TrainingItemAdapter(options: FirestoreRecyclerOptions<Workout>)
-    : FirestoreRecyclerAdapter<Workout,TrainingItemAdapter.MyViewHolder>(options){
+class TrainingItemAdapter(options: FirestoreRecyclerOptions<Workout>) : FirestoreRecyclerAdapter<Workout,TrainingItemAdapter.MyViewHolder>(options){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder{
         val itemView = LayoutInflater.from(parent.context).inflate((layout.item_training), parent, false)
         return  MyViewHolder(itemView)
     }
-
     @SuppressLint("SetTextI18n", "ResourceType")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int, training: Workout) {
-
             holder.gymName.text    = training.GymType
             holder.muskelName.text = training.MuskelName
             holder.sets.text       = "${training.set} x"
