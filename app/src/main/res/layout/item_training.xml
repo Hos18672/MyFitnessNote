@@ -11,14 +11,16 @@
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
     android:layout_marginBottom="5dp">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
         android:layout_marginStart="10dp"
-        android:layout_marginBottom="5dp"
         android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp">
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal">
+
         <TextView
             android:id="@+id/tv_GymName"
             android:layout_width="match_parent"
@@ -37,9 +39,9 @@
             android:layout_width="match_parent"
             android:layout_height="0.6dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="8dp"
             android:background="@android:color/darker_gray"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout"
             app:layout_constraintEnd_toEndOf="parent"
@@ -49,7 +51,7 @@
 
         <TextView
             android:id="@+id/tv_date"
-            android:layout_width="95dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_marginBottom="32dp"
@@ -67,22 +69,20 @@
             android:id="@+id/linearLayout2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="5dp"
             android:orientation="vertical"
+            app:flow_verticalGap="4dp"
             app:layout_constraintBottom_toBottomOf="@+id/linearLayout3"
             app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/linearLayout3"
+            app:layout_constraintVertical_bias="0.363"
             tools:ignore="MissingConstraints">
 
             <ImageView
                 android:id="@+id/imageView6"
                 android:layout_width="16dp"
                 android:layout_height="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="4dp"
+                android:layout_marginBottom="0dp"
                 android:contentDescription="@string/todo"
                 app:layout_constraintBottom_toTopOf="@+id/imageView4"
                 app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
@@ -97,7 +97,7 @@
                 android:id="@+id/imageView4"
                 android:layout_width="16dp"
                 android:layout_height="16dp"
-                android:layout_marginBottom="3dp"
+                android:layout_marginTop="5dp"
                 android:contentDescription="@string/todo"
                 app:layout_constraintBottom_toTopOf="@+id/imageView5"
                 app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
@@ -109,7 +109,7 @@
                 android:id="@+id/imageView5"
                 android:layout_width="16dp"
                 android:layout_height="16dp"
-                android:layout_marginBottom="4dp"
+                android:layout_marginTop="5dp"
                 android:contentDescription="@string/todo"
                 app:layout_constraintBottom_toTopOf="@+id/imageView2"
                 app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
@@ -121,7 +121,7 @@
                 android:id="@+id/imageView2"
                 android:layout_width="16dp"
                 android:layout_height="16dp"
-                android:layout_marginBottom="4dp"
+                android:layout_marginTop="5dp"
                 android:contentDescription="@string/todo"
                 app:layout_constraintBottom_toTopOf="@+id/imageView3"
                 app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
@@ -135,7 +135,7 @@
                 android:id="@+id/imageView3"
                 android:layout_width="16dp"
                 android:layout_height="16dp"
-                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:contentDescription="@string/todo"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
@@ -148,16 +148,14 @@
         <LinearLayout
             android:id="@+id/linearLayout3"
             android:layout_width="91dp"
-            android:layout_height="110dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="5dp"
+            android:layout_height="wrap_content"
             android:gravity="bottom"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/linearLayout"
             app:layout_constraintStart_toEndOf="@+id/linearLayout2"
             app:layout_constraintTop_toBottomOf="@+id/view3"
-            app:layout_constraintVertical_bias="1.0">
+            app:layout_constraintVertical_bias="0.555">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -214,9 +212,8 @@
             android:id="@+id/linearLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="70dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/workout_image"
@@ -228,6 +225,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="left"
+                android:text="one"
                 android:textColor="#000000"
                 android:textSize="15sp"
                 tools:ignore="RtlHardcoded" />
@@ -237,6 +235,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="left"
+                android:text="two"
                 android:textColor="#000000"
                 android:textSize="15sp"
                 tools:ignore="RtlHardcoded" />
@@ -246,6 +245,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="left"
+                android:text="three"
                 android:textColor="#000000"
                 android:textSize="15sp"
                 tools:ignore="RtlHardcoded" />
@@ -255,6 +255,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="left"
+                android:text="four"
                 android:textColor="#000000"
                 android:textSize="15sp"
                 tools:ignore="RtlHardcoded" />
@@ -264,6 +265,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="left"
+                android:text="five"
                 android:textColor="#000000"
                 android:textSize="15sp"
                 tools:ignore="RtlHardcoded" />
@@ -274,7 +276,6 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="24dp"
             android:contentDescription="@string/todo"
             app:layout_constraintBottom_toTopOf="@+id/tv_date"
             app:layout_constraintEnd_toEndOf="parent"

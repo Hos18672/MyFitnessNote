@@ -620,10 +620,10 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
-            <com.google.android.material.button.MaterialButton
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/save_btn"
                 android:layout_width="0dp"
-                android:layout_height="57dp"
+                android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
@@ -631,35 +631,45 @@
                 android:layout_marginBottom="16dp"
                 android:backgroundTint="@color/colorPrimaryGreen"
                 android:hapticFeedbackEnabled="true"
-                android:text="@string/Add"
                 android:elevation="5dp"
                 android:textAllCaps="false"
+                android:clickable="true"
                 android:textColor="@color/black"
-                android:textSize="20sp"
                 android:transitionName="trainingsBtn"
-                app:cornerRadius="25dp"
+                app:cardCornerRadius="50dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/btn_back_home"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/CV"
-                tools:targetApi="lollipop" />
-            <com.google.android.material.button.MaterialButton
+                tools:targetApi="lollipop">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/plus_icon"/>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/btn_back_home"
-                android:layout_width="85dp"
-                android:layout_height="57dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_marginEnd="8dp"
                 android:backgroundTint="@color/colorPrimary"
                 android:text="Back to Home"
                 android:textAllCaps="false"
                 android:elevation="5dp"
-                android:textColor="@color/black"
-                android:textSize="12sp"
-                app:cornerRadius="25dp"
+                app:cardCornerRadius="50dp"
                 app:layout_constraintBottom_toBottomOf="@+id/save_btn"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/save_btn"
                 app:layout_constraintTop_toTopOf="@+id/save_btn"
-                tools:targetApi="lollipop" />
+                tools:targetApi="lollipop">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/home"/>
+            </com.google.android.material.card.MaterialCardView>
         </androidx.constraintlayout.widget.ConstraintLayout>
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnBackNewWorkout"
@@ -716,5 +726,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout12" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout12"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

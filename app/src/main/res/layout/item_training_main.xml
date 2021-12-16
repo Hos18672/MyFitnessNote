@@ -50,102 +50,200 @@
             app:layout_constraintVertical_bias="0.217"
             tools:ignore="MissingConstraints" />
 
+
+        <ImageView
+            android:id="@+id/main_workout_image"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="12dp"
+            android:contentDescription="@string/todo"
+            app:layout_constraintBottom_toTopOf="@+id/tv_date"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.733"
+            app:layout_constraintStart_toEndOf="@+id/linearLayout"
+            app:layout_constraintTop_toBottomOf="@+id/view"
+            tools:ignore="MissingConstraints" />
+
         <TextView
             android:id="@+id/tv_date"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="4dp"
             android:gravity="bottom|right"
             android:text="@string/date"
             android:textColor="#000000"
             android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.698"
-            app:layout_constraintStart_toEndOf="@+id/linearLayout"
+            app:layout_constraintEnd_toEndOf="@+id/main_workout_image"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/main_workout_image"
+            app:layout_constraintTop_toBottomOf="@+id/main_workout_image"
             tools:ignore="RtlHardcoded,SmallSp" />
 
         <LinearLayout
-            android:id="@+id/linearLayout3"
-            android:layout_width="69dp"
-            android:layout_height="90dp"
-            android:layout_marginStart="35dp"
-            android:layout_marginBottom="5dp"
-            android:gravity="bottom"
+            android:id="@+id/linearLayout2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="2dp"
             android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/linearLayout"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent">
+            app:flow_verticalGap="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayout3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/linearLayout3"
+            app:layout_constraintVertical_bias="1.0"
+            tools:ignore="MissingConstraints">
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginBottom="4dp"
+                android:contentDescription="@string/todo"
+                app:layout_constraintBottom_toTopOf="@+id/imageView4"
+                app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
+                app:layout_constraintHorizontal_bias="0.458"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view"
+                app:layout_constraintVertical_bias="0.894"
+                app:srcCompat="@drawable/six_pack"
+                tools:ignore="UnknownIdInLayout" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:contentDescription="@string/todo"
+                app:layout_constraintBottom_toTopOf="@+id/imageView5"
+                app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
+                app:layout_constraintHorizontal_bias="0.47"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/baseline_fitness_center_black_24dp" />
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginTop="2dp"
+                android:contentDescription="@string/todo"
+                app:layout_constraintBottom_toTopOf="@+id/imageView2"
+                app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
+                app:layout_constraintHorizontal_bias="0.466"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/weight_kilogram_icon_138014" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:contentDescription="@string/todo"
+                app:layout_constraintBottom_toTopOf="@+id/imageView3"
+                app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
+                app:layout_constraintHorizontal_bias="0.35"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/baseline_timer_black_24dp"
+                tools:ignore="MissingConstraints" />
+
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+
+                android:contentDescription="@string/todo"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
+                app:layout_constraintHorizontal_bias="0.466"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/baseline_loop_black_24dp"
+                tools:ignore="MissingConstraints,VectorDrawableCompat" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+            app:layout_constraintStart_toEndOf="@+id/linearLayout2"
+            app:layout_constraintTop_toTopOf="@+id/linearLayout"
+            app:layout_constraintVertical_bias="0.0">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="left"
                 android:text="@string/muscle"
                 android:textColor="#000000"
                 android:textSize="13sp"
-                android:textStyle="normal"
+                android:textStyle="bold"
                 tools:ignore="RtlHardcoded" />
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="left"
                 android:text="@string/sets_"
                 android:textColor="#000000"
                 android:textSize="13sp"
-                android:textStyle="normal"
+                android:textStyle="bold"
                 tools:ignore="RtlHardcoded" />
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="left"
                 android:text="@string/weight_"
                 android:textColor="#000000"
                 android:textSize="13sp"
-                android:textStyle="normal"
+                android:textStyle="bold"
                 tools:ignore="RtlHardcoded" />
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="left"
                 android:text="@string/breaktime"
                 android:textColor="#000000"
                 android:textSize="13sp"
+                android:textStyle="bold"
                 tools:ignore="RtlHardcoded" />
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="left"
                 android:text="@string/repeat_"
                 android:textColor="#000000"
                 android:textSize="13sp"
+                android:textStyle="bold"
                 tools:ignore="RtlHardcoded" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/linearLayout"
-            android:layout_width="60dp"
-            android:layout_height="90dp"
-            android:layout_marginStart="107dp"
-            android:layout_marginBottom="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="22dp"
             android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/linearLayout3">
+            app:layout_constraintBottom_toBottomOf="@+id/tv_date"
+            app:layout_constraintEnd_toStartOf="@+id/main_workout_image"
+            app:layout_constraintStart_toEndOf="@+id/linearLayout3"
+            app:layout_constraintTop_toTopOf="@+id/main_workout_image"
+            tools:ignore="MissingConstraints">
 
             <TextView
                 android:id="@+id/tv_Muscle"
                 android:layout_width="match_parent"
-                android:layout_height="17dp"
-                android:layout_marginTop="4dp"
+                android:layout_height="wrap_content"
                 android:gravity="left"
+                android:text="one"
                 android:textColor="#000000"
                 android:textSize="13sp"
                 tools:ignore="RtlHardcoded" />
@@ -153,8 +251,9 @@
             <TextView
                 android:id="@+id/tv_Sets"
                 android:layout_width="match_parent"
-                android:layout_height="17dp"
+                android:layout_height="wrap_content"
                 android:gravity="left"
+                android:text="two"
                 android:textColor="#000000"
                 android:textSize="13sp"
                 tools:ignore="RtlHardcoded" />
@@ -162,8 +261,9 @@
             <TextView
                 android:id="@+id/tv_weight"
                 android:layout_width="match_parent"
-                android:layout_height="17dp"
+                android:layout_height="wrap_content"
                 android:gravity="left"
+                android:text="three"
                 android:textColor="#000000"
                 android:textSize="13sp"
                 tools:ignore="RtlHardcoded" />
@@ -171,8 +271,9 @@
             <TextView
                 android:id="@+id/tv_break"
                 android:layout_width="match_parent"
-                android:layout_height="17dp"
+                android:layout_height="wrap_content"
                 android:gravity="left"
+                android:text="four"
                 android:textColor="#000000"
                 android:textSize="13sp"
                 tools:ignore="RtlHardcoded" />
@@ -180,90 +281,13 @@
             <TextView
                 android:id="@+id/tv_repeat"
                 android:layout_width="match_parent"
-                android:layout_height="17dp"
+                android:layout_height="wrap_content"
                 android:gravity="left"
+                android:text="five"
                 android:textColor="#000000"
                 android:textSize="13sp"
                 tools:ignore="RtlHardcoded" />
         </LinearLayout>
-
-
-        <ImageView
-            android:id="@+id/main_workout_image"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="4dp"
-            android:contentDescription="@string/todo"
-            app:layout_constraintBottom_toTopOf="@+id/tv_date"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.674"
-            app:layout_constraintStart_toEndOf="@+id/linearLayout"
-            tools:ignore="MissingConstraints" />
-
-        <ImageView
-            android:id="@+id/imageView6"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:layout_marginBottom="2dp"
-            app:layout_constraintBottom_toTopOf="@+id/imageView4"
-            app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
-            app:layout_constraintHorizontal_bias="0.47"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view"
-            app:layout_constraintVertical_bias="0.894"
-            app:srcCompat="@drawable/six_pack"
-            android:contentDescription="@string/todo"/>
-
-        <ImageView
-            android:id="@+id/imageView5"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:layout_marginBottom="2dp"
-            app:layout_constraintBottom_toTopOf="@+id/imageView2"
-            app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
-            app:layout_constraintHorizontal_bias="0.466"
-            app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/weight_kilogram_icon_138014"
-            android:contentDescription="@string/todo"/>
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:layout_marginStart="2dp"
-            android:layout_marginBottom="2dp"
-            android:contentDescription="@string/todo"
-            app:layout_constraintBottom_toTopOf="@+id/imageView3"
-            app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
-            app:layout_constraintHorizontal_bias="0.375"
-            app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/baseline_timer_black_24dp"
-            tools:ignore="MissingConstraints" />
-
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:layout_marginBottom="4dp"
-            app:layout_constraintBottom_toTopOf="@+id/imageView5"
-            app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
-            app:layout_constraintHorizontal_bias="0.47"
-            app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/baseline_fitness_center_black_24dp"
-            android:contentDescription="@string/todo"/>
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:layout_marginBottom="5dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
-            app:layout_constraintHorizontal_bias="0.466"
-            app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/baseline_loop_black_24dp"
-            tools:ignore="MissingConstraints,VectorDrawableCompat"
-            android:contentDescription="@string/todo"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
