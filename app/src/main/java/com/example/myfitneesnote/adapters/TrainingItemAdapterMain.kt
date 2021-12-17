@@ -38,12 +38,12 @@ class TrainingItemAdapterMain(options: FirestoreRecyclerOptions<Workout>)
             holder.repeat.text     = "${training.repeat} x"
             holder.breakTime.text  = "${training.BreakTime} min"
             holder.date.text       =    training.currentDateTime
-
+/*
         if (training.GymType == "HOME") {
             holder.image.setImageResource(R.drawable.workout_home)
         }else{
             holder.image.setImageResource(R.drawable.bench_press)
-        }
+        }*/
     }
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val gymName   : TextView = itemView.tv_GymName

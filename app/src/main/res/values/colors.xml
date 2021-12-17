@@ -11,6 +11,12 @@
     <color name="colorAccentPrimaryDark">#151B40</color>
     <color name="colorOfStutusBar">#00c2ff</color>
     <color name="Statusbar">  #2998f9</color>
+    <color name="backgroundColor">#f5f5f5</color>
+    <color name="toolbarColor">#FFFFFF</color>
+    <color name="lightBlue">#FFFFFF</color>
+
+
+
 
 
 

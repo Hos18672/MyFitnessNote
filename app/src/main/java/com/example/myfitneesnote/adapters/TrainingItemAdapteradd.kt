@@ -32,11 +32,11 @@ import kotlinx.android.synthetic.main.item_training.view.*
             holder.repeat.text     = "${training.repeat} x"
             holder.breakTime.text  = "${training.BreakTime} min"
             holder.date.text       = training.currentDateTime
-            if (training.GymType == "HOME") {
+ /*           if (training.GymType == "HOME") {
                 holder.image.setImageResource(workout_home)
             }else{
                 holder.image.setImageResource(bench_press)
-            }
+            }*/
 
 
     }

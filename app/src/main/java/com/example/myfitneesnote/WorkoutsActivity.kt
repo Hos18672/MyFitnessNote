@@ -31,7 +31,6 @@ class WorkoutsActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_training)
-        window.navigationBarColor = ContextCompat.getColor(this, R.color.colorOfStutusBar)
         recyclerView = findViewById(R.id.rv_trainings_list)
         toolBar_workouts_activity.elevation = 0f
         recyclerView.addOnScrollListener(object: RecyclerView.OnScrollListener() {

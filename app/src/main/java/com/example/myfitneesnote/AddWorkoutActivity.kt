@@ -42,7 +42,6 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
         setContentView(layout.activity_add_workout)
         onClick()
         setupActionBar()
-        window.navigationBarColor = ContextCompat.getColor(this, color.colorOfStutusBar)
         gymType = intent.getStringExtra("GymName").toString()
         muskelName = intent.getStringExtra("MuskelName").toString()
         trainingsName = intent.getStringExtra("MuskelName")
@@ -89,15 +88,6 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
 
     private fun String.toEditable(): Editable = Editable.Factory.getInstance().newEditable(this)
     private fun onClick() {
-        btnBackNewWorkout.setOnClickListener {
-            val intent = Intent(this, MuskelGroupActivity::class.java)
-            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
-                this,
-                btnBackNewWorkout,
-                "addTrainingBtn"
-            )
-            startActivity(intent, options.toBundle())
-        }
         btn_back_home.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
             finishAffinity()

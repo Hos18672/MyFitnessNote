@@ -8,9 +8,11 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.ViewTreeObserver
 import android.view.animation.AnimationUtils
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.ScrollView
 import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityOptionsCompat
@@ -53,6 +55,7 @@ import java.time.LocalDate.parse
 import java.time.chrono.ChronoLocalDate
 import java.time.format.DateTimeFormatter
 import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_training.*
 
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -78,6 +81,23 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         if (!checkForInternet(this)) {
             Toast.makeText(this, "No internet connection!", Toast.LENGTH_SHORT).show()
         }
+        if (!scrollView_main.canScrollVertically(1)) {
+            constraintLayout3.elevation = 10f
+        }
+        if (!scrollView_main.canScrollVertically(-1)) {
+            constraintLayout3.elevation = 5f
+        }
+
+        scrollView_main.viewTreeObserver
+            .addOnScrollChangedListener {
+                if (!scrollView_main.canScrollVertically(-1)) {
+                    constraintLayout3.elevation = 0f
+                }
+                else{
+                    constraintLayout3.elevation = 50f
+                }
+            }
+
     }
 
     private fun getCurrentUserId(): String {
@@ -109,7 +129,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         val mainMenu: ImageButton = findViewById(id.main_menu)
         val addMenu: ImageView = findViewById(id.Add_main)
         val chatMain: ImageButton = findViewById(id.chat_main)
-        val mainImage: ImageButton = findViewById(id.tv_main_profile_image)
+         val mainImage: ImageButton = findViewById(id.mainImage)
         val diagramMain: ImageButton = findViewById(id.main_diagramm)
         val tip1: CardView = findViewById(id.EZ_bar_curl)
         val tip2: CardView = findViewById(id.One_arm_dumbbell)
@@ -126,7 +146,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             val intent = Intent(this, MyProfileActivity::class.java)
             val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
                 this,
-                tv_main_profile_image,
+                mainImage,
                 "profileImage"
             )
             startActivity(intent, options.toBundle())

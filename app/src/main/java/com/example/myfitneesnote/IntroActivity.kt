@@ -27,8 +27,6 @@ class IntroActivity : BaseActivity() {
         val window: Window = this.window
         window.addFlags(FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-        window.navigationBarColor = ContextCompat.getColor(this, R.color.colorOfStutusBar)
-        window.statusBarColor = ContextCompat.getColor(this, R.color.colorOfStutusBar)
         //fullscreen()
         animat()
         intro_login_button.setOnClickListener {

@@ -39,8 +39,6 @@ class SecurityActivity : BaseActivity() {
                 Toast.makeText(this, "No internet connection!", Toast.LENGTH_SHORT).show()
             }
         }
-        btnback.setOnClickListener { onBackPressed()
-            finish()}
         auth = Firebase.auth
     }
     /*    private fun updateUser2(currentPassword :String, password1: String,password2: String, email: String) {

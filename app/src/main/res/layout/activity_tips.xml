@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main_back"
+    android:background="#fafafa"
     tools:context=".TipsActivity">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar_Tipps"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#00c2ff"
+        android:background="@color/toolbarColor"
         tools:ignore="MissingConstraints">
         <TextView
             android:id="@+id/toolBar_textView"

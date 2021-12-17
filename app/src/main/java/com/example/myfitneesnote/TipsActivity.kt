@@ -19,7 +19,6 @@ class TipsActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tips)
          setupActionBar()
-        window.statusBarColor = ContextCompat.getColor(this, R.color.colorOfStutusBar)
         val topic = findViewById<TextView>(R.id.Topic)
         val pic = findViewById<ImageView>(R.id.Picture) as ImageView
         val disc = findViewById<TextView>(R.id.Description)

@@ -31,11 +31,6 @@ class MyProfileActivity : BaseActivity() {
        // fullscreen()
         setupActionBar()
         userProfileData()
-        btnback_profile.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, imageView8, "profileImage")
-            startActivity(intent, options.toBundle())
-            finish()}
         mFirebaseInstance = FirebaseDatabase.getInstance()
         // get reference to 'users' node
         mFirebaseDatabase = mFirebaseInstance!!.getReference("users")

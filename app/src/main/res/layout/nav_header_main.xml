@@ -11,13 +11,14 @@
         android:id="@+id/main_drawer_profile_photo"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         android:contentDescription="@string/todo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.138"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/circle_profile" />
+        app:srcCompat="@drawable/profile_icon" />
 
     <TextView
         android:id="@+id/tv_username"

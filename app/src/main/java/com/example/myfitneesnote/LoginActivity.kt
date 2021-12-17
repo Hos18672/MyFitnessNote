@@ -24,10 +24,6 @@ class LoginActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        window.statusBarColor = ContextCompat.getColor(this, R.color.Statusbar)
-        window.navigationBarColor = ContextCompat.getColor(this, R.color.colorOfStutusBar)
-        //window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE or SOFT_INPUT_ADJUST_RESIZE)
-        //fullscreen()
         setupActionBar()
         login_signUpBtn.setOnClickListener {
             val intent =  Intent(this, SignUpActivity::class.java)

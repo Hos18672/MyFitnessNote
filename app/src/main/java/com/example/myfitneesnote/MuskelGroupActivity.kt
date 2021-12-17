@@ -8,6 +8,9 @@ import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityOptionsCompat
 import com.google.android.material.card.MaterialCardView
+import kotlinx.android.synthetic.main.activity_add_workout.*
+import kotlinx.android.synthetic.main.activity_main_layout.*
+import kotlinx.android.synthetic.main.activity_main_layout.constraintLayout3
 import kotlinx.android.synthetic.main.activity_muskel_group.*
 
 class MuskelGroupActivity : BaseActivity() {
@@ -44,6 +47,17 @@ class MuskelGroupActivity : BaseActivity() {
         upperabs_btn.setOnClickListener{ setOnclickMuscle(upperabs_btn as MaterialCardView) }
         //shoulder muscle
         shoulder_btn.setOnClickListener{ setOnclickMuscle(shoulder_btn as CardView) }
+
+
+        scrollView2.viewTreeObserver
+            .addOnScrollChangedListener {
+                if (!scrollView2.canScrollVertically(-1)) {
+                    toolBar_muscle_gruppe_activity.elevation = 0f
+                }
+                else{
+                    toolBar_muscle_gruppe_activity.elevation = 50f
+                }
+            }
     }
 
     private  fun setOnclickMuscle(btn: CardView){

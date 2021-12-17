@@ -30,11 +30,11 @@ class TrainingItemAdapter(options: FirestoreRecyclerOptions<Workout>) : Firestor
             holder.repeat.text     = "${training.repeat} x"
             holder.breakTime.text  = "${training.BreakTime} min"
             holder.date.text       = training.currentDateTime
-        if (training.GymType == "HOME") {
+/*        if (training.GymType == "HOME") {
             holder.image.setImageResource(workout_home)
         }else{
             holder.image.setImageResource(bench_press)
-        }
+        }*/
     }
      fun deleteItem(i: Int){
         snapshots.getSnapshot(i).reference.delete()

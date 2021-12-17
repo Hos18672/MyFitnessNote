@@ -29,8 +29,6 @@ class BodyInfo : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_body_info)
-        window.statusBarColor = ContextCompat.getColor(this, R.color.colorOfStutusBar)
-        window.navigationBarColor = ContextCompat.getColor(this, R.color.colorOfStutusBar)
 //        setupActionBar()
         mFirebaseInstance = FirebaseDatabase.getInstance()
         // get reference to 'users' node
