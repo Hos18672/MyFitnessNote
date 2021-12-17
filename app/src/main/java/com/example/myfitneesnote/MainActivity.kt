@@ -4,9 +4,11 @@ package com.example.myfitneesnote
 import android.R
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.view.MenuItem
 import android.view.ViewTreeObserver
 import android.view.animation.AnimationUtils
@@ -55,6 +57,8 @@ import java.time.LocalDate.parse
 import java.time.chrono.ChronoLocalDate
 import java.time.format.DateTimeFormatter
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.widget.SwitchCompat
 import kotlinx.android.synthetic.main.activity_training.*
 
 
@@ -97,7 +101,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                     constraintLayout3.elevation = 50f
                 }
             }
-
     }
 
     private fun getCurrentUserId(): String {
@@ -129,12 +132,13 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         val mainMenu: ImageButton = findViewById(id.main_menu)
         val addMenu: ImageView = findViewById(id.Add_main)
         val chatMain: ImageButton = findViewById(id.chat_main)
-         val mainImage: ImageButton = findViewById(id.mainImage)
+        val mainImage: ImageButton = findViewById(id.mainImage)
         val diagramMain: ImageButton = findViewById(id.main_diagramm)
         val tip1: CardView = findViewById(id.EZ_bar_curl)
         val tip2: CardView = findViewById(id.One_arm_dumbbell)
         val tip3: CardView = findViewById(id.Dumbbell)
         val tip4: CardView = findViewById(id.Seated_biceps_curls)
+
 
         tipsItemsClick(tip1)
         tipsItemsClick(tip2)
@@ -201,6 +205,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
         }
+        
         toggleButtonsGroup.checkedButtonId
         toggleButtonsGroup.isSingleSelection = true
         toggleButtonsGroup.addOnButtonCheckedListener { _, checkedId, isChecked ->
@@ -245,6 +250,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             id.nav_Settings -> {
                 startActivity(Intent(this, SecurityActivity::class.java))
             }
+
             id.btn_sing_out_draw_layout -> {
                 FirebaseAuth.getInstance().signOut()
                 val intent = Intent(this, IntroActivity::class.java)

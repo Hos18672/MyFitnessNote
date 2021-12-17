@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="#FFFFFF"
+    android:background="@color/backgroundColor"
     tools:context="com.example.myfitneesnote.SplashActivity">
     <LinearLayout
         android:id="@+id/splash_lll"
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:text="@string/my_fitness_note"
-            android:textColor="#000000"
+            android:textColor="@color/textColor"
             android:textSize="40sp"
             tools:layout_editor_absoluteX="165dp"
             tools:layout_editor_absoluteY="218dp" />

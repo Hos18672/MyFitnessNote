@@ -14,7 +14,7 @@
         android:id="@+id/toolBar_my_profile_activity"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/white"
+        android:background="@color/toolbarColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:text="@string/profile"
-            android:textColor="#000000"
+            android:textColor="@color/textColor"
             android:textSize="15sp"
             tools:layout_editor_absoluteX="165dp"
             tools:layout_editor_absoluteY="218dp" />
@@ -62,6 +62,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="30dp"
                 app:cardCornerRadius="15dp"
+                android:backgroundTint="@color/backgroundColorNav"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -294,7 +295,8 @@
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/profile_icon"
+                android:backgroundTint="@color/textColor"
+                android:background="@drawable/profile_icon"
                 tools:targetApi="lollipop" />
 
 

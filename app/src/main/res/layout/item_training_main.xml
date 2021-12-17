@@ -5,6 +5,7 @@
     android:layout_height="130dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="?attr/selectableItemBackground"
+    android:backgroundTint="@color/backgroundColorNav"
     android:orientation="vertical"
     app:cardCornerRadius="10dp"
     app:cardElevation="10dp"
@@ -27,7 +28,7 @@
             android:layout_height="20dp"
             android:layout_marginBottom="8dp"
             android:gravity="center"
-            android:textColor="#000000"
+            android:textColor="@color/textColor"
             android:textSize="15sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout"
@@ -42,7 +43,7 @@
             android:layout_height="0.6dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:background="@android:color/darker_gray"
+            android:background="@color/textColor"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -73,7 +74,7 @@
             android:layout_marginBottom="4dp"
             android:gravity="bottom|right"
             android:text="@string/date"
-            android:textColor="#000000"
+            android:textColor="@color/textColor"
             android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/main_workout_image"
@@ -108,7 +109,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view"
                 app:layout_constraintVertical_bias="0.894"
-                app:srcCompat="@drawable/six_pack"
+                android:background="@drawable/six_pack"
+                android:backgroundTint="@color/textColor"
                 tools:ignore="UnknownIdInLayout" />
 
             <ImageView
@@ -120,7 +122,8 @@
                 app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
                 app:layout_constraintHorizontal_bias="0.47"
                 app:layout_constraintStart_toStartOf="parent"
-                app:srcCompat="@drawable/baseline_fitness_center_black_24dp" />
+                android:backgroundTint="@color/textColor"
+                android:background="@drawable/baseline_fitness_center_black_24dp" />
 
             <ImageView
                 android:id="@+id/imageView5"
@@ -132,7 +135,8 @@
                 app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
                 app:layout_constraintHorizontal_bias="0.466"
                 app:layout_constraintStart_toStartOf="parent"
-                app:srcCompat="@drawable/weight_kilogram_icon_138014" />
+                android:backgroundTint="@color/textColor"
+                android:background="@drawable/weight_kilogram_icon_138014" />
 
             <ImageView
                 android:id="@+id/imageView2"
@@ -143,7 +147,8 @@
                 app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
                 app:layout_constraintHorizontal_bias="0.35"
                 app:layout_constraintStart_toStartOf="parent"
-                app:srcCompat="@drawable/baseline_timer_black_24dp"
+                android:backgroundTint="@color/textColor"
+                android:background="@drawable/baseline_timer_black_24dp"
                 tools:ignore="MissingConstraints" />
 
 
@@ -151,13 +156,13 @@
                 android:id="@+id/imageView3"
                 android:layout_width="16dp"
                 android:layout_height="16dp"
-
                 android:contentDescription="@string/todo"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
                 app:layout_constraintHorizontal_bias="0.466"
                 app:layout_constraintStart_toStartOf="parent"
-                app:srcCompat="@drawable/baseline_loop_black_24dp"
+                android:backgroundTint="@color/textColor"
+                android:background="@drawable/baseline_loop_black_24dp"
                 tools:ignore="MissingConstraints,VectorDrawableCompat" />
         </LinearLayout>
 
@@ -179,7 +184,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="left"
                 android:text="@string/muscle"
-                android:textColor="#000000"
+                android:textColor="@color/textColor"
                 android:textSize="13sp"
                 android:textStyle="bold"
                 tools:ignore="RtlHardcoded" />
@@ -189,7 +194,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="left"
                 android:text="@string/sets_"
-                android:textColor="#000000"
+                android:textColor="@color/textColor"
                 android:textSize="13sp"
                 android:textStyle="bold"
                 tools:ignore="RtlHardcoded" />
@@ -199,7 +204,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="left"
                 android:text="@string/weight_"
-                android:textColor="#000000"
+                android:textColor="@color/textColor"
                 android:textSize="13sp"
                 android:textStyle="bold"
                 tools:ignore="RtlHardcoded" />
@@ -209,7 +214,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="left"
                 android:text="@string/breaktime"
-                android:textColor="#000000"
+                android:textColor="@color/textColor"
                 android:textSize="13sp"
                 android:textStyle="bold"
                 tools:ignore="RtlHardcoded" />
@@ -219,7 +224,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="left"
                 android:text="@string/repeat_"
-                android:textColor="#000000"
+                android:textColor="@color/textColor"
                 android:textSize="13sp"
                 android:textStyle="bold"
                 tools:ignore="RtlHardcoded" />
@@ -244,7 +249,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="left"
                 android:text="one"
-                android:textColor="#000000"
+                android:textColor="@color/textColor"
                 android:textSize="13sp"
                 tools:ignore="RtlHardcoded" />
 
@@ -254,7 +259,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="left"
                 android:text="two"
-                android:textColor="#000000"
+                android:textColor="@color/textColor"
                 android:textSize="13sp"
                 tools:ignore="RtlHardcoded" />
 
@@ -264,7 +269,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="left"
                 android:text="three"
-                android:textColor="#000000"
+                android:textColor="@color/textColor"
                 android:textSize="13sp"
                 tools:ignore="RtlHardcoded" />
 
@@ -274,7 +279,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="left"
                 android:text="four"
-                android:textColor="#000000"
+                android:textColor="@color/textColor"
                 android:textSize="13sp"
                 tools:ignore="RtlHardcoded" />
 
@@ -284,7 +289,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="left"
                 android:text="five"
-                android:textColor="#000000"
+                android:textColor="@color/textColor"
                 android:textSize="13sp"
                 tools:ignore="RtlHardcoded" />
         </LinearLayout>

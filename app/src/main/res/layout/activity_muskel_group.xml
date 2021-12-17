@@ -11,7 +11,7 @@
         android:id="@+id/toolBar_muscle_gruppe_activity"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:background="@color/white"
+        android:background="@color/toolbarColor"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,8 +24,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="left|center"
             android:text="@string/muscle_group"
-            android:textColor="#000000"
-            android:textSize="15sp" />
+            android:textColor="@color/textColor"
+            android:textSize="15sp"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="10dp" />
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -63,7 +65,7 @@
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="15dp"
                     android:layout_marginTop="10dp"
-                    android:backgroundTint="@color/lightBlue"
+                    android:backgroundTint="@color/backgroundColorNav"
                     android:contentDescription="@string/chest"
                     android:paddingStart="20dp"
                     android:textSize="20sp"
@@ -85,7 +87,7 @@
 
                             android:layout_marginStart="16dp"
                             android:text="@string/chest"
-                            android:textColor="#000000"
+                            android:textColor="@color/textColor"
                             android:textSize="35sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -100,7 +102,8 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/icons8_chest_100"
+                            android:backgroundTint="@color/textColor"
+                            android:background="@drawable/icons8_chest_100"
                             tools:ignore="ContentDescription" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
@@ -112,7 +115,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="15dp"
-                    android:backgroundTint="@color/lightBlue"
+                    android:backgroundTint="@color/backgroundColorNav"
                     android:contentDescription="@string/biceps"
                     android:paddingStart="20dp"
                     android:text="@string/biceps"
@@ -134,7 +137,7 @@
                             android:layout_gravity="left|center"
                             android:layout_marginStart="16dp"
                             android:text="@string/biceps"
-                            android:textColor="#000000"
+                            android:textColor="@color/textColor"
                             android:textSize="35sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -151,7 +154,8 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/icons8_biceps_100" />
+                            android:backgroundTint="@color/textColor"
+                            android:background="@drawable/icons8_biceps_100" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -162,7 +166,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="15dp"
-                    android:backgroundTint="@color/lightBlue"
+                    android:backgroundTint="@color/backgroundColorNav"
                     android:contentDescription="triceps"
                     android:paddingStart="20dp"
                     android:text="@string/triceps"
@@ -185,7 +189,7 @@
                             android:layout_gravity="left|center"
                             android:layout_marginStart="16dp"
                             android:text="@string/triceps"
-                            android:textColor="#000000"
+                            android:textColor="@color/textColor"
                             android:textSize="35sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -202,7 +206,8 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/icons8_triceps_100" />
+                            android:backgroundTint="@color/textColor"
+                            android:background="@drawable/icons8_triceps_100" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -213,7 +218,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="15dp"
-                    android:backgroundTint="@color/lightBlue"
+                    android:backgroundTint="@color/backgroundColorNav"
                     android:contentDescription="forearms"
                     android:paddingStart="20dp"
                     android:text="@string/forearms"
@@ -236,7 +241,7 @@
                             android:layout_gravity="left|center"
                             android:layout_marginStart="16dp"
                             android:text="@string/forearms"
-                            android:textColor="#000000"
+                            android:textColor="@color/textColor"
                             android:textSize="35sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -253,7 +258,8 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/icons8_forearm_100" />
+                            android:backgroundTint="@color/textColor"
+                            android:background="@drawable/icons8_forearm_100" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -264,7 +270,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="15dp"
-                    android:backgroundTint="@color/lightBlue"
+                    android:backgroundTint="@color/backgroundColorNav"
                     android:contentDescription="@string/traps"
                     android:paddingStart="20dp"
                     android:text="@string/traps"
@@ -287,7 +293,7 @@
                             android:layout_gravity="left|center"
                             android:layout_marginStart="16dp"
                             android:text="@string/traps"
-                            android:textColor="#000000"
+                            android:textColor="@color/textColor"
                             android:textSize="35sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -304,7 +310,8 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/icons8_trapezius_100" />
+                            android:backgroundTint="@color/textColor"
+                            android:background="@drawable/icons8_trapezius_100" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -315,7 +322,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="15dp"
-                    android:backgroundTint="@color/lightBlue"
+                    android:backgroundTint="@color/backgroundColorNav"
                     android:contentDescription="@string/abs"
                     android:paddingStart="20dp"
                     android:text="@string/abs"
@@ -338,7 +345,7 @@
                             android:layout_gravity="left|center"
                             android:layout_marginStart="16dp"
                             android:text="@string/abs"
-                            android:textColor="#000000"
+                            android:textColor="@color/textColor"
                             android:textSize="35sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -356,7 +363,8 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/fitnessabs" />
+                            android:backgroundTint="@color/textColor"
+                            android:background="@drawable/fitnessabs" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -367,7 +375,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="15dp"
-                    android:backgroundTint="@color/lightBlue"
+                    android:backgroundTint="@color/backgroundColorNav"
                     android:contentDescription="@string/shoulder"
                     android:paddingStart="20dp"
                     android:text="@string/shoulder"
@@ -390,7 +398,7 @@
                             android:layout_gravity="left|center"
                             android:layout_marginStart="16dp"
                             android:text="@string/shoulder"
-                            android:textColor="#000000"
+                            android:textColor="@color/textColor"
                             android:textSize="35sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -406,7 +414,8 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/icons8_shoulders_100" />
+                            android:backgroundTint="@color/textColor"
+                            android:background="@drawable/icons8_shoulders_100" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>

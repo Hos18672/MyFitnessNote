@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ic_splash_background"
+    android:background="@color/backgroundColor"
     tools:context=".BodyInfo">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolBar_info_activity"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:backgroundTint="@color/textColor"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
@@ -23,9 +24,8 @@
                 android:id="@+id/toolBar_textView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
                 android:text="Info"
-                android:textColor="#000000"
+                android:textColor="@color/textColor"
                 android:textSize="15sp"
                 tools:layout_editor_absoluteX="165dp"
                 tools:layout_editor_absoluteY="218dp" />
@@ -51,7 +51,7 @@
                 android:layout_marginTop="60dp"
                 android:gravity="center"
                 android:text="@string/info"
-                android:textColor="#000000"
+                android:textColor="@color/textColor"
                 android:textSize="35sp"
                 app:layout_constraintBottom_toTopOf="@+id/LoginCv"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -67,6 +67,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="32dp"
                 android:background="@color/white"
+                android:backgroundTint="@color/backgroundColorNav"
                 android:gravity="center"
                 android:paddingTop="30dp"
                 android:paddingBottom="30dp"
@@ -108,6 +109,10 @@
                             android:hint="@string/your_age"
                             android:inputType="textEmailAddress"
                             android:textAlignment="viewStart"
+                            android:textColor="@color/textColor"
+                            android:textColorHighlight="@color/textColor"
+                            android:textColorHint="@color/textColor"
+                            android:textColorLink="@color/textColor"
                             android:textSize="13sp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -135,6 +140,10 @@
                             android:hint="@string/your_height"
                             android:inputType="textEmailAddress"
                             android:textAlignment="viewStart"
+                            android:textColor="@color/textColor"
+                            android:textColorHighlight="@color/textColor"
+                            android:textColorHint="@color/textColor"
+                            android:textColorLink="@color/textColor"
                             android:textSize="13sp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -144,7 +153,7 @@
                         android:layout_height="30dp"
                         android:layout_marginEnd="32dp"
                         android:text="@string/cm"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="20sp"
                         app:layout_constraintBottom_toBottomOf="@+id/inputHeigh"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -177,6 +186,10 @@
                             android:hint="@string/your_weight"
                             android:inputType="textEmailAddress"
                             android:textAlignment="viewStart"
+                            android:textColor="@color/textColor"
+                            android:textColorHighlight="@color/textColor"
+                            android:textColorHint="@color/textColor"
+                            android:textColorLink="@color/textColor"
                             android:textSize="13sp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -187,7 +200,7 @@
                         android:layout_marginTop="24dp"
                         android:layout_marginEnd="32dp"
                         android:text="kg"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="20sp"
                         app:layout_constraintBottom_toBottomOf="@+id/inputWeight"
                         app:layout_constraintEnd_toEndOf="parent"

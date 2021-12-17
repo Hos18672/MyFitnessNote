@@ -11,7 +11,8 @@
         android:id="@+id/toolBar_add_workout_activity"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/white"
+        app:titleTextColor="@color/textColor"
+        android:background="@color/backgroundColorNav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -22,7 +23,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/new_training"
-            android:textColor="#000000"
+            android:textColor="@color/textColor"
             android:textSize="15sp" />
     </androidx.appcompat.widget.Toolbar>
 
@@ -57,7 +58,7 @@
                 android:gravity="center"
                 android:text="@string/test"
                 android:textAllCaps="true"
-                android:textColor="@android:color/black"
+                android:textColor="@color/textColor"
                 android:textSize="25sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/CV"
@@ -74,6 +75,7 @@
                 android:layout_marginBottom="16dp"
                 android:transitionName="addTrainingCv"
                 app:cardCornerRadius="15dp"
+                android:backgroundTint="@color/backgroundColorNav"
                 app:layout_constraintBottom_toTopOf="@+id/save_btn"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -98,12 +100,15 @@
                         android:layout_marginEnd="5dp"
                         android:layout_marginBottom="8dp"
                         android:outlineAmbientShadowColor="@color/colorPrimaryBlue"
+                        app:dateTextColor="@color/textColor"
+                        app:dayTextColor="@color/textColor"
                         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
                         app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
                         app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toStartOf="@+id/constraintLayout"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.171"></com.vivekkaushik.datepicker.DatePickerTimeline>
+                        app:layout_constraintVertical_bias="0.171"
+                        app:monthTextColor="@color/textColor"></com.vivekkaushik.datepicker.DatePickerTimeline>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraintLayout"
@@ -126,7 +131,8 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/tv_set"
                             app:layout_constraintVertical_bias="0.25"
-                            app:srcCompat="@drawable/baseline_fitness_center_black_24dp"
+                            android:backgroundTint="@color/textColor"
+                            android:background="@drawable/baseline_fitness_center_black_24dp"
                             tools:ignore="ContentDescription" />
 
                         <TextView
@@ -138,7 +144,7 @@
                             android:minWidth="60dp"
                             android:padding="0dp"
                             android:text="@string/sets"
-                            android:textColor="@android:color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="20sp"
                             app:layout_constraintBottom_toBottomOf="@+id/btn_set_minus"
                             app:layout_constraintEnd_toStartOf="@+id/btn_set_minus"
@@ -197,10 +203,11 @@
                             android:layout_width="30dp"
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
-                            android:background="@color/cardview_light_background"
                             android:gravity="center"
                             android:minHeight="40dp"
                             android:text="@string/x"
+                            android:textColor="@color/textColor"
+                            android:textColorHint="@color/colorAccent"
                             android:textSize="15sp"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="@+id/btn_set_plus"
@@ -254,7 +261,8 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/tv_break"
                             app:layout_constraintVertical_bias="0.35000002"
-                            app:srcCompat="@drawable/baseline_timer_black_24dp" />
+                            android:backgroundTint="@color/textColor"
+                            android:background="@drawable/baseline_timer_black_24dp" />
 
                         <TextView
                             android:id="@+id/tv_break"
@@ -264,7 +272,7 @@
                             android:gravity="center"
                             android:minWidth="60dp"
                             android:text="@string/Break"
-                            android:textColor="@android:color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="20sp"
                             app:layout_constraintBottom_toBottomOf="@+id/btn_break_minus"
                             app:layout_constraintEnd_toStartOf="@+id/btn_break_minus"
@@ -324,10 +332,10 @@
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
                             android:layout_marginEnd="2dp"
-                            android:background="@color/cardview_light_background"
                             android:gravity="center"
                             android:minHeight="40dp"
                             android:text="@string/min"
+                            android:textColor="@color/textColor"
                             android:textSize="15sp"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="@+id/btn_break_plus"
@@ -384,7 +392,8 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/tv_weight"
                             app:layout_constraintVertical_bias="0.22000003"
-                            app:srcCompat="@drawable/weight_kilogram_icon_138014" />
+                            android:backgroundTint="@color/textColor"
+                            android:background="@drawable/weight_kilogram_icon_138014" />
 
                         <TextView
                             android:id="@+id/tv_weight"
@@ -394,7 +403,7 @@
                             android:gravity="center"
                             android:minWidth="60dp"
                             android:text="@string/weight"
-                            android:textColor="@android:color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="20sp"
                             app:layout_constraintBottom_toBottomOf="@+id/btn_weight_minus"
                             app:layout_constraintEnd_toStartOf="@+id/btn_weight_minus"
@@ -452,10 +461,10 @@
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
                             android:layout_marginEnd="2dp"
-                            android:background="@color/cardview_light_background"
                             android:gravity="center"
                             android:minHeight="40dp"
                             android:text="@string/kg"
+                            android:textColor="@color/textColor"
                             android:textSize="15sp"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="@+id/btn_weight_plus"
@@ -508,7 +517,8 @@
                             app:layout_constraintEnd_toStartOf="@+id/tv_repeat"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/baseline_loop_black_24dp" />
+                            android:backgroundTint="@color/textColor"
+                            android:background="@drawable/baseline_loop_black_24dp" />
 
                         <TextView
                             android:id="@+id/tv_repeat"
@@ -518,7 +528,7 @@
                             android:gravity="center"
                             android:minWidth="60dp"
                             android:text="@string/repeat"
-                            android:textColor="@android:color/black"
+                            android:textColor="@color/textColor"
                             android:textSize="20sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toStartOf="@+id/btn_repeat_minus"
@@ -575,10 +585,10 @@
                             android:layout_width="30dp"
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
-                            android:background="@color/cardview_light_background"
                             android:gravity="center"
                             android:minHeight="40dp"
                             android:text="@string/x"
+                            android:textColor="@color/textColor"
                             android:textSize="15sp"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="@+id/btn_repeat_plus"

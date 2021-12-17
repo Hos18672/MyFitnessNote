@@ -6,14 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#fafafa"
+    android:background="@color/backgroundColor"
     tools:context=".MainActivity">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout3"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:minHeight="100dp"
-        android:background="#fafafa"
+        android:background="@color/backgroundColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -23,6 +23,7 @@
             android:layout_height="60dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
+            android:backgroundTint="@color/textColor"
             android:background="@drawable/menu_icon"
             android:contentDescription="@string/todo"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -37,6 +38,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="15dp"
             android:layout_marginBottom="8dp"
+            android:backgroundTint="@color/textColor"
             android:background="@drawable/profile_icon2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -72,7 +74,7 @@
                 android:elevation="15dp"
                 android:shadowColor="@color/black"
                 android:text="@string/today"
-                android:textColor="#010623"
+                android:textColor="@color/textColor"
                 android:textSize="30sp" />
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_trainings_list_main"
@@ -89,7 +91,7 @@
                 android:layout_marginBottom="15dp"
                 android:elevation="15dp"
                 android:text="@string/progress"
-                android:textColor="#010623"
+                android:textColor="@color/textColor"
                 android:textSize="30sp" />
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvLineChart"
@@ -103,12 +105,15 @@
                 android:outlineSpotShadowColor="@color/black"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="10dp"
+                android:background="@color/backgroundColor"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:background="@color/backgroundColor"
+                    android:backgroundTint="@color/toolbarColor">
                     <com.google.android.material.button.MaterialButtonToggleGroup
                         android:id="@+id/toggleButtonsGroup"
                         android:layout_width="match_parent"
@@ -122,52 +127,58 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:singleSelection="true"
                         tools:ignore="RtlHardcoded">
+
                         <Button
                             android:id="@+id/LastWeek"
                             style="@style/ToggleButton"
                             android:layout_width="60dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
-                            android:backgroundTint="@color/white"
+                            android:backgroundTint="@color/backgroundColor"
                             android:gravity="center"
                             android:text="@string/_1w"
-                            android:textColor="#00002E"
+                            android:textColor="@color/textColor"
                             android:textSize="12sp"
                             tools:ignore="SmallSp,UnusedAttribute" />
+
                         <Button
                             android:id="@+id/TwoWeeks"
                             style="@style/ToggleButton"
                             android:layout_width="60dp"
                             android:layout_height="wrap_content"
-                            android:background="@color/white"
-                            android:backgroundTint="@color/white"
+                            android:backgroundTint="@color/backgroundColor"
                             android:gravity="center"
                             android:text="@string/_2w"
-                            android:textColor="#00002E"
+                            android:textColor="@color/textColor"
                             android:textSize="12sp"
+                            app:backgroundTint="@color/backgroundColor"
                             tools:ignore="SmallSp,UnusedAttribute" />
+
                         <Button
                             android:id="@+id/ThreeWeeks"
                             style="@style/ToggleButton"
                             android:layout_width="60dp"
                             android:layout_height="wrap_content"
-                            android:backgroundTint="@color/white"
+                            android:backgroundTint="@color/backgroundColor"
                             android:gravity="center"
                             android:text="@string/_3w"
-                            android:textColor="#00002E"
+                            android:textColor="@color/textColor"
                             android:textSize="12sp"
+                            app:backgroundTint="@color/backgroundColor"
                             tools:ignore="SmallSp"
                             tools:targetApi="lollipop" />
+
                         <Button
                             android:id="@+id/OneMonth"
                             style="@style/ToggleButton"
                             android:layout_width="60dp"
                             android:layout_height="wrap_content"
-                            android:backgroundTint="@color/white"
+                            android:backgroundTint="@color/backgroundColor"
                             android:gravity="center"
                             android:text="@string/_1m"
-                            android:textColor="#00002E"
+                            android:textColor="@color/textColor"
                             android:textSize="12sp"
+                            app:backgroundTint="@color/backgroundColor"
                             tools:ignore="SmallSp,UnusedAttribute" />
                         <Button
                             android:id="@+id/TwoMonth"
@@ -180,17 +191,19 @@
                             android:textSize="15sp"
                             android:visibility="gone"
                             tools:ignore="SmallSp,UnusedAttribute" />
+
                         <Button
                             android:id="@+id/All"
                             style="@style/ToggleButton"
                             android:layout_width="60dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="5dp"
-                            android:backgroundTint="@color/white"
+                            android:backgroundTint="@color/backgroundColor"
                             android:gravity="center"
                             android:text="@string/all"
-                            android:textColor="#00002E"
+                            android:textColor="@color/textColor"
                             android:textSize="12sp"
+                            app:backgroundTint="@color/backgroundColor"
                             tools:ignore="SmallSp,UnusedAttribute" />
                     </com.google.android.material.button.MaterialButtonToggleGroup>
                     <com.github.mikephil.charting.charts.LineChart
@@ -219,7 +232,7 @@
                 android:layout_marginBottom="10dp"
                 android:elevation="15dp"
                 android:text="Training tips"
-                android:textColor="#010623"
+                android:textColor="@color/textColor"
                 android:textSize="30sp" />
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -230,6 +243,7 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="5dp"
                 android:gravity="center">
+
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/EZ_bar_curl"
                     android:layout_width="0dp"
@@ -240,6 +254,7 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:outlineSpotShadowColor="@color/black"
+                    app:cardBackgroundColor="@color/toolbarColor"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="5dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -248,19 +263,21 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:rippleColor="#4FB9FF"
                     tools:targetApi="lollipop">
+
                     <TextView
                         android:id="@+id/T1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="EZ Bar curl"
-                        android:textColor="#010B3E"
+                        android:textColor="@color/textColor"
                         android:textSize="20sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
                 </com.google.android.material.card.MaterialCardView>
+
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/One_arm_dumbbell"
                     android:layout_width="0dp"
@@ -271,6 +288,7 @@
                     android:focusable="true"
                     android:outlineSpotShadowColor="@color/black"
                     android:transitionName="trainingsBtn"
+                    app:cardBackgroundColor="@color/toolbarColor"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="5dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -280,6 +298,7 @@
                     app:rippleColor="#4FB9FF"
                     tools:ignore="UnusedAttribute"
                     tools:targetApi="lollipop">
+
                     <TextView
                         android:id="@+id/T2"
                         android:layout_width="wrap_content"
@@ -287,7 +306,7 @@
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:text="One arm dumbbell "
-                        android:textColor="#010B3E"
+                        android:textColor="@color/textColor"
                         android:textSize="20sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -304,6 +323,7 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="180dp"
                 android:gravity="center">
+
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/Dumbbell"
                     android:layout_width="0dp"
@@ -314,6 +334,7 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:outlineSpotShadowColor="@color/black"
+                    app:cardBackgroundColor="@color/toolbarColor"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="5dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -322,19 +343,21 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:rippleColor="#4FB9FF"
                     tools:targetApi="lollipop">
+
                     <TextView
                         android:id="@+id/T3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="Dumbbell curl "
-                        android:textColor="#010B3E"
+                        android:textColor="@color/textColor"
                         android:textSize="20sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
                 </com.google.android.material.card.MaterialCardView>
+
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/Seated_biceps_curls"
                     android:layout_width="0dp"
@@ -345,6 +368,7 @@
                     android:focusable="true"
                     android:outlineSpotShadowColor="@color/black"
                     android:transitionName="trainingsBtn"
+                    app:cardBackgroundColor="@color/toolbarColor"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="5dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -354,6 +378,7 @@
                     app:rippleColor="#4FB9FF"
                     tools:ignore="UnusedAttribute"
                     tools:targetApi="lollipop">
+
                     <TextView
                         android:id="@+id/T4"
                         android:layout_width="wrap_content"
@@ -362,7 +387,7 @@
                         android:layout_margin="5dp"
                         android:gravity="center"
                         android:text="@string/Seated_biceps_curls"
-                        android:textColor="#010B3E"
+                        android:textColor="@color/textColor"
                         android:textSize="20sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"

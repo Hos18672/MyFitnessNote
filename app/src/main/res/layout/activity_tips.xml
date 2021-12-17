@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fafafa"
+    android:background="@color/backgroundColor"
     tools:context=".TipsActivity">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar_Tipps"
@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:textColor="#000000"
+            android:textColor="@color/textColor"
             android:text="@string/tipps"
             android:textSize="15sp"
             tools:layout_editor_absoluteX="165dp"
@@ -50,7 +50,7 @@
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_marginStart="10dp"
-                    android:src="@drawable/ez_bar_curl"
+                    android:background="@drawable/ez_bar_curl"
                     android:layout_marginBottom="10dp"
                     tools:layout_editor_absoluteX="165dp"
                     tools:layout_editor_absoluteY="218dp"/>
@@ -60,7 +60,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:text="This is a Test"
-                    android:textColor="#000000"
+                    android:textColor="@color/textColor"
                     android:textSize="35sp"
                     android:textStyle="bold"
                     android:layout_margin="10dp"
@@ -74,7 +74,7 @@
                 android:layout_marginBottom="10dp"
                 android:layout_marginStart="20dp"
                 android:text="This is a Test"
-                android:textColor="#000000"
+                android:textColor="@color/textColor"
                 android:textSize="20sp" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
