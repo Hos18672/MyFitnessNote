@@ -7,8 +7,6 @@
     android:background="@color/backgroundColor"
     android:gravity="center"
     tools:context=".WorkoutsChoiceActivity">
-
-
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolBar_workout_activity"
             android:layout_width="match_parent"
@@ -73,7 +71,7 @@
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_gymType"
-            app:rippleColor="#EEF1F3"
+            app:rippleColor="#8ED1FF"
             tools:targetApi="lollipop">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -117,7 +115,7 @@
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_gym_workout"
-            app:rippleColor="#EEF1F3"
+            app:rippleColor="#8ED1FF"
             tools:ignore="KeyboardInaccessibleWidget,MissingConstraints"
             tools:targetApi="lollipop">
                 <androidx.constraintlayout.widget.ConstraintLayout

@@ -9,6 +9,7 @@
     android:backgroundTint="@color/toolbarColor"
     android:background="@color/toolbarColor"
     android:clickable="true"
+    app:rippleColor="#8ED1FF"
     card_view:cardElevation="2dp"
     android:layout_marginStart="10dp"
     android:layout_marginEnd="10dp"

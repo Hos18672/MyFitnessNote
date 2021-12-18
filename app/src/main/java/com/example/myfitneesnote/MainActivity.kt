@@ -144,7 +144,9 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         tipsItemsClick(tip2)
         tipsItemsClick(tip3)
         tipsItemsClick(tip4)
-
+        viewClick.setOnClickListener {
+            print("")
+        }
         mainImage.setOnClickListener {
             animate(mainImage)
             val intent = Intent(this, MyProfileActivity::class.java)

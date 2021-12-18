@@ -34,17 +34,6 @@ class ChatLogActivity : BaseActivity() {
         listenForMessages()
         this.window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE or WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         SendeBtn.setOnClickListener{
-            SendeBtn.animate().apply {
-                duration = 100
-                scaleYBy(.3f)
-                scaleXBy(.3f)
-            }.withEndAction {
-                SendeBtn.animate().apply {
-                    duration = 100
-                    scaleYBy(-.3f)
-                    scaleXBy(-.3f)
-                }
-            }.start()
             Log.d(TAG, "To send Message")
             if(editTextChatLog.text.toString() != ""){
                 performSendMessage()

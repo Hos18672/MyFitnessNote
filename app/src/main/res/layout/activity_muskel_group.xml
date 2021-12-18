@@ -71,6 +71,7 @@
                     android:textSize="20sp"
                     android:transitionName="addTrainingCv"
                     app:cardCornerRadius="15dp"
+                    app:rippleColor="#8ED1FF"
                     tools:ignore="RtlHardcoded,RtlSymmetry">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -122,6 +123,7 @@
                     android:textSize="20sp"
                     android:transitionName="addTrainingCv"
                     app:cardCornerRadius="15dp"
+                    app:rippleColor="#8ED1FF"
                     tools:ignore="RtlHardcoded,RtlSymmetry">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -173,6 +175,7 @@
                     android:textSize="20sp"
                     android:transitionName="addTrainingCv"
                     app:cardCornerRadius="15dp"
+                    app:rippleColor="#8ED1FF"
                     tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -225,6 +228,7 @@
                     android:textSize="20sp"
                     android:transitionName="addTrainingCv"
                     app:cardCornerRadius="15dp"
+                    app:rippleColor="#8ED1FF"
                     tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -277,6 +281,7 @@
                     android:textSize="20sp"
                     android:transitionName="addTrainingCv"
                     app:cardCornerRadius="15dp"
+                    app:rippleColor="#8ED1FF"
                     tools:ignore="RtlHardcoded,RtlSymmetry">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -329,6 +334,7 @@
                     android:textSize="20sp"
                     android:transitionName="addTrainingCv"
                     app:cardCornerRadius="15dp"
+                    app:rippleColor="#8ED1FF"
                     tools:ignore="RtlHardcoded,RtlSymmetry">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -382,6 +388,7 @@
                     android:textSize="20sp"
                     android:transitionName="addTrainingCv"
                     app:cardCornerRadius="15dp"
+                    app:rippleColor="#8ED1FF"
                     tools:ignore="RtlHardcoded,RtlSymmetry">
 
                     <androidx.constraintlayout.widget.ConstraintLayout

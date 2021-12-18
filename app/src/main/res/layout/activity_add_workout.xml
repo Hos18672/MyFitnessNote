@@ -10,7 +10,7 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar_add_workout_activity"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         app:titleTextColor="@color/textColor"
         android:background="@color/backgroundColorNav"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,7 +31,7 @@
         android:id="@+id/scrollView5"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -647,15 +647,15 @@
                     android:textAllCaps="false"
                     android:textColor="@color/black"
                     android:transitionName="trainingsBtn"
-                    app:cardCornerRadius="50dp"
+                    app:cardCornerRadius="15dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/btn_back_home"
                     app:layout_constraintStart_toStartOf="parent"
                     tools:targetApi="lollipop">
 
                     <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="309dp"
-                        android:layout_height="48dp"
+                        android:layout_width="50dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="center"
                         android:src="@drawable/plus_icon" />
                 </com.google.android.material.card.MaterialCardView>
@@ -665,12 +665,13 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginEnd="8dp"
-                    android:backgroundTint="@color/colorPrimary"
                     android:elevation="5dp"
                     android:layout_gravity="center"
                     android:text="Back to Home"
                     android:textAllCaps="false"
-                    app:cardCornerRadius="50dp"
+                    app:cardCornerRadius="15dp"
+                    app:rippleColor="#8ED1FF"
+                    android:backgroundTint="@color/backgroundColorNav"
                     app:layout_constraintBottom_toBottomOf="@+id/save_btn"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/save_btn"
@@ -681,7 +682,8 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/home" />
+                        android:backgroundTint="@color/textColor"
+                        android:background="@drawable/home_icon" />
                 </com.google.android.material.card.MaterialCardView>
             </androidx.constraintlayout.widget.ConstraintLayout>
 

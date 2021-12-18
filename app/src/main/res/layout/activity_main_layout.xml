@@ -134,10 +134,8 @@
                             android:layout_width="60dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
-                            android:backgroundTint="@color/backgroundColor"
                             android:gravity="center"
                             android:text="@string/_1w"
-                            android:textColor="@color/textColor"
                             android:textSize="12sp"
                             tools:ignore="SmallSp,UnusedAttribute" />
 
@@ -146,12 +144,9 @@
                             style="@style/ToggleButton"
                             android:layout_width="60dp"
                             android:layout_height="wrap_content"
-                            android:backgroundTint="@color/backgroundColor"
                             android:gravity="center"
                             android:text="@string/_2w"
-                            android:textColor="@color/textColor"
                             android:textSize="12sp"
-                            app:backgroundTint="@color/backgroundColor"
                             tools:ignore="SmallSp,UnusedAttribute" />
 
                         <Button
@@ -159,12 +154,9 @@
                             style="@style/ToggleButton"
                             android:layout_width="60dp"
                             android:layout_height="wrap_content"
-                            android:backgroundTint="@color/backgroundColor"
                             android:gravity="center"
                             android:text="@string/_3w"
-                            android:textColor="@color/textColor"
                             android:textSize="12sp"
-                            app:backgroundTint="@color/backgroundColor"
                             tools:ignore="SmallSp"
                             tools:targetApi="lollipop" />
 
@@ -173,12 +165,9 @@
                             style="@style/ToggleButton"
                             android:layout_width="60dp"
                             android:layout_height="wrap_content"
-                            android:backgroundTint="@color/backgroundColor"
                             android:gravity="center"
                             android:text="@string/_1m"
-                            android:textColor="@color/textColor"
                             android:textSize="12sp"
-                            app:backgroundTint="@color/backgroundColor"
                             tools:ignore="SmallSp,UnusedAttribute" />
                         <Button
                             android:id="@+id/TwoMonth"
@@ -198,12 +187,9 @@
                             android:layout_width="60dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="5dp"
-                            android:backgroundTint="@color/backgroundColor"
                             android:gravity="center"
                             android:text="@string/all"
-                            android:textColor="@color/textColor"
                             android:textSize="12sp"
-                            app:backgroundTint="@color/backgroundColor"
                             tools:ignore="SmallSp,UnusedAttribute" />
                     </com.google.android.material.button.MaterialButtonToggleGroup>
                     <com.github.mikephil.charting.charts.LineChart
@@ -242,6 +228,7 @@
                 android:layout_marginTop="35dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="5dp"
+                android:translationZ="-4dp"
                 android:gravity="center">
 
                 <com.google.android.material.card.MaterialCardView
@@ -337,6 +324,7 @@
                     app:cardBackgroundColor="@color/toolbarColor"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="5dp"
+                    android:translationZ="-4dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/Seated_biceps_curls"
                     app:layout_constraintStart_toStartOf="parent"
@@ -397,13 +385,17 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </ScrollView>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout6"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:layout_marginBottom="-1dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
         android:background="@drawable/ic_round_top_nav_bottom"
         android:elevation="5dp"
+        android:translationZ="1dp"
         android:outlineAmbientShadowColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -413,45 +405,63 @@
         app:layout_constraintVertical_bias="1.0">
         <ImageButton
             android:id="@+id/chat_main"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_marginStart="40dp"
-            android:background="@drawable/chat"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="30dp"
+            android:backgroundTint="@color/textColor"
+            android:background="@drawable/chat_icon"
             android:contentDescription="@string/todo"
             android:transitionName="chatBtn"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:rippleColor="#8ED1FF"
             tools:ignore="UnusedAttribute" />
         <ImageButton
             android:id="@+id/main_diagramm"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_marginEnd="40dp"
-            android:background="@drawable/history"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="30dp"
+            android:backgroundTint="@color/textColor"
+            android:background="@drawable/history_icon"
             android:contentDescription="@string/todo"
             android:transitionName="trainingsBtn"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:rippleColor="#8ED1FF"
             tools:ignore="UnusedAttribute" />
     </androidx.constraintlayout.widget.ConstraintLayout>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/Add_main"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="35dp"
         android:contentDescription="@string/todo"
         android:foregroundGravity="center"
         android:scaleType="center"
         android:transitionName="addBtn"
-        app:backgroundTint="#00B7FF"
         app:fabCustomSize="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:maxImageSize="50dp"
+        android:elevation="5dp"
+        android:translationZ="3dp"
+        app:backgroundTint="@color/textColor"
         app:srcCompat="@drawable/ic_baseline_add_24"
         app:tint="@color/white"
+        android:backgroundTint="@color/textColor"
         tools:ignore="MissingConstraints,UnusedAttribute,VectorDrawableCompat" />
+
+    <View
+        android:id="@+id/viewClick"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:backgroundTint="@color/backgroundColor"
+        android:background="@color/backgroundColor"
+        android:translationZ="-1dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
