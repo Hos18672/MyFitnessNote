@@ -63,7 +63,7 @@
         android:layout_toStartOf="@+id/SendeBtn"
         android:backgroundTint="@color/backgroundColorNav"
         android:background="@drawable/shapetransparent_message"
-        android:elevation="10dp"
+        android:elevation="1dp"
         android:fitsSystemWindows="true"
         android:hint="@string/type_a_message"
         android:paddingLeft="20dp"

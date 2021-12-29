@@ -27,7 +27,7 @@
         <entry key="..\:/Users/Reza/StudioProjects/MyFitnessNote/app/src/main/res/layout-land/activity_intro.xml" value="0.3148148148148148" />
         <entry key="..\:/Users/Reza/StudioProjects/MyFitnessNote/app/src/main/res/layout-v28/activity_add_workout.xml" value="0.371875" />
         <entry key="..\:/Users/Reza/StudioProjects/MyFitnessNote/app/src/main/res/layout-v28/item_training_main.xml" value="0.5" />
-        <entry key="..\:/Users/Reza/StudioProjects/MyFitnessNote/app/src/main/res/layout/activity_add_workout.xml" value="0.33" />
+        <entry key="..\:/Users/Reza/StudioProjects/MyFitnessNote/app/src/main/res/layout/activity_add_workout.xml" value="0.18" />
         <entry key="..\:/Users/Reza/StudioProjects/MyFitnessNote/app/src/main/res/layout/activity_base.xml" value="0.371875" />
         <entry key="..\:/Users/Reza/StudioProjects/MyFitnessNote/app/src/main/res/layout/activity_body_info.xml" value="0.33" />
         <entry key="..\:/Users/Reza/StudioProjects/MyFitnessNote/app/src/main/res/layout/activity_chat.xml" value="0.371875" />
@@ -35,12 +35,12 @@
         <entry key="..\:/Users/Reza/StudioProjects/MyFitnessNote/app/src/main/res/layout/activity_intro.xml" value="0.371875" />
         <entry key="..\:/Users/Reza/StudioProjects/MyFitnessNote/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/Users/Reza/StudioProjects/MyFitnessNote/app/src/main/res/layout/activity_main.xml" value="0.33" />
-        <entry key="..\:/Users/Reza/StudioProjects/MyFitnessNote/app/src/main/res/layout/activity_main_layout.xml" value="0.22" />
+        <entry key="..\:/Users/Reza/StudioProjects/MyFitnessNote/app/src/main/res/layout/activity_main_layout.xml" value="0.33" />
         <entry key="..\:/Users/Reza/StudioProjects/MyFitnessNote/app/src/main/res/layout/activity_muskel_group.xml" value="0.33" />
         <entry key="..\:/Users/Reza/StudioProjects/MyFitnessNote/app/src/main/res/layout/activity_my_profile.xml" value="0.25" />
         <entry key="..\:/Users/Reza/StudioProjects/MyFitnessNote/app/src/main/res/layout/activity_settings.xml" value="0.25" />
         <entry key="..\:/Users/Reza/StudioProjects/MyFitnessNote/app/src/main/res/layout/activity_sign_up.xml" value="0.33" />
-        <entry key="..\:/Users/Reza/StudioProjects/MyFitnessNote/app/src/main/res/layout/activity_splash.xml" value="0.371875" />
+        <entry key="..\:/Users/Reza/StudioProjects/MyFitnessNote/app/src/main/res/layout/activity_splash.xml" value="0.25" />
         <entry key="..\:/Users/Reza/StudioProjects/MyFitnessNote/app/src/main/res/layout/activity_tips.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Reza/StudioProjects/MyFitnessNote/app/src/main/res/layout/activity_training.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Reza/StudioProjects/MyFitnessNote/app/src/main/res/layout/activity_workout.xml" value="0.371875" />
@@ -50,8 +50,8 @@
         <entry key="..\:/Users/Reza/StudioProjects/MyFitnessNote/app/src/main/res/layout/dialog_progress.xml" value="0.3216216216216216" />
         <entry key="..\:/Users/Reza/StudioProjects/MyFitnessNote/app/src/main/res/layout/fragment_fragment2.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Reza/StudioProjects/MyFitnessNote/app/src/main/res/layout/fragment_trainings_fragment.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/Reza/StudioProjects/MyFitnessNote/app/src/main/res/layout/item_training.xml" value="0.25" />
-        <entry key="..\:/Users/Reza/StudioProjects/MyFitnessNote/app/src/main/res/layout/item_training_main.xml" value="0.33" />
+        <entry key="..\:/Users/Reza/StudioProjects/MyFitnessNote/app/src/main/res/layout/item_training.xml" value="0.5" />
+        <entry key="..\:/Users/Reza/StudioProjects/MyFitnessNote/app/src/main/res/layout/item_training_main.xml" value="0.67" />
         <entry key="..\:/Users/Reza/StudioProjects/MyFitnessNote/app/src/main/res/layout/item_training_new_add.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Reza/StudioProjects/MyFitnessNote/app/src/main/res/layout/nav_header_main.xml" value="0.371875" />
         <entry key="..\:/Users/Reza/StudioProjects/MyFitnessNote/app/src/main/res/layout/switch_dark.xml" value="0.32207207207207206" />

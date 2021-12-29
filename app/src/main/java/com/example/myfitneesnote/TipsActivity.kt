@@ -7,6 +7,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
+import kotlinx.android.synthetic.main.activity_add_workout.*
+import kotlinx.android.synthetic.main.activity_main_layout.*
+import kotlinx.android.synthetic.main.activity_main_layout.constraintLayout3
 import kotlinx.android.synthetic.main.activity_tips.*
 
 class TipsActivity : BaseActivity() {
@@ -42,11 +45,17 @@ class TipsActivity : BaseActivity() {
             pic.setImageResource(R.drawable.biceps_curl)
         }
 
+        sv_tipp.viewTreeObserver
+            .addOnScrollChangedListener {
+                if (!sv_tipp.canScrollVertically(-1)) {
+                    toolBar_Tipps.elevation = 0f
+                }
+                else{
+                    toolBar_Tipps.elevation = 50f
+                }
+            }
 
     }
-
-
-
     private fun setupActionBar() {
         setSupportActionBar(toolBar_Tipps)
         val actionBar = supportActionBar

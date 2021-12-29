@@ -151,6 +151,7 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
                     val breakNum = breakNum.text.toString()
                     val set = SetNum.text.toString()
                     val rep = repeatNum.text.toString()
+                    var note = workoutNote.text.toString()
                     if (validateForm(set, weight2, breakNum, rep)) {
                         val rnds = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                             ThreadLocalRandom.current().nextDouble(0.0, 0.9)
@@ -172,7 +173,8 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
                             rep,
                             currentDate,
                             calories,
-                            dateFormatter(currentDate)
+                            dateFormatter(currentDate),
+                            note
                         )
                         FirestoreClass().createNewTraining(this@AddWorkoutActivity, workout)
                         val recyclerView = findViewById<RecyclerView>(id.recyclerView_add)

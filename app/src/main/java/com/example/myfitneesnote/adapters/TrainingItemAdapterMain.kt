@@ -6,12 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myfitneesnote.R
 import com.example.myfitneesnote.model.Workout
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
+import kotlinx.android.synthetic.main.item_training.view.*
 import kotlinx.android.synthetic.main.item_training.view.tv_GymName
 import kotlinx.android.synthetic.main.item_training.view.tv_Muscle
 import kotlinx.android.synthetic.main.item_training.view.tv_Sets
@@ -20,6 +22,9 @@ import kotlinx.android.synthetic.main.item_training.view.tv_date
 import kotlinx.android.synthetic.main.item_training.view.tv_repeat
 import kotlinx.android.synthetic.main.item_training.view.tv_weight
 import kotlinx.android.synthetic.main.item_training_main.view.*
+import kotlinx.android.synthetic.main.item_training_main.view.RowLL
+import kotlinx.android.synthetic.main.item_training_main.view.rl_note
+import kotlinx.android.synthetic.main.item_training_main.view.tv_note
 
 class TrainingItemAdapterMain(options: FirestoreRecyclerOptions<Workout>)
     : FirestoreRecyclerAdapter<Workout,TrainingItemAdapterMain.MyViewHolder>(options){
@@ -38,6 +43,14 @@ class TrainingItemAdapterMain(options: FirestoreRecyclerOptions<Workout>)
             holder.repeat.text     = "${training.repeat} x"
             holder.breakTime.text  = "${training.BreakTime} min"
             holder.date.text       =    training.currentDateTime
+            holder.note.text = training.note
+
+            val isExpandable : Boolean  = training.expandable
+            holder.expandable_layout.visibility = if(isExpandable) View.VISIBLE else View.GONE
+            holder.ll.setOnClickListener {
+                training.expandable = !training.expandable
+                notifyItemChanged(position)
+            }
 /*
         if (training.GymType == "HOME") {
             holder.image.setImageResource(R.drawable.workout_home)
@@ -54,6 +67,9 @@ class TrainingItemAdapterMain(options: FirestoreRecyclerOptions<Workout>)
         val breakTime : TextView = itemView.tv_break
         val date      : TextView = itemView.tv_date
         val image     : ImageView = itemView.main_workout_image
+        val note      : TextView = itemView.tv_note
+        val ll        : LinearLayout = itemView.RowLL
+        val expandable_layout : LinearLayout = itemView.rl_note
     }
 
 }

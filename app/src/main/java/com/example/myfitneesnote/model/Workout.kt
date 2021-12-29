@@ -12,6 +12,8 @@ data class Workout(
     var repeat: String= "",
     var currentDateTime: String= "",
     var calorie: Double = 0.0,
-    var date: Date? = null )
+    var date: Date? = null,
+    var note : String = "",
+    var expandable : Boolean = false)
 
 

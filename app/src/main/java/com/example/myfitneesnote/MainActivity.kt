@@ -378,7 +378,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
     private fun dateFormatter(date: String): ChronoLocalDate? {
         val currentDate = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            parse(date, DateTimeFormatter.ofPattern("yyyy-MM-d"))
+            parse(date, DateTimeFormatter.ofPattern("yyyy-M-d"))
 
         } else {
             TODO("VERSION.SDK_INT < O")
