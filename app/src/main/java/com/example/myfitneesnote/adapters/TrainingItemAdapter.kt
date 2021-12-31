@@ -1,6 +1,7 @@
 package com.example.myfitneesnote.adapters
 
 
+import android.animation.LayoutTransition
 import android.annotation.SuppressLint
 import android.os.Build
 import android.view.LayoutInflater
@@ -40,7 +41,10 @@ class TrainingItemAdapter(options: FirestoreRecyclerOptions<Workout>) : Firestor
             holder.date.text = training.currentDateTime
             holder.note.text = training.note
 
+
+
           val isExpandable : Boolean  = training.expandable
+           holder.expandable_layout.layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
            holder.expandable_layout.visibility = if(isExpandable) View.VISIBLE else View.GONE
            holder.ll.setOnClickListener {
                 training.expandable = !training.expandable
