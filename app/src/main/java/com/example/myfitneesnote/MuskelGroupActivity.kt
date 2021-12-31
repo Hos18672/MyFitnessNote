@@ -24,17 +24,9 @@ class MuskelGroupActivity : BaseActivity() {
         muscle_txt.text = gymType
         //fullscreen()
         setupActionBar()
-        btnBack.setOnClickListener{
-            val intent = Intent( this,  WorkoutsChoiceActivity::class.java)
-            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, btnBack, "cvWorkouts")
-            startActivity(intent, options.toBundle())
-          //  finish()
-            }
-        //Burst muscle
-        brust_btn.setOnClickListener {
-            setOnclickMuscle(brust_btn as MaterialCardView)
-        }
 
+        //Burst muscle
+        brust_btn.setOnClickListener { setOnclickMuscle(brust_btn as MaterialCardView) }
         //Biceps muscle
         biceps_btn.setOnClickListener  { setOnclickMuscle(biceps_btn as MaterialCardView) }
         //Triceps muscle

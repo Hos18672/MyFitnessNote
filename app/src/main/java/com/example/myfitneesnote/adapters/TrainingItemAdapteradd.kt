@@ -34,7 +34,6 @@ class TrainingItemAdapteradd(options: FirestoreRecyclerOptions<Workout>) :Layout
     @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("SetTextI18n", "ResourceType")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int, training: Workout) {
-        if ( dateFormatter(training.currentDateTime)!! >= getCurrentDate() ) {
             holder.gymName.text = training.GymType
             holder.muskelName.text = training.MuskelName
             holder.sets.text = "${training.set} x"
@@ -42,7 +41,7 @@ class TrainingItemAdapteradd(options: FirestoreRecyclerOptions<Workout>) :Layout
             holder.repeat.text = "${training.repeat} x"
             holder.breakTime.text = "${training.BreakTime} min"
             holder.date.text = training.currentDateTime
-        }
+
     }
      private fun dateFormatter(date: String): ChronoLocalDate? {
          val currentDate = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

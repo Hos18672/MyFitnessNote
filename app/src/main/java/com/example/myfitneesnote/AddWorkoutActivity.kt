@@ -79,12 +79,6 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
         val dates = arrayOf(Calendar.getInstance().time)
         datePickerTimeline.deactivateDates(dates)
     }
-  override  fun onBackPressed() {
-        val intent = Intent(this, MuskelGroupActivity::class.java)
-        intent.putExtra("WorkoutType", gymType)
-        startActivity(intent)
-        finish()
-    }
 
     private fun String.toEditable(): Editable = Editable.Factory.getInstance().newEditable(this)
     private fun onClick() {
