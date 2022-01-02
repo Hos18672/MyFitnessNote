@@ -1,6 +1,5 @@
 package com.example.myfitneesnote.adapters
 
-
 import android.annotation.SuppressLint
 import android.os.Build
 import android.view.LayoutInflater
@@ -11,32 +10,31 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myfitneesnote.R
+import com.example.myfitneesnote.R.*
 import com.example.myfitneesnote.model.Workout
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.main.item_training.view.*
+import kotlinx.android.synthetic.main.item_training.view.RowLL
+import kotlinx.android.synthetic.main.item_training.view.rl_note
 import kotlinx.android.synthetic.main.item_training.view.tv_GymName
 import kotlinx.android.synthetic.main.item_training.view.tv_Muscle
 import kotlinx.android.synthetic.main.item_training.view.tv_Sets
 import kotlinx.android.synthetic.main.item_training.view.tv_break
 import kotlinx.android.synthetic.main.item_training.view.tv_date
+import kotlinx.android.synthetic.main.item_training.view.tv_note
 import kotlinx.android.synthetic.main.item_training.view.tv_repeat
 import kotlinx.android.synthetic.main.item_training.view.tv_weight
 import kotlinx.android.synthetic.main.item_training_main.view.*
-import kotlinx.android.synthetic.main.item_training_main.view.RowLL
-import kotlinx.android.synthetic.main.item_training_main.view.rl_note
-import kotlinx.android.synthetic.main.item_training_main.view.tv_note
 import java.time.LocalDate
 import java.time.chrono.ChronoLocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*
 
 
-class TrainingItemAdapterMain(options: FirestoreRecyclerOptions<Workout>) : LayoutContainer, FirestoreRecyclerAdapter<Workout,TrainingItemAdapterMain.MyViewHolder>(options) {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder{
-        val itemView = LayoutInflater.from(parent.context).inflate((R.layout.item_training_main), parent, false)
+class workout_list_main_adapter(options: FirestoreRecyclerOptions<Workout>) :LayoutContainer, FirestoreRecyclerAdapter<Workout,workout_list_main_adapter.MyViewHolder>(options) {
+     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder{
+        val itemView = LayoutInflater.from(parent.context).inflate((layout.item_training_main), parent, false)
         return  MyViewHolder(itemView)
 
     }
@@ -60,14 +58,14 @@ class TrainingItemAdapterMain(options: FirestoreRecyclerOptions<Workout>) : Layo
         }
 
     }
-    private fun dateFormatter(date: String): ChronoLocalDate? {
-        val currentDate = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-M-d"))
-        } else {
-            TODO("VERSION.SDK_INT < O")
-        }
-        return currentDate
-    }
+     private fun dateFormatter(date: String): ChronoLocalDate? {
+         val currentDate = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+             LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-M-d"))
+         } else {
+             TODO("VERSION.SDK_INT < O")
+         }
+         return currentDate
+     }
 
     private  fun getCurrentDate() : ChronoLocalDate? {
         val c = Calendar.getInstance()
@@ -79,8 +77,8 @@ class TrainingItemAdapterMain(options: FirestoreRecyclerOptions<Workout>) : Layo
     }
 
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun deleteItem(i: Int){
+     @SuppressLint("NotifyDataSetChanged")
+     fun deleteItem(i: Int){
         snapshots.getSnapshot(i).reference.delete()
         notifyDataSetChanged()
     }
@@ -98,9 +96,9 @@ class TrainingItemAdapterMain(options: FirestoreRecyclerOptions<Workout>) : Layo
         val expandable_layout : LinearLayout = itemView.rl_note
     }
 
-    override val containerView
-        get() = TODO("Not yet implemented")
-}
+     override val containerView
+         get() = TODO("Not yet implemented")
+ }
 
 
 

@@ -40,12 +40,21 @@ class TrainingItemAdapter(options: FirestoreRecyclerOptions<Workout>) : Firestor
             holder.breakTime.text = "${training.BreakTime} min"
             holder.date.text = training.currentDateTime
             holder.note.text = training.note
-
-
-
           val isExpandable : Boolean  = training.expandable
            holder.expandable_layout.layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
-           holder.expandable_layout.visibility = if(isExpandable) View.VISIBLE else View.GONE
+
+        var v = 0
+        if(isExpandable)
+        {
+            v =  View.VISIBLE
+            holder.arrow.setImageResource(arrow_up)
+        }
+        else
+        {
+            v= View.GONE
+            holder.arrow.setImageResource(arrow_down)
+        }
+        holder.expandable_layout.visibility = v
            holder.ll.setOnClickListener {
                 training.expandable = !training.expandable
                 notifyItemChanged(position)
@@ -94,6 +103,7 @@ class TrainingItemAdapter(options: FirestoreRecyclerOptions<Workout>) : Firestor
         val breakTime : TextView = itemView.tv_break
         val date      : TextView = itemView.tv_date
         val image      : ImageView = itemView.workout_image
+        val arrow      : ImageView = itemView.item_arrow
         val note      : TextView = itemView.tv_note
         val ll        : LinearLayout = itemView.RowLL
         val expandable_layout : LinearLayout = itemView.rl_note

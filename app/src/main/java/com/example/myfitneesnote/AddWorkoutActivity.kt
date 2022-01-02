@@ -62,7 +62,6 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
                 // Do Something
                 currentDate = "${year}-${month+1}-${day}"
             }
-
             override fun onDisabledDateSelected(
                 year: Int,
                 month: Int,

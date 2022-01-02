@@ -152,7 +152,6 @@
                                             android:orientation="vertical"
                                             android:transitionName="cvWorkouts"
                                             android:translationZ="-5dp"
-                                            android:layout_marginTop="5dp"
                                             android:visibility="gone"
                                             android:animateLayoutChanges="true"
                                             app:layout_constraintBottom_toBottomOf="parent"
@@ -166,7 +165,6 @@
                                                     android:id="@+id/scroll_bar2"
                                                     android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
-                                                    android:layout_marginTop="5dp"
                                                     android:background="@color/backgroundColorNav"
                                                     android:orientation="vertical">
 
