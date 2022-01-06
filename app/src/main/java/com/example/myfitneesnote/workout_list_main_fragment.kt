@@ -1,5 +1,6 @@
 package com.example.myfitneesnote
 
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,9 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import java.time.LocalDate
+import java.time.chrono.ChronoLocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 
@@ -42,6 +46,7 @@ class workout_list_main_fragment : Fragment() {
             .document(getCurrentUserID())
             .collection("Workouts")
             .orderBy("date", Query.Direction.DESCENDING)
+            .whereEqualTo("currentDateTime", getCurrentDate())
 
         val fireStoreRecyclerOption : FirestoreRecyclerOptions<Workout> = FirestoreRecyclerOptions.Builder<Workout>()
             .setQuery(query, Workout::class.java)
@@ -75,6 +80,23 @@ class workout_list_main_fragment : Fragment() {
     fun getCurrentUserID() :String{
         return FirebaseAuth.getInstance().currentUser!!.uid
     }
+
+    private  fun getCurrentDate() : String? {
+        val c = Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+        return  "${year}-${month + 1}-${day}"
+    }
+    private fun dateFormatter(date: String): ChronoLocalDate? {
+        val currentDate = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-M-d"))
+        } else {
+            TODO("VERSION.SDK_INT < O")
+        }
+        return currentDate
+    }
+
 
 
 

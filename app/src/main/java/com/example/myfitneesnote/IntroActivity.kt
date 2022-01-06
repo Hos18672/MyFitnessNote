@@ -28,6 +28,7 @@ class IntroActivity : BaseActivity() {
         window.addFlags(FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         //fullscreen()
+        m = MainActivity()
         animat()
         intro_login_button.setOnClickListener {
 
@@ -54,6 +55,7 @@ class IntroActivity : BaseActivity() {
     }
     override fun onBackPressed() {
         m.finish()
+        this.finishAffinity()
     }
 
 }

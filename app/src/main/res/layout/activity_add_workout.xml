@@ -730,7 +730,7 @@
             <FrameLayout
                 android:id="@+id/root_container"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="500dp"
                 android:layout_gravity="bottom"
                 app:layout_constraintTop_toTopOf="@id/view4" />
 

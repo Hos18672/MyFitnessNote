@@ -223,6 +223,12 @@
 
                     </com.github.mikephil.charting.charts.LineChart>
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <com.caverock.androidsvg.SVGImageView
+                    android:layout_width="329dp"
+                    android:layout_height="50dp"
+                    app:svg="nav_bar.svg" />
+
             </androidx.cardview.widget.CardView>
             <TextView
                 android:id="@+id/Tips"
