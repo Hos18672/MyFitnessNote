@@ -283,7 +283,7 @@
                     tools:ignore="RtlHardcoded" />
             </LinearLayout>
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/workout_image"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
@@ -291,6 +291,8 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="32dp"
                 android:contentDescription="@string/todo"
+                android:background="@drawable/done"
+                android:backgroundTint="@color/textColor"
                 app:layout_constraintBottom_toTopOf="@+id/tv_date"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/linearLayout"
@@ -329,13 +331,15 @@
                 android:textSize="15sp"
                 tools:ignore="RtlHardcoded" />
         </LinearLayout>
-        <ImageView
+        <ImageButton
             android:id="@+id/item_arrow"
-            android:layout_width="match_parent"
+            android:layout_width="20dp"
             android:layout_height="20dp"
+            android:layout_gravity="center"
             android:layout_marginBottom="5dp"
-            android:src="@drawable/arrow_down">
-        </ImageView>
+            android:backgroundTint="@color/textColor"
+           android:background="@drawable/arrow_down">
+        </ImageButton>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

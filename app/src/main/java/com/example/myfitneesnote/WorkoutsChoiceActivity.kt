@@ -13,17 +13,9 @@ import android.view.animation.AnimationUtils
 import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityOptionsCompat
-import androidx.core.widget.NestedScrollView
 import com.google.android.material.card.MaterialCardView
-import kotlinx.android.synthetic.main.activity_muskel_group.*
-import kotlinx.android.synthetic.main.activity_workout.*
-import kotlinx.android.synthetic.main.activity_workout.biceps_btn
-import kotlinx.android.synthetic.main.activity_workout.brust_btn
-import kotlinx.android.synthetic.main.activity_workout.forearms_btn
-import kotlinx.android.synthetic.main.activity_workout.shoulder_btn
-import kotlinx.android.synthetic.main.activity_workout.traps_btn
-import kotlinx.android.synthetic.main.activity_workout.triceps_btn
-import kotlinx.android.synthetic.main.activity_workout.upperabs_btn
+import kotlinx.android.synthetic.main.activity_workout_choice.*
+
 
 @Suppress("DEPRECATION")
 class WorkoutsChoiceActivity : BaseActivity(){
@@ -34,7 +26,7 @@ class WorkoutsChoiceActivity : BaseActivity(){
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_workout)
+        setContentView(R.layout.activity_workout_choice)
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         //fullscreen()
@@ -58,14 +50,14 @@ class WorkoutsChoiceActivity : BaseActivity(){
                 if (hiddenLayout.getVisibility() === View.VISIBLE) {
                     TransitionManager.beginDelayedTransition(cv_gym2, AutoTransition())
                     hiddenLayout.setVisibility(View.GONE)
-                    gym_arrow.setImageResource(R.drawable.arrow_down)
+                    gym_arrow.setBackgroundResource(R.drawable.arrow_down)
 
                 } else {
                     TransitionManager.beginDelayedTransition(cv_gym2, AutoTransition())
                     hiddenLayout.setVisibility(View.VISIBLE)
                     hiddenLayout2.setVisibility(View.GONE)
-                    gym_arrow.setImageResource(R.drawable.arrow_up)
-                    home_arrow.setImageResource(R.drawable.arrow_down)
+                    gym_arrow.setBackgroundResource(R.drawable.arrow_up)
+                    home_arrow.setBackgroundResource(R.drawable.arrow_down)
                 }
                 gymType = txt_gym_workout.text.toString()
 
@@ -74,14 +66,14 @@ class WorkoutsChoiceActivity : BaseActivity(){
             if (hiddenLayout2.getVisibility() === View.VISIBLE) {
                 TransitionManager.beginDelayedTransition(cv_home, AutoTransition())
                 hiddenLayout2.setVisibility(View.GONE)
-                home_arrow.setImageResource(R.drawable.arrow_down)
+                home_arrow.setBackgroundResource(R.drawable.arrow_down)
 
             } else {
                 TransitionManager.beginDelayedTransition(cv_home, AutoTransition())
                 hiddenLayout2.setVisibility(View.VISIBLE)
                 hiddenLayout.setVisibility(View.GONE )
-                home_arrow.setImageResource(R.drawable.arrow_up)
-                gym_arrow.setImageResource(R.drawable.arrow_down)
+                home_arrow.setBackgroundResource(R.drawable.arrow_up)
+                gym_arrow.setBackgroundResource(R.drawable.arrow_down)
             }
             gymType = txt_home_workout.text.toString()
         }
@@ -126,8 +118,6 @@ class WorkoutsChoiceActivity : BaseActivity(){
 
         val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, btn, "addTrainingCv")
         startActivity(intent, options.toBundle())
-
-
 
         // finish()
     }

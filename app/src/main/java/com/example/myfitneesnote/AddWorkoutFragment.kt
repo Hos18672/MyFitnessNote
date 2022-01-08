@@ -1,11 +1,9 @@
 package com.example.myfitneesnote
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -32,7 +30,7 @@ class AddWorkoutFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-       _view = inflater.inflate(R.layout.fragment_trainings_fragment, container, false)
+       _view = inflater.inflate(R.layout.rainings_fragment, container, false)
         getTrainingsFromFireStore()
         recyclerView = _view.findViewById(R.id.recyclerView_add);
         recyclerView.setHasFixedSize(true);

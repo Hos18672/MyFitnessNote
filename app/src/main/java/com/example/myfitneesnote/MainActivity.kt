@@ -5,6 +5,7 @@ import android.R
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.res.ColorStateList
+import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -188,7 +189,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         }
         diagramMain.setOnClickListener {
             animate(diagramMain)
-            val intent = Intent(this, WorkoutsActivity::class.java)
+            val intent = Intent(this, Workouts_List_Activity::class.java)
             val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
                 this,
                 diagramMain,
@@ -238,7 +239,8 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     private fun animate(btn: ImageButton) {
         val stateList = ColorStateList.valueOf(resources.getColor(R.color.holo_blue_light))
-        val stateList2 = ColorStateList.valueOf(resources.getColor(R.color.background_dark))
+        val stateList2 = ColorStateList.valueOf(resources.getColor(R.color.white))
+        val stateList3 = ColorStateList.valueOf(resources.getColor(R.color.black))
         btn.animate().apply {
             duration = 500
             scaleYBy(.0f)
@@ -249,7 +251,13 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 duration = 500
                 scaleYBy(-.0f)
                 scaleXBy(-.0f)
-                btn.backgroundTintList = stateList2
+
+                val mode = baseContext?.resources?.configuration?.uiMode?.and(Configuration.UI_MODE_NIGHT_MASK)
+                when (mode) {
+                    Configuration.UI_MODE_NIGHT_YES -> {    btn.backgroundTintList = stateList2 }
+                    Configuration.UI_MODE_NIGHT_NO -> { btn.backgroundTintList = stateList3}
+                    Configuration.UI_MODE_NIGHT_UNDEFINED -> {}
+                }
             }
         }.start()
     }

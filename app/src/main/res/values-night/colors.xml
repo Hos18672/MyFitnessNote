@@ -11,8 +11,8 @@
     <color name="colorAccentPrimaryDark">#151B40</color>
     <color name="backgroundColor">#131416</color>
     <color name="backgroundColorNav">#26282C</color>
+    <color name="lightDark">#56585A</color>
     <color name="toolbarColor">#26282C</color>
     <color name="lightBlue">#9F9398</color>
-    <color name="textColor">#C4C3C3</color>
-
+    <color name="textColor">#EBEBEB</color>
 </resources>

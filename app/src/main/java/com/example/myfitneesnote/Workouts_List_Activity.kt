@@ -1,6 +1,5 @@
 package com.example.myfitneesnote
 
-
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Build
@@ -9,7 +8,6 @@ import android.view.animation.AnimationUtils
 import android.view.animation.LayoutAnimationController
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityOptionsCompat
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,9 +17,9 @@ import com.example.myfitneesnote.model.Workout
 import com.example.myfitneesnote.utils.Constant
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.*
-import kotlinx.android.synthetic.main.activity_training.*
+import kotlinx.android.synthetic.main.activity_workouts_list.*
 
-class WorkoutsActivity : BaseActivity() {
+class Workouts_List_Activity : BaseActivity() {
     private lateinit var trainingItemAdapter : TrainingItemAdapter
     private lateinit var db : FirebaseFirestore
     private lateinit var recyclerView: RecyclerView
@@ -30,7 +28,7 @@ class WorkoutsActivity : BaseActivity() {
     @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_training)
+        setContentView(R.layout.activity_workouts_list)
         recyclerView = findViewById(R.id.rv_trainings_list)
         toolBar_workouts_activity.elevation = 0f
         recyclerView.addOnScrollListener(object: RecyclerView.OnScrollListener() {
@@ -67,7 +65,6 @@ class WorkoutsActivity : BaseActivity() {
             .document(getCurrentUserID())
             .collection("Workouts")
             .orderBy("date",Query.Direction.DESCENDING)
-
         val fireStoreRecyclerOption : FirestoreRecyclerOptions<Workout> = FirestoreRecyclerOptions.Builder<Workout>()
             .setQuery(query, Workout::class.java)
             .build()
@@ -76,7 +73,6 @@ class WorkoutsActivity : BaseActivity() {
         lac.delay = 0.20f
         lac.order = LayoutAnimationController.ORDER_NORMAL
         recyclerView.layoutAnimation = lac
-
         val item = object : SwipeToDelete(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT){
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 trainingItemAdapter.deleteItem(viewHolder.adapterPosition)

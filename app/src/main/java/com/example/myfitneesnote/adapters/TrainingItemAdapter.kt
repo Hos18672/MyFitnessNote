@@ -47,12 +47,12 @@ class TrainingItemAdapter(options: FirestoreRecyclerOptions<Workout>) : Firestor
         if(isExpandable)
         {
             v =  View.VISIBLE
-            holder.arrow.setImageResource(arrow_up)
+            holder.arrow.setBackgroundResource(arrow_up)
         }
         else
         {
             v= View.GONE
-            holder.arrow.setImageResource(arrow_down)
+            holder.arrow.setBackgroundResource(arrow_down)
         }
         holder.expandable_layout.visibility = v
            holder.ll.setOnClickListener {
@@ -61,12 +61,12 @@ class TrainingItemAdapter(options: FirestoreRecyclerOptions<Workout>) : Firestor
            }
 
        if (dateFormatter(training.currentDateTime)!! > getCurrentDate() ) {
-            holder.image.setImageResource(todo)
+            holder.image.setBackgroundResource(todo)
         }else if (dateFormatter(training.currentDateTime)!! == getCurrentDate()){
-            holder.image.setImageResource(notdone)
+            holder.image.setBackgroundResource(notdone)
         }
         else{
-           holder.image.setImageResource(done)
+           holder.image.setBackgroundResource(done)
        }
     }
 

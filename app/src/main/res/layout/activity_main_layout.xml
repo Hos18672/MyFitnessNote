@@ -219,15 +219,8 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/toggleButtonsGroup"
                         app:layout_constraintVertical_bias="1.0">
-
-
                     </com.github.mikephil.charting.charts.LineChart>
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <com.caverock.androidsvg.SVGImageView
-                    android:layout_width="329dp"
-                    android:layout_height="50dp"
-                    app:svg="nav_bar.svg" />
 
             </androidx.cardview.widget.CardView>
             <TextView
@@ -456,8 +449,8 @@
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/add_main"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
         android:layout_marginBottom="17dp"
         android:background="@drawable/ic_add_icon2"
         android:backgroundTint="@color/textColor"

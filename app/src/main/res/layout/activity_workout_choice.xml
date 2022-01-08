@@ -81,6 +81,7 @@
                             android:textSize="30sp"
                             app:cardCornerRadius="15dp"
                             app:cardElevation="2dp"
+                            android:backgroundTint="@color/lightDark"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0"
                             app:layout_constraintStart_toStartOf="parent"
@@ -96,8 +97,7 @@
                                             android:id="@+id/cv_gym2"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:background="@color/backgroundColorNav"
-                                            android:translationZ="5dp"
+                                            android:backgroundTint="@color/backgroundColorNav"                                            android:translationZ="5dp"
                                             app:cardCornerRadius="15dp"
                                             android:layout_marginBottom="5dp"
                                             app:layout_constraintEnd_toEndOf="parent"
@@ -107,6 +107,7 @@
                                                 <LinearLayout
                                                     android:layout_width="match_parent"
                                                     android:layout_height="match_parent"
+                                                    android:backgroundTint="@color/backgroundColorNav"
                                                     android:orientation="vertical">
                                                         <TextView
                                                             android:id="@+id/txt_gym_workout"
@@ -126,24 +127,23 @@
                                                             app:layout_constraintStart_toStartOf="parent"
                                                             app:layout_constraintTop_toTopOf="parent"
                                                             tools:ignore="MissingConstraints" />
-                                                        <ImageView
+                                                        <ImageButton
                                                             android:id="@+id/gym_arrow"
-                                                            android:layout_width="match_parent"
+                                                            android:layout_width="20dp"
                                                             android:layout_height="20dp"
+                                                            android:layout_gravity="center"
+                                                            android:backgroundTint="@color/textColor"
                                                             android:layout_marginBottom="5dp"
-                                                            android:src="@drawable/arrow_down">
-                                                        </ImageView>
+                                                            android:background="@drawable/arrow_down">
+                                                        </ImageButton>
                                                 </LinearLayout>
-
-
                                         </androidx.cardview.widget.CardView>
-
                                         <View
                                             android:layout_width="match_parent"
                                             android:layout_height="1dp"
                                             app:layout_constraintBottom_toBottomOf="@+id/cv_gym2"
                                             app:layout_constraintTop_toBottomOf="@+id/cv_gym2"
-                                            tools:ignore="MissingConstraints"></View>
+                                            tools:ignore="MissingConstraints"/>
 
                                         <androidx.core.widget.NestedScrollView
                                             android:id="@+id/hiddenLayout"
@@ -153,6 +153,7 @@
                                             android:transitionName="cvWorkouts"
                                             android:translationZ="-5dp"
                                             android:visibility="gone"
+                                            android:backgroundTint="@color/lightDark"
                                             android:animateLayoutChanges="true"
                                             app:layout_constraintBottom_toBottomOf="parent"
                                             app:layout_constraintEnd_toEndOf="parent"
@@ -165,7 +166,7 @@
                                                     android:id="@+id/scroll_bar2"
                                                     android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
-                                                    android:background="@color/backgroundColorNav"
+                                                    android:backgroundTint="@color/lightDark"
                                                     android:orientation="vertical">
 
 
@@ -551,7 +552,7 @@
                             android:layout_marginTop="16dp"
                             android:layout_marginEnd="16dp"
                             android:layout_marginBottom="5dp"
-                            android:backgroundTint="@color/backgroundColorNav"
+                            android:backgroundTint="@color/lightDark"
                             android:clickable="true"
                             android:textColor="@android:color/background_light"
                             android:textSize="30sp"
@@ -565,6 +566,7 @@
 
                                 <androidx.constraintlayout.widget.ConstraintLayout
                                     android:id="@+id/cnst2"
+                                    android:backgroundTint="@color/backgroundColorNav"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content">
 
@@ -572,7 +574,7 @@
                                             android:id="@+id/cv_home"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:background="@color/backgroundColorNav"
+                                            android:backgroundTint="@color/backgroundColorNav"
                                             android:translationZ="5dp"
                                             app:cardCornerRadius="15dp"
                                             android:layout_marginBottom="15dp"
@@ -585,6 +587,7 @@
                                                 <LinearLayout
                                                     android:layout_width="match_parent"
                                                     android:layout_height="match_parent"
+                                                    android:backgroundTint="@color/backgroundColorNav"
                                                     android:orientation="vertical">
                                                         <TextView
                                                             android:id="@+id/txt_home_workout"
@@ -606,10 +609,12 @@
                                                             tools:ignore="MissingConstraints" />
                                                         <ImageView
                                                             android:id="@+id/home_arrow"
-                                                            android:layout_width="match_parent"
+                                                            android:layout_width="20dp"
                                                             android:layout_height="20dp"
+                                                            android:layout_gravity="center"
                                                             android:layout_marginBottom="5dp"
-                                                            android:src="@drawable/arrow_down">
+                                                            android:backgroundTint="@color/textColor"
+                                                            android:background="@drawable/arrow_down">
                                                         </ImageView>
                                                 </LinearLayout>
                                         </androidx.cardview.widget.CardView>
@@ -626,9 +631,9 @@
                                             android:layout_width="match_parent"
                                             android:layout_height="340dp"
                                             android:orientation="vertical"
-                                            android:layout_marginTop="5dp"
                                             android:transitionName="cvWorkouts"
                                             android:translationZ="-1dp"
+                                            android:backgroundTint="@color/lightDark"
                                             android:visibility="gone"
                                             android:animateLayoutChanges="true"
                                             app:layout_constraintBottom_toBottomOf="parent"
@@ -643,7 +648,7 @@
                                                     android:layout_width="match_parent"
                                                     android:layout_height="wrap_content"
                                                     android:animateLayoutChanges="true"
-                                                    android:background="@color/backgroundColorNav"
+                                                    android:backgroundTint="@color/lightDark"
                                                     android:orientation="vertical">
 
 

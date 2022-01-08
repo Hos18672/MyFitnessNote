@@ -5,19 +5,14 @@ import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myfitneesnote.R.*
-import com.example.myfitneesnote.R.drawable.bench_press
-import com.example.myfitneesnote.R.drawable.workout_home
 import com.example.myfitneesnote.model.Workout
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
-import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.main.activity_add_workout.*
 import kotlinx.android.synthetic.main.item_training.view.*
 import java.time.LocalDate
 import java.time.chrono.ChronoLocalDate
@@ -75,9 +70,7 @@ class TrainingItemAdapteradd(options: FirestoreRecyclerOptions<Workout>) :Layout
         val repeat    : TextView = itemView.tv_repeat
         val breakTime : TextView = itemView.tv_break
         val date      : TextView = itemView.tv_date
-        val image     : ImageView = itemView.workout_image
     }
-
      override val containerView
          get() = TODO("Not yet implemented")
  }

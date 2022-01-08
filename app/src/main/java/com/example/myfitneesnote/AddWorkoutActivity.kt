@@ -1,8 +1,11 @@
 package com.example.myfitneesnote
 
 
+import android.R
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.res.ColorStateList
+import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -152,9 +155,7 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
                             TODO("VERSION.SDK_INT < LOLLIPOP")
                         }
                         val randnum = 0.0 + rnds
-                        val s =
-                            20 * set.toInt() * rep.toInt() * (2 * 3.0 + randnum * weight.toString()
-                                .toInt())
+                        val s = 20 * set.toInt() * rep.toInt() * (2 * 3.0 + randnum * weight.toString().toInt())
                         val calories = s / 200
                         workout = Workout(
                             getCurrentUserId(),
@@ -208,6 +209,7 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
         return currentUserID
     }
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     private fun setupActionBar() {
         setSupportActionBar(toolBar_add_workout_activity)
         val actionBar = supportActionBar
