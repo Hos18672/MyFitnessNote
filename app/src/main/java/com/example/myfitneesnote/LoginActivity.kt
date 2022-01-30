@@ -10,7 +10,6 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityOptionsCompat
-import androidx.core.content.ContextCompat
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_main.*

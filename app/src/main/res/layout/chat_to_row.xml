@@ -28,7 +28,7 @@
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="-10dp"
             android:text="@string/name"
-            android:textColor="#0027FF"
+            android:textColor="#3A3A3A"
             android:textSize="10sp" />
         <TextView
             android:id="@+id/textview_to_row"
@@ -51,7 +51,7 @@
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="3dp"
             android:text="@string/date"
-            android:textColor="#000"
+            android:textColor="#3A3A3A"
             android:textSize="10sp" />
     </LinearLayout>
 

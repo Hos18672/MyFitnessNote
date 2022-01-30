@@ -9,10 +9,7 @@ import android.view.WindowManager
 import android.view.WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS
 import android.view.animation.AnimationUtils
 import androidx.annotation.RequiresApi
-import androidx.core.app.ActivityOptionsCompat
-import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_intro.*
-import kotlinx.android.synthetic.main.activity_login.*
 
 
 @Suppress("DEPRECATION")
@@ -30,8 +27,10 @@ class IntroActivity : BaseActivity() {
         //fullscreen()
         m = MainActivity()
         animat()
+        onClick()
+    }
+    private fun onClick(){
         intro_login_button.setOnClickListener {
-
             var intent =  Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
@@ -42,7 +41,7 @@ class IntroActivity : BaseActivity() {
             finish()
         }
     }
-    fun animat(){
+    private fun animat(){
         val ttb = AnimationUtils.loadAnimation(this, R.anim.ttb1)
             intro_imageView.startAnimation(ttb)
         val ttb1 = AnimationUtils.loadAnimation(this, R.anim.ttb)

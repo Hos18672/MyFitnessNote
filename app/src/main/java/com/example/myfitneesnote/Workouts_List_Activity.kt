@@ -85,7 +85,7 @@ class Workouts_List_Activity : BaseActivity() {
     }
 
     @JvmName("getCurrentDate1")
-    fun getCurrentDate() : String{
+    private fun getCurrentDate() : String{
         return  currentDate
     }
     override fun onStart() {

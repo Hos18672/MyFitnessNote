@@ -20,7 +20,7 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 
 
-class TrainingItemAdapteradd(options: FirestoreRecyclerOptions<Workout>) :LayoutContainer, FirestoreRecyclerAdapter<Workout,TrainingItemAdapteradd.MyViewHolder>(options) {
+class TrainingItemAdapterAdd(options: FirestoreRecyclerOptions<Workout>) :LayoutContainer, FirestoreRecyclerAdapter<Workout,TrainingItemAdapterAdd.MyViewHolder>(options) {
      override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder{
         val itemView = LayoutInflater.from(parent.context).inflate((layout.item_training_new_add), parent, false)
         return  MyViewHolder(itemView)

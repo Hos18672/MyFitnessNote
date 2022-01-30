@@ -1,11 +1,9 @@
 package com.example.myfitneesnote
 
 
-import android.R
+
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.content.res.ColorStateList
-import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -13,7 +11,6 @@ import android.text.Editable
 import android.view.MenuItem
 import android.widget.EditText
 import androidx.annotation.RequiresApi
-import androidx.core.app.ActivityOptionsCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myfitneesnote.R.*
 import com.example.myfitneesnote.firebase.FirestoreClass
@@ -29,7 +26,6 @@ import java.util.*
 import java.util.concurrent.ThreadLocalRandom
 import android.text.TextUtils
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_my_profile.*
 
 class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -200,7 +196,7 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
             }
         }
     }
-    fun getCurrentUserId(): String {
+   private fun getCurrentUserId(): String {
         val currentUser = FirebaseAuth.getInstance().currentUser
         var currentUserID = ""
         if (currentUser != null) {

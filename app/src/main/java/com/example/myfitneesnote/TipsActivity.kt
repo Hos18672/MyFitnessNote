@@ -6,10 +6,6 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
-import androidx.core.content.ContextCompat
-import kotlinx.android.synthetic.main.activity_add_workout.*
-import kotlinx.android.synthetic.main.activity_main_layout.*
-import kotlinx.android.synthetic.main.activity_main_layout.constraintLayout3
 import kotlinx.android.synthetic.main.activity_tips.*
 
 class TipsActivity : BaseActivity() {

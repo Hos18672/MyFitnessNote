@@ -49,13 +49,13 @@ class WorkoutsChoiceActivity : BaseActivity(){
         cv_gym2.setOnClickListener{
                 if (hiddenLayout.getVisibility() === View.VISIBLE) {
                     TransitionManager.beginDelayedTransition(cv_gym2, AutoTransition())
-                    hiddenLayout.setVisibility(View.GONE)
+                    hiddenLayout.visibility = View.GONE
                     gym_arrow.setBackgroundResource(R.drawable.arrow_down)
 
                 } else {
                     TransitionManager.beginDelayedTransition(cv_gym2, AutoTransition())
-                    hiddenLayout.setVisibility(View.VISIBLE)
-                    hiddenLayout2.setVisibility(View.GONE)
+                    hiddenLayout.visibility = View.VISIBLE
+                    hiddenLayout2.visibility = View.GONE
                     gym_arrow.setBackgroundResource(R.drawable.arrow_up)
                     home_arrow.setBackgroundResource(R.drawable.arrow_down)
                 }
@@ -65,13 +65,13 @@ class WorkoutsChoiceActivity : BaseActivity(){
         cv_home.setOnClickListener{
             if (hiddenLayout2.getVisibility() === View.VISIBLE) {
                 TransitionManager.beginDelayedTransition(cv_home, AutoTransition())
-                hiddenLayout2.setVisibility(View.GONE)
+                hiddenLayout2.visibility = View.GONE
                 home_arrow.setBackgroundResource(R.drawable.arrow_down)
 
             } else {
                 TransitionManager.beginDelayedTransition(cv_home, AutoTransition())
-                hiddenLayout2.setVisibility(View.VISIBLE)
-                hiddenLayout.setVisibility(View.GONE )
+                hiddenLayout2.visibility = View.VISIBLE
+                hiddenLayout.visibility = View.GONE
                 home_arrow.setBackgroundResource(R.drawable.arrow_up)
                 gym_arrow.setBackgroundResource(R.drawable.arrow_down)
             }

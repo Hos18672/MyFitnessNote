@@ -11,7 +11,6 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityOptionsCompat
-import androidx.core.content.ContextCompat
 import at.favre.lib.crypto.bcrypt.BCrypt
 import com.example.myfitneesnote.firebase.FirestoreClass
 import com.google.firebase.auth.FirebaseAuth

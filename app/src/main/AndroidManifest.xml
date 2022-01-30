@@ -70,7 +70,7 @@
             android:theme="@style/AppTheme.NoActionBar.NoActionBar"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name=".NavheaderMain"
+            android:name=".NavHeaderMain"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar.NoActionBar"
             tools:ignore="LockedOrientationActivity" />

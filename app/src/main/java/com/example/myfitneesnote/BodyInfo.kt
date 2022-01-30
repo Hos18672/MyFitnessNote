@@ -9,7 +9,6 @@ import android.view.View
 import android.widget.RadioButton
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.core.content.ContextCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -40,6 +39,7 @@ class BodyInfo : BaseActivity() {
             onUpdateClicked()
             startActivity(Intent(this, LoginActivity::class.java))
         }
+        setupActionBar()
     }
     private fun updateUser(age: String, height :String, weight :String, gender: String) {
         // updating the user via child nodes

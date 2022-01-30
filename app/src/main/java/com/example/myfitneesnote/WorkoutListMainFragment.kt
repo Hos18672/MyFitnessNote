@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myfitneesnote.adapters.SwipeToDelete
-import com.example.myfitneesnote.adapters.workout_list_main_adapter
+import com.example.myfitneesnote.adapters.WorkoutListMainAdapter
 import com.example.myfitneesnote.model.Workout
 import com.example.myfitneesnote.utils.Constant
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
@@ -23,10 +23,9 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 
 
-class workout_list_main_fragment : Fragment() {
-    var uuid : UUID = UUID.randomUUID()
+class WorkoutListMainFragment : Fragment() {
     private val db = FirebaseFirestore.getInstance()
-    private lateinit var trainingItemAdapter : workout_list_main_adapter
+    private lateinit var trainingItemAdapter : WorkoutListMainAdapter
     private lateinit var recyclerView: RecyclerView
     private lateinit var _view: View
 
@@ -52,7 +51,7 @@ class workout_list_main_fragment : Fragment() {
             .setQuery(query, Workout::class.java)
             .build()
         recyclerView = _view.findViewById(R.id.recyclerView_add);
-        trainingItemAdapter = workout_list_main_adapter(fireStoreRecyclerOption)
+        trainingItemAdapter = WorkoutListMainAdapter(fireStoreRecyclerOption)
         val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         recyclerView.layoutManager = linearLayoutManager
         recyclerView.smoothScrollToPosition(0)
@@ -77,7 +76,7 @@ class workout_list_main_fragment : Fragment() {
         super.onStop()
         trainingItemAdapter.stopListening()
     }
-    fun getCurrentUserID() :String{
+    private fun getCurrentUserID() :String{
         return FirebaseAuth.getInstance().currentUser!!.uid
     }
 

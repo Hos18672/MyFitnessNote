@@ -32,7 +32,7 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 
 
-class workout_list_main_adapter(options: FirestoreRecyclerOptions<Workout>) :LayoutContainer, FirestoreRecyclerAdapter<Workout,workout_list_main_adapter.MyViewHolder>(options) {
+class WorkoutListMainAdapter(options: FirestoreRecyclerOptions<Workout>) :LayoutContainer, FirestoreRecyclerAdapter<Workout,WorkoutListMainAdapter.MyViewHolder>(options) {
      override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder{
         val itemView = LayoutInflater.from(parent.context).inflate((layout.item_training_main), parent, false)
         return  MyViewHolder(itemView)
@@ -51,7 +51,7 @@ class workout_list_main_adapter(options: FirestoreRecyclerOptions<Workout>) :Lay
         holder.note.text = training.note
 
         val isExpandable : Boolean  = training.expandable
-        holder.expandable_layout.visibility = if(isExpandable) View.VISIBLE else View.GONE
+        holder.expandableLayout.visibility = if(isExpandable) View.VISIBLE else View.GONE
         holder.ll.setOnClickListener {
             training.expandable = !training.expandable
             notifyItemChanged(position)
@@ -93,7 +93,7 @@ class workout_list_main_adapter(options: FirestoreRecyclerOptions<Workout>) :Lay
         val image     : ImageView = itemView.main_workout_image
         val note      : TextView = itemView.tv_note
         val ll        : LinearLayout = itemView.RowLL
-        val expandable_layout : LinearLayout = itemView.rl_note
+        val expandableLayout : LinearLayout = itemView.rl_note
     }
 
      override val containerView

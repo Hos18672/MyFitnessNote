@@ -72,11 +72,11 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         constraintLayout3.bringToFront()
         onClick()
         userData()
-        animat()
+        animate()
         getTrainingsFromFireStore()
         updateNavigationUserDetails()
         setupLineChartData(7)
-        val trainingsFragment = workout_list_main_fragment()
+        val trainingsFragment = WorkoutListMainFragment()
         supportFragmentManager.beginTransaction().apply {
             replace(id.root_container_main, trainingsFragment).commit()
         }
@@ -231,7 +231,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         }
     }
 
-    private fun animat() {
+    private fun animate() {
         val rtl = AnimationUtils.loadAnimation(this, R.anim.slide_in_left)
         cvLineChart.startAnimation(rtl)
     }

@@ -2,7 +2,7 @@ package com.example.myfitneesnote
 
 import android.os.Bundle
 
-class NavheaderMain : BaseActivity() {
+class NavHeaderMain : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

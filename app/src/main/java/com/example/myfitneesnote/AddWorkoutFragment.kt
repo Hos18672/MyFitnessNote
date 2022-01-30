@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myfitneesnote.adapters.SwipeToDelete
-import com.example.myfitneesnote.adapters.TrainingItemAdapteradd
+import com.example.myfitneesnote.adapters.TrainingItemAdapterAdd
 import com.example.myfitneesnote.model.Workout
 import com.example.myfitneesnote.utils.Constant
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
@@ -20,9 +20,8 @@ import java.util.*
 
 
 class AddWorkoutFragment : Fragment() {
-    var uuid : UUID = UUID.randomUUID()
     private val db = FirebaseFirestore.getInstance()
-    private lateinit var trainingItemAdapter : TrainingItemAdapteradd
+    private lateinit var trainingItemAdapter : TrainingItemAdapterAdd
     private lateinit var recyclerView: RecyclerView
     private lateinit var _view: View
 
@@ -47,7 +46,7 @@ class AddWorkoutFragment : Fragment() {
             .setQuery(query, Workout::class.java)
             .build()
         recyclerView = _view.findViewById(R.id.recyclerView_add);
-        trainingItemAdapter = TrainingItemAdapteradd(fireStoreRecyclerOption)
+        trainingItemAdapter = TrainingItemAdapterAdd(fireStoreRecyclerOption)
         val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         recyclerView.layoutManager = linearLayoutManager
         recyclerView.smoothScrollToPosition(0)
