@@ -9,10 +9,7 @@ import android.view.WindowManager
 import android.view.WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS
 import android.view.animation.AnimationUtils
 import androidx.annotation.RequiresApi
-import androidx.core.app.ActivityOptionsCompat
-import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_intro.*
-import kotlinx.android.synthetic.main.activity_login.*
 
 
 @Suppress("DEPRECATION")
@@ -27,12 +24,13 @@ class IntroActivity : BaseActivity() {
         val window: Window = this.window
         window.addFlags(FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-        window.navigationBarColor = ContextCompat.getColor(this, R.color.colorOfStutusBar)
-        window.statusBarColor = ContextCompat.getColor(this, R.color.colorOfStutusBar)
         //fullscreen()
+        m = MainActivity()
         animat()
+        onClick()
+    }
+    private fun onClick(){
         intro_login_button.setOnClickListener {
-
             var intent =  Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
@@ -43,7 +41,7 @@ class IntroActivity : BaseActivity() {
             finish()
         }
     }
-    fun animat(){
+    private fun animat(){
         val ttb = AnimationUtils.loadAnimation(this, R.anim.ttb1)
             intro_imageView.startAnimation(ttb)
         val ttb1 = AnimationUtils.loadAnimation(this, R.anim.ttb)
@@ -56,6 +54,7 @@ class IntroActivity : BaseActivity() {
     }
     override fun onBackPressed() {
         m.finish()
+        this.finishAffinity()
     }
 
 }

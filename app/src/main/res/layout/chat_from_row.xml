@@ -30,8 +30,7 @@
             android:layout_marginBottom="-10dp"
             android:text="@string/hi_max_how_are_you_doing"
             android:textColor="#000"
-            android:textSize="15sp"
-            android:textStyle="bold"
+            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -43,11 +42,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginBottom="3dp"
             android:gravity="right"
             android:text="@string/date"
             android:textColor="#000"
-            android:textSize="12sp" />
+            android:textSize="10sp" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

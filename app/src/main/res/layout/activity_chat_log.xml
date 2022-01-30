@@ -4,17 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ic_splash_background"
+    android:background="@color/backgroundColor"
     android:orientation="vertical"
     tools:context=".ChatLogActivity">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar_Chat_activity"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="40dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:background="#00c2ff"
+        android:background="@color/toolbarColor"
         android:elevation="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/messages"
-            android:textColor="#000000"
+            android:textColor="@color/textColor"
             android:textSize="17sp"
             tools:layout_editor_absoluteX="165dp"
             tools:layout_editor_absoluteY="218dp" />
@@ -43,7 +43,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="2dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@+id/editTextChatLog"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,14 +59,15 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="5dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="16dp"
         android:layout_toStartOf="@+id/SendeBtn"
+        android:backgroundTint="@color/backgroundColorNav"
         android:background="@drawable/shapetransparent_message"
+        android:elevation="1dp"
         android:fitsSystemWindows="true"
         android:hint="@string/type_a_message"
         android:paddingLeft="20dp"
         android:paddingTop="5dp"
-        android:elevation="10dp"
         android:paddingRight="20dp"
         android:paddingBottom="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -74,7 +75,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageButton
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/SendeBtn"
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -83,13 +84,22 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="17dp"
+        android:backgroundTint="@color/backgroundColorNav"
         android:background="@drawable/send_icon"
         android:contentDescription="@string/todo"
-        android:elevation="10dp"
+        app:cardCornerRadius="50dp"
+        app:rippleColor="#8ED1FF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editTextChatLog"
         app:layout_constraintTop_toTopOf="@+id/editTextChatLog"
-        app:layout_constraintVertical_bias="0.989" />
+        app:layout_constraintVertical_bias="0.989">
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="3dp"
+            android:background="@drawable/send_icon"/>
+    </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

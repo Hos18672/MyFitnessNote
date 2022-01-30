@@ -10,7 +10,6 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityOptionsCompat
-import androidx.core.content.ContextCompat
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_main.*
@@ -24,10 +23,6 @@ class LoginActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        window.statusBarColor = ContextCompat.getColor(this, R.color.Statusbar)
-        window.navigationBarColor = ContextCompat.getColor(this, R.color.colorOfStutusBar)
-        //window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE or SOFT_INPUT_ADJUST_RESIZE)
-        //fullscreen()
         setupActionBar()
         login_signUpBtn.setOnClickListener {
             val intent =  Intent(this, SignUpActivity::class.java)

@@ -11,7 +11,6 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityOptionsCompat
-import androidx.core.content.ContextCompat
 import at.favre.lib.crypto.bcrypt.BCrypt
 import com.example.myfitneesnote.firebase.FirestoreClass
 import com.google.firebase.auth.FirebaseAuth
@@ -28,9 +27,6 @@ class SignUpActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
-       // window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE or WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
-        window.statusBarColor = ContextCompat.getColor(this, R.color.Statusbar)
-        window.navigationBarColor = ContextCompat.getColor(this, R.color.colorOfStutusBar)
         setupActionBar()
         login_signUpText.setOnClickListener {
             val intent =  Intent(this, LoginActivity::class.java)

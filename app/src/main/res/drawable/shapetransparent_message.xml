@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:shape="rectangle">
     <corners android:radius="100px"/>
-    <stroke android:color="#AC0443FF"
-        android:width="0.5dp" />
+    <stroke android:color="@color/colorPrimaryBlue"
+        android:width="1dp" />
     <solid android:color="@android:color/white"/>
 
 

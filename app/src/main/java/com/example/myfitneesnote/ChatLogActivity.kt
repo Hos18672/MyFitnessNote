@@ -14,7 +14,6 @@ import com.google.firebase.database.FirebaseDatabase
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
-import kotlinx.android.synthetic.main.activity_chat.toolBar_Chat_activity
 import kotlinx.android.synthetic.main.activity_chat_log.*
 import kotlinx.android.synthetic.main.chat_from_row.view.*
 import kotlinx.android.synthetic.main.chat_to_row.view.*
@@ -34,17 +33,6 @@ class ChatLogActivity : BaseActivity() {
         listenForMessages()
         this.window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE or WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         SendeBtn.setOnClickListener{
-            SendeBtn.animate().apply {
-                duration = 100
-                scaleYBy(.3f)
-                scaleXBy(.3f)
-            }.withEndAction {
-                SendeBtn.animate().apply {
-                    duration = 100
-                    scaleYBy(-.3f)
-                    scaleXBy(-.3f)
-                }
-            }.start()
             Log.d(TAG, "To send Message")
             if(editTextChatLog.text.toString() != ""){
                 performSendMessage()

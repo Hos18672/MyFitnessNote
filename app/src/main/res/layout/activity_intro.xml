@@ -21,12 +21,12 @@
 
         <ImageView
             android:id="@+id/intro_imageView"
-            android:layout_width="340dp"
-            android:layout_height="260dp"
+            android:layout_width="280dp"
+            android:layout_height="200dp"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="140dp"
             android:layout_marginEnd="32dp"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="10dp"
             android:contentDescription="@string/app_name"
             app:layout_constraintBottom_toTopOf="@+id/intro_textView"
             app:layout_constraintEnd_toEndOf="parent"
@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
             android:text="@string/welcome"
-            android:textColor="#000000"
+            android:textColor="@color/textColor"
             android:textSize="50sp"
             app:layout_constraintBottom_toTopOf="@+id/intro_login_button"
             app:layout_constraintEnd_toEndOf="parent"
@@ -50,7 +50,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/intro_login_button"
-            android:layout_width="330dp"
+            android:layout_width="300dp"
             android:layout_height="60dp"
             android:layout_marginBottom="30dp"
             android:backgroundTint="@color/colorPrimaryBlue"
@@ -65,7 +65,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/intro_sign_up_button"
-            android:layout_width="330dp"
+            android:layout_width="300dp"
             android:layout_height="60dp"
             android:layout_marginBottom="200dp"
             android:backgroundTint="@color/colorAccentPrimaryDark"

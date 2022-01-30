@@ -1,6 +1,7 @@
 package com.example.myfitneesnote
 
 
+
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
@@ -10,7 +11,6 @@ import android.text.Editable
 import android.view.MenuItem
 import android.widget.EditText
 import androidx.annotation.RequiresApi
-import androidx.core.app.ActivityOptionsCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myfitneesnote.R.*
 import com.example.myfitneesnote.firebase.FirestoreClass
@@ -26,7 +26,6 @@ import java.util.*
 import java.util.concurrent.ThreadLocalRandom
 import android.text.TextUtils
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_my_profile.*
 
 class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -42,7 +41,6 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
         setContentView(layout.activity_add_workout)
         onClick()
         setupActionBar()
-        window.navigationBarColor = ContextCompat.getColor(this, color.colorOfStutusBar)
         gymType = intent.getStringExtra("GymName").toString()
         muskelName = intent.getStringExtra("MuskelName").toString()
         trainingsName = intent.getStringExtra("MuskelName")
@@ -63,7 +61,6 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
                 // Do Something
                 currentDate = "${year}-${month+1}-${day}"
             }
-
             override fun onDisabledDateSelected(
                 year: Int,
                 month: Int,
@@ -80,24 +77,9 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
         val dates = arrayOf(Calendar.getInstance().time)
         datePickerTimeline.deactivateDates(dates)
     }
-  override  fun onBackPressed() {
-        val intent = Intent(this, MuskelGroupActivity::class.java)
-        intent.putExtra("WorkoutType", gymType)
-        startActivity(intent)
-        finish()
-    }
 
     private fun String.toEditable(): Editable = Editable.Factory.getInstance().newEditable(this)
     private fun onClick() {
-        btnBackNewWorkout.setOnClickListener {
-            val intent = Intent(this, MuskelGroupActivity::class.java)
-            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
-                this,
-                btnBackNewWorkout,
-                "addTrainingBtn"
-            )
-            startActivity(intent, options.toBundle())
-        }
         btn_back_home.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
             finishAffinity()
@@ -161,6 +143,7 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
                     val breakNum = breakNum.text.toString()
                     val set = SetNum.text.toString()
                     val rep = repeatNum.text.toString()
+                    var note = workoutNote.text.toString()
                     if (validateForm(set, weight2, breakNum, rep)) {
                         val rnds = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                             ThreadLocalRandom.current().nextDouble(0.0, 0.9)
@@ -168,9 +151,7 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
                             TODO("VERSION.SDK_INT < LOLLIPOP")
                         }
                         val randnum = 0.0 + rnds
-                        val s =
-                            20 * set.toInt() * rep.toInt() * (2 * 3.0 + randnum * weight.toString()
-                                .toInt())
+                        val s = 20 * set.toInt() * rep.toInt() * (2 * 3.0 + randnum * weight.toString().toInt())
                         val calories = s / 200
                         workout = Workout(
                             getCurrentUserId(),
@@ -182,7 +163,8 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
                             rep,
                             currentDate,
                             calories,
-                            dateFormatter(currentDate)
+                            dateFormatter(currentDate),
+                            note
                         )
                         FirestoreClass().createNewTraining(this@AddWorkoutActivity, workout)
                         val recyclerView = findViewById<RecyclerView>(id.recyclerView_add)
@@ -214,7 +196,7 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
             }
         }
     }
-    fun getCurrentUserId(): String {
+   private fun getCurrentUserId(): String {
         val currentUser = FirebaseAuth.getInstance().currentUser
         var currentUserID = ""
         if (currentUser != null) {
@@ -223,6 +205,7 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
         return currentUserID
     }
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     private fun setupActionBar() {
         setSupportActionBar(toolBar_add_workout_activity)
         val actionBar = supportActionBar

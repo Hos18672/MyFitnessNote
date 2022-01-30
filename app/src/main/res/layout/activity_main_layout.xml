@@ -5,77 +5,69 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/g"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    android:background="@color/backgroundColor"
+    tools:context=".MainActivity"
+    tools:ignore="MissingClass">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout3"
         android:layout_width="0dp"
-        android:layout_height="100dp"
+        android:layout_height="60dp"
         android:minHeight="100dp"
-        android:background="@drawable/ic_round_top_navbar"
+        android:background="@color/backgroundColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-        <RelativeLayout
-            android:id="@+id/relativeLayout"
+
+        <ImageButton
+            android:id="@+id/main_menu"
             android:layout_width="60dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="30dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:padding="10dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/menu_icon"
+            android:backgroundTint="@color/textColor"
+            android:contentDescription="@string/todo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.493"
-            tools:ignore="MissingConstraints">
+            app:layout_constraintVertical_bias="0.0"
+            tools:ignore="TouchTargetSizeCheck" />
 
-            <ImageButton
-                android:id="@+id/main_menu"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="@drawable/white_menu"
-                android:contentDescription="@string/todo"
-                tools:ignore="TouchTargetSizeCheck" />
-        </RelativeLayout>
         <ImageButton
-            android:id="@+id/tv_main_profile_image"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginEnd="28dp"
-            android:background="@drawable/circle_profile"
-            android:contentDescription="@string/todo"
-            android:transitionName="profileImage"
+            android:id="@+id/mainImage"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/profile_icon2"
+            android:backgroundTint="@color/textColor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="UnusedAttribute" />
+            app:layout_constraintVertical_bias="0.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
     <ScrollView
-        android:id="@+id/scrollView4"
+        android:id="@+id/scrollView_main"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:elevation="-1dp"
         android:orientation="horizontal"
         android:scrollbars="none"
-        android:elevation="-1dp"
-        android:layout_marginTop="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3"
         app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="70dp"
             android:layout_marginBottom="100dp"
             android:orientation="vertical">
-
             <TextView
                 android:id="@+id/today"
                 android:layout_width="wrap_content"
@@ -86,15 +78,20 @@
                 android:elevation="15dp"
                 android:shadowColor="@color/black"
                 android:text="@string/today"
-                android:textColor="#010623"
+                android:textColor="@color/textColor"
                 android:textSize="30sp" />
 
+            <FrameLayout
+                android:id="@+id/root_container_main"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:visibility="visible"
+                app:layout_constraintTop_toTopOf="@id/view4" />
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_trainings_list_main"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal" />
+                android:layout_width="0dp"
+                android:layout_height="0dp" />
+
 
             <TextView
                 android:id="@+id/Chart"
@@ -105,9 +102,8 @@
                 android:layout_marginBottom="15dp"
                 android:elevation="15dp"
                 android:text="@string/progress"
-                android:textColor="#010623"
+                android:textColor="@color/textColor"
                 android:textSize="30sp" />
-
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvLineChart"
                 android:layout_width="match_parent"
@@ -120,14 +116,15 @@
                 android:outlineSpotShadowColor="@color/black"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="10dp"
+                android:background="@color/backgroundColor"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
-
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
+                    android:layout_height="match_parent"
+                    android:background="@color/backgroundColor"
+                    android:backgroundTint="@color/toolbarColor">
                     <com.google.android.material.button.MaterialButtonToggleGroup
                         android:id="@+id/toggleButtonsGroup"
                         android:layout_width="match_parent"
@@ -148,10 +145,8 @@
                             android:layout_width="60dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
-                            android:backgroundTint="@color/white"
                             android:gravity="center"
                             android:text="@string/_1w"
-                            android:textColor="#00002E"
                             android:textSize="12sp"
                             tools:ignore="SmallSp,UnusedAttribute" />
 
@@ -160,11 +155,8 @@
                             style="@style/ToggleButton"
                             android:layout_width="60dp"
                             android:layout_height="wrap_content"
-                            android:background="@color/white"
-                            android:backgroundTint="@color/white"
                             android:gravity="center"
                             android:text="@string/_2w"
-                            android:textColor="#00002E"
                             android:textSize="12sp"
                             tools:ignore="SmallSp,UnusedAttribute" />
 
@@ -173,10 +165,8 @@
                             style="@style/ToggleButton"
                             android:layout_width="60dp"
                             android:layout_height="wrap_content"
-                            android:backgroundTint="@color/white"
                             android:gravity="center"
                             android:text="@string/_3w"
-                            android:textColor="#00002E"
                             android:textSize="12sp"
                             tools:ignore="SmallSp"
                             tools:targetApi="lollipop" />
@@ -186,13 +176,10 @@
                             style="@style/ToggleButton"
                             android:layout_width="60dp"
                             android:layout_height="wrap_content"
-                            android:backgroundTint="@color/white"
                             android:gravity="center"
                             android:text="@string/_1m"
-                            android:textColor="#00002E"
                             android:textSize="12sp"
                             tools:ignore="SmallSp,UnusedAttribute" />
-
                         <Button
                             android:id="@+id/TwoMonth"
                             style="@style/ToggleButton"
@@ -211,10 +198,8 @@
                             android:layout_width="60dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="5dp"
-                            android:backgroundTint="@color/white"
                             android:gravity="center"
                             android:text="@string/all"
-                            android:textColor="#00002E"
                             android:textSize="12sp"
                             tools:ignore="SmallSp,UnusedAttribute" />
                     </com.google.android.material.button.MaterialButtonToggleGroup>
@@ -233,10 +218,11 @@
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/toggleButtonsGroup"
-                        app:layout_constraintVertical_bias="1.0" />
+                        app:layout_constraintVertical_bias="1.0">
+                    </com.github.mikephil.charting.charts.LineChart>
                 </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
 
+            </androidx.cardview.widget.CardView>
             <TextView
                 android:id="@+id/Tips"
                 android:layout_width="wrap_content"
@@ -246,9 +232,8 @@
                 android:layout_marginBottom="10dp"
                 android:elevation="15dp"
                 android:text="Training tips"
-                android:textColor="#010623"
+                android:textColor="@color/textColor"
                 android:textSize="30sp" />
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -257,6 +242,7 @@
                 android:layout_marginTop="35dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="5dp"
+                android:translationZ="-4dp"
                 android:gravity="center">
 
                 <com.google.android.material.card.MaterialCardView
@@ -269,6 +255,7 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:outlineSpotShadowColor="@color/black"
+                    app:cardBackgroundColor="@color/toolbarColor"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="5dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -284,7 +271,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="EZ Bar curl"
-                        android:textColor="#3F51B5"
+                        android:textColor="@color/textColor"
                         android:textSize="20sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -302,6 +289,7 @@
                     android:focusable="true"
                     android:outlineSpotShadowColor="@color/black"
                     android:transitionName="trainingsBtn"
+                    app:cardBackgroundColor="@color/toolbarColor"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="5dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -319,7 +307,7 @@
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:text="One arm dumbbell "
-                        android:textColor="#3F51B5"
+                        android:textColor="@color/textColor"
                         android:textSize="20sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -327,7 +315,6 @@
                         app:layout_constraintTop_toTopOf="parent" />
                 </com.google.android.material.card.MaterialCardView>
             </androidx.constraintlayout.widget.ConstraintLayout>
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -348,8 +335,10 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:outlineSpotShadowColor="@color/black"
+                    app:cardBackgroundColor="@color/toolbarColor"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="5dp"
+                    android:translationZ="-4dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/Seated_biceps_curls"
                     app:layout_constraintStart_toStartOf="parent"
@@ -363,7 +352,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="Dumbbell curl "
-                        android:textColor="#3F51B5"
+                        android:textColor="@color/textColor"
                         android:textSize="20sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -381,6 +370,7 @@
                     android:focusable="true"
                     android:outlineSpotShadowColor="@color/black"
                     android:transitionName="trainingsBtn"
+                    app:cardBackgroundColor="@color/toolbarColor"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="5dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -399,7 +389,7 @@
                         android:layout_margin="5dp"
                         android:gravity="center"
                         android:text="@string/Seated_biceps_curls"
-                        android:textColor="#3F51B5"
+                        android:textColor="@color/textColor"
                         android:textSize="20sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -409,64 +399,78 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </ScrollView>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout6"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginBottom="-1dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
         android:background="@drawable/ic_round_top_nav_bottom"
         android:elevation="5dp"
+        android:translationZ="1dp"
         android:outlineAmbientShadowColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/Add_main"
         app:layout_constraintVertical_bias="1.0">
-
-        <ImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/chat_main"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="40dp"
-            android:background="@drawable/chat"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="30dp"
+            android:backgroundTint="@color/textColor"
+            android:background="@drawable/chat_icon"
             android:contentDescription="@string/todo"
             android:transitionName="chatBtn"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:rippleColor="#8ED1FF"
             tools:ignore="UnusedAttribute" />
 
-        <ImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/main_diagramm"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="40dp"
-            android:background="@drawable/history"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="30dp"
+            android:backgroundTint="@color/textColor"
+            android:background="@drawable/history_icon"
             android:contentDescription="@string/todo"
             android:transitionName="trainingsBtn"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:rippleColor="#8ED1FF"
             tools:ignore="UnusedAttribute" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/Add_main"
+
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/add_main"
         android:layout_width="65dp"
         android:layout_height="65dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="17dp"
+        android:background="@drawable/ic_add_icon2"
+        android:backgroundTint="@color/textColor"
         android:contentDescription="@string/todo"
-        android:foregroundGravity="center"
-        android:scaleType="center"
-        app:backgroundTint="#00B7FF"
-        app:fabCustomSize="65dp"
-        android:transitionName="addBtn"
+        android:elevation="10dp"
+        android:transitionName="chatBtn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:maxImageSize="60dp"
-        app:srcCompat="@drawable/ic_baseline_add_24"
-        app:tint="@color/white"
-        tools:ignore="MissingConstraints,UnusedAttribute,VectorDrawableCompat"/>
+        app:rippleColor="#8ED1FF"
+        tools:ignore="UnusedAttribute" />
+
+    <View
+        android:id="@+id/viewClick"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:backgroundTint="@android:color/transparent"
+        android:background="@android:color/transparent"
+        android:translationZ="-1dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

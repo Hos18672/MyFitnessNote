@@ -1,31 +1,27 @@
 package com.example.myfitneesnote
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myfitneesnote.adapters.SwipeToDelete
-import com.example.myfitneesnote.adapters.TrainingItemAdapteradd
+import com.example.myfitneesnote.adapters.TrainingItemAdapterAdd
 import com.example.myfitneesnote.model.Workout
 import com.example.myfitneesnote.utils.Constant
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
-import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
 
 class AddWorkoutFragment : Fragment() {
-    var uuid : UUID = UUID.randomUUID()
     private val db = FirebaseFirestore.getInstance()
-    private lateinit var trainingItemAdapter : TrainingItemAdapteradd
+    private lateinit var trainingItemAdapter : TrainingItemAdapterAdd
     private lateinit var recyclerView: RecyclerView
     private lateinit var _view: View
 
@@ -33,7 +29,7 @@ class AddWorkoutFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-       _view = inflater.inflate(R.layout.fragment_trainings_fragment, container, false)
+       _view = inflater.inflate(R.layout.rainings_fragment, container, false)
         getTrainingsFromFireStore()
         recyclerView = _view.findViewById(R.id.recyclerView_add);
         recyclerView.setHasFixedSize(true);
@@ -50,7 +46,7 @@ class AddWorkoutFragment : Fragment() {
             .setQuery(query, Workout::class.java)
             .build()
         recyclerView = _view.findViewById(R.id.recyclerView_add);
-        trainingItemAdapter = TrainingItemAdapteradd(fireStoreRecyclerOption)
+        trainingItemAdapter = TrainingItemAdapterAdd(fireStoreRecyclerOption)
         val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         recyclerView.layoutManager = linearLayoutManager
         recyclerView.smoothScrollToPosition(0)

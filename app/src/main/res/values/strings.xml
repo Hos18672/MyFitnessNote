@@ -15,8 +15,8 @@
     <string name="enter_message">Type a message</string>
     <string name="button">Button</string>
     <string name="back">Back</string>
-    <string name="gymwork1">GYM</string>
-    <string name="homeworkout1">HOME</string>
+    <string name="gymwork1">Gym</string>
+    <string name="homeworkout1">Home</string>
     <string name="_1">1</string>
     <string name="_3">3</string>
     <string name="full_name">Full name</string>
@@ -26,7 +26,7 @@
     <string name="change_email_or_password">Change Email Or Password</string>
     <string name="current_password">Current Password</string>
     <string name="save">Save</string>
-    <string name="BtnBackNew">BACK</string>
+    <string name="BtnBackNew">Back</string>
     <string name="_4">4</string>
     <string name="repeat">Repeat</string>
     <string name="_2">2</string>
@@ -54,7 +54,7 @@
     <string name="change_email">Change Email</string>
     <string name="new_password">New password</string>
     <string name="repeat_password">Retype password</string>
-    <string name="retype_password">Retype Password</string>
+    <string name="retype_password">Retype password</string>
     <string name="hi_how_are_you">Hi, How are you?</string>
     <string name="already_have_an_account">Already have an Account</string>
     <string name="forgot_your_password">Forgot your password?</string>
@@ -119,4 +119,5 @@
     <string name="tipps">Tipps</string>
     <string name="Update">Update</string>
     <string name="Add">Add</string>
+    <string name="Pause">Pause</string>
 </resources>

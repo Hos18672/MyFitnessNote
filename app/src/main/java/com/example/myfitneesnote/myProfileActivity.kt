@@ -1,7 +1,6 @@
 package com.example.myfitneesnote
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
@@ -9,7 +8,6 @@ import android.view.View
 import android.widget.RadioButton
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.core.app.ActivityOptionsCompat
 import com.example.myfitneesnote.R.*
 import com.example.myfitneesnote.R.drawable.*
 import com.google.firebase.auth.FirebaseAuth
@@ -31,11 +29,6 @@ class MyProfileActivity : BaseActivity() {
        // fullscreen()
         setupActionBar()
         userProfileData()
-        btnback_profile.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, imageView8, "profileImage")
-            startActivity(intent, options.toBundle())
-            finish()}
         mFirebaseInstance = FirebaseDatabase.getInstance()
         // get reference to 'users' node
         mFirebaseDatabase = mFirebaseInstance!!.getReference("users")

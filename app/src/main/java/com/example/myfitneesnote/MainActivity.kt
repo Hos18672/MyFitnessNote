@@ -4,6 +4,8 @@ package com.example.myfitneesnote
 import android.R
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.res.ColorStateList
+import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -15,14 +17,12 @@ import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.view.GravityCompat
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myfitneesnote.R.id
 import com.example.myfitneesnote.R.layout
 import com.example.myfitneesnote.adapters.TrainingItemAdapterMain
 import com.example.myfitneesnote.model.Workout
 import com.example.myfitneesnote.utils.Constant
-import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.components.YAxis
@@ -53,6 +53,8 @@ import java.time.LocalDate.parse
 import java.time.chrono.ChronoLocalDate
 import java.time.format.DateTimeFormatter
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.firebase.ui.firestore.FirestoreRecyclerOptions
 
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -70,14 +72,34 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         constraintLayout3.bringToFront()
         onClick()
         userData()
-        animat()
+        animate()
         getTrainingsFromFireStore()
         updateNavigationUserDetails()
         setupLineChartData(7)
+        val trainingsFragment = WorkoutListMainFragment()
+        supportFragmentManager.beginTransaction().apply {
+            replace(id.root_container_main, trainingsFragment).commit()
+        }
 
         if (!checkForInternet(this)) {
             Toast.makeText(this, "No internet connection!", Toast.LENGTH_SHORT).show()
         }
+        if (!scrollView_main.canScrollVertically(1)) {
+            constraintLayout3.elevation = 10f
+        }
+        if (!scrollView_main.canScrollVertically(-1)) {
+            constraintLayout3.elevation = 5f
+        }
+
+        scrollView_main.viewTreeObserver
+            .addOnScrollChangedListener {
+                if (!scrollView_main.canScrollVertically(-1)) {
+                    constraintLayout3.elevation = 0f
+                }
+                else{
+                    constraintLayout3.elevation = 50f
+                }
+            }
     }
 
     private fun getCurrentUserId(): String {
@@ -107,14 +129,15 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     @SuppressLint("NewApi")
     private fun onClick() {
         val mainMenu: ImageButton = findViewById(id.main_menu)
-        val addMenu: ImageView = findViewById(id.Add_main)
+        val addMenu: ImageView = findViewById(id.add_main)
         val chatMain: ImageButton = findViewById(id.chat_main)
-        val mainImage: ImageButton = findViewById(id.tv_main_profile_image)
+        val mainImage: ImageButton = findViewById(id.mainImage)
         val diagramMain: ImageButton = findViewById(id.main_diagramm)
         val tip1: CardView = findViewById(id.EZ_bar_curl)
         val tip2: CardView = findViewById(id.One_arm_dumbbell)
         val tip3: CardView = findViewById(id.Dumbbell)
         val tip4: CardView = findViewById(id.Seated_biceps_curls)
+
 
         tipsItemsClick(tip1)
         tipsItemsClick(tip2)
@@ -122,11 +145,11 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         tipsItemsClick(tip4)
 
         mainImage.setOnClickListener {
-            animate(mainImage)
+            //animate(mainImage)
             val intent = Intent(this, MyProfileActivity::class.java)
             val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
                 this,
-                tv_main_profile_image,
+                mainImage,
                 "profileImage"
             )
             startActivity(intent, options.toBundle())
@@ -140,9 +163,20 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             }
         }
         addMenu.setOnClickListener {
+            addMenu.animate().apply {
+                duration = 500
+                scaleYBy(.3f)
+                scaleXBy(.3f)
+            }.withEndAction {
+                addMenu.animate().apply {
+                    duration = 500
+                    scaleYBy(-.3f)
+                    scaleXBy(-.3f)
+                }
+            }.start()
             val intent = Intent(this, WorkoutsChoiceActivity::class.java)
             val options =
-                ActivityOptionsCompat.makeSceneTransitionAnimation(this, Add_main, "addBtn")
+                ActivityOptionsCompat.makeSceneTransitionAnimation(this, add_main, "addBtn")
             startActivity(intent, options.toBundle())
         }
         chatMain.setOnClickListener {
@@ -155,7 +189,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         }
         diagramMain.setOnClickListener {
             animate(diagramMain)
-            val intent = Intent(this, WorkoutsActivity::class.java)
+            val intent = Intent(this, Workouts_List_Activity::class.java)
             val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
                 this,
                 diagramMain,
@@ -181,6 +215,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
         }
+
         toggleButtonsGroup.checkedButtonId
         toggleButtonsGroup.isSingleSelection = true
         toggleButtonsGroup.addOnButtonCheckedListener { _, checkedId, isChecked ->
@@ -196,24 +231,37 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         }
     }
 
-    private fun animat() {
+    private fun animate() {
         val rtl = AnimationUtils.loadAnimation(this, R.anim.slide_in_left)
         cvLineChart.startAnimation(rtl)
     }
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     private fun animate(btn: ImageButton) {
+        val stateList = ColorStateList.valueOf(resources.getColor(R.color.holo_blue_light))
+        val stateList2 = ColorStateList.valueOf(resources.getColor(R.color.white))
+        val stateList3 = ColorStateList.valueOf(resources.getColor(R.color.black))
         btn.animate().apply {
-            duration = 100
-            scaleYBy(.3f)
-            scaleXBy(.3f)
+            duration = 500
+            scaleYBy(.0f)
+            scaleXBy(.0f)
+            btn.backgroundTintList = stateList
         }.withEndAction {
             btn.animate().apply {
-                duration = 100
-                scaleYBy(-.3f)
-                scaleXBy(-.3f)
+                duration = 500
+                scaleYBy(-.0f)
+                scaleXBy(-.0f)
+
+                val mode = baseContext?.resources?.configuration?.uiMode?.and(Configuration.UI_MODE_NIGHT_MASK)
+                when (mode) {
+                    Configuration.UI_MODE_NIGHT_YES -> {    btn.backgroundTintList = stateList2 }
+                    Configuration.UI_MODE_NIGHT_NO -> { btn.backgroundTintList = stateList3}
+                    Configuration.UI_MODE_NIGHT_UNDEFINED -> {}
+                }
             }
         }.start()
     }
+
 
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -225,6 +273,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             id.nav_Settings -> {
                 startActivity(Intent(this, SecurityActivity::class.java))
             }
+
             id.btn_sing_out_draw_layout -> {
                 FirebaseAuth.getInstance().signOut()
                 val intent = Intent(this, IntroActivity::class.java)
@@ -350,7 +399,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
     private fun dateFormatter(date: String): ChronoLocalDate? {
         val currentDate = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            parse(date, DateTimeFormatter.ofPattern("yyyy-MM-d"))
+            parse(date, DateTimeFormatter.ofPattern("yyyy-M-d"))
 
         } else {
             TODO("VERSION.SDK_INT < O")
@@ -468,25 +517,25 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         yAxis.setDrawLabels(true)
         yAxis.labelCount = 10
         lineChart.axisRight
- /*       val vf: ValueFormatter = object : ValueFormatter() {
-            //value format here, here is the overridden method
-            override fun getFormattedValue(value: Float): String {
-                return "" + value.toInt()
-            }
-        }
-        val vf2: ValueFormatter = object : ValueFormatter() {
-            //value format here, here is the overridden method
-            override fun getFormattedValue(value: Float): String {
-                var m = ""
-                var n = 0.3
-                if (value.toString().contains(".30")) {
-                    value - n
-                    m = value.toString()
-                }
+        /*       val vf: ValueFormatter = object : ValueFormatter() {
+                   //value format here, here is the overridden method
+                   override fun getFormattedValue(value: Float): String {
+                       return "" + value.toInt()
+                   }
+               }
+               val vf2: ValueFormatter = object : ValueFormatter() {
+                   //value format here, here is the overridden method
+                   override fun getFormattedValue(value: Float): String {
+                       var m = ""
+                       var n = 0.3
+                       if (value.toString().contains(".30")) {
+                           value - n
+                           m = value.toString()
+                       }
 
-                return m
-            }
-        }*/
+                       return m
+                   }
+               }*/
         xAxis.isGranularityEnabled = true
         xAxis.labelCount = listDates.size + 1
         lineChart.setDrawBorders(false)
@@ -510,6 +559,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         legend.isEnabled = false
     }
 
+
     @RequiresApi(Build.VERSION_CODES.O)
     private fun getTrainingsFromFireStore() {
         val currentDate = getCurrentDate().toString()
@@ -528,6 +578,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         recyclerView.adapter = trainingItemAdapterMain
     }
+
 
     override fun onStart() {
         super.onStart()

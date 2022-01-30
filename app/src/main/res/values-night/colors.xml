@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#00c2ff</color>
+    <color name="colorPrimaryDark">#0055FF</color>
+    <color name="colorAccent">#010922</color>
+    <color name="snackBar_error_color">#FF0A0A</color>
+    <color name="statusColor">#FFFFFF</color>
+    <color name="colorPrimaryGreen">#03FF4A</color>
+    <color name="colorPrimaryBlue">#00c2ff</color>
+    <color name="colorPrimaryGreenHell">#23FFB9</color>
+    <color name="colorAccentPrimaryDark">#0088FF</color>
+    <color name="backgroundColor">#131416</color>
+    <color name="backgroundColorNav">#26282C</color>
+    <color name="lightDark">#56585A</color>
+    <color name="toolbarColor">#26282C</color>
+    <color name="lightBlue">#9F9398</color>
+    <color name="textColor">#EBEBEB</color>
+</resources>

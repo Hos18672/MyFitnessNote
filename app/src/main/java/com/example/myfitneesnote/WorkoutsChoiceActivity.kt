@@ -1,83 +1,125 @@
 package com.example.myfitneesnote
 
+import android.animation.LayoutTransition
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.transition.AutoTransition
+import android.transition.TransitionManager
+import android.view.View
 import android.view.WindowManager
 import android.view.animation.AnimationUtils
 import androidx.annotation.RequiresApi
+import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityOptionsCompat
-import kotlinx.android.synthetic.main.activity_workout.*
+import com.google.android.material.card.MaterialCardView
+import kotlinx.android.synthetic.main.activity_workout_choice.*
+
 
 @Suppress("DEPRECATION")
 class WorkoutsChoiceActivity : BaseActivity(){
+
+    private var gymType: String? = ""
+
     @SuppressLint("ResourceAsColor")
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_workout)
+        setContentView(R.layout.activity_workout_choice)
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         //fullscreen()
+        animat()
         setupActionBar()
         onClick()
-        animat()
     }
 
     private fun animat(){
         val btt = AnimationUtils.loadAnimation(this, R.anim.btt)
         btn_home_workout.startAnimation(btt)
         val ttb = AnimationUtils.loadAnimation(this, R.anim.ttb)
-        btn_gym_workout.startAnimation(ttb)
+        cv_gym2.startAnimation(ttb)
         val ttb1 = AnimationUtils.loadAnimation(this, R.anim.ttb)
         tv_gymType.startAnimation(ttb1)
+
+        llmain.layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
     }
     private  fun onClick(){
-        btn_gym_workout.setOnClickListener{
-            btn_gym_workout.animate().apply {
-                duration =400
-                scaleYBy(.2f)
-                scaleXBy(.2f)
-            }.withEndAction {
-                btn_gym_workout.animate().apply {
-                    duration = 400
-                    scaleYBy(-.2f)
-                    scaleXBy(-.2f)
+        cv_gym2.setOnClickListener{
+                if (hiddenLayout.getVisibility() === View.VISIBLE) {
+                    TransitionManager.beginDelayedTransition(cv_gym2, AutoTransition())
+                    hiddenLayout.visibility = View.GONE
+                    gym_arrow.setBackgroundResource(R.drawable.arrow_down)
+
+                } else {
+                    TransitionManager.beginDelayedTransition(cv_gym2, AutoTransition())
+                    hiddenLayout.visibility = View.VISIBLE
+                    hiddenLayout2.visibility = View.GONE
+                    gym_arrow.setBackgroundResource(R.drawable.arrow_up)
+                    home_arrow.setBackgroundResource(R.drawable.arrow_down)
                 }
-            }.start()
-            val intent = Intent( this,  MuskelGroupActivity::class.java)
-            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, btn_gym_workout, "cvWorkouts")
-            intent.putExtra("WorkoutType",txt_gym_workout.text)
-            startActivity(intent, options.toBundle())
-            //finish()
+                gymType = txt_gym_workout.text.toString()
+
         }
-        btn_home_workout.setOnClickListener{
-            btn_home_workout.animate().apply {
-                duration =400
-                scaleYBy(.2f)
-                scaleXBy(.2f)
-            }.withEndAction {
-                btn_home_workout.animate().apply {
-                    duration = 400
-                    scaleYBy(-.2f)
-                    scaleXBy(-.2f)
-                }
-            }.start()
-            val intent = Intent( this,  MuskelGroupActivity::class.java)
-            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, btn_home_workout, "cvWorkouts")
-            intent.putExtra("WorkoutType",txt_home_workout.text)
-            startActivity(intent, options.toBundle())
-            //finish()
+        cv_home.setOnClickListener{
+            if (hiddenLayout2.getVisibility() === View.VISIBLE) {
+                TransitionManager.beginDelayedTransition(cv_home, AutoTransition())
+                hiddenLayout2.visibility = View.GONE
+                home_arrow.setBackgroundResource(R.drawable.arrow_down)
+
+            } else {
+                TransitionManager.beginDelayedTransition(cv_home, AutoTransition())
+                hiddenLayout2.visibility = View.VISIBLE
+                hiddenLayout.visibility = View.GONE
+                home_arrow.setBackgroundResource(R.drawable.arrow_up)
+                gym_arrow.setBackgroundResource(R.drawable.arrow_down)
+            }
+            gymType = txt_home_workout.text.toString()
         }
 
 
-        btnBack1.setOnClickListener{
-            val intent = Intent(this, MainActivity::class.java)
-            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, btnBack1, "addBtn")
-            startActivity(intent, options.toBundle())
-            //finish()
-        }
+        //Burst muscle
+        brust_btn2.setOnClickListener { setOnclickMuscle(brust_btn as MaterialCardView) }
+        //Biceps muscle
+        biceps_btn2.setOnClickListener  { setOnclickMuscle(biceps_btn as MaterialCardView) }
+        //Triceps muscle
+        triceps_btn2.setOnClickListener { setOnclickMuscle(triceps_btn as MaterialCardView) }
+        //Forarms muscle
+        forearms_btn2.setOnClickListener{ setOnclickMuscle(forearms_btn as MaterialCardView) }
+        //Traps muscle
+        traps_btn2.setOnClickListener   { setOnclickMuscle(traps_btn as MaterialCardView) }
+        //Upper-abs muscle
+        upperabs_btn2.setOnClickListener{ setOnclickMuscle(upperabs_btn as MaterialCardView) }
+        //shoulder muscle
+        shoulder_btn2.setOnClickListener{ setOnclickMuscle(shoulder_btn as CardView) }
+
+       // ======================= Home ============================================
+        //Burst muscle
+        brust_btn.setOnClickListener { setOnclickMuscle(brust_btn as MaterialCardView) }
+        //Biceps muscle
+        biceps_btn.setOnClickListener  { setOnclickMuscle(biceps_btn as MaterialCardView) }
+        //Triceps muscle
+        triceps_btn.setOnClickListener { setOnclickMuscle(triceps_btn as MaterialCardView) }
+        //Forarms muscle
+        forearms_btn.setOnClickListener{ setOnclickMuscle(forearms_btn as MaterialCardView) }
+        //Traps muscle
+        traps_btn.setOnClickListener   { setOnclickMuscle(traps_btn as MaterialCardView) }
+        //Upper-abs muscle
+        upperabs_btn.setOnClickListener{ setOnclickMuscle(upperabs_btn as MaterialCardView) }
+        //shoulder muscle
+        shoulder_btn.setOnClickListener{ setOnclickMuscle(shoulder_btn as CardView) }
+    }
+
+    private  fun setOnclickMuscle(btn: CardView){
+        val intent = Intent( this,  AddWorkoutActivity::class.java)
+        intent.putExtra("MuskelName", btn.contentDescription)
+        intent.putExtra("GymName", gymType)
+
+        val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, btn, "addTrainingCv")
+        startActivity(intent, options.toBundle())
+
+        // finish()
     }
     override  fun onBackPressed() {
         val intent = Intent(this, MainActivity::class.java)
