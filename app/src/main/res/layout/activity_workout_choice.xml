@@ -93,12 +93,14 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content">
 
-                                        <androidx.cardview.widget.CardView
+                                        <com.google.android.material.card.MaterialCardView
                                             android:id="@+id/cv_gym2"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:backgroundTint="@color/backgroundColorNav"                                            android:translationZ="5dp"
                                             app:cardCornerRadius="15dp"
+                                            app:cardElevation="0.2dp"
+                                            app:rippleColor="@color/white"
                                             android:layout_marginBottom="5dp"
                                             app:layout_constraintEnd_toEndOf="parent"
                                             app:layout_constraintStart_toStartOf="parent"
@@ -137,10 +139,11 @@
                                                             android:background="@drawable/arrow_down">
                                                         </ImageButton>
                                                 </LinearLayout>
-                                        </androidx.cardview.widget.CardView>
+                                        </com.google.android.material.card.MaterialCardView>
                                         <View
                                             android:layout_width="match_parent"
                                             android:layout_height="1dp"
+                                            android:elevation="0.2dp"
                                             app:layout_constraintBottom_toBottomOf="@+id/cv_gym2"
                                             app:layout_constraintTop_toBottomOf="@+id/cv_gym2"
                                             tools:ignore="MissingConstraints"/>
@@ -153,6 +156,7 @@
                                             android:transitionName="cvWorkouts"
                                             android:translationZ="-5dp"
                                             android:visibility="gone"
+                                            android:elevation="0dp"
                                             android:backgroundTint="@color/lightDark"
                                             android:animateLayoutChanges="true"
                                             app:layout_constraintBottom_toBottomOf="parent"
@@ -182,6 +186,7 @@
                                                             android:contentDescription="@string/chest"
                                                             android:paddingStart="20dp"
                                                             android:textSize="20sp"
+                                                            app:cardElevation="0.2dp"
                                                             android:transitionName="addTrainingCv"
                                                             app:cardCornerRadius="10dp"
                                                             app:rippleColor="#8ED1FF"
@@ -236,6 +241,7 @@
                                                             android:textSize="20sp"
                                                             android:transitionName="addTrainingCv"
                                                             app:cardCornerRadius="10dp"
+                                                            app:cardElevation="0.2dp"
                                                             app:rippleColor="#8ED1FF"
                                                             tools:ignore="RtlHardcoded,RtlSymmetry">
 
@@ -286,6 +292,7 @@
                                                             android:paddingStart="20dp"
                                                             android:text="@string/triceps"
                                                             android:textSize="20sp"
+                                                            app:cardElevation="0.2dp"
                                                             android:transitionName="addTrainingCv"
                                                             app:cardCornerRadius="10dp"
                                                             app:rippleColor="#8ED1FF"
@@ -339,6 +346,7 @@
                                                             android:paddingStart="20dp"
                                                             android:text="@string/forearms"
                                                             android:textSize="20sp"
+                                                            app:cardElevation="0.2dp"
                                                             android:transitionName="addTrainingCv"
                                                             app:cardCornerRadius="10dp"
                                                             app:rippleColor="#8ED1FF"
@@ -392,6 +400,7 @@
                                                             android:paddingStart="20dp"
                                                             android:text="@string/traps"
                                                             android:textSize="20sp"
+                                                            app:cardElevation="0.2dp"
                                                             android:transitionName="addTrainingCv"
                                                             app:cardCornerRadius="10dp"
                                                             app:rippleColor="#8ED1FF"
@@ -570,13 +579,15 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content">
 
-                                        <androidx.cardview.widget.CardView
+                                        <com.google.android.material.card.MaterialCardView
                                             android:id="@+id/cv_home"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:backgroundTint="@color/backgroundColorNav"
                                             android:translationZ="5dp"
                                             app:cardCornerRadius="15dp"
+                                            app:cardElevation="0.2dp"
+                                            app:rippleColor="@color/white"
                                             android:layout_marginBottom="15dp"
                                             app:layout_constraintEnd_toEndOf="parent"
                                             app:layout_constraintStart_toStartOf="parent"
@@ -617,7 +628,7 @@
                                                             android:background="@drawable/arrow_down">
                                                         </ImageView>
                                                 </LinearLayout>
-                                        </androidx.cardview.widget.CardView>
+                                        </com.google.android.material.card.MaterialCardView>
 
                                         <View
                                             android:layout_width="match_parent"
@@ -666,6 +677,7 @@
                                                             android:textSize="20sp"
                                                             android:transitionName="addTrainingCv"
                                                             app:cardCornerRadius="10dp"
+                                                            app:cardElevation="0.2dp"
                                                             app:rippleColor="#8ED1FF"
                                                             tools:ignore="RtlHardcoded,RtlSymmetry">
 
@@ -719,6 +731,7 @@
                                                             android:transitionName="addTrainingCv"
                                                             app:cardCornerRadius="10dp"
                                                             app:rippleColor="#8ED1FF"
+                                                            app:cardElevation="0.2dp"
                                                             tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                                                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -771,6 +784,7 @@
                                                             android:transitionName="addTrainingCv"
                                                             app:cardCornerRadius="10dp"
                                                             app:rippleColor="#8ED1FF"
+                                                            app:cardElevation="0.2dp"
                                                             tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry">
 
                                                                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -824,6 +838,7 @@
                                                             android:transitionName="addTrainingCv"
                                                             app:cardCornerRadius="10dp"
                                                             app:rippleColor="#8ED1FF"
+                                                            app:cardElevation="0.2dp"
                                                             tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry">
 
                                                                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -877,6 +892,7 @@
                                                             android:transitionName="addTrainingCv"
                                                             app:cardCornerRadius="10dp"
                                                             app:rippleColor="#8ED1FF"
+                                                            app:cardElevation="0.2dp"
                                                             tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                                                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -930,6 +946,7 @@
                                                             android:transitionName="addTrainingCv"
                                                             app:cardCornerRadius="10dp"
                                                             app:rippleColor="#8ED1FF"
+                                                            app:cardElevation="0.2dp"
                                                             tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                                                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -984,6 +1001,7 @@
                                                             android:transitionName="addTrainingCv"
                                                             app:cardCornerRadius="10dp"
                                                             app:rippleColor="#8ED1FF"
+                                                            app:cardElevation="0.2dp"
                                                             tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                                                 <androidx.constraintlayout.widget.ConstraintLayout

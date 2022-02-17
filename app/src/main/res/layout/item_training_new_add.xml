@@ -11,6 +11,7 @@
     android:background="?attr/selectableItemBackground"
     android:backgroundTint="@color/backgroundColorNav"
     android:orientation="vertical"
+    app:cardElevation="0.2dp"
     app:cardCornerRadius="10dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout

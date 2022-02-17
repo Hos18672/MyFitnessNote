@@ -138,14 +138,13 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         val tip3: CardView = findViewById(id.Dumbbell)
         val tip4: CardView = findViewById(id.Seated_biceps_curls)
 
-
         tipsItemsClick(tip1)
         tipsItemsClick(tip2)
         tipsItemsClick(tip3)
         tipsItemsClick(tip4)
 
         mainImage.setOnClickListener {
-            //animate(mainImage)
+            animate(mainImage)
             val intent = Intent(this, MyProfileActivity::class.java)
             val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
                 this,
@@ -156,6 +155,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         }
 
         mainMenu.setOnClickListener {
+            animate(mainMenu)
             if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
                 drawer_layout.closeDrawer(GravityCompat.START)
             } else {
@@ -397,15 +397,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         })
     }
 
-    private fun dateFormatter(date: String): ChronoLocalDate? {
-        val currentDate = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            parse(date, DateTimeFormatter.ofPattern("yyyy-M-d"))
 
-        } else {
-            TODO("VERSION.SDK_INT < O")
-        }
-        return currentDate
-    }
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun setupLineChartData(size: Int) {
@@ -456,6 +448,15 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             }
     }
 
+    private fun dateFormatter(date: String): ChronoLocalDate? {
+        val currentDate = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            parse(date, DateTimeFormatter.ofPattern("yyyy-M-d"))
+
+        } else {
+            TODO("VERSION.SDK_INT < O")
+        }
+        return currentDate
+    }
     @RequiresApi(Build.VERSION_CODES.O)
     private fun getCurrentDate(): LocalDate {
         val c = Calendar.getInstance()

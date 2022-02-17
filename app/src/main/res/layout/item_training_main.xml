@@ -8,7 +8,7 @@
     android:backgroundTint="@color/backgroundColorNav"
     android:orientation="vertical"
     app:cardCornerRadius="10dp"
-    app:cardElevation="10dp"
+    app:cardElevation="0.2dp"
     android:outlineSpotShadowColor="@color/black"
     android:layout_marginTop="5dp"
     android:layout_marginStart="10dp"
