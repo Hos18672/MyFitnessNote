@@ -3,6 +3,8 @@ package com.example.myfitneesnote
 
 import android.R
 import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.content.res.Configuration
@@ -10,6 +12,7 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.ImageButton
 import android.widget.ImageView
@@ -55,6 +58,8 @@ import java.time.format.DateTimeFormatter
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
+import com.squareup.picasso.Picasso
+import de.hdodenhof.circleimageview.CircleImageView
 
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -62,6 +67,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     private lateinit var trainingItemAdapterMain: TrainingItemAdapterMain
     private lateinit var recyclerView: RecyclerView
     private val db = FirebaseFirestore.getInstance()
+    private lateinit var imageProfileMain: CircleImageView
 
     @SuppressLint("ResourceAsColor", "NewApi")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -119,6 +125,17 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val username = snapshot.child("username").getValue(String::class.java)
                     tv_username.text = username
+                    if(snapshot.hasChild("image")){
+                        imageProfileMain = findViewById(id.main_drawer_profile_photo)
+                        var image = snapshot.child("image").value.toString()
+                        if (image.isNotEmpty()){
+                            Picasso.get().load(image).into(imageProfileMain)
+                        }
+
+                    }
+                    else{
+                        System.out.println("empty")
+                    }
                 }
 
                 override fun onCancelled(error: DatabaseError): Unit = TODO("Not yet implemented")
@@ -161,6 +178,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             } else {
                 drawer_layout.openDrawer(GravityCompat.START)
             }
+
         }
         addMenu.setOnClickListener {
             addMenu.animate().apply {
@@ -383,6 +401,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     private fun updateNavigationUserDetails() {
         val uid = FirebaseAuth.getInstance().uid
         val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
+        userData()
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 //val username = snapshot.child("username").getValue(String::class.java)

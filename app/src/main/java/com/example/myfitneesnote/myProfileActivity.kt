@@ -1,6 +1,9 @@
 package com.example.myfitneesnote
 
 import android.annotation.SuppressLint
+import android.app.ProgressDialog
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
@@ -10,16 +13,47 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.example.myfitneesnote.R.*
 import com.example.myfitneesnote.R.drawable.*
+import com.google.android.gms.tasks.Continuation
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.StorageTask
+import com.google.firebase.storage.UploadTask
+import com.squareup.picasso.Picasso
+import com.theartofdev.edmodo.cropper.CropImage
+import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_my_profile.*
+import kotlinx.android.synthetic.main.nav_header_main.*
+import java.util.*
+import android.R
+
+import android.app.Activity
+import android.content.Context
+
+import android.widget.TextView
+import com.theartofdev.edmodo.cropper.CropImageView
+
 
 class MyProfileActivity : BaseActivity() {
     private var mFirebaseDatabase: DatabaseReference? = null
     private var mFirebaseInstance: FirebaseDatabase? = null
+    private lateinit var storageReference : StorageReference
+
+    private lateinit var mAuth : FirebaseAuth
     private var userId: String? = null
     private  var getGender : Boolean = true
+
+    private lateinit var profileImageView : CircleImageView
+    private lateinit var imageProfileMain: CircleImageView
+    private lateinit var imageUri : Uri
+    private  var myUri: String =""
+
+
+
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint("ResourceAsColor")
@@ -41,10 +75,88 @@ class MyProfileActivity : BaseActivity() {
             } else {
                 Toast.makeText(this, "No internet connection!", Toast.LENGTH_SHORT).show()
             }
+            uploadImage()
+        }
 
+        mAuth = FirebaseAuth.getInstance()
+        val uid = FirebaseAuth.getInstance().uid
+        mFirebaseDatabase = FirebaseDatabase.getInstance().getReference("/users/$uid")
+        storageReference = FirebaseStorage.getInstance().reference.child("Profile Pic")
+        profileImageView = findViewById(id.ProfileImage)
+
+
+        editBtn.setOnClickListener {
+            CropImage.activity().setAspectRatio(1,1 ).start(this@MyProfileActivity)
+        }
+        profileImageView.setOnClickListener {
+            CropImage.activity().setAspectRatio(1,1 ).start(this@MyProfileActivity)
         }
     }
 
+    @Override
+     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE&& resultCode == RESULT_OK && data!= null){
+            var result : CropImage.ActivityResult = CropImage.getActivityResult(data)
+            imageUri = result.uri
+            profileImageView.setImageURI(imageUri)
+        }else{
+        }
+    }
+
+    private fun uploadImage() {
+        when {
+            imageUri == null -> Toast.makeText(
+                this,
+                "Please select image first.",
+                Toast.LENGTH_LONG
+            ).show()
+
+
+            else -> {
+                val progressDialog = ProgressDialog(this)
+                progressDialog.setTitle("Upload picture")
+                progressDialog.setMessage("Please wait, we are uploading your picture ...")
+                progressDialog.show()
+
+
+                val fileRef = storageReference.child(mAuth.currentUser!!.uid+ ".jpg") //GetFile Extention Buiding Function Kotlin!
+                var uploadTask: StorageTask<*>
+                uploadTask = fileRef.putFile(imageUri!!)
+
+                uploadTask.continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> { task ->
+                    if (!task.isSuccessful) {
+                        task.exception?.let {
+                            throw it
+                            progressDialog.dismiss()
+                        }
+                    }
+                    return@Continuation fileRef.downloadUrl
+                }).addOnCompleteListener(OnCompleteListener<Uri> { task ->
+                    if (task.isSuccessful) {
+                        val downloadUrl = task.result
+                        myUri = downloadUrl.toString()
+
+                        val ref = FirebaseDatabase.getInstance().reference.child("users")
+
+                        val postMap = HashMap<String, Any>()
+                        postMap["image"] = myUri
+
+                        ref.child(mAuth.currentUser!!.uid).updateChildren(postMap)
+
+                        Toast.makeText(
+                            this,
+                            "Your picture has been updated successfully.",
+                            Toast.LENGTH_LONG
+                        ).show()
+                        progressDialog.dismiss()
+                    } else {
+                        progressDialog.dismiss()
+                    }
+                })
+            }
+        }
+    }
     private fun onUpdateClicked() {
         val username = login_username_input.text.toString()
         val name = profile_fullName_input.text.toString()
@@ -94,6 +206,17 @@ class MyProfileActivity : BaseActivity() {
                     radio_male_profile.isChecked = true
                 }else{
                     radio_female_profile.isChecked = true
+                }
+                if(snapshot.hasChild("image")){
+                    var image = snapshot.child("image").value.toString()
+                    if (image.isNotEmpty()){
+                        Picasso.get().load(image).into(profileImageView)
+
+                    }
+
+                }
+                else{
+                    System.out.println("empty")
                 }
             }
             override fun onCancelled(error: DatabaseError) {
@@ -150,6 +273,9 @@ class MyProfileActivity : BaseActivity() {
         }
     }
 }
+
+
+
 /*
 class profileImage(val user: User): Item<ViewHolder>(){
     override fun bind(viewHolder: ViewHolder, position: Int) {
