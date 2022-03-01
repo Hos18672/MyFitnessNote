@@ -17,4 +17,5 @@
     <color name="toolbarColor">#FFFFFF</color>
     <color name="lightBlue">#FFFFFF</color>
     <color name="textColor">#000000</color>
+    <color name="textColorHell">#7C7C7C</color>
 </resources>

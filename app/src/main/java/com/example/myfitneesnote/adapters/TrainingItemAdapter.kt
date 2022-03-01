@@ -23,7 +23,9 @@ import java.time.chrono.ChronoLocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*
 
-class TrainingItemAdapter(options: FirestoreRecyclerOptions<Workout>) : FirestoreRecyclerAdapter<Workout,TrainingItemAdapter.MyViewHolder>(options){
+class TrainingItemAdapter(options: FirestoreRecyclerOptions<Workout>?) : FirestoreRecyclerAdapter<Workout,TrainingItemAdapter.MyViewHolder>(
+    options as FirestoreRecyclerOptions<Workout>
+){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder{
         val itemView = LayoutInflater.from(parent.context).inflate((layout.item_training), parent, false)
         return  MyViewHolder(itemView)

@@ -129,7 +129,7 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
 
     @SuppressLint("SimpleDateFormat")
     private fun dateFormatter(date: String): Date {
-        val inputFormatter: DateFormat = SimpleDateFormat("yyyy-MM-dd")
+        val inputFormatter: DateFormat = SimpleDateFormat("yyyy-M-d")
         return inputFormatter.parse(date)
     }
 

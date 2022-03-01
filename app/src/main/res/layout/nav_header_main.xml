@@ -17,7 +17,7 @@
         android:src="@drawable/profile_icon"
         android:backgroundTint="@color/textColor"
         android:contentDescription="@string/todo"
-        app:civ_border_color="@color/lightBlue"
+        app:civ_border_color="#008EFF"
         app:civ_border_width="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.484"

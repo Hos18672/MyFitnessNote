@@ -68,18 +68,53 @@
             android:layout_marginTop="70dp"
             android:layout_marginBottom="100dp"
             android:orientation="vertical">
-            <TextView
-                android:id="@+id/today"
-                android:layout_width="wrap_content"
+
+            <LinearLayout
+                android:id="@+id/time"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginBottom="10dp"
-                android:elevation="15dp"
-                android:shadowColor="@color/black"
-                android:text="@string/today"
-                android:textColor="@color/textColor"
-                android:textSize="30sp" />
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal">
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/btn1"
+                    android:layout_width="110dp"
+                    android:layout_height="38dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="0.2dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp">
+                    <TextView
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:textSize="25dp"
+                        android:textColor="@color/textColor"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="Today"/>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/btn2"
+                    android:layout_width="140dp"
+                    android:layout_height="40dp"
+                    app:toggle_text="Tomorrow"
+                    app:cardCornerRadius="10dp"
+                    android:padding="15dp"
+                    app:cardElevation="0.2dp"
+                    app:toggle_selectedBackgroundColor="#3987C5"
+                    app:toggle_textColor="@color/textColorHell"
+                    app:toggle_textSize="25dp" >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textSize="25dp"
+                    android:textColor="@color/textColor"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="Tomorrow"/>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
 
             <FrameLayout
                 android:id="@+id/root_container_main"

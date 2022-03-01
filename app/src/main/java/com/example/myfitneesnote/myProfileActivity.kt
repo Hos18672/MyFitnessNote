@@ -52,7 +52,7 @@ class MyProfileActivity : BaseActivity() {
     private lateinit var imageUri : Uri
     private  var myUri: String =""
 
-
+    private  var uploaded :Boolean = false
 
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
@@ -69,13 +69,14 @@ class MyProfileActivity : BaseActivity() {
         val user = FirebaseAuth.getInstance().currentUser
         // add it only if it is not saved to database
         userId = user?.uid
+        profileImageView = findViewById(id.ProfileImage)
         btnSave.setOnClickListener {
             if (checkForInternet(this)) {
                 onUpdateClicked()
+
             } else {
                 Toast.makeText(this, "No internet connection!", Toast.LENGTH_SHORT).show()
             }
-            uploadImage()
         }
 
         mAuth = FirebaseAuth.getInstance()
@@ -100,19 +101,18 @@ class MyProfileActivity : BaseActivity() {
             var result : CropImage.ActivityResult = CropImage.getActivityResult(data)
             imageUri = result.uri
             profileImageView.setImageURI(imageUri)
+            uploadImage()
         }else{
         }
     }
 
     private fun uploadImage() {
-        when {
-            imageUri == null -> Toast.makeText(
+        when (imageUri) {
+            null -> Toast.makeText(
                 this,
                 "Please select image first.",
                 Toast.LENGTH_LONG
             ).show()
-
-
             else -> {
                 val progressDialog = ProgressDialog(this)
                 progressDialog.setTitle("Upload picture")
@@ -156,6 +156,7 @@ class MyProfileActivity : BaseActivity() {
                 })
             }
         }
+
     }
     private fun onUpdateClicked() {
         val username = login_username_input.text.toString()
@@ -170,7 +171,7 @@ class MyProfileActivity : BaseActivity() {
             gender = "Female"
         }
         //Calling updateUser function
-        updateUser(this, username,age,height,weight,gender, name)
+        updateUser(this, username,age,height,weight,gender, name, uploaded)
     }
     private fun setupActionBar() {
         setSupportActionBar(toolBar_my_profile_activity)
@@ -196,12 +197,14 @@ class MyProfileActivity : BaseActivity() {
                 val height = snapshot.child("height").getValue(String::class.java)
                 val weight = snapshot.child("weight").getValue(String::class.java)
                 val gender = snapshot.child("gender").getValue(String::class.java)
+                val uploadedImage = snapshot.child("image").getValue(String::class.java)
 
                 login_username_input.setText(username)
                 profile_fullName_input.setText(fullname)
                 age_input_profile.setText(age)
                 height_input_profile.setText("$height" )
                 weight_input_profile.setText("$weight" )
+
                 if(gender == "Male"){
                     radio_male_profile.isChecked = true
                 }else{
@@ -250,31 +253,29 @@ class MyProfileActivity : BaseActivity() {
             weight: String,
             gender: String,
             name: String,
+            uploaded :Boolean
         ) {
             // updating the user via child nodes
 
             val fs  : FirebaseFirestore = FirebaseFirestore.getInstance()
             if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(name)) {
-                myProfileActivity.mFirebaseDatabase!!.child(myProfileActivity.userId!!).child("username").setValue(username.trim())
-                myProfileActivity.mFirebaseDatabase!!.child(myProfileActivity.userId!!).child("name").setValue(name.trim())
-                myProfileActivity.mFirebaseDatabase!!.child(myProfileActivity.userId!!).child("age").setValue(age.trim())
-                myProfileActivity.mFirebaseDatabase!!.child(myProfileActivity.userId!!).child("height").setValue(height.trim())
-                myProfileActivity.mFirebaseDatabase!!.child(myProfileActivity.userId!!).child("weight").setValue(weight.trim())
-                myProfileActivity.mFirebaseDatabase!!.child(myProfileActivity.userId!!).child("gender").setValue(gender.trim())
+                myProfileActivity.mFirebaseDatabase!!.child("username").setValue(username.trim())
+                myProfileActivity.mFirebaseDatabase!!.child("name").setValue(name.trim())
+                myProfileActivity.mFirebaseDatabase!!.child("age").setValue(age.trim())
+                myProfileActivity.mFirebaseDatabase!!.child("height").setValue(height.trim())
+                myProfileActivity.mFirebaseDatabase!!.child("weight").setValue(weight.trim())
+                myProfileActivity.mFirebaseDatabase!!.child("gender").setValue(gender.trim())
                 Toast.makeText(myProfileActivity.applicationContext, "Successfully updated user", Toast.LENGTH_SHORT).show()
-                fs.collection("users").document(myProfileActivity.userId!!).update("age", age.trim(),
+                fs.collection("users").document(myProfileActivity.toString()).update("age", age.trim(),
                     "height", height.trim(),
                     "weight", weight.trim(),
                     "gender", gender.trim())
-
             }
             else
                 Toast.makeText(myProfileActivity.applicationContext, "Unable to update user", Toast.LENGTH_SHORT).show()
         }
     }
 }
-
-
 
 /*
 class profileImage(val user: User): Item<ViewHolder>(){

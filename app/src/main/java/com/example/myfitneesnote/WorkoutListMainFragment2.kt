@@ -23,7 +23,7 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 
 
-class WorkoutListMainFragment : Fragment() {
+class WorkoutListMainFragment2 : Fragment() {
     private val db = FirebaseFirestore.getInstance()
     private lateinit var trainingItemAdapter : WorkoutListMainAdapter
     private lateinit var recyclerView: RecyclerView
@@ -33,7 +33,7 @@ class WorkoutListMainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _view = inflater.inflate(R.layout.workout_list_main_fragment, container, false)
+        _view = inflater.inflate(R.layout.workout_list_main_fragment2, container, false)
         getTrainingsFromFireStore()
         recyclerView = _view.findViewById(R.id.recyclerView_add);
         recyclerView.setHasFixedSize(true);
@@ -85,7 +85,7 @@ class WorkoutListMainFragment : Fragment() {
         val year = c.get(Calendar.YEAR)
         val month = c.get(Calendar.MONTH)
         val day = c.get(Calendar.DAY_OF_MONTH)
-        return  "${year}-${month + 1}-${day}"
+        return  "${year}-${month + 1}-${day+1}"
     }
     private fun dateFormatter(date: String): ChronoLocalDate? {
         val currentDate = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

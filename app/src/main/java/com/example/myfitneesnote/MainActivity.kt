@@ -56,10 +56,14 @@ import java.time.LocalDate.parse
 import java.time.chrono.ChronoLocalDate
 import java.time.format.DateTimeFormatter
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
+import kotlinx.android.synthetic.main.activity_login.view.*
+import nl.bryanderidder.themedtogglebuttongroup.ThemedButton
+import java.security.AccessController.getContext
 
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -81,11 +85,17 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         animate()
         getTrainingsFromFireStore()
         updateNavigationUserDetails()
+        btn1.setCardBackgroundColor(Color.parseColor("#00AEFF"))
+        tip()
+
         setupLineChartData(7)
         val trainingsFragment = WorkoutListMainFragment()
         supportFragmentManager.beginTransaction().apply {
             replace(id.root_container_main, trainingsFragment).commit()
         }
+
+
+
 
         if (!checkForInternet(this)) {
             Toast.makeText(this, "No internet connection!", Toast.LENGTH_SHORT).show()
@@ -106,6 +116,64 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                     constraintLayout3.elevation = 50f
                 }
             }
+    }
+
+    @SuppressLint("Range")
+    private fun tip() {
+        val nightModeFlags: Int = applicationContext.resources.configuration.uiMode and
+                Configuration.UI_MODE_NIGHT_MASK
+        when (nightModeFlags) {
+            Configuration.UI_MODE_NIGHT_YES -> {
+                btn2.setCardBackgroundColor(Color.parseColor("#26282C"))
+                btn1.setOnClickListener {
+                    val trainingsFragment = WorkoutListMainFragment()
+                    supportFragmentManager.beginTransaction().apply {
+                        replace(id.root_container_main, trainingsFragment).commit()
+                        btn2.setCardBackgroundColor(Color.parseColor("#26282C"))
+                        btn1.setCardBackgroundColor(Color.parseColor("#00AEFF"))
+                    }
+
+                }
+
+                btn2.setOnClickListener {
+                    val trainingsFragment2 = WorkoutListMainFragment2()
+                    supportFragmentManager.beginTransaction().apply {
+                        replace(id.root_container_main, trainingsFragment2).commit()
+                        btn1.isSelected = false
+                        btn2.setCardBackgroundColor(Color.parseColor("#00AEFF"))
+                        btn1.setCardBackgroundColor(Color.parseColor("#26282C"))
+                    }
+
+                }
+            }
+            Configuration.UI_MODE_NIGHT_NO -> {
+
+                btn1.setOnClickListener {
+                    val trainingsFragment = WorkoutListMainFragment()
+                    supportFragmentManager.beginTransaction().apply {
+                        replace(id.root_container_main, trainingsFragment).commit()
+                        btn2.setCardBackgroundColor(Color.WHITE)
+                        btn1.setCardBackgroundColor(Color.parseColor("#00AEFF"))
+                    }
+
+                }
+
+                btn2.setOnClickListener {
+                    val trainingsFragment2 = WorkoutListMainFragment2()
+                    supportFragmentManager.beginTransaction().apply {
+                        replace(id.root_container_main, trainingsFragment2).commit()
+                        btn1.isSelected = false
+                        btn2.setCardBackgroundColor(Color.parseColor("#00AEFF"))
+                        btn1.setCardBackgroundColor(Color.WHITE)
+                    }
+
+                }
+            }
+            Configuration.UI_MODE_NIGHT_UNDEFINED -> {
+
+
+            }
+        }
     }
 
     private fun getCurrentUserId(): String {
@@ -234,6 +302,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             startActivity(intent)
         }
 
+
         toggleButtonsGroup.checkedButtonId
         toggleButtonsGroup.isSingleSelection = true
         toggleButtonsGroup.addOnButtonCheckedListener { _, checkedId, isChecked ->
@@ -247,6 +316,11 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 }
             }
         }
+
+
+
+
+
     }
 
     private fun animate() {
@@ -552,7 +626,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                            value - n
                            m = value.toString()
                        }
-
                        return m
                    }
                }*/
@@ -622,10 +695,3 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
        return R.layout.chat_from_row
    }
 }*/
-
-
-
-
-
-
-
