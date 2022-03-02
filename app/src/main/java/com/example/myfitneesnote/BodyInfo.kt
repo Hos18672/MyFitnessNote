@@ -81,7 +81,7 @@ class BodyInfo : BaseActivity() {
             actionBar.setDisplayHomeAsUpEnabled(true)
             actionBar.setHomeAsUpIndicator(R.drawable.ic_navigate_before_black_24dp)
         }
-        toolBar_my_profile_activity.setNavigationOnClickListener{
+        toolBar_info_activity.setNavigationOnClickListener{
             onBackPressed()
         }
     }

@@ -14,7 +14,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
-import kotlinx.android.synthetic.main.activity_chat_log.*
+import kotlinx.android.synthetic.main.activity_chat_users.*
 import kotlinx.android.synthetic.main.chat_from_row.view.*
 import kotlinx.android.synthetic.main.chat_to_row.view.*
 import java.util.*
@@ -26,9 +26,9 @@ class ChatLogActivity : BaseActivity() {
     @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_chat_log)
+        setContentView(R.layout.activity_chat_users)
         toUser =  intent.getParcelableExtra(ChatActivity.USER_KEY)
-        recyclerView_chat_log.adapter= adapter
+        recyclerView_chat_users.adapter= adapter
         setupActionBar()
         listenForMessages()
         this.window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE or WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
@@ -56,13 +56,13 @@ class ChatLogActivity : BaseActivity() {
                          ).let {
                              adapter.add(it)
                          }
-                         recyclerView_chat_log.scrollToPosition(adapter.itemCount -1)
+                         recyclerView_chat_users.scrollToPosition(adapter.itemCount -1)
                      } else {
                          ChatToItem(
                              chatMessage.text, toUser!!,
                              chatMessage.timestamp,intent.getStringExtra("name").toString())
                              .let { adapter.add(it) }
-                         recyclerView_chat_log.scrollToPosition(adapter.itemCount -1)
+                         recyclerView_chat_users.scrollToPosition(adapter.itemCount -1)
                      }
                  }
              }
@@ -103,7 +103,7 @@ class ChatLogActivity : BaseActivity() {
         refrence.setValue(chatMessage).addOnSuccessListener {
             Log.d(TAG, "Saved our Chat message : ${refrence.key}")
             editTextChatLog.setText("")
-            recyclerView_chat_log.scrollToPosition(adapter.itemCount -1)
+            recyclerView_chat_users.scrollToPosition(adapter.itemCount -1)
         }
         toRefrence.setValue(chatMessage)
     }

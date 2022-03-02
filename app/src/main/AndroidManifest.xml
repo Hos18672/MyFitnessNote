@@ -32,7 +32,7 @@
             tools:ignore="LockedOrientationActivity" />
 
         <activity
-            android:name=".SecurityActivity"
+            android:name=".SettingsActivity"
             android:noHistory="true"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait"

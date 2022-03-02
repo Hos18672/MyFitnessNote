@@ -214,7 +214,6 @@ class MyProfileActivity : BaseActivity() {
                     var image = snapshot.child("image").value.toString()
                     if (image.isNotEmpty()){
                         Picasso.get().load(image).into(profileImageView)
-
                     }
 
                 }

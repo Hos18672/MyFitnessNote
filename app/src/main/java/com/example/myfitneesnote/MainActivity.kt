@@ -3,8 +3,6 @@ package com.example.myfitneesnote
 
 import android.R
 import android.annotation.SuppressLint
-import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.content.res.Configuration
@@ -12,7 +10,6 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.ImageButton
 import android.widget.ImageView
@@ -56,14 +53,10 @@ import java.time.LocalDate.parse
 import java.time.chrono.ChronoLocalDate
 import java.time.format.DateTimeFormatter
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
-import kotlinx.android.synthetic.main.activity_login.view.*
-import nl.bryanderidder.themedtogglebuttongroup.ThemedButton
-import java.security.AccessController.getContext
 
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -363,7 +356,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             }
 
             id.nav_Settings -> {
-                startActivity(Intent(this, SecurityActivity::class.java))
+                startActivity(Intent(this, SettingsActivity::class.java))
             }
 
             id.btn_sing_out_draw_layout -> {

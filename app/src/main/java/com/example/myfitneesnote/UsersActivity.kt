@@ -16,6 +16,7 @@ import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_users.*
 import kotlinx.android.synthetic.main.user_row.view.*
 
@@ -97,8 +98,13 @@ class ChatActivity : BaseActivity() {
 }
 class UserItemViewHolder(val user: User): Item<ViewHolder>(){
     override fun bind(viewHolder: ViewHolder, position: Int) {
-        //val uri = user.image
         viewHolder.itemView.User_name.text= user.username
+        if (user.image.isNotEmpty()){
+            Picasso.get().load(user.image).into(viewHolder.itemView.UserImage)
+        }
+        else{
+                System.out.println("empty")
+        }
     }
     override fun getLayout(): Int {
         return R.layout.user_row
