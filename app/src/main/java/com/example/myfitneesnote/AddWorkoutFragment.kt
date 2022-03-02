@@ -23,7 +23,6 @@ import java.time.LocalDate
 import java.time.chrono.ChronoLocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 class AddWorkoutFragment : Fragment() {
@@ -37,7 +36,7 @@ class AddWorkoutFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-       _view = inflater.inflate(R.layout.rainings_fragment, container, false)
+       _view = inflater.inflate(R.layout.trainings_fragment, container, false)
         getTrainingsFromFireStore()
         recyclerView = _view.findViewById(R.id.recyclerView_add);
         recyclerView.setHasFixedSize(true);

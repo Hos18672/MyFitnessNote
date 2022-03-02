@@ -9,6 +9,7 @@
     android:orientation="vertical"
     app:cardCornerRadius="10dp"
     app:cardElevation="0.2dp"
+    android:minHeight="150dp"
     android:outlineSpotShadowColor="@color/black"
     android:layout_marginTop="5dp"
     android:layout_marginStart="10dp"
@@ -18,11 +19,15 @@
         android:id="@+id/RowLL"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:minHeight="140dp">
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:minHeight="140dp"
             android:layout_margin="5dp"
+            android:visibility="visible"
             android:layout_marginStart="10dp"
             android:orientation="horizontal">
 
@@ -298,14 +303,14 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
         <LinearLayout
             android:id="@+id/rl_note"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="parent">
 
@@ -319,16 +324,27 @@
                 android:textSize="15sp"
                 tools:ignore="RtlHardcoded" />
 
-            <TextView
-                android:id="@+id/tv_note"
+            <androidx.core.widget.NestedScrollView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:gravity="left"
-                android:text="Description"
-                android:textColor="@color/textColor"
-                android:textSize="15sp"
-                tools:ignore="RtlHardcoded" />
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#FAE9B8"
+                    android:padding="2dp">
+                    <TextView
+                        android:id="@+id/tv_note"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:gravity="left"
+                        android:text="No Note"
+                        android:textColor="@color/textColor"
+                        android:textSize="13sp"
+                        tools:ignore="RtlHardcoded" />
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

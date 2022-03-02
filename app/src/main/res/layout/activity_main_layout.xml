@@ -119,7 +119,8 @@
             <FrameLayout
                 android:id="@+id/root_container_main"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
+                android:minHeight="190dp"
                 android:visibility="visible"
                 app:layout_constraintTop_toTopOf="@id/view4" />
             <androidx.recyclerview.widget.RecyclerView
