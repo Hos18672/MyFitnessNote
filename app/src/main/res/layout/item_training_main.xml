@@ -339,7 +339,7 @@
                         android:layout_alignParentEnd="true"
                         android:gravity="left"
                         android:text="No Note"
-                        android:textColor="@color/textColor"
+                        android:textColor="@color/black"
                         android:textSize="13sp"
                         tools:ignore="RtlHardcoded" />
                 </LinearLayout>

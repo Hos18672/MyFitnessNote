@@ -111,7 +111,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="start"
                             android:hint="@string/current_password"
-                            android:inputType="text"
+                            android:inputType="textPassword"
                             android:textAlignment="viewStart"
                             android:textStyle="bold" />
                     </com.google.android.material.textfield.TextInputLayout>
