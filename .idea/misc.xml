@@ -39,6 +39,7 @@
         <entry key="..\:/Users/Reza/StudioProjects/MyFitnessNote/app/src/main/res/layout/activity_main.xml" value="0.18" />
         <entry key="..\:/Users/Reza/StudioProjects/MyFitnessNote/app/src/main/res/layout/activity_main_layout.xml" value="0.33" />
         <entry key="..\:/Users/Reza/StudioProjects/MyFitnessNote/app/src/main/res/layout/activity_muskel_group.xml" value="0.18" />
+        <entry key="..\:/Users/Reza/StudioProjects/MyFitnessNote/app/src/main/res/layout/activity_muskel_workouts.xml" value="0.31036036036036035" />
         <entry key="..\:/Users/Reza/StudioProjects/MyFitnessNote/app/src/main/res/layout/activity_my_profile.xml" value="0.33" />
         <entry key="..\:/Users/Reza/StudioProjects/MyFitnessNote/app/src/main/res/layout/activity_settings.xml" value="0.25" />
         <entry key="..\:/Users/Reza/StudioProjects/MyFitnessNote/app/src/main/res/layout/activity_sign_up.xml" value="0.33" />
@@ -84,7 +85,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.18" />
+        <option name="scale" value="0.31036036036036035" />
       </ProjectState>
     </option>
   </component>

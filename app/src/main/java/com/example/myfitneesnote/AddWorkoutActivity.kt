@@ -34,6 +34,7 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
     private var trainingsName: String? = ""
     private var gymType = ""
     var muskelName: String = ""
+    var workoutName: String = ""
     @SuppressLint("ResourceAsColor")
     @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,8 +44,9 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
         setupActionBar()
         gymType = intent.getStringExtra("GymName").toString()
         muskelName = intent.getStringExtra("MuskelName").toString()
-        trainingsName = intent.getStringExtra("MuskelName")
-        TrainingName.text = trainingsName
+        workoutName = intent.getStringExtra("WorkoutName").toString()
+      //  trainingsName = intent.getStringExtra("MuskelName")
+        TrainingName.text = muskelName
         //Set a Start date (Default, 1 Jan 1970)
         val c = Calendar.getInstance()
         val year = c.get(Calendar.YEAR)
@@ -91,7 +93,6 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
                 Toast.makeText(this, "No internet connection!", Toast.LENGTH_SHORT).show()
             }
         }
-
         btn_set_minus.setOnClickListener { minusButton(SetNum) }
         btn_set_plus.setOnClickListener { plusButton(SetNum) }
         btn_weight_minus.setOnClickListener { minusButton(weightNum) }
@@ -157,6 +158,7 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
                             getCurrentUserId(),
                             gymType,
                             muskelName,
+                            workoutName,
                             set,
                             weight2,
                             breakNum,
@@ -164,7 +166,8 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
                             currentDate,
                             calories,
                             dateFormatter(currentDate),
-                            note
+                            note,
+
                         )
                         FirestoreClass().createNewTraining(this@AddWorkoutActivity, workout)
                         val recyclerView = findViewById<RecyclerView>(id.recyclerView_add)

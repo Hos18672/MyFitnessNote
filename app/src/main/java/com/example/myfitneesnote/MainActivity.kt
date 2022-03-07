@@ -644,8 +644,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         val legend: Legend = lineChart.legend
         legend.isEnabled = false
     }
-
-
+    
     @RequiresApi(Build.VERSION_CODES.O)
     private fun getTrainingsFromFireStore() {
         val currentDate = getCurrentDate().toString()

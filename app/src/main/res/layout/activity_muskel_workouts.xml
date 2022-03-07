@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@color/backgroundColor"
+    tools:context=".MuskelWorkoutsActivity">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolBar_muskelWorkouts"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/toolbarColor"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints,NotSibling,UnknownIdInLayout">
+        <TextView
+            android:id="@+id/toolBar_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="Workout"
+            android:textColor="@color/textColor"
+            android:textSize="15sp"
+            tools:layout_editor_absoluteX="165dp"
+            tools:layout_editor_absoluteY="218dp" />
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <ScrollView
+        android:id="@+id/hiddenLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="40dp"
+        android:animateLayoutChanges="true"
+        android:backgroundTint="@color/lightDark"
+        android:elevation="0dp"
+        android:orientation="vertical"
+        android:transitionName="cvWorkouts"
+        android:translationZ="-5dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolBar_muskelWorkouts"
+        app:layout_constraintVertical_weight="1"
+        tools:targetApi="lollipop">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/scroll_bar2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/lightDark"
+            android:orientation="vertical">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/brust_btn2"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="15dp"
+                android:backgroundTint="@color/backgroundColorNav"
+                android:contentDescription="@string/chest"
+                android:onClick="onClick"
+                android:paddingStart="20dp"
+                android:textSize="20sp"
+                android:transitionName="addTrainingCv"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="0.2dp"
+                app:rippleColor="#8ED1FF"
+                tools:ignore="RtlHardcoded,RtlSymmetry">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left|center"
+                        android:layout_marginStart="16dp"
+                        android:text="@string/chest"
+                        android:textColor="@color/textColor"
+                        android:textSize="25sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.504" />
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="right|center"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/icons8_chest_100"
+                        android:backgroundTint="@color/textColor"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="ContentDescription" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/biceps_btn2"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="15dp"
+                android:backgroundTint="@color/backgroundColorNav"
+                android:contentDescription="@string/biceps"
+                android:paddingStart="20dp"
+                android:text="@string/biceps"
+                android:textSize="20sp"
+                android:onClick="onClick"
+                android:transitionName="addTrainingCv"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="0.2dp"
+                app:rippleColor="#8ED1FF"
+                tools:ignore="RtlSymmetry">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left|center"
+                        android:layout_marginStart="16dp"
+                        android:text="@string/biceps"
+                        android:textColor="@color/textColor"
+                        android:textSize="25sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.504" />
+
+                    <ImageView
+                        android:id="@+id/imageView92"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="right|center"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/icons8_biceps_100"
+                        android:backgroundTint="@color/textColor"
+                        android:contentDescription="@string/todo"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/triceps_btn2"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="15dp"
+                android:backgroundTint="@color/backgroundColorNav"
+                android:contentDescription="triceps"
+                android:paddingStart="20dp"
+                android:text="@string/triceps"
+                android:textSize="20sp"
+                android:transitionName="addTrainingCv"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="0.2dp"
+                app:rippleColor="#8ED1FF"
+                android:onClick="onClick"
+                tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left|center"
+                        android:layout_marginStart="16dp"
+                        android:text="@string/triceps"
+                        android:textColor="@color/textColor"
+                        android:textSize="25sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.504"
+                        tools:ignore="DuplicateIds" />
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="right|center"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/icons8_triceps_100"
+                        android:backgroundTint="@color/textColor"
+                        android:contentDescription="@string/todo"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/forearms_btn2"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="15dp"
+                android:backgroundTint="@color/backgroundColorNav"
+                android:contentDescription="forearms"
+                android:paddingStart="20dp"
+                android:text="@string/forearms"
+                android:textSize="20sp"
+                android:onClick="onClick"
+                android:transitionName="addTrainingCv"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="0.2dp"
+                app:rippleColor="#8ED1FF"
+                tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left|center"
+                        android:layout_marginStart="16dp"
+                        android:text="@string/forearms"
+                        android:textColor="@color/textColor"
+                        android:textSize="25sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.504"
+                        tools:ignore="DuplicateIds" />
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="right|center"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/icons8_forearm_100"
+                        android:backgroundTint="@color/textColor"
+                        android:contentDescription="@string/todo"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/traps_btn2"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="15dp"
+                android:backgroundTint="@color/backgroundColorNav"
+                android:contentDescription="@string/traps"
+                android:paddingStart="20dp"
+                android:text="@string/traps"
+                android:textSize="20sp"
+                android:onClick="onClick"
+                android:transitionName="addTrainingCv"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="0.2dp"
+                app:rippleColor="#8ED1FF"
+                tools:ignore="RtlHardcoded,RtlSymmetry">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left|center"
+                        android:layout_marginStart="16dp"
+                        android:text="@string/traps"
+                        android:textColor="@color/textColor"
+                        android:textSize="25sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.504"
+                        tools:ignore="DuplicateIds" />
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="right|center"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/icons8_trapezius_100"
+                        android:backgroundTint="@color/textColor"
+                        android:contentDescription="@string/todo"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/upperabs_btn2"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="15dp"
+                android:backgroundTint="@color/backgroundColorNav"
+                android:contentDescription="@string/abs"
+                android:paddingStart="20dp"
+                android:text="@string/abs"
+                android:textSize="20sp"
+                android:onClick="onClick"
+                android:transitionName="addTrainingCv"
+                app:cardCornerRadius="10dp"
+                app:rippleColor="#8ED1FF"
+                tools:ignore="RtlHardcoded,RtlSymmetry">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left|center"
+                        android:layout_marginStart="16dp"
+                        android:text="@string/abs"
+                        android:textColor="@color/textColor"
+                        android:textSize="25sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.524"
+                        tools:ignore="DuplicateIds" />
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="right|center"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/fitnessabs"
+                        android:backgroundTint="@color/textColor"
+                        android:contentDescription="@string/todo"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/shoulder_btn2"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="15dp"
+                android:backgroundTint="@color/backgroundColorNav"
+                android:contentDescription="@string/shoulder"
+                android:paddingStart="20dp"
+                android:text="@string/shoulder"
+                android:textSize="20sp"
+                android:onClick="onClick"
+                android:transitionName="addTrainingCv"
+                app:cardCornerRadius="10dp"
+                app:rippleColor="#8ED1FF"
+                tools:ignore="RtlHardcoded,RtlSymmetry">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left|center"
+                        android:layout_marginStart="16dp"
+                        android:text="@string/shoulder"
+                        android:textColor="@color/textColor"
+                        android:textSize="25sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="DuplicateIds" />
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="right|center"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/icons8_shoulders_100"
+                        android:backgroundTint="@color/textColor"
+                        android:contentDescription="@string/todo"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

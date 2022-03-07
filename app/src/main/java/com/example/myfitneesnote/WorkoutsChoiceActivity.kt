@@ -32,7 +32,7 @@ class WorkoutsChoiceActivity : BaseActivity(){
         //fullscreen()
         animat()
         setupActionBar()
-        onClick()
+        onClick2()
     }
 
     private fun animat(){
@@ -45,7 +45,7 @@ class WorkoutsChoiceActivity : BaseActivity(){
 
         llmain.layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
     }
-    private  fun onClick(){
+    private  fun onClick2(){
         cv_gym2.setOnClickListener{
                 if (hiddenLayout.getVisibility() === View.VISIBLE) {
                     TransitionManager.beginDelayedTransition(cv_gym2, AutoTransition())
@@ -77,49 +77,13 @@ class WorkoutsChoiceActivity : BaseActivity(){
             }
             gymType = txt_home_workout.text.toString()
         }
-
-
-        //Burst muscle
-        brust_btn2.setOnClickListener { setOnclickMuscle(brust_btn as MaterialCardView) }
-        //Biceps muscle
-        biceps_btn2.setOnClickListener  { setOnclickMuscle(biceps_btn as MaterialCardView) }
-        //Triceps muscle
-        triceps_btn2.setOnClickListener { setOnclickMuscle(triceps_btn as MaterialCardView) }
-        //Forarms muscle
-        forearms_btn2.setOnClickListener{ setOnclickMuscle(forearms_btn as MaterialCardView) }
-        //Traps muscle
-        traps_btn2.setOnClickListener   { setOnclickMuscle(traps_btn as MaterialCardView) }
-        //Upper-abs muscle
-        upperabs_btn2.setOnClickListener{ setOnclickMuscle(upperabs_btn as MaterialCardView) }
-        //shoulder muscle
-        shoulder_btn2.setOnClickListener{ setOnclickMuscle(shoulder_btn as CardView) }
-
-       // ======================= Home ============================================
-        //Burst muscle
-        brust_btn.setOnClickListener { setOnclickMuscle(brust_btn as MaterialCardView) }
-        //Biceps muscle
-        biceps_btn.setOnClickListener  { setOnclickMuscle(biceps_btn as MaterialCardView) }
-        //Triceps muscle
-        triceps_btn.setOnClickListener { setOnclickMuscle(triceps_btn as MaterialCardView) }
-        //Forarms muscle
-        forearms_btn.setOnClickListener{ setOnclickMuscle(forearms_btn as MaterialCardView) }
-        //Traps muscle
-        traps_btn.setOnClickListener   { setOnclickMuscle(traps_btn as MaterialCardView) }
-        //Upper-abs muscle
-        upperabs_btn.setOnClickListener{ setOnclickMuscle(upperabs_btn as MaterialCardView) }
-        //shoulder muscle
-        shoulder_btn.setOnClickListener{ setOnclickMuscle(shoulder_btn as CardView) }
     }
 
-    private  fun setOnclickMuscle(btn: CardView){
-        val intent = Intent( this,  AddWorkoutActivity::class.java)
-        intent.putExtra("MuskelName", btn.contentDescription)
+    fun onclick(view: View){
+        val intent = Intent( this,  MuskelWorkoutsActivity::class.java)
+        intent.putExtra("MuskelName", view.contentDescription)
         intent.putExtra("GymName", gymType)
-
-        val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, btn, "addTrainingCv")
-        startActivity(intent, options.toBundle())
-
-        // finish()
+        startActivity(intent)
     }
     override  fun onBackPressed() {
         val intent = Intent(this, MainActivity::class.java)
