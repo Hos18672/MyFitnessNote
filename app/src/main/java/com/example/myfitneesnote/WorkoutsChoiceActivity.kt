@@ -21,7 +21,16 @@ import kotlinx.android.synthetic.main.activity_workout_choice.*
 class WorkoutsChoiceActivity : BaseActivity(){
 
     private var gymType: String? = ""
+    private  var listOfWorkouts : HashMap<String, ArrayList<String>> = hashMapOf()
+    private  var listOfChestWorkouts : ArrayList<String> = arrayListOf()
+    private  var listOfBrustWorkouts : ArrayList<String> = arrayListOf()
+    private  var listOfTrapsWorkouts: ArrayList<String> = arrayListOf()
+    private  var listOfForarmsWorkouts : ArrayList<String> = arrayListOf()
+    private  var listOfAbsWorkouts: ArrayList<String> = arrayListOf()
+    private  var listOfSchoulderWorkouts : ArrayList<String> = arrayListOf()
+    private  var listOfTricepsWorkouts : ArrayList<String> = arrayListOf()
 
+    private  var list : ArrayList<String> = arrayListOf()
     @SuppressLint("ResourceAsColor")
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,6 +42,22 @@ class WorkoutsChoiceActivity : BaseActivity(){
         animat()
         setupActionBar()
         onClick2()
+        listOfChestWorkouts = arrayListOf("Chest one", "Chest two", "Chest Three")
+        listOfBrustWorkouts = arrayListOf("Biceps one", "Biceps two", "Biceps Three")
+        listOfTrapsWorkouts = arrayListOf("Traps one", "Traps two", "Traps Three")
+        listOfForarmsWorkouts = arrayListOf("Forarms one", "Forarms two", "Forarms Three")
+
+        listOfTricepsWorkouts = arrayListOf("Triceps one", "Triceps two", "Triceps Three")
+        listOfAbsWorkouts = arrayListOf("Abs one", "Abs two", "Abs Three")
+        listOfSchoulderWorkouts = arrayListOf("Schoulder one", "Schoulder two", "Schoulder Three")
+
+        listOfWorkouts.put("Chest",listOfChestWorkouts)
+        listOfWorkouts.put("Biceps",listOfBrustWorkouts)
+        listOfWorkouts.put("Traps",listOfTrapsWorkouts)
+        listOfWorkouts.put("Forearms",listOfForarmsWorkouts)
+        listOfWorkouts.put("Abs",listOfAbsWorkouts)
+        listOfWorkouts.put("Schoulder",listOfSchoulderWorkouts)
+        listOfWorkouts.put("Triceps",listOfTricepsWorkouts)
     }
 
     private fun animat(){
@@ -83,6 +108,31 @@ class WorkoutsChoiceActivity : BaseActivity(){
         val intent = Intent( this,  MuskelWorkoutsActivity::class.java)
         intent.putExtra("MuskelName", view.contentDescription)
         intent.putExtra("GymName", gymType)
+        for (i in listOfWorkouts.keys){
+            if (i == "Chest" && view.contentDescription == "CHEST" ){
+                list = listOfChestWorkouts
+            }
+            if (i == "Biceps" && view.contentDescription == "BICEPS" ){
+                list = listOfBrustWorkouts
+            }
+            if (i == "Triceps" && view.contentDescription == "triceps" ){
+                list = listOfTricepsWorkouts
+            }
+            if (i == "Forearms" && view.contentDescription == "forearms" ){
+                list = listOfForarmsWorkouts
+            }
+            if (i == "Traps" && view.contentDescription == "TRAPS" ){
+                list = listOfTrapsWorkouts
+            }
+            if (i == "Abs" && view.contentDescription == "ABS" ){
+                list = listOfAbsWorkouts
+            }
+            if (i == "Schoulder" && view.contentDescription == "SHOULDER" ){
+                list = listOfSchoulderWorkouts
+            }
+        }
+        intent.putExtra("listOfWorkouts",list)
+
         startActivity(intent)
     }
     override  fun onBackPressed() {
