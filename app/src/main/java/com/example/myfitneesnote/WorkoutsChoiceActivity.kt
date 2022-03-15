@@ -11,9 +11,6 @@ import android.view.View
 import android.view.WindowManager
 import android.view.animation.AnimationUtils
 import androidx.annotation.RequiresApi
-import androidx.cardview.widget.CardView
-import androidx.core.app.ActivityOptionsCompat
-import com.google.android.material.card.MaterialCardView
 import kotlinx.android.synthetic.main.activity_workout_choice.*
 
 
@@ -29,6 +26,7 @@ class WorkoutsChoiceActivity : BaseActivity(){
     private  var listOfAbsWorkouts: ArrayList<String> = arrayListOf()
     private  var listOfSchoulderWorkouts : ArrayList<String> = arrayListOf()
     private  var listOfTricepsWorkouts : ArrayList<String> = arrayListOf()
+    private  var listOfLegWorkouts : ArrayList<String> = arrayListOf()
 
     private  var list : ArrayList<String> = arrayListOf()
     @SuppressLint("ResourceAsColor")
@@ -42,22 +40,23 @@ class WorkoutsChoiceActivity : BaseActivity(){
         animat()
         setupActionBar()
         onClick2()
-        listOfChestWorkouts = arrayListOf("Chest one", "Chest two", "Chest Three")
-        listOfBrustWorkouts = arrayListOf("Biceps one", "Biceps two", "Biceps Three")
-        listOfTrapsWorkouts = arrayListOf("Traps one", "Traps two", "Traps Three")
-        listOfForarmsWorkouts = arrayListOf("Forarms one", "Forarms two", "Forarms Three")
+        listOfChestWorkouts = arrayListOf("Bench press", "Inclined Bench Press", "Parallel bar flexion", "Standing Cable Fly", "Dumbbell fly", "Push Up")
+        listOfBrustWorkouts = arrayListOf("Dumbbell exercises", " Lang Barbell exercises", "Hammer exercise","Short dumbbell", "Cable bicep exercise")
+        listOfTrapsWorkouts = arrayListOf("Cross lift", "Lat pull", "Barbell shrug","Dumbbell shrug")
+        listOfForarmsWorkouts = arrayListOf("Wrist exercise", "Wrist exercise", "Wrist exercise standing", "Dumbbell wrist exercise")
+        listOfTricepsWorkouts = arrayListOf("Bench press with close grip one", "Press down", "tricep extensions", "one-arm triceps extensions","Plank Up-Down")
+        listOfAbsWorkouts = arrayListOf("Dumbbell side tilt", "Flat bench lying leg lift", "Side bridge","Superman","Leg lift", "rotating hip lift" )
+        listOfSchoulderWorkouts = arrayListOf("Back Press", "Seated single column press", "Side lift","Front lift", "Barbell front lift", "Mitlitärpress behind neck")
+        listOfLegWorkouts = arrayListOf("squats", "Dumbbell drop steps", "Dumbbell squats","Hack squats", "Barbell step", "Good morning")
 
-        listOfTricepsWorkouts = arrayListOf("Triceps one", "Triceps two", "Triceps Three")
-        listOfAbsWorkouts = arrayListOf("Abs one", "Abs two", "Abs Three")
-        listOfSchoulderWorkouts = arrayListOf("Schoulder one", "Schoulder two", "Schoulder Three")
-
-        listOfWorkouts.put("Chest",listOfChestWorkouts)
-        listOfWorkouts.put("Biceps",listOfBrustWorkouts)
-        listOfWorkouts.put("Traps",listOfTrapsWorkouts)
-        listOfWorkouts.put("Forearms",listOfForarmsWorkouts)
-        listOfWorkouts.put("Abs",listOfAbsWorkouts)
-        listOfWorkouts.put("Schoulder",listOfSchoulderWorkouts)
-        listOfWorkouts.put("Triceps",listOfTricepsWorkouts)
+        listOfWorkouts["Chest"] = listOfChestWorkouts
+        listOfWorkouts["Biceps"] = listOfBrustWorkouts
+        listOfWorkouts["Back"] = listOfTrapsWorkouts
+        listOfWorkouts["Forearms"] = listOfForarmsWorkouts
+        listOfWorkouts["Abs"] = listOfAbsWorkouts
+        listOfWorkouts["Shoulder"] = listOfSchoulderWorkouts
+        listOfWorkouts["Triceps"] = listOfTricepsWorkouts
+        listOfWorkouts["Leg"] = listOfLegWorkouts
     }
 
     private fun animat(){
@@ -115,20 +114,23 @@ class WorkoutsChoiceActivity : BaseActivity(){
             if (i == "Biceps" && view.contentDescription == "BICEPS" ){
                 list = listOfBrustWorkouts
             }
-            if (i == "Triceps" && view.contentDescription == "triceps" ){
+            if (i == "Triceps" && view.contentDescription == "TRICEPS" ){
                 list = listOfTricepsWorkouts
             }
-            if (i == "Forearms" && view.contentDescription == "forearms" ){
+            if (i == "Forearms" && view.contentDescription == "FOREARMS" ){
                 list = listOfForarmsWorkouts
             }
-            if (i == "Traps" && view.contentDescription == "TRAPS" ){
+            if (i == "Back" && view.contentDescription == "BACK" ){
                 list = listOfTrapsWorkouts
             }
             if (i == "Abs" && view.contentDescription == "ABS" ){
                 list = listOfAbsWorkouts
             }
-            if (i == "Schoulder" && view.contentDescription == "SHOULDER" ){
+            if (i == "Shoulder" && view.contentDescription == "SHOULDER" ){
                 list = listOfSchoulderWorkouts
+            }
+            if (i == "Leg" && view.contentDescription == "LEG" ){
+                list = listOfLegWorkouts
             }
         }
         intent.putExtra("listOfWorkouts",list)

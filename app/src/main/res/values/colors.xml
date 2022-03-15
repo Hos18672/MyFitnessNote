@@ -14,6 +14,8 @@
     <color name="backgroundColor">#F3F2F2</color>
     <color name="backgroundColorNav">#FFFFFF</color>
     <color name="lightDark">#D6D6D6</color>
+    <color name="lightDark2">#C6EEFF</color>
+    <color name="lightDark3">#F1F1F1</color>
     <color name="toolbarColor">#FFFFFF</color>
     <color name="lightBlue">#FFFFFF</color>
     <color name="textColor">#000000</color>

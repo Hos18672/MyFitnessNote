@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:padding="4dp">
-
     <TextView
         android:id="@+id/workoutName"
         android:layout_width="wrap_content"
@@ -14,21 +13,33 @@
         android:layout_margin="10dp"
         android:layout_marginStart="24dp"
         android:text="Name"
-        android:textColor="#000000"
-        android:textSize="25sp"
+        android:textColor="@color/textColor"
+        android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginEnd="32dp"
-        android:src="@drawable/ic_board_place_holder"
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="90dp"
+        android:layout_height="70dp"
+        android:backgroundTint="@color/lightDark3"
+        android:padding="10dp"
+        app:cardCornerRadius="10dp"
+        android:layout_marginEnd="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/bankdruecken_mit_enger_griff"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.501">
+        </ImageView>
+    </com.google.android.material.card.MaterialCardView>
 
-    </ImageView>
 </androidx.constraintlayout.widget.ConstraintLayout>

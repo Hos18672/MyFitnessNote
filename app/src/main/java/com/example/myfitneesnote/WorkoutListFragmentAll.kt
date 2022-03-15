@@ -12,8 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myfitneesnote.adapters.SwipeToDelete
 import com.example.myfitneesnote.adapters.TrainingItemAdapter
-import com.example.myfitneesnote.adapters.TrainingItemAdapterAdd
-import com.example.myfitneesnote.adapters.WorkoutListMainAdapter
 import com.example.myfitneesnote.model.Workout
 import com.example.myfitneesnote.utils.Constant
 import com.firebase.ui.firestore.FirestoreRecyclerOptions

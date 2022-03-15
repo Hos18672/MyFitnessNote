@@ -33,18 +33,29 @@
 
             <TextView
                 android:id="@+id/tv_GymName"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="20dp"
-                android:layout_marginBottom="8dp"
                 android:gravity="center"
+                android:text="GymOrHome"
                 android:textColor="@color/textColor"
-                android:textSize="15sp"
+                android:textSize="13sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tv_workoutName"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_workoutName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="Workoutname"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_GymName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tv_GymName"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.159" />
+                tools:ignore="MissingConstraints" />
 
             <View
                 android:id="@+id/view"

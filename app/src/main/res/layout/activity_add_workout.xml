@@ -48,23 +48,49 @@
             tools:ignore="MissingConstraints"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/TrainingName"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_gravity="center"
-                android:layout_marginTop="14dp"
-                android:layout_marginBottom="14dp"
-                android:gravity="center"
-                android:text="@string/test"
-                android:textAllCaps="true"
-                android:textColor="@color/textColor"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/CV"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:gravity="center">
+                <TextView
+                    android:id="@+id/tv_muscle_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginBottom="14dp"
+                    android:gravity="center"
+                    android:text="@string/test"
+                    android:textAllCaps="true"
+                    android:textColor="@color/textColor"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/CV"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/tv_workout_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginBottom="14dp"
+                    android:gravity="center"
+                    android:text="@string/test"
+                    android:textAllCaps="true"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/textColorHell"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/CV"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </LinearLayout>
+
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/CV"
@@ -83,11 +109,11 @@
                 app:layout_constraintTop_toBottomOf="@+id/TrainingName"
                 tools:targetApi="lollipop">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
                     android:layout_margin="5dp"
+                    android:orientation="vertical"
                     app:layout_constraintEnd_toStartOf="@+id/constraintLayout"
                     app:layout_constraintStart_toStartOf="parent"
                     tools:ignore="MissingConstraints">
@@ -113,7 +139,7 @@
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraintLayout"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_marginTop="8dp"
                         android:foregroundGravity="center"
@@ -127,13 +153,13 @@
                             android:id="@+id/imageView4"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
+                            android:background="@drawable/baseline_fitness_center_black_24dp"
+                            android:backgroundTint="@color/textColor"
                             app:layout_constraintBottom_toBottomOf="@+id/tv_set"
                             app:layout_constraintEnd_toStartOf="@+id/tv_set"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/tv_set"
                             app:layout_constraintVertical_bias="0.25"
-                            android:backgroundTint="@color/textColor"
-                            android:background="@drawable/baseline_fitness_center_black_24dp"
                             tools:ignore="ContentDescription" />
 
                         <TextView
@@ -191,7 +217,7 @@
                             android:inputType="number"
                             android:maxLength="2"
                             android:minWidth="60dp"
-                            android:text="@string/_1"
+                            android:text="@string/_0"
                             android:textSize="17sp"
                             app:layout_constraintBottom_toBottomOf="@+id/textView2"
                             app:layout_constraintEnd_toStartOf="@+id/textView2"
@@ -244,7 +270,7 @@
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraintLayout2"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_marginTop="8dp"
                         app:layout_constraintBottom_toTopOf="@+id/constraintLayout4"
@@ -256,14 +282,14 @@
                             android:id="@+id/imageView6"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
+                            android:background="@drawable/baseline_timer_black_24dp"
+                            android:backgroundTint="@color/textColor"
                             android:contentDescription="@string/todo"
                             app:layout_constraintBottom_toBottomOf="@+id/tv_break"
                             app:layout_constraintEnd_toStartOf="@+id/tv_break"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/tv_break"
-                            app:layout_constraintVertical_bias="0.35000002"
-                            android:backgroundTint="@color/textColor"
-                            android:background="@drawable/baseline_timer_black_24dp" />
+                            app:layout_constraintVertical_bias="0.35000002" />
 
                         <TextView
                             android:id="@+id/tv_break"
@@ -319,7 +345,7 @@
                             android:inputType="number"
                             android:maxLength="2"
                             android:minWidth="60dp"
-                            android:text="@string/_1"
+                            android:text="@string/_0"
                             android:textSize="17sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toStartOf="@+id/textView4"
@@ -372,10 +398,11 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/constraintLayout3"
-                        android:layout_width="0dp"
+                        android:id="@+id/weight_ll"
+                        android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_marginTop="8dp"
+                        android:visibility="visible"
                         app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -386,15 +413,15 @@
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:layout_marginStart="2dp"
+                            android:background="@drawable/weight_kilogram_icon_138014"
+                            android:backgroundTint="@color/textColor"
                             android:contentDescription="@string/todo"
                             app:layout_constraintBottom_toBottomOf="@+id/tv_weight"
                             app:layout_constraintEnd_toStartOf="@+id/tv_weight"
                             app:layout_constraintHorizontal_bias="0.0"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/tv_weight"
-                            app:layout_constraintVertical_bias="0.22000003"
-                            android:backgroundTint="@color/textColor"
-                            android:background="@drawable/weight_kilogram_icon_138014" />
+                            app:layout_constraintVertical_bias="0.22000003" />
 
                         <TextView
                             android:id="@+id/tv_weight"
@@ -448,7 +475,7 @@
                             android:inputType="number"
                             android:maxLength="2"
                             android:minWidth="60dp"
-                            android:text="@string/_1"
+                            android:text="@string/_0"
                             android:textSize="17sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toStartOf="@+id/textView3"
@@ -500,7 +527,7 @@
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraintLayout4"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="20dp"
@@ -573,7 +600,7 @@
                             android:inputType="number"
                             android:maxLength="2"
                             android:minWidth="60dp"
-                            android:text="@string/_1"
+                            android:text="@string/_0"
                             android:textSize="17sp"
                             app:layout_constraintBottom_toBottomOf="@+id/textView6"
                             app:layout_constraintEnd_toStartOf="@+id/textView6"
@@ -639,8 +666,9 @@
 
                     <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/workoutNote"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:minHeight="50dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginBottom="10dp"
@@ -650,7 +678,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
 
                     </androidx.appcompat.widget.AppCompatEditText>
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
             </androidx.cardview.widget.CardView>
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"

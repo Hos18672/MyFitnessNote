@@ -41,6 +41,7 @@ class TrainingItemAdapter(options: FirestoreRecyclerOptions<Workout>?) : Firesto
             holder.breakTime.text = "${training.BreakTime} min"
             holder.date.text = training.currentDateTime
             holder.note.text = training.note
+            holder.workoutName.text = training.workoutName
           val isExpandable : Boolean  = training.expandable
            holder.expandable_layout.layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
 
@@ -106,6 +107,7 @@ class TrainingItemAdapter(options: FirestoreRecyclerOptions<Workout>?) : Firesto
         val image      : ImageView = itemView.workout_image
         val arrow      : ImageView = itemView.item_arrow
         val note      : TextView = itemView.tv_note
+        val workoutName  : TextView = itemView.tv_workoutName
         val ll        : LinearLayout = itemView.RowLL
         val expandable_layout : LinearLayout = itemView.rl_note
     }

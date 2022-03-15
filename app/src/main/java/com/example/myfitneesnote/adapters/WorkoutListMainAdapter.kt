@@ -50,6 +50,7 @@ class WorkoutListMainAdapter(options: FirestoreRecyclerOptions<Workout>) :Layout
         holder.breakTime.text  = "${training.BreakTime} min"
         holder.date.text       =    training.currentDateTime
         holder.note.text = training.note
+        holder.workoutName.text = training.workoutName
 
         val isExpandable : Boolean  = training.expandable
         if (isExpandable){
@@ -99,6 +100,7 @@ class WorkoutListMainAdapter(options: FirestoreRecyclerOptions<Workout>) :Layout
         val date      : TextView = itemView.tv_date
         val image     : ImageView = itemView.main_workout_image
         val note      : TextView = itemView.tv_note
+        val workoutName      : TextView = itemView.tv_workoutName
         val ll        : LinearLayout = itemView.RowLL
         val expandable_layout : LinearLayout = itemView.rl_note
         val expandable_Container : ConstraintLayout = itemView.container
