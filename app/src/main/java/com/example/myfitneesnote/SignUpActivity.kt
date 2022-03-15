@@ -38,17 +38,7 @@ class SignUpActivity : BaseActivity() {
                  signUpUser()
         }
     }
-/*  var selectedImageUri : Uri?= null
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode == 0 && resultCode == Activity.RESULT_OK && data != null){
-            Log.d("Upload Image", "Image was selected")
-            val selectedImageUri = data.data
-            val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedImageUri)
-            val bitmapDrawable = BitmapDrawable(bitmap)
-            signUp_image.setBackgroundDrawable(bitmapDrawable)
-        }
-    }*/
+
     /**
      * A function to register the user  and save data on  firestore database.
      */
@@ -114,15 +104,7 @@ class SignUpActivity : BaseActivity() {
             }
         }
     }
-/*    private fun uploadUserImageToFirebase(){
-        if (selectedImageUri == null) return
-        val filename = UUID.randomUUID().toString()
-        val ref = FirebaseStorage.getInstance().getReference("/images/$filename")
-        ref.putFile(selectedImageUri!!)
-            .addOnSuccessListener {
-                Log.d("UserUploadImage", "Successfully uploaded${it.metadata?.path}")
-            }
-    }*/
+
     private  fun validateForm(name: String, username: String, email: String, password1 : String, password2 : String) : Boolean{
         return when{
             TextUtils.isEmpty(name)->{ showErrorSnackBar("Please enter a  name")

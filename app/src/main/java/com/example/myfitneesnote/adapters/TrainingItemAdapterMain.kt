@@ -2,20 +2,25 @@ package com.example.myfitneesnote.adapters
 
 
 import android.annotation.SuppressLint
+import android.opengl.Visibility
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myfitneesnote.R
 import com.example.myfitneesnote.model.Workout
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import kotlinx.android.extensions.LayoutContainer
+import kotlinx.android.synthetic.main.item_training.view.*
 import kotlinx.android.synthetic.main.item_training.view.tv_GymName
 import kotlinx.android.synthetic.main.item_training.view.tv_Muscle
 import kotlinx.android.synthetic.main.item_training.view.tv_Sets
@@ -27,10 +32,7 @@ import kotlinx.android.synthetic.main.item_training_main.view.*
 import kotlinx.android.synthetic.main.item_training_main.view.RowLL
 import kotlinx.android.synthetic.main.item_training_main.view.rl_note
 import kotlinx.android.synthetic.main.item_training_main.view.tv_note
-import java.time.LocalDate
-import java.time.chrono.ChronoLocalDate
-import java.time.format.DateTimeFormatter
-import java.util.*
+import kotlinx.android.synthetic.main.item_training_main.view.tv_workoutName
 
 
 class TrainingItemAdapterMain(options: FirestoreRecyclerOptions<Workout>) : LayoutContainer, FirestoreRecyclerAdapter<Workout,TrainingItemAdapterMain.MyViewHolder>(options) {
@@ -50,39 +52,24 @@ class TrainingItemAdapterMain(options: FirestoreRecyclerOptions<Workout>) : Layo
         holder.breakTime.text  = "${training.BreakTime} min"
         holder.date.text       =    training.currentDateTime
         holder.note.text = training.note
+        holder.workoutName.text = training.workoutName
 
-        val isExpandable : Boolean  = training.expandable
-        holder.expandable_layout.visibility = if(isExpandable) View.VISIBLE else View.GONE
+        val isExpandable : Boolean  =  training.expandable
+        if (isExpandable){
+            holder.expandable_layout.visibility = VISIBLE
+            holder.expandable_Container.visibility= GONE
+        }else{
+            holder.expandable_layout.visibility = GONE
+            holder.expandable_Container.visibility= VISIBLE
+        }
         holder.ll.setOnClickListener {
             training.expandable = !training.expandable
             notifyItemChanged(position)
         }
 
-    }
-    private fun dateFormatter(date: String): ChronoLocalDate? {
-        val currentDate = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-M-d"))
-        } else {
-            TODO("VERSION.SDK_INT < O")
-        }
-        return currentDate
+
     }
 
-    private  fun getCurrentDate() : ChronoLocalDate? {
-        val c = Calendar.getInstance()
-        val year = c.get(Calendar.YEAR)
-        val month = c.get(Calendar.MONTH)
-        val day = c.get(Calendar.DAY_OF_MONTH)
-        var currentDate = "${year}-${month + 1}-${day}"
-        return  dateFormatter(currentDate)
-    }
-
-
-    @SuppressLint("NotifyDataSetChanged")
-    fun deleteItem(i: Int){
-        snapshots.getSnapshot(i).reference.delete()
-        notifyDataSetChanged()
-    }
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val gymName   : TextView = itemView.tv_GymName
         val muskelName: TextView = itemView.tv_Muscle
@@ -94,11 +81,15 @@ class TrainingItemAdapterMain(options: FirestoreRecyclerOptions<Workout>) : Layo
         val image     : ImageView = itemView.main_workout_image
         val note      : TextView = itemView.tv_note
         val ll        : LinearLayout = itemView.RowLL
+        val workoutName  : TextView = itemView.tv_workoutName
         val expandable_layout : LinearLayout = itemView.rl_note
+        val expandable_Container : ConstraintLayout = itemView.container
     }
 
     override val containerView
         get() = TODO("Not yet implemented")
+
+
 }
 
 

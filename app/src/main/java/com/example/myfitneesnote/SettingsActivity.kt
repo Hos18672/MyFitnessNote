@@ -12,7 +12,7 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_settings.*
 
 @Suppress("NAME_SHADOWING")
-class SecurityActivity : BaseActivity() {
+class SettingsActivity : BaseActivity() {
     private var mFirebaseDatabase: DatabaseReference? = null
     private var mFirebaseInstance: FirebaseDatabase? = null
     private var userId: String? = null

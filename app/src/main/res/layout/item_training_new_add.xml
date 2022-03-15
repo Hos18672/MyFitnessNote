@@ -11,6 +11,7 @@
     android:background="?attr/selectableItemBackground"
     android:backgroundTint="@color/backgroundColorNav"
     android:orientation="vertical"
+    app:cardElevation="0.2dp"
     app:cardCornerRadius="10dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,15 +22,30 @@
 
         <TextView
             android:id="@+id/tv_GymName"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_marginTop="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="4dp"
             android:gravity="center"
+            android:text="GymOrHome"
             android:textColor="@color/textColor"
             android:textSize="15sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_workoutName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:text="Workoutname"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_GymName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
 
         <View
             android:id="@+id/view2"
@@ -67,7 +83,7 @@
             android:id="@+id/linearLayout3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:gravity="bottom"

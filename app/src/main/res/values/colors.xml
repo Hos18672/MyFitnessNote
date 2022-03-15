@@ -11,10 +11,13 @@
     <color name="colorAccentPrimaryDark">#151B40</color>
     <color name="colorOfStutusBar">#00c2ff</color>
     <color name="Statusbar">  #2998f9</color>
-    <color name="backgroundColor">#F8F8F8</color>
+    <color name="backgroundColor">#F3F2F2</color>
     <color name="backgroundColorNav">#FFFFFF</color>
     <color name="lightDark">#D6D6D6</color>
+    <color name="lightDark2">#C6EEFF</color>
+    <color name="lightDark3">#F1F1F1</color>
     <color name="toolbarColor">#FFFFFF</color>
     <color name="lightBlue">#FFFFFF</color>
-    <color name="textColor">#000222</color>
+    <color name="textColor">#000000</color>
+    <color name="textColorHell">#7C7C7C</color>
 </resources>

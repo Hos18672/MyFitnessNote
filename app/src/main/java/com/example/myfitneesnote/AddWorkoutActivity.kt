@@ -5,6 +5,7 @@ package com.example.myfitneesnote
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
+import android.opengl.Visibility
 import android.os.Build
 import android.os.Bundle
 import android.text.Editable
@@ -25,8 +26,14 @@ import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.ThreadLocalRandom
 import android.text.TextUtils
+import android.view.View
+import android.view.View.GONE
 import android.widget.Toast
+import androidx.constraintlayout.solver.widgets.ConstraintWidget.GONE
+import androidx.constraintlayout.widget.ConstraintSet.GONE
+import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.activity_my_profile.*
+import kotlin.collections.ArrayList
 
 class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -34,6 +41,8 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
     private var trainingsName: String? = ""
     private var gymType = ""
     var muskelName: String = ""
+    var workoutName: String = ""
+    private  var listWeightlessWorkout : ArrayList<String> = ArrayList()
     @SuppressLint("ResourceAsColor")
     @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,8 +52,25 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
         setupActionBar()
         gymType = intent.getStringExtra("GymName").toString()
         muskelName = intent.getStringExtra("MuskelName").toString()
-        trainingsName = intent.getStringExtra("MuskelName")
-        TrainingName.text = trainingsName
+        workoutName = intent.getStringExtra("WorkoutName").toString()
+      //  trainingsName = intent.getStringExtra("MuskelName")
+        tv_muscle_name.text = muskelName
+        tv_workout_name.text = workoutName
+
+        listWeightlessWorkout.add("Dumbbel fly")
+        listWeightlessWorkout.add("Flat bench lying leg lift")
+        listWeightlessWorkout.add("Side bridge")
+        listWeightlessWorkout.add("Superman")
+        listWeightlessWorkout.add("Leg lift")
+        listWeightlessWorkout.add("Push Up")
+        listWeightlessWorkout.add("rotating hip lift")
+
+        for (i in listWeightlessWorkout){
+            if (workoutName == i){
+                weight_ll.visibility = View.GONE
+            }
+        }
+
         //Set a Start date (Default, 1 Jan 1970)
         val c = Calendar.getInstance()
         val year = c.get(Calendar.YEAR)
@@ -91,7 +117,6 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
                 Toast.makeText(this, "No internet connection!", Toast.LENGTH_SHORT).show()
             }
         }
-
         btn_set_minus.setOnClickListener { minusButton(SetNum) }
         btn_set_plus.setOnClickListener { plusButton(SetNum) }
         btn_weight_minus.setOnClickListener { minusButton(weightNum) }
@@ -129,7 +154,7 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
 
     @SuppressLint("SimpleDateFormat")
     private fun dateFormatter(date: String): Date {
-        val inputFormatter: DateFormat = SimpleDateFormat("yyyy-MM-dd")
+        val inputFormatter: DateFormat = SimpleDateFormat("yyyy-M-d")
         return inputFormatter.parse(date)
     }
 
@@ -137,7 +162,10 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
          val mFirestore = FirebaseFirestore.getInstance()
             mFirestore.collection("users").document(getCurrentUserId()).get()
                 .addOnSuccessListener { documentSnapshot ->
-                    val weight = documentSnapshot.getString("weight")
+                    var weight = documentSnapshot.getString("weight")
+                    if (weight == "0"){
+                        weight = "0.01"
+                    }
                     val workout: Workout
                     val weight2 = weightNum.text.toString()
                     val breakNum = breakNum.text.toString()
@@ -157,6 +185,7 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
                             getCurrentUserId(),
                             gymType,
                             muskelName,
+                            workoutName,
                             set,
                             weight2,
                             breakNum,
@@ -164,7 +193,8 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
                             currentDate,
                             calories,
                             dateFormatter(currentDate),
-                            note
+                            note,
+
                         )
                         FirestoreClass().createNewTraining(this@AddWorkoutActivity, workout)
                         val recyclerView = findViewById<RecyclerView>(id.recyclerView_add)

@@ -93,12 +93,14 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content">
 
-                                        <androidx.cardview.widget.CardView
+                                        <com.google.android.material.card.MaterialCardView
                                             android:id="@+id/cv_gym2"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:backgroundTint="@color/backgroundColorNav"                                            android:translationZ="5dp"
+                                            android:backgroundTint="@color/lightDark2"                                            android:translationZ="5dp"
                                             app:cardCornerRadius="15dp"
+                                            app:cardElevation="0.2dp"
+                                            app:rippleColor="@color/white"
                                             android:layout_marginBottom="5dp"
                                             app:layout_constraintEnd_toEndOf="parent"
                                             app:layout_constraintStart_toStartOf="parent"
@@ -127,20 +129,22 @@
                                                             app:layout_constraintStart_toStartOf="parent"
                                                             app:layout_constraintTop_toTopOf="parent"
                                                             tools:ignore="MissingConstraints" />
+
                                                         <ImageButton
                                                             android:id="@+id/gym_arrow"
                                                             android:layout_width="20dp"
                                                             android:layout_height="20dp"
                                                             android:layout_gravity="center"
-                                                            android:backgroundTint="@color/textColor"
                                                             android:layout_marginBottom="5dp"
-                                                            android:background="@drawable/arrow_down">
-                                                        </ImageButton>
+                                                            android:background="@drawable/arrow_down"
+                                                            android:backgroundTint="@color/textColor"
+                                                            tools:ignore="SpeakableTextPresentCheck"></ImageButton>
                                                 </LinearLayout>
-                                        </androidx.cardview.widget.CardView>
+                                        </com.google.android.material.card.MaterialCardView>
                                         <View
                                             android:layout_width="match_parent"
                                             android:layout_height="1dp"
+                                            android:elevation="0.2dp"
                                             app:layout_constraintBottom_toBottomOf="@+id/cv_gym2"
                                             app:layout_constraintTop_toBottomOf="@+id/cv_gym2"
                                             tools:ignore="MissingConstraints"/>
@@ -149,12 +153,13 @@
                                             android:id="@+id/hiddenLayout"
                                             android:layout_width="match_parent"
                                             android:layout_height="340dp"
+                                            android:animateLayoutChanges="true"
+                                            android:backgroundTint="@color/lightDark"
+                                            android:elevation="0dp"
                                             android:orientation="vertical"
                                             android:transitionName="cvWorkouts"
                                             android:translationZ="-5dp"
                                             android:visibility="gone"
-                                            android:backgroundTint="@color/lightDark"
-                                            android:animateLayoutChanges="true"
                                             app:layout_constraintBottom_toBottomOf="parent"
                                             app:layout_constraintEnd_toEndOf="parent"
                                             app:layout_constraintStart_toStartOf="parent"
@@ -180,10 +185,12 @@
                                                             android:layout_marginBottom="15dp"
                                                             android:backgroundTint="@color/backgroundColorNav"
                                                             android:contentDescription="@string/chest"
+                                                            android:onClick="onclick"
                                                             android:paddingStart="20dp"
                                                             android:textSize="20sp"
                                                             android:transitionName="addTrainingCv"
                                                             app:cardCornerRadius="10dp"
+                                                            app:cardElevation="0.2dp"
                                                             app:rippleColor="#8ED1FF"
                                                             tools:ignore="RtlHardcoded,RtlSymmetry">
 
@@ -231,11 +238,13 @@
                                                             android:layout_marginBottom="15dp"
                                                             android:backgroundTint="@color/backgroundColorNav"
                                                             android:contentDescription="@string/biceps"
+                                                            android:onClick="onclick"
                                                             android:paddingStart="20dp"
                                                             android:text="@string/biceps"
                                                             android:textSize="20sp"
                                                             android:transitionName="addTrainingCv"
                                                             app:cardCornerRadius="10dp"
+                                                            app:cardElevation="0.2dp"
                                                             app:rippleColor="#8ED1FF"
                                                             tools:ignore="RtlHardcoded,RtlSymmetry">
 
@@ -282,12 +291,14 @@
                                                             android:layout_marginEnd="20dp"
                                                             android:layout_marginBottom="15dp"
                                                             android:backgroundTint="@color/backgroundColorNav"
-                                                            android:contentDescription="triceps"
+                                                            android:contentDescription="@string/triceps"
+                                                            android:onClick="onclick"
                                                             android:paddingStart="20dp"
                                                             android:text="@string/triceps"
                                                             android:textSize="20sp"
                                                             android:transitionName="addTrainingCv"
                                                             app:cardCornerRadius="10dp"
+                                                            app:cardElevation="0.2dp"
                                                             app:rippleColor="#8ED1FF"
                                                             tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry">
 
@@ -335,12 +346,14 @@
                                                             android:layout_marginEnd="20dp"
                                                             android:layout_marginBottom="15dp"
                                                             android:backgroundTint="@color/backgroundColorNav"
-                                                            android:contentDescription="forearms"
+                                                            android:contentDescription="@string/forearms"
+                                                            android:onClick="onclick"
                                                             android:paddingStart="20dp"
                                                             android:text="@string/forearms"
                                                             android:textSize="20sp"
                                                             android:transitionName="addTrainingCv"
                                                             app:cardCornerRadius="10dp"
+                                                            app:cardElevation="0.2dp"
                                                             app:rippleColor="#8ED1FF"
                                                             tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry">
 
@@ -381,19 +394,21 @@
                                                         </com.google.android.material.card.MaterialCardView>
 
                                                         <com.google.android.material.card.MaterialCardView
-                                                            android:id="@+id/traps_btn2"
+                                                            android:id="@+id/back_btn2"
                                                             android:layout_width="match_parent"
                                                             android:layout_height="70dp"
                                                             android:layout_marginStart="20dp"
                                                             android:layout_marginEnd="20dp"
                                                             android:layout_marginBottom="15dp"
                                                             android:backgroundTint="@color/backgroundColorNav"
-                                                            android:contentDescription="@string/traps"
+                                                            android:contentDescription="@string/back"
+                                                            android:onClick="onclick"
                                                             android:paddingStart="20dp"
-                                                            android:text="@string/traps"
+                                                            android:text="@string/back"
                                                             android:textSize="20sp"
                                                             android:transitionName="addTrainingCv"
                                                             app:cardCornerRadius="10dp"
+                                                            app:cardElevation="0.2dp"
                                                             app:rippleColor="#8ED1FF"
                                                             tools:ignore="RtlHardcoded,RtlSymmetry">
 
@@ -410,7 +425,7 @@
                                                                             android:layout_height="wrap_content"
                                                                             android:layout_gravity="left|center"
                                                                             android:layout_marginStart="16dp"
-                                                                            android:text="@string/traps"
+                                                                            android:text="@string/back"
                                                                             android:textColor="@color/textColor"
                                                                             android:textSize="25sp"
                                                                             app:layout_constraintBottom_toBottomOf="parent"
@@ -442,6 +457,7 @@
                                                             android:layout_marginBottom="15dp"
                                                             android:backgroundTint="@color/backgroundColorNav"
                                                             android:contentDescription="@string/abs"
+                                                            android:onClick="onclick"
                                                             android:paddingStart="20dp"
                                                             android:text="@string/abs"
                                                             android:textSize="20sp"
@@ -496,6 +512,7 @@
                                                             android:layout_marginBottom="15dp"
                                                             android:backgroundTint="@color/backgroundColorNav"
                                                             android:contentDescription="@string/shoulder"
+                                                            android:onClick="onclick"
                                                             android:paddingStart="20dp"
                                                             android:text="@string/shoulder"
                                                             android:textSize="20sp"
@@ -538,6 +555,60 @@
                                                                             app:layout_constraintTop_toTopOf="parent" />
                                                                 </androidx.constraintlayout.widget.ConstraintLayout>
                                                         </com.google.android.material.card.MaterialCardView>
+
+                                                        <com.google.android.material.card.MaterialCardView
+                                                            android:id="@+id/leg_btn2"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="70dp"
+                                                            android:layout_marginStart="20dp"
+                                                            android:layout_marginEnd="20dp"
+                                                            android:layout_marginBottom="15dp"
+                                                            android:backgroundTint="@color/backgroundColorNav"
+                                                            android:contentDescription="@string/leg"
+                                                            android:onClick="onclick"
+                                                            android:paddingStart="20dp"
+                                                            android:text="@string/leg"
+                                                            android:textSize="20sp"
+                                                            android:transitionName="addTrainingCv"
+                                                            app:cardCornerRadius="10dp"
+                                                            app:rippleColor="#8ED1FF"
+                                                            tools:ignore="RtlHardcoded,RtlSymmetry">
+
+                                                                <androidx.constraintlayout.widget.ConstraintLayout
+                                                                    android:layout_width="match_parent"
+                                                                    android:layout_height="match_parent"
+                                                                    android:layout_gravity="center"
+                                                                    android:gravity="center"
+                                                                    android:orientation="horizontal">
+
+                                                                        <TextView
+                                                                            android:id="@+id/textView2"
+                                                                            android:layout_width="wrap_content"
+                                                                            android:layout_height="wrap_content"
+                                                                            android:layout_gravity="left|center"
+                                                                            android:layout_marginStart="16dp"
+                                                                            android:text="@string/leg"
+                                                                            android:textColor="@color/textColor"
+                                                                            android:textSize="25sp"
+                                                                            app:layout_constraintBottom_toBottomOf="parent"
+                                                                            app:layout_constraintStart_toStartOf="parent"
+                                                                            app:layout_constraintTop_toTopOf="parent"
+                                                                            tools:ignore="DuplicateIds" />
+
+                                                                        <ImageView
+                                                                            android:layout_width="50dp"
+                                                                            android:layout_height="50dp"
+                                                                            android:layout_gravity="right|center"
+                                                                            android:layout_marginEnd="16dp"
+                                                                            android:background="@drawable/icons8_shoulders_100"
+                                                                            android:backgroundTint="@color/textColor"
+                                                                            android:contentDescription="@string/todo"
+                                                                            app:layout_constraintBottom_toBottomOf="parent"
+                                                                            app:layout_constraintEnd_toEndOf="parent"
+                                                                            app:layout_constraintTop_toTopOf="parent" />
+                                                                </androidx.constraintlayout.widget.ConstraintLayout>
+                                                        </com.google.android.material.card.MaterialCardView>
+
                                                 </androidx.appcompat.widget.LinearLayoutCompat>
                                         </androidx.core.widget.NestedScrollView>
                                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -570,13 +641,15 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content">
 
-                                        <androidx.cardview.widget.CardView
+                                        <com.google.android.material.card.MaterialCardView
                                             android:id="@+id/cv_home"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:backgroundTint="@color/backgroundColorNav"
+                                            android:backgroundTint="@color/lightDark2"
                                             android:translationZ="5dp"
                                             app:cardCornerRadius="15dp"
+                                            app:cardElevation="0.2dp"
+                                            app:rippleColor="@color/white"
                                             android:layout_marginBottom="15dp"
                                             app:layout_constraintEnd_toEndOf="parent"
                                             app:layout_constraintStart_toStartOf="parent"
@@ -617,7 +690,7 @@
                                                             android:background="@drawable/arrow_down">
                                                         </ImageView>
                                                 </LinearLayout>
-                                        </androidx.cardview.widget.CardView>
+                                        </com.google.android.material.card.MaterialCardView>
 
                                         <View
                                             android:layout_width="match_parent"
@@ -664,8 +737,10 @@
                                                             android:contentDescription="@string/chest"
                                                             android:paddingStart="20dp"
                                                             android:textSize="20sp"
+                                                            android:onClick="onclick"
                                                             android:transitionName="addTrainingCv"
                                                             app:cardCornerRadius="10dp"
+                                                            app:cardElevation="0.2dp"
                                                             app:rippleColor="#8ED1FF"
                                                             tools:ignore="RtlHardcoded,RtlSymmetry">
 
@@ -716,9 +791,11 @@
                                                             android:paddingStart="20dp"
                                                             android:text="@string/biceps"
                                                             android:textSize="20sp"
+                                                            android:onClick="onclick"
                                                             android:transitionName="addTrainingCv"
                                                             app:cardCornerRadius="10dp"
                                                             app:rippleColor="#8ED1FF"
+                                                            app:cardElevation="0.2dp"
                                                             tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                                                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -764,13 +841,15 @@
                                                             android:layout_marginEnd="20dp"
                                                             android:layout_marginBottom="15dp"
                                                             android:backgroundTint="@color/backgroundColorNav"
-                                                            android:contentDescription="triceps"
+                                                            android:contentDescription="@string/triceps"
                                                             android:paddingStart="20dp"
                                                             android:text="@string/triceps"
                                                             android:textSize="20sp"
+                                                            android:onClick="onclick"
                                                             android:transitionName="addTrainingCv"
                                                             app:cardCornerRadius="10dp"
                                                             app:rippleColor="#8ED1FF"
+                                                            app:cardElevation="0.2dp"
                                                             tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry">
 
                                                                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -817,13 +896,15 @@
                                                             android:layout_marginEnd="20dp"
                                                             android:layout_marginBottom="15dp"
                                                             android:backgroundTint="@color/backgroundColorNav"
-                                                            android:contentDescription="forearms"
+                                                            android:contentDescription="@string/forearms"
                                                             android:paddingStart="20dp"
                                                             android:text="@string/forearms"
                                                             android:textSize="20sp"
+                                                            android:onClick="onclick"
                                                             android:transitionName="addTrainingCv"
                                                             app:cardCornerRadius="10dp"
                                                             app:rippleColor="#8ED1FF"
+                                                            app:cardElevation="0.2dp"
                                                             tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry">
 
                                                                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -863,20 +944,22 @@
                                                         </com.google.android.material.card.MaterialCardView>
 
                                                         <com.google.android.material.card.MaterialCardView
-                                                            android:id="@+id/traps_btn"
+                                                            android:id="@+id/back_btn"
                                                             android:layout_width="match_parent"
                                                             android:layout_height="70dp"
                                                             android:layout_marginStart="20dp"
                                                             android:layout_marginEnd="20dp"
                                                             android:layout_marginBottom="15dp"
                                                             android:backgroundTint="@color/backgroundColorNav"
-                                                            android:contentDescription="@string/traps"
+                                                            android:contentDescription="@string/back"
                                                             android:paddingStart="20dp"
-                                                            android:text="@string/traps"
+                                                            android:text="@string/back"
                                                             android:textSize="20sp"
+                                                            android:onClick="onclick"
                                                             android:transitionName="addTrainingCv"
                                                             app:cardCornerRadius="10dp"
                                                             app:rippleColor="#8ED1FF"
+                                                            app:cardElevation="0.2dp"
                                                             tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                                                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -892,7 +975,7 @@
                                                                             android:layout_height="wrap_content"
                                                                             android:layout_gravity="left|center"
                                                                             android:layout_marginStart="16dp"
-                                                                            android:text="@string/traps"
+                                                                            android:text="@string/back"
                                                                             android:textColor="@color/textColor"
                                                                             android:textSize="25sp"
                                                                             app:layout_constraintBottom_toBottomOf="parent"
@@ -927,9 +1010,11 @@
                                                             android:paddingStart="20dp"
                                                             android:text="@string/abs"
                                                             android:textSize="20sp"
+                                                            android:onClick="onclick"
                                                             android:transitionName="addTrainingCv"
                                                             app:cardCornerRadius="10dp"
                                                             app:rippleColor="#8ED1FF"
+                                                            app:cardElevation="0.2dp"
                                                             tools:ignore="RtlHardcoded,RtlSymmetry">
 
                                                                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -981,6 +1066,61 @@
                                                             android:paddingStart="20dp"
                                                             android:text="@string/shoulder"
                                                             android:textSize="20sp"
+                                                            android:onClick="onclick"
+                                                            android:transitionName="addTrainingCv"
+                                                            app:cardCornerRadius="10dp"
+                                                            app:rippleColor="#8ED1FF"
+                                                            app:cardElevation="0.2dp"
+                                                            tools:ignore="RtlHardcoded,RtlSymmetry">
+
+                                                                <androidx.constraintlayout.widget.ConstraintLayout
+                                                                    android:layout_width="match_parent"
+                                                                    android:layout_height="match_parent"
+                                                                    android:layout_gravity="center"
+                                                                    android:gravity="center"
+                                                                    android:orientation="horizontal">
+
+                                                                        <TextView
+                                                                            android:id="@+id/textView2"
+                                                                            android:layout_width="wrap_content"
+                                                                            android:layout_height="wrap_content"
+                                                                            android:layout_gravity="left|center"
+                                                                            android:layout_marginStart="16dp"
+                                                                            android:text="@string/shoulder"
+                                                                            android:textColor="@color/textColor"
+                                                                            android:textSize="25sp"
+                                                                            app:layout_constraintBottom_toBottomOf="parent"
+                                                                            app:layout_constraintStart_toStartOf="parent"
+                                                                            app:layout_constraintTop_toTopOf="parent"
+                                                                            tools:ignore="DuplicateIds" />
+
+                                                                        <ImageView
+                                                                            android:layout_width="50dp"
+                                                                            android:layout_height="50dp"
+                                                                            android:layout_gravity="right|center"
+                                                                            android:layout_marginEnd="16dp"
+                                                                            android:background="@drawable/icons8_shoulders_100"
+                                                                            android:backgroundTint="@color/textColor"
+                                                                            android:contentDescription="@string/todo"
+                                                                            app:layout_constraintBottom_toBottomOf="parent"
+                                                                            app:layout_constraintEnd_toEndOf="parent"
+                                                                            app:layout_constraintTop_toTopOf="parent" />
+                                                                </androidx.constraintlayout.widget.ConstraintLayout>
+                                                        </com.google.android.material.card.MaterialCardView>
+
+                                                        <com.google.android.material.card.MaterialCardView
+                                                            android:id="@+id/leg_btn1"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="70dp"
+                                                            android:layout_marginStart="20dp"
+                                                            android:layout_marginEnd="20dp"
+                                                            android:layout_marginBottom="15dp"
+                                                            android:backgroundTint="@color/backgroundColorNav"
+                                                            android:contentDescription="@string/leg"
+                                                            android:onClick="onclick"
+                                                            android:paddingStart="20dp"
+                                                            android:text="@string/leg"
+                                                            android:textSize="20sp"
                                                             android:transitionName="addTrainingCv"
                                                             app:cardCornerRadius="10dp"
                                                             app:rippleColor="#8ED1FF"
@@ -999,7 +1139,7 @@
                                                                             android:layout_height="wrap_content"
                                                                             android:layout_gravity="left|center"
                                                                             android:layout_marginStart="16dp"
-                                                                            android:text="@string/shoulder"
+                                                                            android:text="@string/leg"
                                                                             android:textColor="@color/textColor"
                                                                             android:textSize="25sp"
                                                                             app:layout_constraintBottom_toBottomOf="parent"

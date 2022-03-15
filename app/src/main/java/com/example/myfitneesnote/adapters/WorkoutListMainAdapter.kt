@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myfitneesnote.R.*
 import com.example.myfitneesnote.model.Workout
@@ -49,9 +50,16 @@ class WorkoutListMainAdapter(options: FirestoreRecyclerOptions<Workout>) :Layout
         holder.breakTime.text  = "${training.BreakTime} min"
         holder.date.text       =    training.currentDateTime
         holder.note.text = training.note
+        holder.workoutName.text = training.workoutName
 
         val isExpandable : Boolean  = training.expandable
-        holder.expandableLayout.visibility = if(isExpandable) View.VISIBLE else View.GONE
+        if (isExpandable){
+            holder.expandable_layout.visibility = View.VISIBLE
+            holder.expandable_Container.visibility= View.GONE
+        }else{
+            holder.expandable_layout.visibility = View.GONE
+            holder.expandable_Container.visibility= View.VISIBLE
+        }
         holder.ll.setOnClickListener {
             training.expandable = !training.expandable
             notifyItemChanged(position)
@@ -92,8 +100,10 @@ class WorkoutListMainAdapter(options: FirestoreRecyclerOptions<Workout>) :Layout
         val date      : TextView = itemView.tv_date
         val image     : ImageView = itemView.main_workout_image
         val note      : TextView = itemView.tv_note
+        val workoutName      : TextView = itemView.tv_workoutName
         val ll        : LinearLayout = itemView.RowLL
-        val expandableLayout : LinearLayout = itemView.rl_note
+        val expandable_layout : LinearLayout = itemView.rl_note
+        val expandable_Container : ConstraintLayout = itemView.container
     }
 
      override val containerView

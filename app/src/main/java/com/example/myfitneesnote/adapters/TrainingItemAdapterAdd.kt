@@ -12,6 +12,8 @@ import com.example.myfitneesnote.R.*
 import com.example.myfitneesnote.model.Workout
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
+import com.google.android.gms.common.api.Api
+import com.google.android.material.transition.Hold
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_training.view.*
 import java.time.LocalDate
@@ -36,6 +38,7 @@ class TrainingItemAdapterAdd(options: FirestoreRecyclerOptions<Workout>) :Layout
             holder.repeat.text = "${training.repeat} x"
             holder.breakTime.text = "${training.BreakTime} min"
             holder.date.text = training.currentDateTime
+            holder.workoutName.text = training.workoutName
 
     }
      private fun dateFormatter(date: String): ChronoLocalDate? {
@@ -70,6 +73,7 @@ class TrainingItemAdapterAdd(options: FirestoreRecyclerOptions<Workout>) :Layout
         val repeat    : TextView = itemView.tv_repeat
         val breakTime : TextView = itemView.tv_break
         val date      : TextView = itemView.tv_date
+        val workoutName      : TextView = itemView.tv_workoutName
     }
      override val containerView
          get() = TODO("Not yet implemented")

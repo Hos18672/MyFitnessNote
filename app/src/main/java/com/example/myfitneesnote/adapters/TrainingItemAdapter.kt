@@ -23,7 +23,9 @@ import java.time.chrono.ChronoLocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*
 
-class TrainingItemAdapter(options: FirestoreRecyclerOptions<Workout>) : FirestoreRecyclerAdapter<Workout,TrainingItemAdapter.MyViewHolder>(options){
+class TrainingItemAdapter(options: FirestoreRecyclerOptions<Workout>?) : FirestoreRecyclerAdapter<Workout,TrainingItemAdapter.MyViewHolder>(
+    options as FirestoreRecyclerOptions<Workout>
+){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder{
         val itemView = LayoutInflater.from(parent.context).inflate((layout.item_training), parent, false)
         return  MyViewHolder(itemView)
@@ -39,6 +41,7 @@ class TrainingItemAdapter(options: FirestoreRecyclerOptions<Workout>) : Firestor
             holder.breakTime.text = "${training.BreakTime} min"
             holder.date.text = training.currentDateTime
             holder.note.text = training.note
+            holder.workoutName.text = training.workoutName
           val isExpandable : Boolean  = training.expandable
            holder.expandable_layout.layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
 
@@ -104,6 +107,7 @@ class TrainingItemAdapter(options: FirestoreRecyclerOptions<Workout>) : Firestor
         val image      : ImageView = itemView.workout_image
         val arrow      : ImageView = itemView.item_arrow
         val note      : TextView = itemView.tv_note
+        val workoutName  : TextView = itemView.tv_workoutName
         val ll        : LinearLayout = itemView.RowLL
         val expandable_layout : LinearLayout = itemView.rl_note
     }

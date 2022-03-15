@@ -33,7 +33,7 @@ class WorkoutListMainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-       _view = inflater.inflate(R.layout.workout_list_main_fragment, container, false)
+        _view = inflater.inflate(R.layout.workout_list_main_fragment, container, false)
         getTrainingsFromFireStore()
         recyclerView = _view.findViewById(R.id.recyclerView_add);
         recyclerView.setHasFixedSize(true);

@@ -39,7 +39,6 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
-import kotlinx.android.synthetic.main.activity_add_workout.constraintLayout3
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main_layout.*
 import kotlinx.android.synthetic.main.activity_main_layout.view.*
@@ -55,6 +54,8 @@ import java.time.format.DateTimeFormatter
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
+import com.squareup.picasso.Picasso
+import de.hdodenhof.circleimageview.CircleImageView
 
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -62,6 +63,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     private lateinit var trainingItemAdapterMain: TrainingItemAdapterMain
     private lateinit var recyclerView: RecyclerView
     private val db = FirebaseFirestore.getInstance()
+    private lateinit var imageProfileMain: CircleImageView
 
     @SuppressLint("ResourceAsColor", "NewApi")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -75,11 +77,17 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         animate()
         getTrainingsFromFireStore()
         updateNavigationUserDetails()
+        btn1.setCardBackgroundColor(Color.parseColor("#00AEFF"))
+        tip()
+
         setupLineChartData(7)
         val trainingsFragment = WorkoutListMainFragment()
         supportFragmentManager.beginTransaction().apply {
             replace(id.root_container_main, trainingsFragment).commit()
         }
+
+
+
 
         if (!checkForInternet(this)) {
             Toast.makeText(this, "No internet connection!", Toast.LENGTH_SHORT).show()
@@ -102,6 +110,64 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             }
     }
 
+    @SuppressLint("Range")
+    private fun tip() {
+        val nightModeFlags: Int = applicationContext.resources.configuration.uiMode and
+                Configuration.UI_MODE_NIGHT_MASK
+        when (nightModeFlags) {
+            Configuration.UI_MODE_NIGHT_YES -> {
+                btn2.setCardBackgroundColor(Color.parseColor("#26282C"))
+                btn1.setOnClickListener {
+                    val trainingsFragment = WorkoutListMainFragment()
+                    supportFragmentManager.beginTransaction().apply {
+                        replace(id.root_container_main, trainingsFragment).commit()
+                        btn2.setCardBackgroundColor(Color.parseColor("#26282C"))
+                        btn1.setCardBackgroundColor(Color.parseColor("#00AEFF"))
+                    }
+
+                }
+
+                btn2.setOnClickListener {
+                    val trainingsFragment2 = WorkoutListMainFragment2()
+                    supportFragmentManager.beginTransaction().apply {
+                        replace(id.root_container_main, trainingsFragment2).commit()
+                        btn1.isSelected = false
+                        btn2.setCardBackgroundColor(Color.parseColor("#00AEFF"))
+                        btn1.setCardBackgroundColor(Color.parseColor("#26282C"))
+                    }
+
+                }
+            }
+            Configuration.UI_MODE_NIGHT_NO -> {
+
+                btn1.setOnClickListener {
+                    val trainingsFragment = WorkoutListMainFragment()
+                    supportFragmentManager.beginTransaction().apply {
+                        replace(id.root_container_main, trainingsFragment).commit()
+                        btn2.setCardBackgroundColor(Color.WHITE)
+                        btn1.setCardBackgroundColor(Color.parseColor("#00AEFF"))
+                    }
+
+                }
+
+                btn2.setOnClickListener {
+                    val trainingsFragment2 = WorkoutListMainFragment2()
+                    supportFragmentManager.beginTransaction().apply {
+                        replace(id.root_container_main, trainingsFragment2).commit()
+                        btn1.isSelected = false
+                        btn2.setCardBackgroundColor(Color.parseColor("#00AEFF"))
+                        btn1.setCardBackgroundColor(Color.WHITE)
+                    }
+
+                }
+            }
+            Configuration.UI_MODE_NIGHT_UNDEFINED -> {
+
+
+            }
+        }
+    }
+
     private fun getCurrentUserId(): String {
         val currentUser = FirebaseAuth.getInstance().currentUser
         var currentUserID = ""
@@ -119,6 +185,17 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val username = snapshot.child("username").getValue(String::class.java)
                     tv_username.text = username
+                    if(snapshot.hasChild("image")){
+                        imageProfileMain = findViewById(id.main_drawer_profile_photo)
+                        var image = snapshot.child("image").value.toString()
+                        if (image.isNotEmpty()){
+                            Picasso.get().load(image).into(imageProfileMain)
+                        }
+
+                    }
+                    else{
+                        System.out.println("empty")
+                    }
                 }
 
                 override fun onCancelled(error: DatabaseError): Unit = TODO("Not yet implemented")
@@ -138,14 +215,13 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         val tip3: CardView = findViewById(id.Dumbbell)
         val tip4: CardView = findViewById(id.Seated_biceps_curls)
 
-
         tipsItemsClick(tip1)
         tipsItemsClick(tip2)
         tipsItemsClick(tip3)
         tipsItemsClick(tip4)
 
         mainImage.setOnClickListener {
-            //animate(mainImage)
+            animate(mainImage)
             val intent = Intent(this, MyProfileActivity::class.java)
             val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
                 this,
@@ -156,11 +232,13 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         }
 
         mainMenu.setOnClickListener {
+            animate(mainMenu)
             if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
                 drawer_layout.closeDrawer(GravityCompat.START)
             } else {
                 drawer_layout.openDrawer(GravityCompat.START)
             }
+
         }
         addMenu.setOnClickListener {
             addMenu.animate().apply {
@@ -216,6 +294,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             startActivity(intent)
         }
 
+
         toggleButtonsGroup.checkedButtonId
         toggleButtonsGroup.isSingleSelection = true
         toggleButtonsGroup.addOnButtonCheckedListener { _, checkedId, isChecked ->
@@ -229,6 +308,11 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 }
             }
         }
+
+
+
+
+
     }
 
     private fun animate() {
@@ -271,7 +355,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             }
 
             id.nav_Settings -> {
-                startActivity(Intent(this, SecurityActivity::class.java))
+                startActivity(Intent(this, SettingsActivity::class.java))
             }
 
             id.btn_sing_out_draw_layout -> {
@@ -383,6 +467,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     private fun updateNavigationUserDetails() {
         val uid = FirebaseAuth.getInstance().uid
         val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
+        userData()
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 //val username = snapshot.child("username").getValue(String::class.java)
@@ -397,15 +482,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         })
     }
 
-    private fun dateFormatter(date: String): ChronoLocalDate? {
-        val currentDate = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            parse(date, DateTimeFormatter.ofPattern("yyyy-M-d"))
 
-        } else {
-            TODO("VERSION.SDK_INT < O")
-        }
-        return currentDate
-    }
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun setupLineChartData(size: Int) {
@@ -456,6 +533,15 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             }
     }
 
+    private fun dateFormatter(date: String): ChronoLocalDate? {
+        val currentDate = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            parse(date, DateTimeFormatter.ofPattern("yyyy-M-d"))
+
+        } else {
+            TODO("VERSION.SDK_INT < O")
+        }
+        return currentDate
+    }
     @RequiresApi(Build.VERSION_CODES.O)
     private fun getCurrentDate(): LocalDate {
         val c = Calendar.getInstance()
@@ -532,7 +618,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                            value - n
                            m = value.toString()
                        }
-
                        return m
                    }
                }*/
@@ -558,8 +643,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         val legend: Legend = lineChart.legend
         legend.isEnabled = false
     }
-
-
+    
     @RequiresApi(Build.VERSION_CODES.O)
     private fun getTrainingsFromFireStore() {
         val currentDate = getCurrentDate().toString()
@@ -602,10 +686,3 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
        return R.layout.chat_from_row
    }
 }*/
-
-
-
-
-
-
-

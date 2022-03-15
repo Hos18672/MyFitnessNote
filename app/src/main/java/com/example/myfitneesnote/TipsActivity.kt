@@ -17,7 +17,7 @@ class TipsActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tips)
-         setupActionBar()
+        setupActionBar()
         val topic = findViewById<TextView>(R.id.Topic)
         val pic = findViewById<ImageView>(R.id.Picture) as ImageView
         val disc = findViewById<TextView>(R.id.Description)

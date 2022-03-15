@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SecurityActivity"
+    tools:context=".SettingsActivity"
     android:background="@color/backgroundColor">
 
     <androidx.appcompat.widget.Toolbar
@@ -78,6 +78,7 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
                 app:cardCornerRadius="15dp"
+                app:cardElevation="0.2dp"
                 android:backgroundTint="@color/backgroundColorNav"
                 app:layout_constraintBottom_toTopOf="@+id/btnSave"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -110,7 +111,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="start"
                             android:hint="@string/current_password"
-                            android:inputType="text"
+                            android:inputType="textPassword"
                             android:textAlignment="viewStart"
                             android:textStyle="bold" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -197,11 +198,13 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="32dp"
+                android:layout_marginBottom="16dp"
                 android:backgroundTint="@color/colorPrimaryBlue"
                 android:text="@string/Update"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 app:cornerRadius="15dp"
+                app:cardElevation="0.2dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

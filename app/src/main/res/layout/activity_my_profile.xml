@@ -57,23 +57,26 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/pcard"
                 android:layout_width="0dp"
-                android:layout_height="450dp"
+                android:layout_height="550dp"
                 android:layout_marginStart="30dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="70dp"
                 android:layout_marginEnd="30dp"
-                app:cardCornerRadius="15dp"
                 android:backgroundTint="@color/backgroundColorNav"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="0.2dp"
+                app:layout_constraintBottom_toTopOf="@+id/btnSave"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView8">
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/ll"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="60dp"
                     android:gravity="left"
                     android:orientation="vertical">
 
@@ -276,11 +279,13 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="5dp"
+                android:layout_marginBottom="16dp"
                 android:backgroundTint="@color/colorPrimaryBlue"
                 android:text="@string/Update"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 app:cornerRadius="15dp"
+                app:cardElevation="0.2dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/pcard"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -288,22 +293,38 @@
                 app:layout_constraintTop_toBottomOf="@+id/pcard"
                 tools:targetApi="lollipop" />
 
-            <ImageView
-                android:id="@+id/imageView8"
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ProfileImage"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/textColor"
                 android:contentDescription="@string/todo"
+                android:src="@drawable/profile_icon"
                 android:transitionName=""
-                app:layout_constraintBottom_toTopOf="@+id/pcard"
+                android:translationZ="1dp"
+                app:civ_border_color="#008DFD"
+                app:civ_border_width="3dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:backgroundTint="@color/textColor"
-                android:background="@drawable/profile_icon"
                 tools:targetApi="lollipop" />
 
+            <ImageView
+                android:id="@+id/editBtn"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="132dp"
+                android:background="@drawable/edit"
+                android:backgroundTint="@color/textColor"
+                android:translationZ="1dp"
+                app:layout_constraintBottom_toBottomOf="@+id/ProfileImage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ProfileImage"
+                app:layout_constraintTop_toTopOf="@+id/ProfileImage"
+                tools:ignore="MissingConstraints" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

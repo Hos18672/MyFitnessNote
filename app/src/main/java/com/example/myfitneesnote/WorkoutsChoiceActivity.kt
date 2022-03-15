@@ -11,9 +11,6 @@ import android.view.View
 import android.view.WindowManager
 import android.view.animation.AnimationUtils
 import androidx.annotation.RequiresApi
-import androidx.cardview.widget.CardView
-import androidx.core.app.ActivityOptionsCompat
-import com.google.android.material.card.MaterialCardView
 import kotlinx.android.synthetic.main.activity_workout_choice.*
 
 
@@ -21,7 +18,17 @@ import kotlinx.android.synthetic.main.activity_workout_choice.*
 class WorkoutsChoiceActivity : BaseActivity(){
 
     private var gymType: String? = ""
+    private  var listOfWorkouts : HashMap<String, ArrayList<String>> = hashMapOf()
+    private  var listOfChestWorkouts : ArrayList<String> = arrayListOf()
+    private  var listOfBrustWorkouts : ArrayList<String> = arrayListOf()
+    private  var listOfTrapsWorkouts: ArrayList<String> = arrayListOf()
+    private  var listOfForarmsWorkouts : ArrayList<String> = arrayListOf()
+    private  var listOfAbsWorkouts: ArrayList<String> = arrayListOf()
+    private  var listOfSchoulderWorkouts : ArrayList<String> = arrayListOf()
+    private  var listOfTricepsWorkouts : ArrayList<String> = arrayListOf()
+    private  var listOfLegWorkouts : ArrayList<String> = arrayListOf()
 
+    private  var list : ArrayList<String> = arrayListOf()
     @SuppressLint("ResourceAsColor")
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +39,24 @@ class WorkoutsChoiceActivity : BaseActivity(){
         //fullscreen()
         animat()
         setupActionBar()
-        onClick()
+        onClick2()
+        listOfChestWorkouts = arrayListOf("Bench press", "Inclined Bench Press", "Parallel bar flexion", "Standing Cable Fly", "Dumbbell fly", "Push Up")
+        listOfBrustWorkouts = arrayListOf("Dumbbell exercises", " Lang Barbell exercises", "Hammer exercise","Short dumbbell", "Cable bicep exercise")
+        listOfTrapsWorkouts = arrayListOf("Cross lift", "Lat pull", "Barbell shrug","Dumbbell shrug")
+        listOfForarmsWorkouts = arrayListOf("Wrist exercise", "Wrist exercise", "Wrist exercise standing", "Dumbbell wrist exercise")
+        listOfTricepsWorkouts = arrayListOf("Bench press with close grip one", "Press down", "tricep extensions", "one-arm triceps extensions","Plank Up-Down")
+        listOfAbsWorkouts = arrayListOf("Dumbbell side tilt", "Flat bench lying leg lift", "Side bridge","Superman","Leg lift", "rotating hip lift" )
+        listOfSchoulderWorkouts = arrayListOf("Back Press", "Seated single column press", "Side lift","Front lift", "Barbell front lift", "Mitlitärpress behind neck")
+        listOfLegWorkouts = arrayListOf("squats", "Dumbbell drop steps", "Dumbbell squats","Hack squats", "Barbell step", "Good morning")
+
+        listOfWorkouts["Chest"] = listOfChestWorkouts
+        listOfWorkouts["Biceps"] = listOfBrustWorkouts
+        listOfWorkouts["Back"] = listOfTrapsWorkouts
+        listOfWorkouts["Forearms"] = listOfForarmsWorkouts
+        listOfWorkouts["Abs"] = listOfAbsWorkouts
+        listOfWorkouts["Shoulder"] = listOfSchoulderWorkouts
+        listOfWorkouts["Triceps"] = listOfTricepsWorkouts
+        listOfWorkouts["Leg"] = listOfLegWorkouts
     }
 
     private fun animat(){
@@ -45,7 +69,7 @@ class WorkoutsChoiceActivity : BaseActivity(){
 
         llmain.layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
     }
-    private  fun onClick(){
+    private  fun onClick2(){
         cv_gym2.setOnClickListener{
                 if (hiddenLayout.getVisibility() === View.VISIBLE) {
                     TransitionManager.beginDelayedTransition(cv_gym2, AutoTransition())
@@ -77,49 +101,41 @@ class WorkoutsChoiceActivity : BaseActivity(){
             }
             gymType = txt_home_workout.text.toString()
         }
-
-
-        //Burst muscle
-        brust_btn2.setOnClickListener { setOnclickMuscle(brust_btn as MaterialCardView) }
-        //Biceps muscle
-        biceps_btn2.setOnClickListener  { setOnclickMuscle(biceps_btn as MaterialCardView) }
-        //Triceps muscle
-        triceps_btn2.setOnClickListener { setOnclickMuscle(triceps_btn as MaterialCardView) }
-        //Forarms muscle
-        forearms_btn2.setOnClickListener{ setOnclickMuscle(forearms_btn as MaterialCardView) }
-        //Traps muscle
-        traps_btn2.setOnClickListener   { setOnclickMuscle(traps_btn as MaterialCardView) }
-        //Upper-abs muscle
-        upperabs_btn2.setOnClickListener{ setOnclickMuscle(upperabs_btn as MaterialCardView) }
-        //shoulder muscle
-        shoulder_btn2.setOnClickListener{ setOnclickMuscle(shoulder_btn as CardView) }
-
-       // ======================= Home ============================================
-        //Burst muscle
-        brust_btn.setOnClickListener { setOnclickMuscle(brust_btn as MaterialCardView) }
-        //Biceps muscle
-        biceps_btn.setOnClickListener  { setOnclickMuscle(biceps_btn as MaterialCardView) }
-        //Triceps muscle
-        triceps_btn.setOnClickListener { setOnclickMuscle(triceps_btn as MaterialCardView) }
-        //Forarms muscle
-        forearms_btn.setOnClickListener{ setOnclickMuscle(forearms_btn as MaterialCardView) }
-        //Traps muscle
-        traps_btn.setOnClickListener   { setOnclickMuscle(traps_btn as MaterialCardView) }
-        //Upper-abs muscle
-        upperabs_btn.setOnClickListener{ setOnclickMuscle(upperabs_btn as MaterialCardView) }
-        //shoulder muscle
-        shoulder_btn.setOnClickListener{ setOnclickMuscle(shoulder_btn as CardView) }
     }
 
-    private  fun setOnclickMuscle(btn: CardView){
-        val intent = Intent( this,  AddWorkoutActivity::class.java)
-        intent.putExtra("MuskelName", btn.contentDescription)
+    fun onclick(view: View){
+        val intent = Intent( this,  MuskelWorkoutsActivity::class.java)
+        intent.putExtra("MuskelName", view.contentDescription)
         intent.putExtra("GymName", gymType)
+        for (i in listOfWorkouts.keys){
+            if (i == "Chest" && view.contentDescription == "CHEST" ){
+                list = listOfChestWorkouts
+            }
+            if (i == "Biceps" && view.contentDescription == "BICEPS" ){
+                list = listOfBrustWorkouts
+            }
+            if (i == "Triceps" && view.contentDescription == "TRICEPS" ){
+                list = listOfTricepsWorkouts
+            }
+            if (i == "Forearms" && view.contentDescription == "FOREARMS" ){
+                list = listOfForarmsWorkouts
+            }
+            if (i == "Back" && view.contentDescription == "BACK" ){
+                list = listOfTrapsWorkouts
+            }
+            if (i == "Abs" && view.contentDescription == "ABS" ){
+                list = listOfAbsWorkouts
+            }
+            if (i == "Shoulder" && view.contentDescription == "SHOULDER" ){
+                list = listOfSchoulderWorkouts
+            }
+            if (i == "Leg" && view.contentDescription == "LEG" ){
+                list = listOfLegWorkouts
+            }
+        }
+        intent.putExtra("listOfWorkouts",list)
 
-        val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, btn, "addTrainingCv")
-        startActivity(intent, options.toBundle())
-
-        // finish()
+        startActivity(intent)
     }
     override  fun onBackPressed() {
         val intent = Intent(this, MainActivity::class.java)

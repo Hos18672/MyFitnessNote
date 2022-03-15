@@ -14,7 +14,7 @@
     <string name="massages">Massages</string>
     <string name="enter_message">Type a message</string>
     <string name="button">Button</string>
-    <string name="back">Back</string>
+    <string name="back">BACK</string>
     <string name="gymwork1">Gym</string>
     <string name="homeworkout1">Home</string>
     <string name="_1">1</string>
@@ -120,4 +120,6 @@
     <string name="Update">Update</string>
     <string name="Add">Add</string>
     <string name="Pause">Pause</string>
+    <string name="tomorrow">Tomorrow</string>
+    <string name="leg">LEG</string>
 </resources>

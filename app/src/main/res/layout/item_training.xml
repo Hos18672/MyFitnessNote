@@ -7,6 +7,7 @@
     android:backgroundTint="@color/backgroundColorNav"
     android:orientation="vertical"
     app:cardCornerRadius="10dp"
+    app:cardElevation="0.2dp"
     android:layout_marginTop="5dp"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
@@ -29,31 +30,16 @@
 
             <TextView
                 android:id="@+id/tv_GymName"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:gravity="center"
                 android:textColor="@color/textColor"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tv_workoutName"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.159" />
-
-            <View
-                android:id="@+id/view3"
-                android:layout_width="match_parent"
-                android:layout_height="0.6dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@color/textColor"
-                app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_GymName"
-                tools:ignore="MissingConstraints" />
-
+                app:layout_constraintTop_toTopOf="parent" />
             <TextView
                 android:id="@+id/tv_date"
                 android:layout_width="80dp"
@@ -71,17 +57,45 @@
                 app:layout_constraintTop_toBottomOf="@+id/workout_image"
                 tools:ignore="RtlHardcoded" />
 
+            <View
+                android:id="@+id/view3"
+                android:layout_width="match_parent"
+                android:layout_height="0.6dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/textColor"
+                app:layout_constraintBottom_toTopOf="@+id/textView10"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_GymName"
+                tools:ignore="MissingConstraints" />
+
+
+            <TextView
+                android:id="@+id/tv_workoutName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="2dp"
+                android:text=""
+                app:layout_constraintBottom_toTopOf="@+id/view3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tv_GymName"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
+
             <LinearLayout
                 android:id="@+id/linearLayout2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:gravity="center"
                 android:orientation="vertical"
                 app:flow_verticalGap="4dp"
                 app:layout_constraintBottom_toBottomOf="@+id/linearLayout3"
                 app:layout_constraintEnd_toStartOf="@+id/linearLayout3"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/linearLayout3"
+                app:layout_constraintTop_toBottomOf="@+id/tv_GymName"
                 app:layout_constraintVertical_bias="0.363"
                 tools:ignore="MissingConstraints">
 
@@ -161,6 +175,7 @@
                 android:id="@+id/linearLayout3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:gravity="bottom"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -225,12 +240,11 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
                 android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/linearLayout3"
                 app:layout_constraintEnd_toStartOf="@+id/workout_image"
                 app:layout_constraintStart_toEndOf="@+id/linearLayout3"
-                app:layout_constraintTop_toTopOf="@+id/linearLayout3">
+                app:layout_constraintTop_toBottomOf="@+id/textView10">
 
                 <TextView
                     android:id="@+id/tv_Muscle"
@@ -314,6 +328,7 @@
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:gravity="left"
+                android:layout_marginTop="5dp"
                 android:text=" Note:"
                 android:textColor="@color/textColor"
                 android:textSize="15sp"
@@ -325,6 +340,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:gravity="left"
+                android:layout_marginTop="5dp"
                 android:layout_marginStart="5dp"
                 android:text="Description"
                 android:textColor="@color/textColor"
