@@ -51,58 +51,61 @@ class SignUpActivity : BaseActivity() {
         //val Image : String = signUp_image.toString().trim{ it <= ' '}
         val pb = findViewById<ProgressBar>(R.id.progressBar_signUp)
 
-        if(validateForm(name, username, email, password, password2) ) {
-            if (password == password2) {
-                // Toast.makeText(this, "Now we register User",Toast.LENGTH_SHORT).show()
-                //password encryption
-                pb.visibility = View.VISIBLE
-                val hashPass = BCrypt.withDefaults().hashToString(12, password.toCharArray())
-                //showProgressDialog(resources.getString(R.string.please_wait))
-                FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener { task ->
-                        if (task.isSuccessful) {
-                            val firebaseUser: FirebaseUser = task.result!!.user!!
-                            firebaseUser.email!!
-                            val user = com.example.myfitneesnote.model.User(
-                                firebaseUser.uid,
-                                name,
-                                username,
-                                email,
-                                hashPass
-                            )
-                            FirestoreClass().registerUser(this, user)
-                            val uid = FirebaseAuth.getInstance().uid ?: ""
-                            val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
-                            ref.setValue(user)
-                                .addOnSuccessListener {
-                                    Log.d("User", "Finally we saved the user to Firebase Database")
-                                }
-                                .addOnFailureListener {
-                                    Log.d("User", "Failed to set value to database: ${it.message}")
-                                }
-                            //  FirebaseAuth.getInstance().signOut()
-                            val intent = Intent(this@SignUpActivity, BodyInfo::class.java)
-                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                            intent.putExtra("user_id", firebaseUser.uid)
-                            intent.putExtra("name", signUpNameInput.text.toString())
-                            intent.putExtra("userName", signUpUsernameInput.text.toString())
-                            intent.putExtra("email_id", email)
-                            startActivity(intent)
-                            finish()
-                            //hideProgressDialog1()
-                        } else {
-                            Toast.makeText(
-                                this@SignUpActivity,
-                                task.exception!!.message.toString(),
-                                Toast.LENGTH_SHORT
-                            ).show()
+        if (password.length < 8 && password2.length < 8){
+            showErrorSnackBar("Password's length must be equal to 8 or greater!")
+        }else{
+            if(validateForm(name, username, email, password, password2) ) {
+                if (password == password2) {
+                    // Toast.makeText(this, "Now we register User",Toast.LENGTH_SHORT).show()
+                    //password encryption
+                    pb.visibility = View.VISIBLE
+                    val hashPass = BCrypt.withDefaults().hashToString(12, password.toCharArray())
+                    //showProgressDialog(resources.getString(R.string.please_wait))
+                    FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                val firebaseUser: FirebaseUser = task.result!!.user!!
+                                firebaseUser.email!!
+                                val user = com.example.myfitneesnote.model.User(
+                                    firebaseUser.uid,
+                                    name,
+                                    username,
+                                    email,
+                                    hashPass
+                                )
+                                FirestoreClass().registerUser(this, user)
+                                val uid = FirebaseAuth.getInstance().uid ?: ""
+                                val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
+                                ref.setValue(user)
+                                    .addOnSuccessListener {
+                                        Log.d("User", "Finally we saved the user to Firebase Database")
+                                    }
+                                    .addOnFailureListener {
+                                        Log.d("User", "Failed to set value to database: ${it.message}")
+                                    }
+                                //  FirebaseAuth.getInstance().signOut()
+                                val intent = Intent(this@SignUpActivity, BodyInfo::class.java)
+                                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                intent.putExtra("user_id", firebaseUser.uid)
+                                intent.putExtra("name", signUpNameInput.text.toString())
+                                intent.putExtra("userName", signUpUsernameInput.text.toString())
+                                intent.putExtra("email_id", email)
+                                startActivity(intent)
+                                finish()
+                                //hideProgressDialog1()
+                            } else {
+                                pb.visibility = View.GONE
+                                showErrorSnackBar(task.exception!!.message.toString())
+
+                            }
                         }
-                    }
-            }else{
-                pb.visibility = View.GONE
-                showErrorSnackBar("Passwords not match")
+                }else{
+                    pb.visibility = View.GONE
+                    showErrorSnackBar("Passwords not match")
+                }
             }
         }
+
     }
 
     private  fun validateForm(name: String, username: String, email: String, password1 : String, password2 : String) : Boolean{

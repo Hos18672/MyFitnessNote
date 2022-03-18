@@ -6,19 +6,25 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.animation.AnimationUtils
 import com.example.myfitneesnote.firebase.FirestoreClass
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_splash.*
 
 @Suppress("DEPRECATION")
 class SplashActivity : BaseActivity() {
+
+    lateinit var mAuth: FirebaseAuth
     @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         //fullscreen()
         animat()
+        mAuth = FirebaseAuth.getInstance()
+
+        val user = mAuth.currentUser
         Handler().postDelayed({
             val currentUserID = FirestoreClass().getCurrentUserId()
-            if (currentUserID.isNotEmpty()) {
+            if (currentUserID.isNotEmpty() && user != null) {
                 startActivity(Intent(this, MainActivity::class.java))
             } else {
                 startActivity(Intent(this, IntroActivity::class.java))
@@ -26,6 +32,7 @@ class SplashActivity : BaseActivity() {
             }
             finish()
         }, 900)
+
     }
     private fun animat(){
         val btt = AnimationUtils.loadAnimation(this, R.anim.btt)

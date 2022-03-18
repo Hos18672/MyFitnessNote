@@ -170,8 +170,27 @@ class MyProfileActivity : BaseActivity() {
         }else{
             gender = "Female"
         }
-        //Calling updateUser function
-        updateUser(this, username,age,height,weight,gender, name, uploaded)
+        if(name!=null  && name !=""  && name !=" "){
+            if(username!=null && username.length > 0 ){
+                if (age.toInt() in 16..120 ){
+                    if(height.toInt() in 50 ..300){
+                        if(weight.toInt() in 20 ..300) {
+                            updateUser(this, username,age,height,weight,gender, name, uploaded)
+                        }else{
+                            showErrorSnackBar("Your weight must be between 20 kg and 300 kg!")
+                        }
+                    }else{
+                        showErrorSnackBar("Your height must be between 50 cm and 300 cm!")
+                    }
+                }else{
+                    showErrorSnackBar("Your age must be between 16 and 120 years Old!")
+                }
+            }else{
+                showErrorSnackBar("Your username can not be empty or blank")
+            }
+        }else{
+            showErrorSnackBar("Your name can not be empty or blank")
+        }
     }
     private fun setupActionBar() {
         setSupportActionBar(toolBar_my_profile_activity)

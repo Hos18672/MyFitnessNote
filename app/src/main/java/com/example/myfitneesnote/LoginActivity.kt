@@ -5,25 +5,42 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityOptionsCompat
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main_layout.*
-import java.util.*
 
 @Suppress("DEPRECATION")
 class LoginActivity : BaseActivity() {
+    lateinit var GoogleSignInClient: GoogleSignInClient
+    val RC_SIGN_IN: Int = 1
+    lateinit var gso: GoogleSignInOptions
+    lateinit var auth: FirebaseAuth
+    private val regCode: Int = 123
+
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         setupActionBar()
+
+        auth = Firebase.auth
+
+
         login_signUpBtn.setOnClickListener {
             val intent =  Intent(this, SignUpActivity::class.java)
             val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, login_signUpBtn, "tSignUp")
@@ -32,7 +49,10 @@ class LoginActivity : BaseActivity() {
         sing_in_button.setOnClickListener {
                 loginUser()
         }
+
     }
+
+
     private fun setupActionBar() {
         setSupportActionBar(toolBar_login_activity)
         val actionBar = supportActionBar
@@ -77,10 +97,7 @@ class LoginActivity : BaseActivity() {
                         } else {
                             pb.visibility = View.GONE
                             login_signInText.text = "Sign in"
-                            Toast.makeText(
-                                this@LoginActivity, task.exception!!.message.toString(),
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            showErrorSnackBar("Login Failed: Your Email or password is wrong!")
                         }
                     }
         } else {
