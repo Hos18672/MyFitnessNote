@@ -643,7 +643,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         val legend: Legend = lineChart.legend
         legend.isEnabled = false
     }
-    
+
     @RequiresApi(Build.VERSION_CODES.O)
     private fun getTrainingsFromFireStore() {
         val currentDate = getCurrentDate().toString()
@@ -675,14 +675,3 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 }
 
-/*class UserLoged(val user: User): Item<ViewHolder>(){
-   override fun bind(viewHolder: ViewHolder, position: Int) {
-       // load our user image into the picture
-       val uri = user.image
-       val targetImageView = viewHolder.itemView.main_drawer_profile_photo
-       Picasso.get().load(uri).into(targetImageView)
-   }
-   override fun getLayout(): Int {
-       return R.layout.chat_from_row
-   }
-}*/

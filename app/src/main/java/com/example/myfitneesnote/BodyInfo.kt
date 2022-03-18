@@ -28,7 +28,7 @@ class BodyInfo : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_body_info)
-//        setupActionBar()
+        setupActionBar()
         mFirebaseInstance = FirebaseDatabase.getInstance()
         // get reference to 'users' node
         mFirebaseDatabase = mFirebaseInstance!!.getReference("users")
@@ -37,9 +37,7 @@ class BodyInfo : BaseActivity() {
         userId = user?.uid
         finish_button.setOnClickListener {
             onUpdateClicked()
-            startActivity(Intent(this, LoginActivity::class.java))
         }
-        setupActionBar()
     }
     private fun updateUser(age: String, height :String, weight :String, gender: String) {
         // updating the user via child nodes
@@ -69,8 +67,21 @@ class BodyInfo : BaseActivity() {
         }else{
             gender = "Female"
         }
-        //Calling updateUser function
-        updateUser(age, height, weight, gender)
+        if (age.toInt() in 16..120 ){
+            if(height.toInt() in 50 ..300){
+                if(weight.toInt() in 20 ..300) {
+                    updateUser(age, height, weight, gender)
+                    startActivity(Intent(this, LoginActivity::class.java))
+                }else{
+                    showErrorSnackBar("Your weight must be between 20 kg and 300 kg!")
+                }
+            }else{
+                showErrorSnackBar("Your height must be between 50 cm and 300 cm!")
+            }
+        }else{
+            showErrorSnackBar("Your age must be between 16 and 120 years Old!")
+        }
+
     }
     private fun setupActionBar() {
         setSupportActionBar(toolBar_info_activity)

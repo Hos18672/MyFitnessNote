@@ -17,6 +17,7 @@ class SettingsActivity : BaseActivity() {
     private var mFirebaseInstance: FirebaseDatabase? = null
     private var userId: String? = null
     private lateinit var auth: FirebaseAuth
+    private lateinit var email2 : String
     // Initialize Firebase Auth
     @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,59 +25,38 @@ class SettingsActivity : BaseActivity() {
         setContentView(R.layout.activity_settings)
         //fullscreen()
         setupActionBar()
-
         userProfileData()
+
+
         mFirebaseInstance = FirebaseDatabase.getInstance()
         // get reference to 'users' node
         mFirebaseDatabase = mFirebaseInstance!!.getReference("users")
         val user = FirebaseAuth.getInstance().currentUser
         // add it only if it is not saved to database
         userId = user?.uid
+
         btnSave.setOnClickListener {
             if (checkForInternet(this)) {
-                onUpdateClicked()
+                onUpdatePasswordClicked()
+            } else {
+                Toast.makeText(this, "No internet connection!", Toast.LENGTH_SHORT).show()
+            }
+        }
+        btnSave2.setOnClickListener {
+            if (checkForInternet(this)) {
+                onUpdateEmailClicked()
             } else {
                 Toast.makeText(this, "No internet connection!", Toast.LENGTH_SHORT).show()
             }
         }
         auth = Firebase.auth
     }
-    /*    private fun updateUser2(currentPassword :String, password1: String,password2: String, email: String) {
-            if (validateForm(currentPassword, password1, password2, email) && password1.equals(password2)) {
-                val user = FirebaseAuth.getInstance().currentUser
-                val currentPW = CurrentPassword.text.toString()
-                auth.signInWithEmailAndPassword(email, currentPW)
-                    .addOnCompleteListener(this) { task ->
-                        if (task.isSuccessful) {
-                            // updating the user via child nodes
-                            user!!.updatePassword(password1).addOnCompleteListener { task ->
-                                if (task.isSuccessful) {
-                                    println("Update Success")
-                                } else {
-                                    println("Error Update")
-                                }
-                            }
-                            user.updateEmail(email).addOnCompleteListener { task ->
-                                if (task.isSuccessful) {
-                                    println("Update Success")
-                                } else {
-                                    println("Error Update")
-                                }
-                            }
-                            Toast.makeText(applicationContext, "Successfully updated user", Toast.LENGTH_SHORT).show()
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Toast.makeText(applicationContext, "Current Password is wrong", Toast.LENGTH_SHORT).show()
-                        }
-                    }
-            }
-        }*/
-    private  fun updateUser(currentPassword :String, password1: String,password2: String, email: String){
-        if(validateForm(currentPassword, password1, password2, email)) {
+
+    private  fun updateUserPassword(currentPassword :String, password1: String,password2: String, email: String){
+        if(validatePasswordForm(currentPassword, password1, password2)) {
             if (password1 == password2) {
                 val user = FirebaseAuth.getInstance().currentUser
-                val currentPW = CurrentPassword.text.toString()
-                auth.signInWithEmailAndPassword(email, currentPW)
+                auth.signInWithEmailAndPassword(email, currentPassword)
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
                             // updating the user via child nodes
@@ -84,20 +64,13 @@ class SettingsActivity : BaseActivity() {
                                 if (task.isSuccessful) {
                                     println("Update Success")
                                 } else {
-                                    println("Error Update")
-                                }
-                            }
-                            user.updateEmail(email).addOnCompleteListener { task ->
-                                if (task.isSuccessful) {
-                                    println("Update Success")
-                                } else {
-                                    println("Error Update")
+                                    showErrorSnackBar("Update failed")
                                 }
                             }
                             Toast.makeText(applicationContext, "Successfully updated user", Toast.LENGTH_SHORT).show()
                         } else {
                             // If sign in fails, display a message to the user.
-                            Toast.makeText(applicationContext, "Current Password is wrong", Toast.LENGTH_SHORT).show()
+                                showErrorSnackBar("Current Password is wrong")
                         }
                     }
             }else{
@@ -105,13 +78,44 @@ class SettingsActivity : BaseActivity() {
             }
         }
     }
-    private fun onUpdateClicked() {
+
+    private  fun updateUserEmail( email: String,currentPassword :String){
+        if(validateEmailForm(email, currentPassword)) {
+                val user = FirebaseAuth.getInstance().currentUser
+                auth.signInWithEmailAndPassword(email2, currentPassword)
+                    .addOnCompleteListener(this) { task ->
+                        if (task.isSuccessful) {
+                            // updating the user via child nodes
+                            user!!.updateEmail(email).addOnCompleteListener { task ->
+                                if (task.isSuccessful) {
+                                    println("Update Success")
+                                } else {
+                                    showErrorSnackBar("Update failed")
+                                }
+                            }
+                            Toast.makeText(applicationContext, "Successfully updated user", Toast.LENGTH_SHORT).show()
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            showErrorSnackBar("Current Password is wrong")
+                        }
+                    }
+            }
+
+    }
+    private fun onUpdateEmailClicked() {
+        val email = editTextTextEmail.text.toString()
+        val currentPassword= CurrentPasswordEmail.text.toString()
+        //Calling updateUser function
+
+        updateUserEmail(email,currentPassword)
+    }
+    private fun onUpdatePasswordClicked() {
         val currentPassword= CurrentPassword.text.toString()
         val pass1 = editTextTextPassword.text.toString()
         val pass2 = editTextTextPasswordAgain.text.toString()
-        val email = editTextTextEmailAddress.text.toString()
+        val email = editTextTextEmail.text.toString()
         //Calling updateUser function
-        updateUser(currentPassword,pass1, pass2,email)
+        updateUserPassword(currentPassword,pass1, pass2,email)
     }
     private fun userProfileData() {
         val uid = FirebaseAuth.getInstance().uid
@@ -119,14 +123,15 @@ class SettingsActivity : BaseActivity() {
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val email = snapshot.child("email").getValue(String::class.java)
-                editTextTextEmailAddress.setText(email)
+                editTextTextEmail.setText(email)
+                email2 = email.toString()
             }
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
         })
     }
-    private  fun validateForm(currentPassword :String, password1: String,password2: String, email: String) : Boolean{
+    private  fun validatePasswordForm(currentPassword :String, password1: String,password2: String) : Boolean{
         return when{
             TextUtils.isEmpty(currentPassword)->{
                 showErrorSnackBar("Current password is empty")
@@ -139,16 +144,27 @@ class SettingsActivity : BaseActivity() {
             TextUtils.isEmpty(password2)->{
                 showErrorSnackBar("Password is empty")
                 false
-            }
-            TextUtils.isEmpty(email)->{
-                showErrorSnackBar("Email is empty")
-                false
             }else ->{
                 true
             }
         }
     }
 
+    private  fun validateEmailForm(email: String,currentPassword :String) : Boolean{
+        return when{
+            TextUtils.isEmpty(email)->{
+                showErrorSnackBar("Email is empty")
+                false
+            }
+            TextUtils.isEmpty(currentPassword)->{
+                showErrorSnackBar("Current password is empty")
+                false
+            }
+            else ->{
+                true
+            }
+        }
+    }
     private fun setupActionBar() {
         setSupportActionBar(toolBar_security_activity)
         val actionBar = supportActionBar

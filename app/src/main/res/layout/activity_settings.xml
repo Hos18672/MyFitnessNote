@@ -39,10 +39,10 @@
         android:layout_marginTop="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolBar_security_activity"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintVertical_bias="0.825">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -50,48 +50,58 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:orientation="vertical">
+            android:layout_alignParentBottom="true">
 
             <TextView
                 android:id="@+id/textView5"
-                android:layout_width="336dp"
+                android:layout_width="wrap_content"
                 android:layout_height="56dp"
-                android:layout_marginStart="66dp"
-                android:layout_marginTop="69dp"
-                android:layout_marginEnd="67dp"
-                android:layout_marginBottom="32dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
                 android:gravity="center_horizontal"
                 android:text="@string/Settings"
                 android:textAlignment="center"
                 android:textColor="@color/textColor"
-                android:textSize="40sp"
+                android:textSize="30sp"
                 app:layout_constraintBottom_toTopOf="@+id/cardView2"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView2"
                 android:layout_width="0dp"
-                android:layout_height="320dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginEnd="30dp"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="0.2dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
                 android:backgroundTint="@color/backgroundColorNav"
-                app:layout_constraintBottom_toTopOf="@+id/btnSave"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="0.2dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView5">
 
-                <LinearLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:text="Change password"
+                        android:textSize="20dp"
+                        app:layout_constraintBottom_toTopOf="@+id/editps0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                    </TextView>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/editps0"
@@ -100,10 +110,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="32dp"
                         android:layout_marginEnd="32dp"
-                        app:layout_constraintBottom_toTopOf="@+id/inputName"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toTopOf="@+id/editps"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
+                        app:layout_constraintStart_toStartOf="parent">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/CurrentPassword"
@@ -112,32 +122,7 @@
                             android:layout_gravity="start"
                             android:hint="@string/current_password"
                             android:inputType="textPassword"
-                            android:textAlignment="viewStart"
-                            android:textStyle="bold" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/editps3"
-                        style="@style/EditText.OutlinedBox"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="32dp"
-                        app:layout_constraintBottom_toTopOf="@+id/inputName"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/editTextTextEmailAddress"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="start"
-                            android:hint="@string/email"
-                            android:inputType="textEmailAddress"
-                            android:textAlignment="viewStart"
-                            android:textStyle="bold" />
+                            android:textAlignment="viewStart" />
                     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -147,12 +132,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="32dp"
-                        android:layout_marginTop="10dp"
                         android:layout_marginEnd="32dp"
-                        app:layout_constraintBottom_toTopOf="@+id/inputName"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toTopOf="@+id/ed"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
+                        app:layout_constraintStart_toStartOf="parent">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/editTextTextPassword"
@@ -161,8 +145,7 @@
                             android:layout_gravity="start"
                             android:hint="@string/new_password"
                             android:inputType="textPassword"
-                            android:textAlignment="viewStart"
-                            android:textStyle="bold" />
+                            android:textAlignment="viewStart" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -171,12 +154,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="32dp"
-                        android:layout_marginTop="10dp"
                         android:layout_marginEnd="32dp"
-                        app:layout_constraintBottom_toTopOf="@+id/inputName"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toTopOf="@+id/btnSave"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
+                        app:layout_constraintStart_toStartOf="parent">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/editTextTextPasswordAgain"
@@ -185,31 +167,131 @@
                             android:layout_gravity="start"
                             android:hint="@string/repeat_password"
                             android:inputType="textPassword"
-                            android:textAlignment="viewStart"
-                            android:textStyle="bold" />
+                            android:textAlignment="viewStart" />
                     </com.google.android.material.textfield.TextInputLayout>
-                </LinearLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnSave"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginEnd="32dp"
+                        android:layout_marginBottom="16dp"
+                        android:backgroundTint="@color/colorPrimaryBlue"
+                        android:text="@string/Update"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        app:cardElevation="0.2dp"
+                        app:cornerRadius="10dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:targetApi="lollipop" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnSave"
-                android:layout_width="0dp"
-                android:layout_height="60dp"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="32dp"
-                android:layout_marginBottom="16dp"
-                android:backgroundTint="@color/colorPrimaryBlue"
-                android:text="@string/Update"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                app:cornerRadius="15dp"
+                android:backgroundTint="@color/backgroundColorNav"
+                app:cardCornerRadius="10dp"
                 app:cardElevation="0.2dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardView2"
-                tools:targetApi="lollipop" />
+                tools:ignore="MissingConstraints">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="8dp"
+                        android:text="Change Email"
+                        android:textSize="20dp"
+                        app:layout_constraintBottom_toTopOf="@+id/editps1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                    </TextView>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/editps1"
+                        style="@style/EditText.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginEnd="32dp"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toTopOf="@+id/editemail"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView11">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/CurrentPasswordEmail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:hint="@string/current_password"
+                            android:inputType="textPassword"
+                            android:textAlignment="viewStart" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/editemail"
+                        style="@style/EditText.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginEnd="32dp"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toTopOf="@+id/btnSave2"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/editTextTextEmail"
+                            android:layout_width="match_parent"
+                            android:layout_height="53dp"
+                            android:layout_gravity="start"
+                            android:hint="@string/email"
+                            android:inputType="textEmailAddress"
+                            android:textAlignment="viewStart" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnSave2"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginEnd="32dp"
+                        android:layout_marginBottom="16dp"
+                        android:backgroundTint="@color/colorPrimaryBlue"
+                        android:text="@string/Update"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        app:cardElevation="0.2dp"
+                        app:cornerRadius="10dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:targetApi="lollipop" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

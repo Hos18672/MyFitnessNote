@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "297631765417",
+    "firebase_url": "https://myfitnessnote-aa308-default-rtdb.firebaseio.com",
     "project_id": "myfitnessnote-aa308",
     "storage_bucket": "myfitnessnote-aa308.appspot.com"
   },
@@ -14,11 +15,48 @@
       },
       "oauth_client": [
         {
-          "client_id": "297631765417-eaqpitgftb4ocqjag4qqt8lnosrttban.apps.googleusercontent.com",
+          "client_id": "297631765417-3ftike6egrvl72oan31o4ludfrceo2uq.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.myfitneesnote",
-            "certificate_hash": "c39a98e29565213951a8ab5701fac9ade33351ce"
+            "certificate_hash": "72421b442adfd6d1812fad67339ec5acc9c5762f"
+          }
+        },
+        {
+          "client_id": "297631765417-gnftor8jbovlqh4978sqnl5ujltp1cdm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6rW9Xrh1XhZNRShSvyl4g3YqcrRp4E2g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "297631765417-gnftor8jbovlqh4978sqnl5ujltp1cdm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:297631765417:android:36ae19d30473d3f04f6ab8",
+        "android_client_info": {
+          "package_name": "com.example.myfitnessnote"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "297631765417-a7c4g7v1mv0tum1ts26q66tp3be15b0h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.myfitnessnote",
+            "certificate_hash": "72421b442adfd6d1812fad67339ec5acc9c5762f"
           }
         },
         {
