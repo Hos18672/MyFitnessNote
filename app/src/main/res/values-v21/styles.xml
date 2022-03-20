@@ -27,4 +27,11 @@
     <style name="TextAppearance.BottomNavigation.Overline" parent="TextAppearance.MaterialComponents.Overline">
         <item name="android:textSize">8sp</item>
     </style>
+
+    <style name="AppTheme.NoActionBar.Profile" tools:ignore="DuplicateDefinition">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
 </resources>

@@ -25,11 +25,30 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 
 
-class AddWorkoutFragment : Fragment() {
+class AddWorkoutFragment: Fragment() {
     private val db = FirebaseFirestore.getInstance()
     private lateinit var trainingItemAdapter : TrainingItemAdapterAdd
     private lateinit var recyclerView: RecyclerView
     private lateinit var _view: View
+    private lateinit var muskelName :String
+    private lateinit var workoutName :String
+
+    companion object {
+        const val ARG_NAME = "name"
+        const val ARG_NAME2 = "name2"
+        fun newInstance(name: String,name2 :String): AddWorkoutFragment {
+            val fragment = AddWorkoutFragment()
+
+            val bundle = Bundle().apply {
+                putString(ARG_NAME, name)
+                putString(ARG_NAME2, name2)
+            }
+
+            fragment.arguments = bundle
+
+            return fragment
+        }
+    }
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
@@ -37,10 +56,16 @@ class AddWorkoutFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
        _view = inflater.inflate(R.layout.trainings_fragment, container, false)
-        getTrainingsFromFireStore()
+
+        muskelName = arguments?.getString(ARG_NAME).toString()
+        workoutName = arguments?.getString(ARG_NAME2).toString()
+
         recyclerView = _view.findViewById(R.id.recyclerView_add);
         recyclerView.setHasFixedSize(true);
+        recyclerView.scrollToPosition(0)
+        getTrainingsFromFireStore()
         return _view
+
     }
 
     private fun dateFormatter(date: String): ChronoLocalDate? {
@@ -67,7 +92,9 @@ class AddWorkoutFragment : Fragment() {
         val query : Query = db.collection(Constant.USERS)
             .document(getCurrentUserID())
             .collection("Workouts")
-            .orderBy("date", Query.Direction.DESCENDING)
+            .whereEqualTo("muskelName", muskelName)
+            .whereEqualTo("workoutName",workoutName)
+            .orderBy("workout_id", Query.Direction.DESCENDING)
 
         val fireStoreRecyclerOption : FirestoreRecyclerOptions<Workout> = FirestoreRecyclerOptions.Builder<Workout>()
             .setQuery(query, Workout::class.java)

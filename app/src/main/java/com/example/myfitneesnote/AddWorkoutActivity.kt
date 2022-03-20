@@ -5,7 +5,6 @@ package com.example.myfitneesnote
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
-import android.opengl.Visibility
 import android.os.Build
 import android.os.Bundle
 import android.text.Editable
@@ -27,12 +26,7 @@ import java.util.*
 import java.util.concurrent.ThreadLocalRandom
 import android.text.TextUtils
 import android.view.View
-import android.view.View.GONE
 import android.widget.Toast
-import androidx.constraintlayout.solver.widgets.ConstraintWidget.GONE
-import androidx.constraintlayout.widget.ConstraintSet.GONE
-import androidx.core.view.isVisible
-import kotlinx.android.synthetic.main.activity_my_profile.*
 import kotlin.collections.ArrayList
 
 class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -42,6 +36,7 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
     private var gymType = ""
     var muskelName: String = ""
     var workoutName: String = ""
+    var workout_num = ""
     private  var listWeightlessWorkout : ArrayList<String> = ArrayList()
     @SuppressLint("ResourceAsColor")
     @RequiresApi(Build.VERSION_CODES.P)
@@ -53,7 +48,7 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
         gymType = intent.getStringExtra("GymName").toString()
         muskelName = intent.getStringExtra("MuskelName").toString()
         workoutName = intent.getStringExtra("WorkoutName").toString()
-      //  trainingsName = intent.getStringExtra("MuskelName")
+        //  trainingsName = intent.getStringExtra("MuskelName")
         tv_muscle_name.text = muskelName
         tv_workout_name.text = workoutName
 
@@ -78,9 +73,10 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
         val day = c.get(Calendar.DAY_OF_MONTH)
         datePickerTimeline.setInitialDate(year, month, day)
         currentDate = "${year}-${month + 1}-${day}"
-        val trainingsFragment = AddWorkoutFragment()
+
+        val fragment = AddWorkoutFragment.newInstance(muskelName,workoutName)
         supportFragmentManager.beginTransaction().apply {
-            replace(id.root_container, trainingsFragment).commit()
+            replace(id.root_container, fragment).commit()
         }
         datePickerTimeline.setOnDateSelectedListener(object : OnDateSelectedListener {
             override fun onDateSelected(year: Int, month: Int, day: Int, dayOfWeek: Int) {
@@ -113,6 +109,10 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
         save_btn.setOnClickListener {
             if (checkForInternet(this)) {
                 createTraining()
+                val fragment = AddWorkoutFragment.newInstance(muskelName,workoutName)
+                supportFragmentManager.beginTransaction().apply {
+                    replace(id.root_container, fragment).commit()
+                }
             } else {
                 Toast.makeText(this, "No internet connection!", Toast.LENGTH_SHORT).show()
             }
@@ -159,48 +159,54 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
     }
 
     private fun createTraining() {
-         val mFirestore = FirebaseFirestore.getInstance()
-            mFirestore.collection("users").document(getCurrentUserId()).get()
-                .addOnSuccessListener { documentSnapshot ->
-                    var weight = documentSnapshot.getString("weight")
-                    if (weight == "0"){
-                        weight = "0.01"
+        val mFirestore = FirebaseFirestore.getInstance()
+        mFirestore.collection("users").document(getCurrentUserId()).get()
+            .addOnSuccessListener { documentSnapshot ->
+                var weight = documentSnapshot.getString("weight")
+                if (weight == "0"){
+                    weight = "0.01"
+                }
+
+                val workout: Workout
+                val weight2 = weightNum.text.toString()
+                val breakNum = breakNum.text.toString()
+                val set = SetNum.text.toString()
+                val rep = repeatNum.text.toString()
+                var note = workoutNote.text.toString()
+                if (validateForm(set, weight2, breakNum, rep)) {
+                    val rnds = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        ThreadLocalRandom.current().nextDouble(0.0, 0.9)
+                    } else {
+                        TODO("VERSION.SDK_INT < LOLLIPOP")
                     }
-                    val workout: Workout
-                    val weight2 = weightNum.text.toString()
-                    val breakNum = breakNum.text.toString()
-                    val set = SetNum.text.toString()
-                    val rep = repeatNum.text.toString()
-                    var note = workoutNote.text.toString()
-                    if (validateForm(set, weight2, breakNum, rep)) {
-                        val rnds = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                            ThreadLocalRandom.current().nextDouble(0.0, 0.9)
-                        } else {
-                            TODO("VERSION.SDK_INT < LOLLIPOP")
-                        }
-                        val randnum = 0.0 + rnds
-                        val s = 20 * set.toInt() * rep.toInt() * (2 * 3.0 + randnum * weight.toString().toInt())
-                        val calories = s / 200
-                        workout = Workout(
-                            getCurrentUserId(),
-                            gymType,
-                            muskelName,
-                            workoutName,
-                            set,
-                            weight2,
-                            breakNum,
-                            rep,
-                            currentDate,
-                            calories,
-                            dateFormatter(currentDate),
-                            note,
+                    val randnum = 0.0 + rnds
+                    val s = 20 * set.toInt() * rep.toInt() * (2 * 3.0 + randnum * weight.toString().toInt())
+                    val calories = s / 200
+                    workout = Workout(
+                        getCurrentUserId(),
+
+                        gymType,
+                        muskelName,
+                        workoutName,
+                        set,
+                        weight2,
+                        breakNum,
+                        rep,
+                        currentDate,
+                        calories,
+                        dateFormatter(currentDate),
+                        note,
 
                         )
-                        FirestoreClass().createNewTraining(this@AddWorkoutActivity, workout)
-                        val recyclerView = findViewById<RecyclerView>(id.recyclerView_add)
-                        recyclerView.scrollToPosition(0)
+                    FirestoreClass().createNewTraining(this@AddWorkoutActivity, workout)
+                    val recyclerView = findViewById<RecyclerView>(id.recyclerView_add)
+                    recyclerView.scrollToPosition(0)
+                    val fragment = AddWorkoutFragment.newInstance(muskelName,workoutName)
+                    supportFragmentManager.beginTransaction().apply {
+                        replace(id.root_container, fragment).commit()
                     }
                 }
+            }
     }
 
     private fun validateForm(set: String, weight: String, breakNum: String, repeat: String): Boolean {
@@ -226,7 +232,7 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
             }
         }
     }
-   private fun getCurrentUserId(): String {
+    private fun getCurrentUserId(): String {
         val currentUser = FirebaseAuth.getInstance().currentUser
         var currentUserID = ""
         if (currentUser != null) {
@@ -256,7 +262,3 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
 
 
 }
-
-
-
-

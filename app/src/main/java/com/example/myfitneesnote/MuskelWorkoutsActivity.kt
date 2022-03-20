@@ -39,12 +39,84 @@ class MuskelWorkoutsActivity : BaseActivity() {
         toolBar_textView.text = muskleName
         listWorkouts = intent.getStringArrayListExtra("listOfWorkouts") as ArrayList<String>
         listView = findViewById<ListView>(R.id.recipe_list_view)
-        setLists()
-
+        setListHome()
+        setListGym()
         setAdapter()
     }
 
-    private fun setLists(){
+    private fun setListHome(){
+        // list of Chest Workouts
+        //listChestWorkoutsImage.add(R.drawable.bench_press_barbell)
+       // listChestWorkoutsImage.add(R.drawable.schraegbankdruecken)
+        //listChestWorkoutsImage.add(R.drawable.parallels_stangenbeugen)
+        //listChestWorkoutsImage.add(R.drawable.kabelbruecken_fliegen)
+      //  listChestWorkoutsImage.add(R.drawable.hantelfliegen)
+        listChestWorkoutsImage.add(R.drawable.liegenstuetzen)
+
+        // list of Biceps Workouts
+        listBicepsWorkoutsImage.add(R.drawable.hantelausfallschritte)
+      //  listBicepsWorkoutsImage.add(R.drawable.langhantel_bacnkdruecken)
+      //  listBicepsWorkoutsImage.add(R.drawable.hammer_exercise)
+        // listBicepsWorkoutsImage.add(R.drawable.bizeps_kurzhantel)
+       // listBicepsWorkoutsImage.add(R.drawable.kabelbiezepsuebung)
+
+
+        // list of Triceps Workouts
+       // listTricepsWorkoutsImage.add(R.drawable.bankdruecken_mit_enger_griff)
+        // listTricepsWorkoutsImage.add(R.drawable.sitzendes_kurzhanteldruecken)
+        // listTricepsWorkoutsImage.add(R.drawable.trizepsverlaengerungen)
+        // listTricepsWorkoutsImage.add(R.drawable.einarmige_tirzepshantelverlaengerungen)
+        listTricepsWorkoutsImage.add(R.drawable.plank_up_down)
+
+        // list of Forearms Workouts
+         listForearmsWorkoutsImage.add(R.drawable.handgelenkuebungen)
+        //listForearmsWorkoutsImage.add(R.drawable.handgelenkuebungen_2)
+        //  listForearmsWorkoutsImage.add(R.drawable.handgelenkuebung_im_stehen)
+        ////listForearmsWorkoutsImage.add(R.drawable.kurzhantel_handgelenkdrehung)
+
+
+        // list of Back Workouts
+          listBackWorkoutsImage.add(R.drawable.barbell_pronation_bent_over)
+        //  listBackWorkoutsImage.add(R.drawable.latziehen)
+        // listBackWorkoutsImage.add(R.drawable.senkrechtes_rudern)
+        // listBackWorkoutsImage.add(R.drawable.kurzhantel_handgelenkdrehung)
+
+        // list of Shoulder Workouts
+         listShoulderWorkoutsImage.add(R.drawable.rueckendruecken)
+        //   listShoulderWorkoutsImage.add(R.drawable.sitzendes_kurzhanteldruecken)
+        //  listShoulderWorkoutsImage.add(R.drawable.seitenheben)
+        // listShoulderWorkoutsImage.add(R.drawable.frontheben)
+        //listShoulderWorkoutsImage.add(R.drawable.barbel_front_lift)
+        // listShoulderWorkoutsImage.add(R.drawable.militaerpresse_hinter_dem_nacken)
+
+        // list of Abs Workouts
+        // listAbsWorkoutsImage.add(R.drawable.dumbell_side_tilt)
+        listAbsWorkoutsImage.add(R.drawable.flachebank_liegendes_beinheben)
+        listAbsWorkoutsImage.add(R.drawable.seitenbruecke)
+        listAbsWorkoutsImage.add(R.drawable.superman)
+        listAbsWorkoutsImage.add(R.drawable.beinheben)
+        listAbsWorkoutsImage.add(R.drawable.drehendes_hueftheben)
+
+        // list of Leg Workouts
+         listLegWorkoutsImage.add(R.drawable.kniebeugen)
+        // listLegWorkoutsImage.add(R.drawable.dumbbel_drop_steps)
+        //listLegWorkoutsImage.add(R.drawable.squat_dumbbell)
+        //listLegWorkoutsImage.add(R.drawable.hackkniebeugen)
+        // listLegWorkoutsImage.add(R.drawable.barbel_step)
+        //listLegWorkoutsImage.add(R.drawable.good_morning)
+
+        listOfAllWorkouts["Chest"] = (listChestWorkoutsImage)
+        listOfAllWorkouts["Biceps"] = (listBicepsWorkoutsImage)
+        listOfAllWorkouts["Triceps"] = (listTricepsWorkoutsImage)
+        listOfAllWorkouts["Forearms"] = (listForearmsWorkoutsImage)
+        listOfAllWorkouts["Back"] = (listBackWorkoutsImage)
+        listOfAllWorkouts["Shoulder"] = (listShoulderWorkoutsImage)
+        listOfAllWorkouts["Leg"] = (listLegWorkoutsImage)
+        listOfAllWorkouts["Abs"] = (listAbsWorkoutsImage)
+    }
+
+
+    private fun setListGym(){
         // list of Chest Workouts
         listChestWorkoutsImage.add(R.drawable.bench_press_barbell)
         listChestWorkoutsImage.add(R.drawable.schraegbankdruecken)
@@ -113,9 +185,7 @@ class MuskelWorkoutsActivity : BaseActivity() {
         listOfAllWorkouts["Shoulder"] = (listShoulderWorkoutsImage)
         listOfAllWorkouts["Leg"] = (listLegWorkoutsImage)
         listOfAllWorkouts["Abs"] = (listAbsWorkoutsImage)
-
     }
-
 
     private fun setAdapter() {
 

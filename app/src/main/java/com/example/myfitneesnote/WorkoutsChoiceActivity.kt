@@ -40,25 +40,50 @@ class WorkoutsChoiceActivity : BaseActivity(){
         animat()
         setupActionBar()
         onClick2()
-        listOfChestWorkouts = arrayListOf("Bench press", "Inclined Bench Press", "Parallel bar flexion", "Standing Cable Fly", "Dumbbell fly", "Push Up")
-        listOfBrustWorkouts = arrayListOf("Dumbbell exercises", " Lang Barbell exercises", "Hammer exercise","Short dumbbell", "Cable bicep exercise")
-        listOfTrapsWorkouts = arrayListOf("Cross lift", "Lat pull", "Barbell shrug","Dumbbell shrug")
-        listOfForarmsWorkouts = arrayListOf("Wrist exercise", "Wrist exercise", "Wrist exercise standing", "Dumbbell wrist exercise")
-        listOfTricepsWorkouts = arrayListOf("Bench press with close grip one", "Press down", "tricep extensions", "one-arm triceps extensions","Plank Up-Down")
-        listOfAbsWorkouts = arrayListOf("Dumbbell side tilt", "Flat bench lying leg lift", "Side bridge","Superman","Leg lift", "rotating hip lift" )
-        listOfSchoulderWorkouts = arrayListOf("Back Press", "Seated single column press", "Side lift","Front lift", "Barbell front lift", "Mitlitärpress behind neck")
-        listOfLegWorkouts = arrayListOf("squats", "Dumbbell drop steps", "Dumbbell squats","Hack squats", "Barbell step", "Good morning")
 
-        listOfWorkouts["Chest"] = listOfChestWorkouts
-        listOfWorkouts["Biceps"] = listOfBrustWorkouts
-        listOfWorkouts["Back"] = listOfTrapsWorkouts
-        listOfWorkouts["Forearms"] = listOfForarmsWorkouts
-        listOfWorkouts["Abs"] = listOfAbsWorkouts
-        listOfWorkouts["Shoulder"] = listOfSchoulderWorkouts
-        listOfWorkouts["Triceps"] = listOfTricepsWorkouts
-        listOfWorkouts["Leg"] = listOfLegWorkouts
     }
 
+
+    private fun setlist(name : String){
+        if (name == "GYM"){
+            listOfChestWorkouts = arrayListOf("Bench press", "Inclined Bench Press", "Parallel bar flexion", "Standing Cable Fly", "Dumbbell fly", "Push Up")
+            listOfBrustWorkouts = arrayListOf("Dumbbell exercises", " Lang Barbell exercises", "Hammer exercise","Short dumbbell", "Cable bicep exercise")
+            listOfTrapsWorkouts = arrayListOf("Cross lift", "Lat pull", "Barbell shrug","Dumbbell shrug")
+            listOfForarmsWorkouts = arrayListOf("Wrist exercise", "Wrist exercise", "Wrist exercise standing", "Dumbbell wrist exercise")
+            listOfTricepsWorkouts = arrayListOf("Bench press with close grip one", "Press down", "tricep extensions", "one-arm triceps extensions","Plank Up-Down")
+            listOfAbsWorkouts = arrayListOf("Dumbbell side tilt", "Flat bench lying leg lift", "Side bridge","Superman","Leg lift", "rotating hip lift" )
+            listOfSchoulderWorkouts = arrayListOf("Back Press", "Seated single column press", "Side lift","Front lift", "Barbell front lift", "Mitlitärpress behind neck")
+            listOfLegWorkouts = arrayListOf("squats", "Dumbbell drop steps", "Dumbbell squats","Hack squats", "Barbell step", "Good morning")
+
+            listOfWorkouts["Chest"] = listOfChestWorkouts
+            listOfWorkouts["Biceps"] = listOfBrustWorkouts
+            listOfWorkouts["Back"] = listOfTrapsWorkouts
+            listOfWorkouts["Forearms"] = listOfForarmsWorkouts
+            listOfWorkouts["Abs"] = listOfAbsWorkouts
+            listOfWorkouts["Shoulder"] = listOfSchoulderWorkouts
+            listOfWorkouts["Triceps"] = listOfTricepsWorkouts
+            listOfWorkouts["Leg"] = listOfLegWorkouts
+        }else if (name == "HOME"){
+            listOfChestWorkouts = arrayListOf("Push Up")
+            listOfBrustWorkouts = arrayListOf("Dumbbell exercises")
+            listOfTrapsWorkouts = arrayListOf("Cross lift")
+            listOfForarmsWorkouts = arrayListOf("Wrist exercise")
+            listOfTricepsWorkouts = arrayListOf("Plank Up-Down")
+            listOfAbsWorkouts = arrayListOf("Flat bench lying leg lift", "Side bridge","Superman","Leg lift", "rotating hip lift" )
+            listOfSchoulderWorkouts = arrayListOf("Back Press")
+            listOfLegWorkouts = arrayListOf("squats")
+
+            listOfWorkouts["Chest"] = listOfChestWorkouts
+            listOfWorkouts["Biceps"] = listOfBrustWorkouts
+            listOfWorkouts["Back"] = listOfTrapsWorkouts
+            listOfWorkouts["Forearms"] = listOfForarmsWorkouts
+            listOfWorkouts["Abs"] = listOfAbsWorkouts
+            listOfWorkouts["Shoulder"] = listOfSchoulderWorkouts
+            listOfWorkouts["Triceps"] = listOfTricepsWorkouts
+            listOfWorkouts["Leg"] = listOfLegWorkouts
+        }
+
+    }
     private fun animat(){
         val btt = AnimationUtils.loadAnimation(this, R.anim.btt)
         btn_home_workout.startAnimation(btt)
@@ -83,7 +108,8 @@ class WorkoutsChoiceActivity : BaseActivity(){
                     gym_arrow.setBackgroundResource(R.drawable.arrow_up)
                     home_arrow.setBackgroundResource(R.drawable.arrow_down)
                 }
-                gymType = txt_gym_workout.text.toString()
+                gymType = "GYM"
+             setlist("GYM")
 
         }
         cv_home.setOnClickListener{
@@ -99,7 +125,8 @@ class WorkoutsChoiceActivity : BaseActivity(){
                 home_arrow.setBackgroundResource(R.drawable.arrow_up)
                 gym_arrow.setBackgroundResource(R.drawable.arrow_down)
             }
-            gymType = txt_home_workout.text.toString()
+            gymType = "HOME"
+            setlist( "HOME")
         }
     }
 
@@ -107,6 +134,7 @@ class WorkoutsChoiceActivity : BaseActivity(){
         val intent = Intent( this,  MuskelWorkoutsActivity::class.java)
         intent.putExtra("MuskelName", view.contentDescription)
         intent.putExtra("GymName", gymType)
+
         for (i in listOfWorkouts.keys){
             if (i == "Chest" && view.contentDescription == "CHEST" ){
                 list = listOfChestWorkouts

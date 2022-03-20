@@ -27,14 +27,9 @@ import com.squareup.picasso.Picasso
 import com.theartofdev.edmodo.cropper.CropImage
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_my_profile.*
-import kotlinx.android.synthetic.main.nav_header_main.*
 import java.util.*
-import android.R
 
-import android.app.Activity
-import android.content.Context
-
-import android.widget.TextView
+import com.example.myfitneesnote.utils.showCustomToast
 import com.theartofdev.edmodo.cropper.CropImageView
 
 
@@ -144,11 +139,7 @@ class MyProfileActivity : BaseActivity() {
 
                         ref.child(mAuth.currentUser!!.uid).updateChildren(postMap)
 
-                        Toast.makeText(
-                            this,
-                            "Your picture has been updated successfully.",
-                            Toast.LENGTH_LONG
-                        ).show()
+                        Toast(this).showCustomToast ("Your picture has been updated successfully.", this)
                         progressDialog.dismiss()
                     } else {
                         progressDialog.dismiss()
@@ -265,7 +256,8 @@ class MyProfileActivity : BaseActivity() {
 
     companion object {
         private fun updateUser(
-            myProfileActivity: MyProfileActivity, username: String,
+            myProfileActivity: MyProfileActivity,
+            username: String,
             age: String,
             height: String,
             weight: String,
@@ -283,14 +275,19 @@ class MyProfileActivity : BaseActivity() {
                 myProfileActivity.mFirebaseDatabase!!.child("height").setValue(height.trim())
                 myProfileActivity.mFirebaseDatabase!!.child("weight").setValue(weight.trim())
                 myProfileActivity.mFirebaseDatabase!!.child("gender").setValue(gender.trim())
-                Toast.makeText(myProfileActivity.applicationContext, "Successfully updated user", Toast.LENGTH_SHORT).show()
-                fs.collection("users").document(myProfileActivity.toString()).update("age", age.trim(),
+             //   Toast.makeText(myProfileActivity.applicationContext, "Successfully updated user", Toast.LENGTH_SHORT).show()
+                Toast(myProfileActivity).showCustomToast ("Successfully updated", myProfileActivity)
+                fs.collection("users").document(FirebaseAuth.getInstance().currentUser!!.uid).update(
+                    "name",name.trim(),
+                    "username",username.trim(),
+                    "age", age.trim(),
                     "height", height.trim(),
                     "weight", weight.trim(),
                     "gender", gender.trim())
             }
             else
-                Toast.makeText(myProfileActivity.applicationContext, "Unable to update user", Toast.LENGTH_SHORT).show()
+             //   Toast.makeText(myProfileActivity.applicationContext, "Unable to update user", Toast.LENGTH_SHORT).show()
+                Toast(myProfileActivity).showCustomToast ("Unable to update", myProfileActivity)
         }
     }
 }

@@ -28,7 +28,7 @@
             tools:ignore="LockedOrientationActivity" />
         <activity android:name=".BodyInfo" />
         <activity
-            android:name=".Workouts_List_Activity"
+            android:name=".WorkoutListActivity"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
@@ -37,7 +37,8 @@
             android:noHistory="true"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar.NoActionBar"
+            android:theme="@style/AppTheme.NoActionBar.Profile"
+
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".WorkoutsChoiceActivity"

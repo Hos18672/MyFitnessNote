@@ -52,8 +52,6 @@ import java.time.LocalDate.parse
 import java.time.chrono.ChronoLocalDate
 import java.time.format.DateTimeFormatter
 import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
 
@@ -70,12 +68,11 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         super.onCreate(savedInstanceState)
         setContentView(layout.activity_main)
         nav_view.setNavigationItemSelectedListener(this)
-        recyclerView = findViewById(id.rv_trainings_list_main)
         constraintLayout3.bringToFront()
         onClick()
         userData()
         animate()
-        getTrainingsFromFireStore()
+      //  getTrainingsFromFireStore()
         updateNavigationUserDetails()
         btn1.setCardBackgroundColor(Color.parseColor("#00AEFF"))
         tip()
@@ -267,7 +264,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         }
         diagramMain.setOnClickListener {
             animate(diagramMain)
-            val intent = Intent(this, Workouts_List_Activity::class.java)
+            val intent = Intent(this, WorkoutListActivity::class.java)
             val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
                 this,
                 diagramMain,
@@ -643,6 +640,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         val legend: Legend = lineChart.legend
         legend.isEnabled = false
     }
+/*
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun getTrainingsFromFireStore() {
@@ -672,6 +670,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     override fun onStop() {
         super.onStop()
         trainingItemAdapterMain.stopListening()
-    }
+    }*/
+
 }
 

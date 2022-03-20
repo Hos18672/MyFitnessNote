@@ -7,6 +7,7 @@ import com.example.myfitneesnote.*
 import com.example.myfitneesnote.model.User
 import com.example.myfitneesnote.model.Workout
 import com.example.myfitneesnote.utils.Constant
+import com.example.myfitneesnote.utils.showCustomToast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
@@ -41,11 +42,9 @@ class FirestoreClass {
        mFireStore.collection(Constant.USERS)
             .document(getCurrentUserId()).collection("Workouts").add(workout)
             .addOnSuccessListener {
-                Log.e(activity.javaClass.simpleName, "Created Successfully")
-                Toast.makeText(activity, "Training created Successfully", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "New workout is added", Toast.LENGTH_SHORT).show()
+
             }.addOnFailureListener{
-                    exception ->
-                Log.e(activity.javaClass.simpleName, "Creation failed",exception)
                 Toast.makeText(activity, "Training's creation failed", Toast.LENGTH_SHORT).show()
             }
     }

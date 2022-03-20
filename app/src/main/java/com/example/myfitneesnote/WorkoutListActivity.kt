@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.activity_workouts_list.*
 import kotlinx.android.synthetic.main.activity_workouts_list.btn1
 import kotlinx.android.synthetic.main.activity_workouts_list.btn2
 
-class Workouts_List_Activity : BaseActivity() {
+class WorkoutListActivity : BaseActivity() {
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint("ResourceAsColor")
@@ -111,48 +111,6 @@ class Workouts_List_Activity : BaseActivity() {
         }
     }
 
-
-//    @SuppressLint("NotifyDataSetChanged")
-//    private fun setRecyclerview(){
-//        recyclerView.layoutManager= LinearLayoutManager(this)
-//        val lac = LayoutAnimationController(AnimationUtils.loadAnimation(this,R.anim.slide_in_animation))
-//        recyclerView.startLayoutAnimation()
-//        db = FirebaseFirestore.getInstance()
-//        val query : Query = db.collection(Constant.USERS)
-//            .document(getCurrentUserID())
-//            .collection("Workouts")
-//            .orderBy("date",Query.Direction.DESCENDING)
-//        val fireStoreRecyclerOption : FirestoreRecyclerOptions<Workout> = FirestoreRecyclerOptions.Builder<Workout>()
-//            .setQuery(query, Workout::class.java)
-//            .build()
-//        trainingItemAdapter = TrainingItemAdapter(fireStoreRecyclerOption)
-//        recyclerView.adapter= trainingItemAdapter
-//        lac.delay = 0.20f
-//        lac.order = LayoutAnimationController.ORDER_NORMAL
-//        recyclerView.layoutAnimation = lac
-//        val item = object : SwipeToDelete(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT){
-//            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-//                trainingItemAdapter.deleteItem(viewHolder.adapterPosition)
-//            }
-//        }
-//        val itemTouchHelper= ItemTouchHelper(item)
-//        itemTouchHelper.attachToRecyclerView(recyclerView)
-//        trainingItemAdapter.notifyDataSetChanged()
-//        recyclerView.startLayoutAnimation()
-//    }
-//
-//    @JvmName("getCurrentDate1")
-//    private fun getCurrentDate() : String{
-//        return  currentDate
-//    }
-//    override fun onStart() {
-//        super.onStart()
-//        trainingItemAdapter.startListening()
-//    }
-//    override fun onStop() {
-//        super.onStop()
-//        trainingItemAdapter.stopListening()
-//    }
     private fun setupActionBar() {
         setSupportActionBar(toolBar_workouts_activity)
         val actionBar = supportActionBar

@@ -14,7 +14,7 @@
         android:layout_height="100dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="28dp"
-        android:src="@drawable/profile_icon"
+        android:src="@drawable/icon_profile1"
         android:backgroundTint="@color/textColor"
         android:contentDescription="@string/todo"
         app:civ_border_color="#008EFF"
