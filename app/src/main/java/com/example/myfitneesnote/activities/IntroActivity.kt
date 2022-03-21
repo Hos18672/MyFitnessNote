@@ -1,4 +1,4 @@
-package com.example.myfitneesnote
+package com.example.myfitneesnote.activities
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -9,6 +9,7 @@ import android.view.WindowManager
 import android.view.WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS
 import android.view.animation.AnimationUtils
 import androidx.annotation.RequiresApi
+import com.example.myfitneesnote.R
 import kotlinx.android.synthetic.main.activity_intro.*
 
 

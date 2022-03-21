@@ -1,16 +1,18 @@
-package com.example.myfitneesnote
+package com.example.myfitneesnote.fragments
 
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myfitneesnote.R
 import com.example.myfitneesnote.adapters.SwipeToDelete
-import com.example.myfitneesnote.adapters.WorkoutListMainAdapter
+import com.example.myfitneesnote.adapters.TrainingItemAdapter
 import com.example.myfitneesnote.model.Workout
 import com.example.myfitneesnote.utils.Constant
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
@@ -23,36 +25,36 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 
 
-class WorkoutListMainFragment : Fragment() {
+class WorkoutListFragmentAll : Fragment() {
     private val db = FirebaseFirestore.getInstance()
-    private lateinit var trainingItemAdapter : WorkoutListMainAdapter
+    private lateinit var trainingItemAdapter : TrainingItemAdapter
     private lateinit var recyclerView: RecyclerView
     private lateinit var _view: View
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _view = inflater.inflate(R.layout.workout_list_main_fragment, container, false)
+        _view = inflater.inflate(R.layout.workout_list__fragment_all, container, false)
         getTrainingsFromFireStore()
         recyclerView = _view.findViewById(R.id.recyclerView_add);
         recyclerView.setHasFixedSize(true);
         return _view
     }
 
+/*
     private fun getTrainingsFromFireStore(){
         val query : Query = db.collection(Constant.USERS)
             .document(getCurrentUserID())
             .collection("Workouts")
             .orderBy("date", Query.Direction.DESCENDING)
-            .whereEqualTo("currentDateTime", getCurrentDate())
-
         val fireStoreRecyclerOption : FirestoreRecyclerOptions<Workout> = FirestoreRecyclerOptions.Builder<Workout>()
             .setQuery(query, Workout::class.java)
             .build()
         recyclerView = _view.findViewById(R.id.recyclerView_add);
-        trainingItemAdapter = WorkoutListMainAdapter(fireStoreRecyclerOption)
-        val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        trainingItemAdapter = TrainingItemAdapter(fireStoreRecyclerOption)
+        val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         recyclerView.layoutManager = linearLayoutManager
         recyclerView.smoothScrollToPosition(0)
         recyclerView.adapter = trainingItemAdapter
@@ -68,6 +70,41 @@ class WorkoutListMainFragment : Fragment() {
         trainingItemAdapter.notifyDataSetChanged()
         recyclerView.startLayoutAnimation()
     }
+*/
+
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun getTrainingsFromFireStore(){
+        val query : Query = db.collection(Constant.USERS)
+            .document(getCurrentUserID())
+            .collection("Workouts")
+            .orderBy("date", Query.Direction.DESCENDING)
+
+        val fireStoreRecyclerOption : FirestoreRecyclerOptions<Workout> = FirestoreRecyclerOptions.Builder<Workout>()
+            .setQuery(query, Workout::class.java)
+            .build()
+
+
+        recyclerView = _view.findViewById(R.id.recyclerView_add);
+        trainingItemAdapter = TrainingItemAdapter(fireStoreRecyclerOption)
+        val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        recyclerView.layoutManager = linearLayoutManager
+        recyclerView.smoothScrollToPosition(0)
+        recyclerView.adapter = trainingItemAdapter
+
+        val item = object : SwipeToDelete(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT){
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+
+                trainingItemAdapter.deleteItem(viewHolder.adapterPosition)
+            }
+        }
+        val itemTouchHelper= ItemTouchHelper(item)
+        itemTouchHelper.attachToRecyclerView(recyclerView)
+        trainingItemAdapter.notifyDataSetChanged()
+        recyclerView.startLayoutAnimation()
+    }
+
+
     override fun onStart() {
         super.onStart()
         trainingItemAdapter.startListening()

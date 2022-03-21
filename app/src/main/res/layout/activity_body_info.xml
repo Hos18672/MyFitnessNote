@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundColor"
-    tools:context=".BodyInfo">
+    tools:context=".activities.BodyInfoActivity">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolBar_info_activity"

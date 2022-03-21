@@ -1,4 +1,4 @@
-package com.example.myfitneesnote
+package com.example.myfitneesnote.activities
 
 import android.content.Context
 import android.content.Intent
@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import com.example.myfitneesnote.R
 import kotlinx.android.synthetic.main.activity_muskel_workouts.*
 
 class MuskelWorkoutsActivity : BaseActivity() {
@@ -39,8 +40,7 @@ class MuskelWorkoutsActivity : BaseActivity() {
         toolBar_textView.text = muskleName
         listWorkouts = intent.getStringArrayListExtra("listOfWorkouts") as ArrayList<String>
         listView = findViewById<ListView>(R.id.recipe_list_view)
-        setListHome()
-        setListGym()
+
         setAdapter()
     }
 
@@ -188,34 +188,64 @@ class MuskelWorkoutsActivity : BaseActivity() {
     }
 
     private fun setAdapter() {
+        if (gymType == "HOME"){
+            setListHome()
+            for (i in listOfAllWorkouts.keys) {
+                if (i == "Chest" && muskleName == "CHEST") {
+                    list = listChestWorkoutsImage
+                }
+                if (i == "Biceps" && muskleName == "BICEPS") {
+                    list = listBicepsWorkoutsImage
+                }
+                if (i == "Triceps" && muskleName == "TRICEPS") {
+                    list = listTricepsWorkoutsImage
+                }
+                if (i == "Forearms" && muskleName == "FOREARMS") {
+                    list = listForearmsWorkoutsImage
+                }
+                if (i == "Back" && muskleName == "BACK") {
+                    list = listBackWorkoutsImage
+                }
+                if (i == "Shoulder" && muskleName == "SHOULDER") {
+                    list = listShoulderWorkoutsImage
+                }
+                if (i == "Abs" && muskleName == "ABS") {
+                    list = listAbsWorkoutsImage
+                }
+                if (i == "Leg" && muskleName == "LEG") {
+                    list = listLegWorkoutsImage
+                }
+            }
 
-        for (i in listOfAllWorkouts.keys) {
-            if (i == "Chest" && muskleName == "CHEST") {
-                list = listChestWorkoutsImage
-            }
-            if (i == "Biceps" && muskleName == "BICEPS") {
-                list = listBicepsWorkoutsImage
-            }
-            if (i == "Triceps" && muskleName == "TRICEPS") {
-                list = listTricepsWorkoutsImage
-            }
-            if (i == "Forearms" && muskleName == "FOREARMS") {
-                list = listForearmsWorkoutsImage
-            }
-            if (i == "Back" && muskleName == "BACK") {
-                list = listBackWorkoutsImage
-            }
-            if (i == "Shoulder" && muskleName == "SHOULDER") {
-                list = listShoulderWorkoutsImage
-            }
-            if (i == "Abs" && muskleName == "ABS") {
-                list = listAbsWorkoutsImage
-            }
-            if (i == "Leg" && muskleName == "LEG") {
-                list = listLegWorkoutsImage
+        }else{
+            setListGym()
+            for (i in listOfAllWorkouts.keys) {
+                if (i == "Chest" && muskleName == "CHEST") {
+                    list = listChestWorkoutsImage
+                }
+                if (i == "Biceps" && muskleName == "BICEPS") {
+                    list = listBicepsWorkoutsImage
+                }
+                if (i == "Triceps" && muskleName == "TRICEPS") {
+                    list = listTricepsWorkoutsImage
+                }
+                if (i == "Forearms" && muskleName == "FOREARMS") {
+                    list = listForearmsWorkoutsImage
+                }
+                if (i == "Back" && muskleName == "BACK") {
+                    list = listBackWorkoutsImage
+                }
+                if (i == "Shoulder" && muskleName == "SHOULDER") {
+                    list = listShoulderWorkoutsImage
+                }
+                if (i == "Abs" && muskleName == "ABS") {
+                    list = listAbsWorkoutsImage
+                }
+                if (i == "Leg" && muskleName == "LEG") {
+                    list = listLegWorkoutsImage
+                }
             }
         }
-
             adapter = MyAdapter(this, listWorkouts, list)
             listView.adapter = adapter
             listView.setOnItemClickListener { parent, view, position, id ->

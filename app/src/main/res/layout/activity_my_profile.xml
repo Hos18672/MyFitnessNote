@@ -8,7 +8,7 @@
     android:gravity="center"
     android:orientation="vertical"
     android:background="@color/backgroundColor"
-    tools:context=".MyProfileActivity">
+    tools:context=".activities.MyProfileActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar_my_profile_activity"
@@ -56,7 +56,7 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/pcard"
-                android:layout_width="380dp"
+                android:layout_width="350dp"
                 android:layout_height="550dp"
                 android:layout_marginTop="70dp"
                 android:backgroundTint="@color/backgroundColorNav"

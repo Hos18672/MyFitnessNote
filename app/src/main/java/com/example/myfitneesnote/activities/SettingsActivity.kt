@@ -1,10 +1,11 @@
-package com.example.myfitneesnote
+package com.example.myfitneesnote.activities
 
 
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
+import com.example.myfitneesnote.R
 import com.example.myfitneesnote.utils.showCustomToast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -113,7 +114,7 @@ class SettingsActivity : BaseActivity() {
             }
     }
 
-    private fun updateUser( settingsActivity: SettingsActivity, email: String, ) {
+    private fun updateUser(settingsActivity: SettingsActivity, email: String, ) {
         // updating the user via child nodes
         val fs  : FirebaseFirestore = FirebaseFirestore.getInstance()
         if (!TextUtils.isEmpty(email)) {

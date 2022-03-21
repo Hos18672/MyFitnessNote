@@ -1,10 +1,11 @@
-package com.example.myfitneesnote
+package com.example.myfitneesnote.activities
 
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.animation.AnimationUtils
+import com.example.myfitneesnote.R
 import com.example.myfitneesnote.firebase.FirestoreClass
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_splash.*

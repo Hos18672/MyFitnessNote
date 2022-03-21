@@ -1,4 +1,4 @@
-package com.example.myfitneesnote
+package com.example.myfitneesnote.activities
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -12,16 +12,22 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityOptionsCompat
 import at.favre.lib.crypto.bcrypt.BCrypt
+import com.example.myfitneesnote.R
+import com.example.myfitneesnote.firebase.FirebaseService
 import com.example.myfitneesnote.firebase.FirestoreClass
+import com.example.myfitneesnote.utils.showCustomToast
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.activity_login.*
+import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import java.util.*
 
 @Suppress("DEPRECATION")
 class SignUpActivity : BaseActivity() {
+
+    var userToken = ""
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,14 +41,15 @@ class SignUpActivity : BaseActivity() {
 
         }
         sigUp_button.setOnClickListener {
-                 signUpUser()
+            getFirebaseMessagingToken()
+            signUpUser()
         }
     }
 
     /**
      * A function to register the user  and save data on  firestore database.
      */
-   private  fun signUpUser(){
+    private  fun signUpUser(){
         val name     : String = signUpNameInput.text.toString().trim{ it <= ' '}
         val username : String = signUpUsernameInput.text.toString().trim{ it <= ' '}
         val email    : String = signUp_email_input.text.toString().trim{ it <= ' '}
@@ -71,7 +78,8 @@ class SignUpActivity : BaseActivity() {
                                     name,
                                     username,
                                     email,
-                                    hashPass
+                                    hashPass,
+                                    userToken
                                 )
                                 FirestoreClass().registerUser(this, user)
                                 val uid = FirebaseAuth.getInstance().uid ?: ""
@@ -83,16 +91,29 @@ class SignUpActivity : BaseActivity() {
                                     .addOnFailureListener {
                                         Log.d("User", "Failed to set value to database: ${it.message}")
                                     }
+
+                                    FirebaseAuth.getInstance().currentUser!!.sendEmailVerification().addOnCompleteListener { task ->
+                                    if (task.isSuccessful) {
+                                        Toast(this).showCustomToast("Please check your email to verify", this)
+                                    }else{
+                                        showErrorSnackBar("Verfication email failed!")
+                                    }
+                                }
                                 //  FirebaseAuth.getInstance().signOut()
-                                val intent = Intent(this@SignUpActivity, BodyInfo::class.java)
-                                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                val intent =
+                                    Intent(this@SignUpActivity, BodyInfoActivity::class.java)
+                                intent.flags =
+                                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                 intent.putExtra("user_id", firebaseUser.uid)
                                 intent.putExtra("name", signUpNameInput.text.toString())
-                                intent.putExtra("userName", signUpUsernameInput.text.toString())
+                                intent.putExtra(
+                                    "userName",
+                                    signUpUsernameInput.text.toString()
+                                )
                                 intent.putExtra("email_id", email)
                                 startActivity(intent)
                                 finish()
-                                //hideProgressDialog1()
+
                             } else {
                                 pb.visibility = View.GONE
                                 showErrorSnackBar(task.exception!!.message.toString())
@@ -106,6 +127,23 @@ class SignUpActivity : BaseActivity() {
             }
         }
 
+    }
+
+    fun getFirebaseMessagingToken() {
+        FirebaseMessaging.getInstance().token
+            .addOnCompleteListener { task: Task<String?> ->
+                if (!task.isSuccessful) {
+                    //Could not get FirebaseMessagingToken
+                    return@addOnCompleteListener
+                }
+                if (null != task.result) {
+                    //Got FirebaseMessagingToken
+                    val firebaseMessagingToken = Objects.requireNonNull(task.result)
+                    FirebaseService.token = firebaseMessagingToken
+                    userToken = firebaseMessagingToken.toString()
+                    //Use firebaseMessagingToken further
+                }
+            }
     }
 
     private  fun validateForm(name: String, username: String, email: String, password1 : String, password2 : String) : Boolean{
@@ -156,7 +194,7 @@ class SignUpActivity : BaseActivity() {
             Toast.LENGTH_SHORT
         ).show()
         // Hide the progress dialog
-       // hideProgressDialog()
+        // hideProgressDialog()
         /**
          * Here the new user registered is automatically signed-in so we just sign-out the user from firebase
          * and send him to Intro Screen for Sign-In
@@ -166,7 +204,7 @@ class SignUpActivity : BaseActivity() {
         finish()
     }
     override fun onBackPressed() {
-       startActivity(Intent(this, IntroActivity::class.java))
+        startActivity(Intent(this, IntroActivity::class.java))
         finish() }
 
 }

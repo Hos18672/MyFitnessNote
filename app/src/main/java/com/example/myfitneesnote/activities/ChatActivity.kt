@@ -1,36 +1,55 @@
-package com.example.myfitneesnote
+package com.example.myfitneesnote.activities
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.WindowManager
+import android.widget.Toast
+import com.example.myfitneesnote.R
+import com.example.myfitneesnote.RetrofitInstance
+import com.example.myfitneesnote.firebase.FirebaseService
 import com.example.myfitneesnote.model.ChatMessage
+import com.example.myfitneesnote.model.NotificationData
+import com.example.myfitneesnote.model.PushNotification
 import com.example.myfitneesnote.model.User
+import com.example.myfitneesnote.utils.showCustomToast
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.ChildEventListener
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
+import com.google.firebase.messaging.FirebaseMessaging
+import com.google.gson.Gson
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.activity_chat_users.*
 import kotlinx.android.synthetic.main.chat_from_row.view.*
 import kotlinx.android.synthetic.main.chat_to_row.view.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.util.*
 
-class ChatLogActivity : BaseActivity() {
+
+class ChatActivity : BaseActivity() {
     companion object{ const val TAG = "ChatLog" }
     var toUser: User?= null
     val adapter = GroupAdapter<ViewHolder>()
+    var TOPIC = "/topics/myTopic"
+    var username = ""
     @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat_users)
-        toUser =  intent.getParcelableExtra(ChatActivity.USER_KEY)
+        userData()
+        FirebaseService.sharedPref = getSharedPreferences("sharedPref", Context.MODE_PRIVATE)
+        toUser =  intent.getParcelableExtra(UsersActivity.USER_KEY)
+        getFirebaseMessagingToken()
+        FirebaseMessaging.getInstance().subscribeToTopic(TOPIC)
         recyclerView_chat_users.adapter= adapter
         setupActionBar()
         listenForMessages()
+
         this.window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE or WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         SendeBtn.setOnClickListener{
             Log.d(TAG, "To send Message")
@@ -39,6 +58,22 @@ class ChatLogActivity : BaseActivity() {
             }
         }
     }
+    fun getFirebaseMessagingToken() {
+        FirebaseMessaging.getInstance().token
+            .addOnCompleteListener { task: Task<String?> ->
+                if (!task.isSuccessful) {
+                    //Could not get FirebaseMessagingToken
+                    return@addOnCompleteListener
+                }
+                if (null != task.result) {
+                    //Got FirebaseMessagingToken
+                    val firebaseMessagingToken = Objects.requireNonNull(task.result)
+                    FirebaseService.token = firebaseMessagingToken
+                    //Use firebaseMessagingToken further
+                }
+            }
+    }
+
     private  fun listenForMessages(){
         val fromId = FirebaseAuth.getInstance().uid
         val toId = toUser?.user_id
@@ -49,7 +84,7 @@ class ChatLogActivity : BaseActivity() {
                  if (chatMessage != null) {
                      chatMessage.text.let { Log.d(TAG, it) }
                      if (chatMessage.formId == FirebaseAuth.getInstance().uid) {
-                         val currentUser = ChatActivity.currentUser ?: return
+                         val currentUser = UsersActivity.currentUser ?: return
                          ChatFromItem(
                              chatMessage.text, currentUser,
                              chatMessage.timestamp
@@ -100,13 +135,51 @@ class ChatLogActivity : BaseActivity() {
             toId!!,
             time
         )
+       // TOPIC = "/topics/$toId"
         refrence.setValue(chatMessage).addOnSuccessListener {
             Log.d(TAG, "Saved our Chat message : ${refrence.key}")
             editTextChatLog.setText("")
             recyclerView_chat_users.scrollToPosition(adapter.itemCount -1)
         }
         toRefrence.setValue(chatMessage)
+        FirebaseService!!.token?.let {
+            PushNotification(
+                NotificationData(username,chatMessage.text),
+                toUser!!.token
+            ).also {
+                sendNotification(it)
+                //Log.d(TAG, "Message sended : ${refrence.key}")
+            }
+        }
+
     }
+
+    private fun userData() {
+        val uid = FirebaseAuth.getInstance().uid
+        val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
+        ref.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                username = snapshot.child("username").getValue(String::class.java).toString()
+            }
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
+    }
+
+    private fun sendNotification(notification: PushNotification) = CoroutineScope(Dispatchers.IO).launch {
+        try {
+            val response = RetrofitInstance.api.postNotification(notification)
+            if(response.isSuccessful) {
+                Log.d("TAG", "Response: ${Gson().toJson(response)}")
+            } else {
+                Toast(this@ChatActivity).showCustomToast("Notification is not sended", this@ChatActivity)
+            }
+        } catch(e: Exception) {
+            Log.e("TAG", e.toString())
+        }
+    }
+
     private fun setupActionBar() {
         setSupportActionBar(toolBar_Chat_activity)
         val actionBar = supportActionBar

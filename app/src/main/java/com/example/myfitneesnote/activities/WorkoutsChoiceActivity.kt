@@ -1,4 +1,4 @@
-package com.example.myfitneesnote
+package com.example.myfitneesnote.activities
 
 import android.animation.LayoutTransition
 import android.annotation.SuppressLint
@@ -11,6 +11,7 @@ import android.view.View
 import android.view.WindowManager
 import android.view.animation.AnimationUtils
 import androidx.annotation.RequiresApi
+import com.example.myfitneesnote.R
 import kotlinx.android.synthetic.main.activity_workout_choice.*
 
 
@@ -40,7 +41,6 @@ class WorkoutsChoiceActivity : BaseActivity(){
         animat()
         setupActionBar()
         onClick2()
-
     }
 
 
@@ -54,7 +54,7 @@ class WorkoutsChoiceActivity : BaseActivity(){
             listOfAbsWorkouts = arrayListOf("Dumbbell side tilt", "Flat bench lying leg lift", "Side bridge","Superman","Leg lift", "rotating hip lift" )
             listOfSchoulderWorkouts = arrayListOf("Back Press", "Seated single column press", "Side lift","Front lift", "Barbell front lift", "Mitlitärpress behind neck")
             listOfLegWorkouts = arrayListOf("squats", "Dumbbell drop steps", "Dumbbell squats","Hack squats", "Barbell step", "Good morning")
-
+            listOfWorkouts= hashMapOf()
             listOfWorkouts["Chest"] = listOfChestWorkouts
             listOfWorkouts["Biceps"] = listOfBrustWorkouts
             listOfWorkouts["Back"] = listOfTrapsWorkouts
@@ -72,7 +72,7 @@ class WorkoutsChoiceActivity : BaseActivity(){
             listOfAbsWorkouts = arrayListOf("Flat bench lying leg lift", "Side bridge","Superman","Leg lift", "rotating hip lift" )
             listOfSchoulderWorkouts = arrayListOf("Back Press")
             listOfLegWorkouts = arrayListOf("squats")
-
+            listOfWorkouts= hashMapOf()
             listOfWorkouts["Chest"] = listOfChestWorkouts
             listOfWorkouts["Biceps"] = listOfBrustWorkouts
             listOfWorkouts["Back"] = listOfTrapsWorkouts

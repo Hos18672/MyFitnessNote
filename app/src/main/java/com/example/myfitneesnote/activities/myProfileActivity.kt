@@ -1,4 +1,4 @@
-package com.example.myfitneesnote
+package com.example.myfitneesnote.activities
 
 import android.annotation.SuppressLint
 import android.app.ProgressDialog
@@ -11,8 +11,10 @@ import android.view.View
 import android.widget.RadioButton
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import com.example.myfitneesnote.R.*
-import com.example.myfitneesnote.R.drawable.*
+import com.example.myfitneesnote.R.drawable.ic_navigate_before_black_24dp
+import com.example.myfitneesnote.R.id
+import com.example.myfitneesnote.R.layout
+import com.example.myfitneesnote.utils.showCustomToast
 import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
@@ -27,10 +29,6 @@ import com.squareup.picasso.Picasso
 import com.theartofdev.edmodo.cropper.CropImage
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_my_profile.*
-import java.util.*
-
-import com.example.myfitneesnote.utils.showCustomToast
-import com.theartofdev.edmodo.cropper.CropImageView
 
 
 class MyProfileActivity : BaseActivity() {
@@ -139,7 +137,7 @@ class MyProfileActivity : BaseActivity() {
 
                         ref.child(mAuth.currentUser!!.uid).updateChildren(postMap)
 
-                        Toast(this).showCustomToast ("Your picture has been updated successfully.", this)
+                        Toast(this).showCustomToast ("Profile photo is updated.", this)
                         progressDialog.dismiss()
                     } else {
                         progressDialog.dismiss()

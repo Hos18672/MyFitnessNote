@@ -1,4 +1,4 @@
-package com.example.myfitneesnote
+package com.example.myfitneesnote.activities
 
 import android.content.Context
 import android.net.ConnectivityManager
@@ -10,6 +10,7 @@ import android.os.Handler
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import com.example.myfitneesnote.R
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 

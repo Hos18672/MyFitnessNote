@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/backgroundColor"
     android:gravity="center"
-    tools:context=".WorkoutsChoiceActivity">
+    tools:context=".activities.WorkoutsChoiceActivity">
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolBar_workout_activity"
             android:layout_width="match_parent"

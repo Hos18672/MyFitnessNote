@@ -3,11 +3,10 @@ package com.example.myfitneesnote.firebase
 import android.app.Activity
 import android.util.Log
 import android.widget.Toast
-import com.example.myfitneesnote.*
+import com.example.myfitneesnote.activities.SignUpActivity
 import com.example.myfitneesnote.model.User
 import com.example.myfitneesnote.model.Workout
 import com.example.myfitneesnote.utils.Constant
-import com.example.myfitneesnote.utils.showCustomToast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore

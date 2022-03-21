@@ -7,7 +7,7 @@
     android:gravity="center"
     android:orientation="vertical"
     android:background="@color/backgroundColor"
-    tools:context=".MuskelWorkoutsActivity">
+    tools:context=".activities.MuskelWorkoutsActivity">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar_muskelWorkouts"
         android:layout_width="match_parent"

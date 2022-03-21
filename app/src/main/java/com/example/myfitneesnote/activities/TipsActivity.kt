@@ -1,4 +1,4 @@
-package com.example.myfitneesnote
+package com.example.myfitneesnote.activities
 
 import android.annotation.SuppressLint
 import android.os.Build
@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import com.example.myfitneesnote.R
 import kotlinx.android.synthetic.main.activity_tips.*
 
 class TipsActivity : BaseActivity() {

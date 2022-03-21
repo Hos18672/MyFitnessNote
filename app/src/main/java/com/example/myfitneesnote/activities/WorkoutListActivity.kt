@@ -1,4 +1,4 @@
-package com.example.myfitneesnote
+package com.example.myfitneesnote.activities
 
 import android.annotation.SuppressLint
 import android.content.res.Configuration
@@ -6,6 +6,10 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import androidx.annotation.RequiresApi
+import com.example.myfitneesnote.R
+import com.example.myfitneesnote.fragments.WorkoutListFragmentAll
+import com.example.myfitneesnote.fragments.WorkoutListFragmentToday
+import com.example.myfitneesnote.fragments.WorkoutListFragmentTomorrow
 import kotlinx.android.synthetic.main.activity_workouts_list.*
 import kotlinx.android.synthetic.main.activity_workouts_list.btn1
 import kotlinx.android.synthetic.main.activity_workouts_list.btn2

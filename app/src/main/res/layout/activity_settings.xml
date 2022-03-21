@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SettingsActivity"
+    tools:context=".activities.SettingsActivity"
     android:background="@color/backgroundColor">
 
     <androidx.appcompat.widget.Toolbar
@@ -71,7 +71,7 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView2"
-                android:layout_width="370dp"
+                android:layout_width="350dp"
                 android:layout_height="match_parent"
                 android:backgroundTint="@color/backgroundColorNav"
                 app:cardCornerRadius="10dp"
@@ -153,7 +153,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="32dp"
                         android:layout_marginEnd="32dp"
-                        android:layout_marginBottom="8dp"
+                        android:layout_marginBottom="24dp"
                         app:layout_constraintBottom_toTopOf="@+id/btnSave"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent">
@@ -174,7 +174,7 @@
                         android:layout_height="50dp"
                         android:layout_marginStart="32dp"
                         android:layout_marginEnd="32dp"
-                        android:layout_marginBottom="32dp"
+                        android:layout_marginBottom="24dp"
                         android:backgroundTint="@color/colorPrimaryBlue"
                         android:text="@string/Update"
                         android:textColor="@color/black"
@@ -190,7 +190,7 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView3"
-                android:layout_width="370dp"
+                android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="8dp"
@@ -256,7 +256,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="32dp"
                         android:layout_marginEnd="32dp"
-                        android:layout_marginBottom="8dp"
+                        android:layout_marginBottom="24dp"
                         app:layout_constraintBottom_toTopOf="@+id/btnSave2"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent">

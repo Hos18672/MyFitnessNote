@@ -1,4 +1,4 @@
-package com.example.myfitneesnote
+package com.example.myfitneesnote.activities
 
 
 import android.R
@@ -13,6 +13,7 @@ import android.view.MenuItem
 import android.view.animation.AnimationUtils
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityOptionsCompat
@@ -21,8 +22,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myfitneesnote.R.id
 import com.example.myfitneesnote.R.layout
 import com.example.myfitneesnote.adapters.TrainingItemAdapterMain
+import com.example.myfitneesnote.fragments.WorkoutListMainFragment
+import com.example.myfitneesnote.fragments.WorkoutListMainFragment2
 import com.example.myfitneesnote.model.Workout
 import com.example.myfitneesnote.utils.Constant
+import com.example.myfitneesnote.utils.showCustomToast
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.components.YAxis
@@ -39,21 +43,18 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.QuerySnapshot
+import com.squareup.picasso.Picasso
+import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main_layout.*
 import kotlinx.android.synthetic.main.activity_main_layout.view.*
 import kotlinx.android.synthetic.main.nav_header_main.*
-import java.util.*
-import kotlin.collections.ArrayList
-import com.google.firebase.firestore.QuerySnapshot
-import kotlin.collections.HashMap
 import java.time.LocalDate
 import java.time.LocalDate.parse
 import java.time.chrono.ChronoLocalDate
 import java.time.format.DateTimeFormatter
-import android.widget.Toast
-import com.squareup.picasso.Picasso
-import de.hdodenhof.circleimageview.CircleImageView
+import java.util.*
 
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -83,7 +84,11 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             replace(id.root_container_main, trainingsFragment).commit()
         }
 
-
+        if (FirebaseAuth.getInstance().currentUser!!.isEmailVerified){
+             print("email is verified!")
+        }else{
+            Toast(this).showCustomToast("Please verify your email!", this)
+        }
 
 
         if (!checkForInternet(this)) {
@@ -257,7 +262,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         chatMain.setOnClickListener {
             chat_main
             animate(chatMain)
-            val intent = Intent(this, ChatActivity::class.java)
+            val intent = Intent(this, UsersActivity::class.java)
             val options =
                 ActivityOptionsCompat.makeSceneTransitionAnimation(this, chatMain, "chatBtn")
             startActivity(intent, options.toBundle())

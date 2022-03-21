@@ -1,4 +1,4 @@
-package com.example.myfitneesnote
+package com.example.myfitneesnote.activities
 
 
 
@@ -27,6 +27,7 @@ import java.util.concurrent.ThreadLocalRandom
 import android.text.TextUtils
 import android.view.View
 import android.widget.Toast
+import com.example.myfitneesnote.fragments.AddWorkoutFragment
 import kotlin.collections.ArrayList
 
 class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -74,7 +75,7 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
         datePickerTimeline.setInitialDate(year, month, day)
         currentDate = "${year}-${month + 1}-${day}"
 
-        val fragment = AddWorkoutFragment.newInstance(muskelName,workoutName)
+        val fragment = AddWorkoutFragment.newInstance(muskelName, workoutName)
         supportFragmentManager.beginTransaction().apply {
             replace(id.root_container, fragment).commit()
         }
@@ -109,7 +110,7 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
         save_btn.setOnClickListener {
             if (checkForInternet(this)) {
                 createTraining()
-                val fragment = AddWorkoutFragment.newInstance(muskelName,workoutName)
+                val fragment = AddWorkoutFragment.newInstance(muskelName, workoutName)
                 supportFragmentManager.beginTransaction().apply {
                     replace(id.root_container, fragment).commit()
                 }
@@ -201,7 +202,7 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
                     FirestoreClass().createNewTraining(this@AddWorkoutActivity, workout)
                     val recyclerView = findViewById<RecyclerView>(id.recyclerView_add)
                     recyclerView.scrollToPosition(0)
-                    val fragment = AddWorkoutFragment.newInstance(muskelName,workoutName)
+                    val fragment = AddWorkoutFragment.newInstance(muskelName, workoutName)
                     supportFragmentManager.beginTransaction().apply {
                         replace(id.root_container, fragment).commit()
                     }

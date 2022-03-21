@@ -1,4 +1,4 @@
-package com.example.myfitneesnote
+package com.example.myfitneesnote.activities
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -9,14 +9,14 @@ import android.view.View
 import android.widget.RadioButton
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import com.example.myfitneesnote.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_body_info.*
-import kotlinx.android.synthetic.main.activity_my_profile.toolBar_my_profile_activity
 
-class BodyInfo : BaseActivity() {
+class BodyInfoActivity : BaseActivity() {
     private var mFirebaseDatabase: DatabaseReference? = null
     private var mFirebaseInstance: FirebaseDatabase? = null
     var fs  : FirebaseFirestore = FirebaseFirestore.getInstance()
@@ -36,8 +36,9 @@ class BodyInfo : BaseActivity() {
         // add it only if it is not saved to database
         userId = user?.uid
         finish_button.setOnClickListener {
-            onUpdateClicked()
+                onUpdateClicked()
         }
+
     }
     private fun updateUser(age: String, height :String, weight :String, gender: String) {
         // updating the user via child nodes
