@@ -1,3 +1,4 @@
+
 package com.example.myfitneesnote.activities
 
 import android.annotation.SuppressLint
@@ -78,42 +79,42 @@ class ChatActivity : BaseActivity() {
         val fromId = FirebaseAuth.getInstance().uid
         val toId = toUser?.user_id
         val ref   = FirebaseDatabase.getInstance().getReference("/user-messages/$fromId/$toId")
-         ref.addChildEventListener(object : ChildEventListener {
-             override fun onChildAdded(p0: DataSnapshot, p1: String?) {
-                 val chatMessage = p0.getValue(ChatMessage::class.java)
-                 if (chatMessage != null) {
-                     chatMessage.text.let { Log.d(TAG, it) }
-                     if (chatMessage.formId == FirebaseAuth.getInstance().uid) {
-                         val currentUser = UsersActivity.currentUser ?: return
-                         ChatFromItem(
-                             chatMessage.text, currentUser,
-                             chatMessage.timestamp
-                         ).let {
-                             adapter.add(it)
-                         }
-                         recyclerView_chat_users.scrollToPosition(adapter.itemCount -1)
-                     } else {
-                         ChatToItem(
-                             chatMessage.text, toUser!!,
-                             chatMessage.timestamp,intent.getStringExtra("name").toString())
-                             .let { adapter.add(it) }
-                         recyclerView_chat_users.scrollToPosition(adapter.itemCount -1)
-                     }
-                 }
-             }
-             override fun onCancelled(der: DatabaseError) {
-                 TODO("Not yet implemented")
-             }
-             override fun onChildChanged(snap: DataSnapshot, previousChildName: String?) {
-                 TODO("Not yet implemented")
-             }
-             override fun onChildMoved(snap: DataSnapshot, previousChildName: String?) {
-                 TODO("Not yet implemented")
-             }
-             override fun onChildRemoved(snapshot: DataSnapshot) {
-                 TODO("Not yet implemented")
-             }
-         })
+        ref.addChildEventListener(object : ChildEventListener {
+            override fun onChildAdded(p0: DataSnapshot, p1: String?) {
+                val chatMessage = p0.getValue(ChatMessage::class.java)
+                if (chatMessage != null) {
+                    chatMessage.text.let { Log.d(TAG, it) }
+                    if (chatMessage.formId == FirebaseAuth.getInstance().uid) {
+                        val currentUser = UsersActivity.currentUser ?: return
+                        ChatFromItem(
+                            chatMessage.text, currentUser,
+                            chatMessage.timestamp
+                        ).let {
+                            adapter.add(it)
+                        }
+                        recyclerView_chat_users.scrollToPosition(adapter.itemCount -1)
+                    } else {
+                        ChatToItem(
+                            chatMessage.text, toUser!!,
+                            chatMessage.timestamp,intent.getStringExtra("name").toString())
+                            .let { adapter.add(it) }
+                        recyclerView_chat_users.scrollToPosition(adapter.itemCount -1)
+                    }
+                }
+            }
+            override fun onCancelled(der: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+            override fun onChildChanged(snap: DataSnapshot, previousChildName: String?) {
+                TODO("Not yet implemented")
+            }
+            override fun onChildMoved(snap: DataSnapshot, previousChildName: String?) {
+                TODO("Not yet implemented")
+            }
+            override fun onChildRemoved(snapshot: DataSnapshot) {
+                TODO("Not yet implemented")
+            }
+        })
     }
     private fun performSendMessage(){
         val c= Calendar.getInstance()
@@ -135,7 +136,7 @@ class ChatActivity : BaseActivity() {
             toId!!,
             time
         )
-       // TOPIC = "/topics/$toId"
+        // TOPIC = "/topics/$toId"
         refrence.setValue(chatMessage).addOnSuccessListener {
             Log.d(TAG, "Saved our Chat message : ${refrence.key}")
             editTextChatLog.setText("")
@@ -215,5 +216,3 @@ class ChatToItem(val text: String, val user: User, private val time: String, val
     }
 
 }
-
-

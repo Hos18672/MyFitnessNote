@@ -14,6 +14,7 @@ import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import com.example.myfitneesnote.R
 import com.example.myfitneesnote.activities.UsersActivity
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
@@ -25,12 +26,12 @@ class FirebaseService : FirebaseMessagingService() {
         var sharedPref:SharedPreferences? = null
 
         var token:String?
-        get(){
-            return sharedPref?.getString("token","")
-        }
-        set(value){
-            sharedPref?.edit()?.putString("token",value)?.apply()
-        }
+            get(){
+                return sharedPref?.getString("token","")
+            }
+            set(value){
+                sharedPref?.edit()?.putString("token",value)?.apply()
+            }
     }
 
     override fun onNewToken(p0: String) {
@@ -40,26 +41,30 @@ class FirebaseService : FirebaseMessagingService() {
 
     override fun onMessageReceived(p0: RemoteMessage) {
         super.onMessageReceived(p0)
+        if (FirebaseAuth.getInstance().currentUser != null){
+            val intent = Intent(this,UsersActivity::class.java)
+            val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+            val notificationId = Random.nextInt()
 
-        val intent = Intent(this,UsersActivity::class.java)
-        val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-        val notificationId = Random.nextInt()
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+                createNotificationChannel(notificationManager)
+            }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            createNotificationChannel(notificationManager)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            val pendingIntent = PendingIntent.getActivity(this,0,intent,FLAG_ONE_SHOT)
+            val notification = NotificationCompat.Builder(this,CHANNEL_ID)
+                .setContentTitle(p0.data["title"])
+                .setContentText(p0.data["message"])
+                .setSmallIcon(R.drawable.ic_baseline_email_24)
+                .setAutoCancel(true)
+                .setContentIntent(pendingIntent)
+                .build()
+
+            notificationManager.notify(notificationId,notification)
+        }else{
+
         }
 
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        val pendingIntent = PendingIntent.getActivity(this,0,intent,FLAG_ONE_SHOT)
-        val notification = NotificationCompat.Builder(this,CHANNEL_ID)
-            .setContentTitle(p0.data["title"])
-            .setContentText(p0.data["message"])
-            .setSmallIcon(R.drawable.ic_baseline_email_24)
-            .setAutoCancel(true)
-            .setContentIntent(pendingIntent)
-            .build()
-
-        notificationManager.notify(notificationId,notification)
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
