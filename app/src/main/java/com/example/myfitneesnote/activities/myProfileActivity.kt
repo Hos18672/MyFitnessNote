@@ -44,7 +44,6 @@ class MyProfileActivity : BaseActivity() {
     private lateinit var imageProfileMain: CircleImageView
     private lateinit var imageUri : Uri
     private  var myUri: String =""
-
     private  var uploaded :Boolean = false
 
 
@@ -112,11 +111,9 @@ class MyProfileActivity : BaseActivity() {
                 progressDialog.setMessage("Please wait, we are uploading your picture ...")
                 progressDialog.show()
 
-
                 val fileRef = storageReference.child(mAuth.currentUser!!.uid+ ".jpg") //GetFile Extention Buiding Function Kotlin!
                 var uploadTask: StorageTask<*>
                 uploadTask = fileRef.putFile(imageUri!!)
-
                 uploadTask.continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> { task ->
                     if (!task.isSuccessful) {
                         task.exception?.let {
@@ -129,14 +126,10 @@ class MyProfileActivity : BaseActivity() {
                     if (task.isSuccessful) {
                         val downloadUrl = task.result
                         myUri = downloadUrl.toString()
-
                         val ref = FirebaseDatabase.getInstance().reference.child("users")
-
                         val postMap = HashMap<String, Any>()
                         postMap["image"] = myUri
-
                         ref.child(mAuth.currentUser!!.uid).updateChildren(postMap)
-
                         Toast(this).showCustomToast ("Profile photo is updated.", this)
                         progressDialog.dismiss()
                     } else {
@@ -263,7 +256,6 @@ class MyProfileActivity : BaseActivity() {
             name: String,
             uploaded :Boolean
         ) {
-            // updating the user via child nodes
 
             val fs  : FirebaseFirestore = FirebaseFirestore.getInstance()
             if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(name)) {

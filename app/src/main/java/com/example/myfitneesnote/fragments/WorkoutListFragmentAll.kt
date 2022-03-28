@@ -79,13 +79,10 @@ class WorkoutListFragmentAll : Fragment() {
             .document(getCurrentUserID())
             .collection("Workouts")
             .orderBy("date", Query.Direction.DESCENDING)
-
         val fireStoreRecyclerOption : FirestoreRecyclerOptions<Workout> = FirestoreRecyclerOptions.Builder<Workout>()
             .setQuery(query, Workout::class.java)
             .build()
 
-
-        recyclerView = _view.findViewById(R.id.recyclerView_add);
         trainingItemAdapter = TrainingItemAdapter(fireStoreRecyclerOption)
         val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         recyclerView.layoutManager = linearLayoutManager

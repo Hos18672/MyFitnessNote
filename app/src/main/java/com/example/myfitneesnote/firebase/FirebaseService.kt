@@ -20,7 +20,7 @@ import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import kotlin.random.Random
 class FirebaseService : FirebaseMessagingService() {
-
+    lateinit var sharedpref : SharedPreferences
     val CHANNEL_ID = "my_notification_channel"
     companion object{
         var sharedPref:SharedPreferences? = null
@@ -39,6 +39,7 @@ class FirebaseService : FirebaseMessagingService() {
         token = p0
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onMessageReceived(p0: RemoteMessage) {
         super.onMessageReceived(p0)
         if (FirebaseAuth.getInstance().currentUser != null){
@@ -49,18 +50,24 @@ class FirebaseService : FirebaseMessagingService() {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
                 createNotificationChannel(notificationManager)
             }
-
+            sharedpref = getSharedPreferences("chat", MODE_PRIVATE)
+            sharedpref.getBoolean("active",true)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            val pendingIntent = PendingIntent.getActivity(this,0,intent,FLAG_ONE_SHOT)
-            val notification = NotificationCompat.Builder(this,CHANNEL_ID)
-                .setContentTitle(p0.data["title"])
-                .setContentText(p0.data["message"])
-                .setSmallIcon(R.drawable.ic_baseline_email_24)
-                .setAutoCancel(true)
-                .setContentIntent(pendingIntent)
-                .build()
+            if (sharedpref.getBoolean("active",true)){
 
-            notificationManager.notify(notificationId,notification)
+            }else{
+                val pendingIntent = PendingIntent.getActivity(this,0,intent,FLAG_ONE_SHOT)
+                val notification = NotificationCompat.Builder(this,CHANNEL_ID)
+                    .setContentTitle(p0.data["title"])
+                    .setContentText(p0.data["message"])
+                    .setSmallIcon(R.drawable.ic_baseline_email_24)
+                    .setAutoCancel(true)
+                    .setContentIntent(pendingIntent)
+                    .build()
+
+                notificationManager.notify(notificationId,notification)
+            }
+
         }else{
 
         }

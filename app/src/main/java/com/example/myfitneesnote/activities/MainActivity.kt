@@ -64,12 +64,13 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     private val db = FirebaseFirestore.getInstance()
     private lateinit var imageProfileMain: CircleImageView
 
-    @SuppressLint("ResourceAsColor", "NewApi")
+    @SuppressLint("ResourceAsColor", "NewApi", "ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(layout.activity_main)
         nav_view.setNavigationItemSelectedListener(this)
         constraintLayout3.bringToFront()
+
         onClick()
         userData()
         animate()
@@ -193,10 +194,9 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                         if (image.isNotEmpty()){
                             Picasso.get().load(image).into(imageProfileMain)
                         }
-
                     }
                     else{
-                        System.out.println("empty")
+                        println("empty")
                     }
                 }
 
@@ -494,7 +494,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         val listCalories = arrayListOf<Double>()
         val listDates = arrayListOf<Int>()
         var sumCal = 0.0
-
         db.collection(Constant.USERS)
             .document(getCurrentUserId()).collection("Workouts")
             .orderBy("currentDateTime", Query.Direction.DESCENDING).get()
@@ -520,10 +519,8 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                     val sorted = mapListWorkouts.toSortedMap()
                     var j = 0
                     for (i in sorted.keys.toList().indices) {
-
                         val sortedDate = sorted.keys.toList()[i] as LocalDate
                         val subtractedCurrentDate = currentDate.minusDays(size.toLong())
-
                         if (sortedDate > subtractedCurrentDate && currentDate > sortedDate) {
                             listDates.add(j)
                             listCalories.add(sorted.values.toList()[i].toDouble())

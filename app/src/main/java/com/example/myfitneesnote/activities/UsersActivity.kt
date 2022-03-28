@@ -62,7 +62,6 @@ class UsersActivity : BaseActivity() {
         ref.addListenerForSingleValueEvent(object :ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 currentUser = snapshot.getValue(User::class.java)
-                Log.d("LatesMessages", "Current User ${currentUser?.image}")
             }
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")

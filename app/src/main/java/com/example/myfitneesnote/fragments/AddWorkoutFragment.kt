@@ -96,12 +96,9 @@ class AddWorkoutFragment: Fragment() {
             .whereEqualTo("muskelName", muskelName)
             .whereEqualTo("workoutName",workoutName)
             .orderBy("workout_id", Query.Direction.DESCENDING)
-
         val fireStoreRecyclerOption : FirestoreRecyclerOptions<Workout> = FirestoreRecyclerOptions.Builder<Workout>()
             .setQuery(query, Workout::class.java)
             .build()
-
-
         recyclerView = _view.findViewById(R.id.recyclerView_add);
         trainingItemAdapter = TrainingItemAdapterAdd(fireStoreRecyclerOption)
         val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)

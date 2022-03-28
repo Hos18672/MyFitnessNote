@@ -9,13 +9,13 @@
     <RelativeLayout
         android:id="@+id/button_parent"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/button_card_parent"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="25dp"
@@ -48,10 +48,11 @@
                     android:layout_marginStart="30dp"
                     android:layout_marginEnd="20dp"
                     android:ellipsize="end"
-                    android:lines="1"
-                    android:text="This is a custom Toast"
+                    android:gravity="center"
+                    android:lines="2"
+                    android:text="This is a custom Toast plaase check your email to verfiy"
                     android:textColor="#131313"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
             </RelativeLayout>
         </androidx.cardview.widget.CardView>

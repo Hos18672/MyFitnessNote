@@ -11,7 +11,6 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityOptionsCompat
-import at.favre.lib.crypto.bcrypt.BCrypt
 import com.example.myfitneesnote.R
 import com.example.myfitneesnote.firebase.FirebaseService
 import com.example.myfitneesnote.firebase.FirestoreClass
@@ -55,19 +54,13 @@ class SignUpActivity : BaseActivity() {
         val email    : String = signUp_email_input.text.toString().trim{ it <= ' '}
         val password : String = signUp_password_input.text.toString().trim{ it <= ' '}
         val password2: String = signUp_password_input2.text.toString().trim{ it <= ' '}
-        //val Image : String = signUp_image.toString().trim{ it <= ' '}
         val pb = findViewById<ProgressBar>(R.id.progressBar_signUp)
-
         if (password.length < 8 && password2.length < 8){
             showErrorSnackBar("Password's length must be equal to 8 or greater!")
         }else{
             if(validateForm(name, username, email, password, password2) ) {
                 if (password == password2) {
-                    // Toast.makeText(this, "Now we register User",Toast.LENGTH_SHORT).show()
-                    //password encryption
                     pb.visibility = View.VISIBLE
-                    val hashPass = BCrypt.withDefaults().hashToString(12, password.toCharArray())
-                    //showProgressDialog(resources.getString(R.string.please_wait))
                     FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {
@@ -78,7 +71,6 @@ class SignUpActivity : BaseActivity() {
                                     name,
                                     username,
                                     email,
-                                    hashPass,
                                     userToken
                                 )
                                 FirestoreClass().registerUser(this, user)
@@ -96,20 +88,16 @@ class SignUpActivity : BaseActivity() {
                                     if (task.isSuccessful) {
                                         Toast(this).showCustomToast("Please check your email to verify", this)
                                     }else{
-                                        showErrorSnackBar("Verfication email failed!")
+                                        showErrorSnackBar("Email verfication email failed!")
                                     }
                                 }
                                 //  FirebaseAuth.getInstance().signOut()
                                 val intent =
                                     Intent(this@SignUpActivity, BodyInfoActivity::class.java)
-                                intent.flags =
-                                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                 intent.putExtra("user_id", firebaseUser.uid)
                                 intent.putExtra("name", signUpNameInput.text.toString())
-                                intent.putExtra(
-                                    "userName",
-                                    signUpUsernameInput.text.toString()
-                                )
+                                intent.putExtra("userName", signUpUsernameInput.text.toString())
                                 intent.putExtra("email_id", email)
                                 startActivity(intent)
                                 finish()

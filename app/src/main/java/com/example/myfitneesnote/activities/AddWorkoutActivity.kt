@@ -8,12 +8,16 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.text.Editable
+import android.text.TextUtils
 import android.view.MenuItem
+import android.view.View
 import android.widget.EditText
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myfitneesnote.R.*
 import com.example.myfitneesnote.firebase.FirestoreClass
+import com.example.myfitneesnote.fragments.AddWorkoutFragment
 import com.example.myfitneesnote.model.Workout
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
@@ -24,11 +28,6 @@ import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.ThreadLocalRandom
-import android.text.TextUtils
-import android.view.View
-import android.widget.Toast
-import com.example.myfitneesnote.fragments.AddWorkoutFragment
-import kotlin.collections.ArrayList
 
 class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -52,15 +51,24 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
         //  trainingsName = intent.getStringExtra("MuskelName")
         tv_muscle_name.text = muskelName
         tv_workout_name.text = workoutName
-
+/*
         listWeightlessWorkout.add("Dumbbel fly")
         listWeightlessWorkout.add("Flat bench lying leg lift")
         listWeightlessWorkout.add("Side bridge")
         listWeightlessWorkout.add("Superman")
         listWeightlessWorkout.add("Leg lift")
         listWeightlessWorkout.add("Push Up")
-        listWeightlessWorkout.add("rotating hip lift")
+        listWeightlessWorkout.add("rotating hip lift")*/
 
+        listWeightlessWorkout.addAll(arrayListOf(
+            "Dumbbel fly","Flat bench lying leg lift","Side bridge","Superman","Leg lift","Push Up","rotating hip lift",
+            "Decline push-ups", "Incline push-ups","Plyometric push-ups", "slightly easier push-ups", "Walking plank",
+            "Chin ups", "plank taps", "Pull ups","Reverse hand push-ups",
+            "Bridge","High blank", "Low blank", "Quadruped limb raises", "Superman back extension",
+            "Diamond push-ups", "Power triceps extension","Triceps bow", "triceps dips",
+            "Flat bench lying leg lift", "Side bridge","Superman","Leg lift", "rotating hip lift",
+            "Band pull aparts", "Decline push-ups", "Front schoulder raise with band", "Handstand push-ups", "Plank raise tap crunch",
+            "Lunges", "Pistol squats", "squats","Squats jumps"))
         for (i in listWeightlessWorkout){
             if (workoutName == i){
                 weight_ll.visibility = View.GONE
@@ -167,38 +175,21 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
                 if (weight == "0"){
                     weight = "0.01"
                 }
-
                 val workout: Workout
                 val weight2 = weightNum.text.toString()
                 val breakNum = breakNum.text.toString()
                 val set = SetNum.text.toString()
                 val rep = repeatNum.text.toString()
-                var note = workoutNote.text.toString()
+                val note = workoutNote.text.toString()
                 if (validateForm(set, weight2, breakNum, rep)) {
-                    val rnds = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    val _random = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                         ThreadLocalRandom.current().nextDouble(0.0, 0.9)
-                    } else {
-                        TODO("VERSION.SDK_INT < LOLLIPOP")
-                    }
-                    val randnum = 0.0 + rnds
-                    val s = 20 * set.toInt() * rep.toInt() * (2 * 3.0 + randnum * weight.toString().toInt())
+                    } else { TODO("VERSION.SDK_INT < LOLLIPOP") }
+                    val random = 0.0 + _random
+                    val s = 20 * set.toInt() * rep.toInt() * (2 * 3.0 + random * weight.toString().toInt())
                     val calories = s / 200
-                    workout = Workout(
-                        getCurrentUserId(),
-
-                        gymType,
-                        muskelName,
-                        workoutName,
-                        set,
-                        weight2,
-                        breakNum,
-                        rep,
-                        currentDate,
-                        calories,
-                        dateFormatter(currentDate),
-                        note,
-
-                        )
+                    workout = Workout(getCurrentUserId(),gymType,muskelName,workoutName, set, weight2, breakNum,
+                                        rep, currentDate, calories, dateFormatter(currentDate), note)
                     FirestoreClass().createNewTraining(this@AddWorkoutActivity, workout)
                     val recyclerView = findViewById<RecyclerView>(id.recyclerView_add)
                     recyclerView.scrollToPosition(0)

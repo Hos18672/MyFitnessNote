@@ -41,6 +41,7 @@ class LoginActivity : BaseActivity() {
             val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, login_signUpBtn, "tSignUp")
             startActivity(intent, options.toBundle())
         }
+
         sing_in_button.setOnClickListener {
                 loginUser()
         }
@@ -70,13 +71,11 @@ class LoginActivity : BaseActivity() {
         val password: String = login_password_input.text.toString().trim { it <= ' ' }
         val pb = findViewById<ProgressBar>(R.id.progressBar_login)
         if (validateForm(email, password)) {
-            //login_signInText.text = (resources.getString(R.string.please_wait))
-                 //create an instance and create a register a user with email and password
+            //create an instance and create a register a user with email and password
                 pb.visibility = View.VISIBLE
                 login_signInText.text = "Please wait"
                 FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener { task ->
-                        //hideProgressDialog()
                         if (task.isSuccessful) {
                             Toast.makeText(
                                 this@LoginActivity,

@@ -2,11 +2,15 @@
 package com.example.myfitneesnote.activities
 
 import android.annotation.SuppressLint
+import android.app.NotificationManager
 import android.content.Context
+import android.content.SharedPreferences
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import com.example.myfitneesnote.R
 import com.example.myfitneesnote.RetrofitInstance
 import com.example.myfitneesnote.firebase.FirebaseService
@@ -38,18 +42,34 @@ class ChatActivity : BaseActivity() {
     val adapter = GroupAdapter<ViewHolder>()
     var TOPIC = "/topics/myTopic"
     var username = ""
+    var active = false;
+    lateinit var sharedpref : SharedPreferences
+    @RequiresApi(Build.VERSION_CODES.N)
     @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat_users)
         userData()
+        active = true
+        sharedpref = getSharedPreferences("chat", MODE_PRIVATE)
+        sharedpref.edit().putBoolean("active",active).apply()
         FirebaseService.sharedPref = getSharedPreferences("sharedPref", Context.MODE_PRIVATE)
+
+
         toUser =  intent.getParcelableExtra(UsersActivity.USER_KEY)
+
+
         getFirebaseMessagingToken()
         FirebaseMessaging.getInstance().subscribeToTopic(TOPIC)
         recyclerView_chat_users.adapter= adapter
         setupActionBar()
         listenForMessages()
+
+        var noti = NotificationManager.EXTRA_NOTIFICATION_CHANNEL_ID
+        var  notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            notificationManager.areNotificationsPaused()
+        }
 
         this.window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE or WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         SendeBtn.setOnClickListener{
@@ -90,7 +110,7 @@ class ChatActivity : BaseActivity() {
                             chatMessage.text, currentUser,
                             chatMessage.timestamp
                         ).let {
-                            adapter.add(it)
+                                 adapter.add(it)
                         }
                         recyclerView_chat_users.scrollToPosition(adapter.itemCount -1)
                     } else {
@@ -126,17 +146,9 @@ class ChatActivity : BaseActivity() {
         val fromId = FirebaseAuth.getInstance().uid
         // get ID of the Reciever
         val toId = toUser?.user_id
-        // val refrence = FirebaseDatabase.getInstance().getReference("/messages").push()
         val refrence = FirebaseDatabase.getInstance().getReference("/user-messages/$fromId/$toId").push()
         val toRefrence = FirebaseDatabase.getInstance().getReference("/user-messages/$toId/$fromId").push()
-        val chatMessage= ChatMessage(
-            refrence.key!!,
-            text,
-            fromId!!,
-            toId!!,
-            time
-        )
-        // TOPIC = "/topics/$toId"
+        val chatMessage= ChatMessage(refrence.key!!, text, fromId!!, toId!!, time)
         refrence.setValue(chatMessage).addOnSuccessListener {
             Log.d(TAG, "Saved our Chat message : ${refrence.key}")
             editTextChatLog.setText("")
@@ -181,6 +193,34 @@ class ChatActivity : BaseActivity() {
         }
     }
 
+    override fun onStart() {
+        super.onStart()
+        active = true
+        sharedpref.edit().putBoolean("active",active).apply()
+    }
+    override fun onResume() {
+        super.onResume()
+        active = false
+        sharedpref.edit().putBoolean("active",active).apply()
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        active = false
+        sharedpref.edit().putBoolean("active",active).apply()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        active = false
+        sharedpref.edit().putBoolean("active",active).apply()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        active = false
+        sharedpref.edit().putBoolean("active",active).apply()
+    }
     private fun setupActionBar() {
         setSupportActionBar(toolBar_Chat_activity)
         val actionBar = supportActionBar
