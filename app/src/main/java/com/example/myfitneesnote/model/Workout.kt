@@ -6,7 +6,7 @@ data class Workout(
     var workout_id: String = "",
     var GymType: String= "",
     var MuskelName: String= "",
-    var workoutName : String = "",
+    var workoutName: String = "",
     var set: String= "",
     var weight:String= "",
     var BreakTime: String= "",
@@ -14,7 +14,7 @@ data class Workout(
     var currentDateTime: String= "",
     var calorie: Double = 0.0,
     var date: Date? = null,
-    var note : String = "",
-    var expandable : Boolean = false)
+    var note: String = "",
+    var expandable: Boolean = false)
 
 

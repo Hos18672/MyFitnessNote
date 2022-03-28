@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/backgroundColor"
-    tools:context="MainActivity">
+    tools:context=".activities.MainActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar_login_activity"
@@ -75,7 +75,7 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/LoginCv"
-                android:layout_width="match_parent"
+                android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginEnd="32dp"
@@ -101,7 +101,6 @@
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="MissingConstraints">
 
-
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/inputEmail"
                         style="@style/EditText.OutlinedBox"
@@ -110,7 +109,7 @@
                         android:layout_marginStart="32dp"
                         android:layout_marginTop="20dp"
                         android:layout_marginEnd="32dp"
-                        android:layout_marginBottom="16dp"
+                        android:layout_marginBottom="24dp"
                         app:layout_constraintBottom_toTopOf="@+id/inputname2"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -128,17 +127,15 @@
                             android:textStyle="bold" />
                     </com.google.android.material.textfield.TextInputLayout>
 
-
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/inputname2"
                         style="@style/EditText.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="32dp"
-                        android:layout_marginTop="0dp"
                         android:layout_marginEnd="32dp"
-                        android:layout_marginBottom="25dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_marginBottom="16dp"
+                        app:layout_constraintBottom_toTopOf="@+id/sing_in_button"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/inputEmail">
@@ -155,6 +152,54 @@
                             android:textStyle="bold" />
                     </com.google.android.material.textfield.TextInputLayout>
 
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/sing_in_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginBottom="16dp"
+                        android:backgroundTint="@color/colorPrimaryBlue"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:transitionName="tLogin"
+                        app:cardCornerRadius="30dp"
+                        app:cardElevation="0.2dp"
+                        app:cardUseCompatPadding="true"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/inputname2"
+                        app:rippleColor="#98F3FF"
+                        tools:targetApi="lollipop">
+
+                        <ProgressBar
+                            android:id="@+id/progressBar_login"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="-70dp"
+                            android:textSize="15sp"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/login_signInText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:text="@string/sign_in"
+                            android:textAllCaps="true"
+                            android:textColor="@android:color/black"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            tools:layout_editor_absoluteX="174dp"
+                            tools:layout_editor_absoluteY="601dp" />
+                    </com.google.android.material.card.MaterialCardView>
+
 
                     <TextView
                         android:id="@+id/checkbox"
@@ -167,62 +212,13 @@
                         android:visibility="gone" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
             </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/sing_in_button"
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:layout_marginStart="54dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="54dp"
-                android:layout_marginBottom="30dp"
-                android:backgroundTint="@color/colorPrimaryBlue"
-                android:clickable="true"
-                android:focusable="true"
-                android:transitionName="tLogin"
-                app:cardCornerRadius="30dp"
-                app:cardElevation="0.2dp"
-                app:cardUseCompatPadding="true"
-                app:layout_constraintBottom_toTopOf="@+id/constraintLayout10"
-                app:layout_constraintEnd_toEndOf="@+id/LoginCv"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/LoginCv"
-                app:rippleColor="#98F3FF"
-                tools:targetApi="lollipop">
-
-                <ProgressBar
-                    android:id="@+id/progressBar_login"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:layout_marginEnd="-70dp"
-                    android:textSize="15sp"
-                    android:visibility="gone" />
-
-                <TextView
-                    android:id="@+id/login_signInText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:text="@string/sign_in"
-                    android:textAllCaps="true"
-                    android:textColor="@android:color/black"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    tools:layout_editor_absoluteX="174dp"
-                    tools:layout_editor_absoluteY="601dp" />
-            </com.google.android.material.card.MaterialCardView>
-
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout10"
-                android:layout_width="match_parent"
+                android:layout_width="400dp"
                 android:layout_height="120dp"
+                android:layout_marginTop="40dp"
                 android:gravity="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/sing_in_button"

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/backgroundColor"
     android:orientation="vertical"
-    tools:context=".ChatLogActivity">
+    tools:context=".activities.ChatActivity">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar_Chat_activity"
         android:layout_width="match_parent"
@@ -79,7 +79,6 @@
         android:id="@+id/SendeBtn"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_below="@+id/recyclerView_chat_log"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="10dp"

@@ -13,8 +13,8 @@
     <color name="Statusbar">  #2998f9</color>
     <color name="backgroundColor">#F3F2F2</color>
     <color name="backgroundColorNav">#FFFFFF</color>
-    <color name="lightDark">#D6D6D6</color>
-    <color name="lightDark2">#C6EEFF</color>
+    <color name="lightDark">#e3f2fd</color>
+    <color name="lightDark2">#F7FEFF</color>
     <color name="lightDark3">#E3E3E3</color>
     <color name="toolbarColor">#FFFFFF</color>
     <color name="lightBlue">#FFFFFF</color>

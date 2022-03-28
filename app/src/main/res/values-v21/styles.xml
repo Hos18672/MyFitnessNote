@@ -6,6 +6,8 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowAnimationStyle">@style/CustomActivityAnimation</item>
         <!-- enable windows content transitions-->
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+        <item name="android:statusBarColor">@color/white</item>
     </style>
 
     <style name="AppTheme.NoActionBar.NoActionBar" tools:ignore="DuplicateDefinition">
@@ -26,5 +28,12 @@
 
     <style name="TextAppearance.BottomNavigation.Overline" parent="TextAppearance.MaterialComponents.Overline">
         <item name="android:textSize">8sp</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar.Profile" tools:ignore="DuplicateDefinition">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowAnimationStyle">@null</item>
     </style>
 </resources>

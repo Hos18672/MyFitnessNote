@@ -12,8 +12,8 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myfitneesnote.R.*
 import com.example.myfitneesnote.R.drawable.*
+import com.example.myfitneesnote.R.layout
 import com.example.myfitneesnote.model.Workout
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
@@ -42,9 +42,8 @@ class TrainingItemAdapter(options: FirestoreRecyclerOptions<Workout>?) : Firesto
             holder.date.text = training.currentDateTime
             holder.note.text = training.note
             holder.workoutName.text = training.workoutName
-          val isExpandable : Boolean  = training.expandable
-           holder.expandable_layout.layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
-
+            val isExpandable : Boolean  = training.expandable
+            holder.expandable_layout.layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
         var v = 0
         if(isExpandable)
         {

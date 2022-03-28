@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:background="@color/backgroundColor"
-    tools:context="com.example.myfitneesnote.SplashActivity">
+    tools:context="com.example.myfitneesnote.activities.SplashActivity">
     <LinearLayout
         android:id="@+id/splash_lll"
         android:layout_width="match_parent"

@@ -61,7 +61,7 @@
             android:layout_marginStart="8dp"
             android:backgroundTint="@color/textColor"
             android:contentDescription="@string/todo"
-            android:src="@drawable/profile_icon"
+            android:src="@drawable/icon_profile1"
             android:transitionName=""
             android:translationZ="1dp"
             app:layout_constraintStart_toStartOf="parent"
