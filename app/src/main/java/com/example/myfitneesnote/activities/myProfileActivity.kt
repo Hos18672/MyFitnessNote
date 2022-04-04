@@ -35,17 +35,12 @@ class MyProfileActivity : BaseActivity() {
     private var mFirebaseDatabase: DatabaseReference? = null
     private var mFirebaseInstance: FirebaseDatabase? = null
     private lateinit var storageReference : StorageReference
-
     private lateinit var mAuth : FirebaseAuth
     private var userId: String? = null
     private  var getGender : Boolean = true
-
     private lateinit var profileImageView : CircleImageView
-    private lateinit var imageProfileMain: CircleImageView
     private lateinit var imageUri : Uri
     private  var myUri: String =""
-    private  var uploaded :Boolean = false
-
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint("ResourceAsColor")
@@ -77,7 +72,6 @@ class MyProfileActivity : BaseActivity() {
         storageReference = FirebaseStorage.getInstance().reference.child("Profile Pic")
         profileImageView = findViewById(id.ProfileImage)
 
-
         editBtn.setOnClickListener {
             CropImage.activity().setAspectRatio(1,1 ).start(this@MyProfileActivity)
         }
@@ -90,21 +84,15 @@ class MyProfileActivity : BaseActivity() {
      override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE&& resultCode == RESULT_OK && data!= null){
-            var result : CropImage.ActivityResult = CropImage.getActivityResult(data)
+            val result : CropImage.ActivityResult = CropImage.getActivityResult(data)
             imageUri = result.uri
             profileImageView.setImageURI(imageUri)
             uploadImage()
-        }else{
         }
     }
 
     private fun uploadImage() {
         when (imageUri) {
-            null -> Toast.makeText(
-                this,
-                "Please select image first.",
-                Toast.LENGTH_LONG
-            ).show()
             else -> {
                 val progressDialog = ProgressDialog(this)
                 progressDialog.setTitle("Upload picture")
@@ -112,8 +100,8 @@ class MyProfileActivity : BaseActivity() {
                 progressDialog.show()
 
                 val fileRef = storageReference.child(mAuth.currentUser!!.uid+ ".jpg") //GetFile Extention Buiding Function Kotlin!
-                var uploadTask: StorageTask<*>
-                uploadTask = fileRef.putFile(imageUri!!)
+                val uploadTask: StorageTask<*>
+                uploadTask = fileRef.putFile(imageUri)
                 uploadTask.continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> { task ->
                     if (!task.isSuccessful) {
                         task.exception?.let {
@@ -152,12 +140,12 @@ class MyProfileActivity : BaseActivity() {
         }else{
             gender = "Female"
         }
-        if(name!=null  && name !=""  && name !=" "){
-            if(username!=null && username.length > 0 ){
+        if(name !="" && name !=" "){
+            if(username.isNotEmpty()){
                 if (age.toInt() in 16..120 ){
                     if(height.toInt() in 50 ..300){
                         if(weight.toInt() in 20 ..300) {
-                            updateUser(this, username,age,height,weight,gender, name, uploaded)
+                            updateUser(this, username,age,height,weight,gender, name)
                         }else{
                             showErrorSnackBar("Your weight must be between 20 kg and 300 kg!")
                         }
@@ -165,20 +153,19 @@ class MyProfileActivity : BaseActivity() {
                         showErrorSnackBar("Your height must be between 50 cm and 300 cm!")
                     }
                 }else{
-                    showErrorSnackBar("Your age must be between 16 and 120 years Old!")
+                    showErrorSnackBar("Your age must be at least 16 years old!")
                 }
             }else{
-                showErrorSnackBar("Your username can not be empty or blank")
+                showErrorSnackBar("Your username must not be blank or empty!")
             }
         }else{
-            showErrorSnackBar("Your name can not be empty or blank")
+            showErrorSnackBar("Your name must not be blank or empty!")
         }
     }
     private fun setupActionBar() {
         setSupportActionBar(toolBar_my_profile_activity)
         val actionBar = supportActionBar
-        if(actionBar!=null)
-        {
+        if(actionBar!=null) {
             supportActionBar?.setDisplayShowTitleEnabled(false)
             actionBar.setDisplayHomeAsUpEnabled(true)
             actionBar.setHomeAsUpIndicator(ic_navigate_before_black_24dp)
@@ -187,6 +174,7 @@ class MyProfileActivity : BaseActivity() {
             onBackPressed()
         }
     }
+
     private fun userProfileData() {
         val uid = FirebaseAuth.getInstance().uid
         val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
@@ -212,7 +200,7 @@ class MyProfileActivity : BaseActivity() {
                     radio_female_profile.isChecked = true
                 }
                 if(snapshot.hasChild("image")){
-                    var image = snapshot.child("image").value.toString()
+                    val image = snapshot.child("image").value.toString()
                     if (image.isNotEmpty()){
                         Picasso.get().load(image).into(profileImageView)
                     }
@@ -253,10 +241,8 @@ class MyProfileActivity : BaseActivity() {
             height: String,
             weight: String,
             gender: String,
-            name: String,
-            uploaded :Boolean
+            name: String
         ) {
-
             val fs  : FirebaseFirestore = FirebaseFirestore.getInstance()
             if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(name)) {
                 myProfileActivity.mFirebaseDatabase!!.child("username").setValue(username.trim())
@@ -265,7 +251,6 @@ class MyProfileActivity : BaseActivity() {
                 myProfileActivity.mFirebaseDatabase!!.child("height").setValue(height.trim())
                 myProfileActivity.mFirebaseDatabase!!.child("weight").setValue(weight.trim())
                 myProfileActivity.mFirebaseDatabase!!.child("gender").setValue(gender.trim())
-             //   Toast.makeText(myProfileActivity.applicationContext, "Successfully updated user", Toast.LENGTH_SHORT).show()
                 Toast(myProfileActivity).showCustomToast ("Successfully updated", myProfileActivity)
                 fs.collection("users").document(FirebaseAuth.getInstance().currentUser!!.uid).update(
                     "name",name.trim(),
@@ -276,21 +261,8 @@ class MyProfileActivity : BaseActivity() {
                     "gender", gender.trim())
             }
             else
-             //   Toast.makeText(myProfileActivity.applicationContext, "Unable to update user", Toast.LENGTH_SHORT).show()
                 Toast(myProfileActivity).showCustomToast ("Unable to update", myProfileActivity)
         }
     }
 }
 
-/*
-class profileImage(val user: User): Item<ViewHolder>(){
-    override fun bind(viewHolder: ViewHolder, position: Int) {
-        // load our user image into the picture
-        val uri = user.image
-        val targetImageView = viewHolder.itemView.imageView_to_row
-        Picasso.get().load(uri).into(targetImageView)
-    }
-    override fun getLayout(): Int {
-        return R.layout.chat_to_row
-    }
-}*/

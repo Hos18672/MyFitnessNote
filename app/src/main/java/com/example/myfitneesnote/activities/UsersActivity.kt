@@ -5,8 +5,8 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.annotation.RequiresApi
-import androidx.core.app.ActivityOptionsCompat
 import com.example.myfitneesnote.R
 import com.example.myfitneesnote.model.User
 import com.google.firebase.auth.FirebaseAuth
@@ -26,24 +26,32 @@ class UsersActivity : BaseActivity() {
         var currentUser: User?= null
         const val USER_KEY = "USER_KEY"
     }
-
+    var senderId = ""
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_users)
         setupActionBar()
+        updateUser("0")
+        senderId = intent.getStringExtra("user_from_id").toString()
         fetchUsers()
         fetchCurrentUser()
+        window.enterTransition = null
+        window.exitTransition = null
         btnBack_ChatList.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
-            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, btnBack_ChatList, "chatBtn")
-            startActivity(intent, options.toBundle())
-            finish()
+            startActivity(intent)
+            finishAffinity()
         }
     }
+    private fun updateUser(inChat :String) {
+        val uid = FirebaseAuth.getInstance().uid
+        var mFirebaseDatabase = FirebaseDatabase.getInstance().getReference("/users/$uid")
+        mFirebaseDatabase!!.child("inChat").setValue(inChat)
+    }
 
-
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     private fun setupActionBar() {
         setSupportActionBar(toolBar_Chat_activity)
         val actionBar = supportActionBar
@@ -54,6 +62,7 @@ class UsersActivity : BaseActivity() {
         }
         toolBar_Chat_activity.setNavigationOnClickListener{
             onBackPressed()
+            finish()
         }
     }
     private  fun fetchCurrentUser(){
@@ -77,8 +86,9 @@ class UsersActivity : BaseActivity() {
                     Log.d("new massage", it.toString())
                     val user = it.getValue(User::class.java)
                     if(user != null) {
-                        if (user.user_id!= FirebaseAuth.getInstance().uid) {
-                            adapter.add(UserItemViewHolder(user))
+                        var text = user.lastMessage
+                        if (user.user_id != FirebaseAuth.getInstance().uid) {
+                            adapter.add(UserItemViewHolder(user,text,senderId))
                         }
                     }
                 }
@@ -89,23 +99,40 @@ class UsersActivity : BaseActivity() {
                     // intent.putExtra(USER_KEY, userItem.user.username)
                     intent.putExtra(USER_KEY, userItem.user)
                     startActivity(intent)
+
                 }
+                adapter.notifyDataSetChanged()
                 recyclerView_add.adapter = adapter
+
             }
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
         })
     }
+
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    override fun onBackPressed() {
+        super.onBackPressed()
+        updateUser("0")
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finishAffinity()
+        window.exitTransition = null;
+    }
 }
-class UserItemViewHolder(val user: User): Item<ViewHolder>(){
+class UserItemViewHolder(val user: User, val message : String, var sender_id: String): Item<ViewHolder>(){
     override fun bind(viewHolder: ViewHolder, position: Int) {
         viewHolder.itemView.User_name.text= user.username
+        if  (message !="" && user.user_id == sender_id){
+                viewHolder.itemView.received_message_icon.visibility = View.VISIBLE
+                viewHolder.itemView.last_message.text = message
+        }
         if (user.image.isNotEmpty()){
             Picasso.get().load(user.image).into(viewHolder.itemView.UserImage)
         }
         else{
-                System.out.println("empty")
+            System.out.println("empty")
         }
     }
     override fun getLayout(): Int {

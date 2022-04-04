@@ -9,10 +9,13 @@ import com.example.myfitneesnote.R
 import com.example.myfitneesnote.utils.showCustomToast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.*
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_settings.*
+import java.util.regex.Matcher
+import java.util.regex.Pattern
 
 @Suppress("NAME_SHADOWING")
 class SettingsActivity : BaseActivity() {
@@ -36,7 +39,6 @@ class SettingsActivity : BaseActivity() {
         val user = FirebaseAuth.getInstance().currentUser
         // add it only if it is not saved to database
         userId = user?.uid
-
         btnSave.setOnClickListener {
             if (checkForInternet(this)) {
                 onUpdatePasswordClicked()
@@ -56,34 +58,39 @@ class SettingsActivity : BaseActivity() {
 
     private  fun updateUserPassword(currentPassword :String, password1: String,password2: String, email: String){
         if(validatePasswordForm(currentPassword, password1, password2)) {
-            if (password1 == password2) {
-                if (password1.length >= 8 && password2.length >= 8){
-                    val user = FirebaseAuth.getInstance().currentUser
-                    auth.signInWithEmailAndPassword(email, currentPassword)
-                        .addOnCompleteListener(this) { task ->
-                            if (task.isSuccessful) {
-                                // updating the user via child nodes
-                                user!!.updatePassword(password1).addOnCompleteListener { task ->
-                                    if (task.isSuccessful) {
-                                        finish()
-                                        startActivity(intent)
-                                    } else {
-                                        showErrorSnackBar("Update failed")
+            if (isValidPassword(password1)){
+                if (password1 == password2) {
+                    if (password1.length >= 8 && password2.length >= 8){
+                        val user = FirebaseAuth.getInstance().currentUser
+                        auth.signInWithEmailAndPassword(email, currentPassword)
+                            .addOnCompleteListener(this) { task ->
+                                if (task.isSuccessful) {
+                                    // updating the user via child nodes
+                                    user!!.updatePassword(password1).addOnCompleteListener { task ->
+                                        if (task.isSuccessful) {
+                                            finish()
+                                            startActivity(intent)
+                                        } else {
+                                            showErrorSnackBar("Update failed")
+                                        }
                                     }
+                                    Toast.makeText(applicationContext, "Successfully updated user", Toast.LENGTH_SHORT).show()
+                                } else {
+                                    // If sign in fails, display a message to the user.
+                                    showErrorSnackBar("Current Password is wrong")
                                 }
-                                Toast.makeText(applicationContext, "Successfully updated user", Toast.LENGTH_SHORT).show()
-                            } else {
-                                // If sign in fails, display a message to the user.
-                                showErrorSnackBar("Current Password is wrong")
                             }
-                        }
-                }else{
-                    showErrorSnackBar("Password lengths must be greater than 8!")
-                }
+                    }else{
+                        showErrorSnackBar("Password lengths must be greater than 8!")
+                    }
 
+                }else{
+                    showErrorSnackBar("Passwords not match")
+                }
             }else{
-                showErrorSnackBar("Passwords not match")
+                showErrorSnackBar("Your password must contain at least one uppercase, one lowercase letter, and one special character!")
             }
+
         }
     }
 
@@ -138,9 +145,6 @@ class SettingsActivity : BaseActivity() {
         val email = editTextTextEmail.text.toString()
         //Calling updateUser function
         updateUserPassword(currentPassword,pass1, pass2,email)
-
-
-
     }
     private fun userProfileData() {
         val user = FirebaseAuth.getInstance().currentUser
@@ -149,6 +153,13 @@ class SettingsActivity : BaseActivity() {
             email2 = user.email.toString()
 
         }
+    }
+    fun isValidPassword(password: String?): Boolean {
+        val pattern: Pattern
+        val PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{4,}$"
+        pattern = Pattern.compile(PASSWORD_PATTERN)
+        val matcher: Matcher = pattern.matcher(password)
+        return matcher.matches()
     }
     private  fun validatePasswordForm(currentPassword :String, password1: String,password2: String) : Boolean{
         return when{
@@ -168,7 +179,6 @@ class SettingsActivity : BaseActivity() {
             }
         }
     }
-
     private  fun validateEmailForm(email: String,currentPassword :String) : Boolean{
         return when{
             TextUtils.isEmpty(email)->{

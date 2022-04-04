@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="@color/backgroundColor"
     tools:context=".activities.AddWorkoutActivity">
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar_add_workout_activity"
         android:layout_width="match_parent"
@@ -135,8 +134,7 @@
                         app:layout_constraintStart_toStartOf="@+id/constraintLayout"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.171"
-                        app:monthTextColor="@color/textColor"
-                        tools:targetApi="p" />
+                        app:monthTextColor="@color/textColor" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraintLayout"
@@ -200,15 +198,14 @@
                             app:layout_constraintStart_toEndOf="@+id/tv_set"
                             app:layout_constraintTop_toTopOf="@+id/SetNum"
                             app:rippleColor="#4FB9FF"
-                            tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck"
-                            tools:targetApi="p">
-
+                            tools:ignore="TouchTargetSizeCheck">
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
+                                android:contentDescription="@string/todo"
                                 android:src="@drawable/ic_minus"
-                                android:contentDescription="@string/todo" />
+                                tools:ignore="ContentDescription" />
                         </com.google.android.material.card.MaterialCardView>
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -359,7 +356,7 @@
                             app:layout_constraintStart_toEndOf="@+id/btn_break_minus"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_bias="1.0"
-                            tools:ignore="TouchTargetSizeCheck" />
+                            tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
                         <TextView
                             android:id="@+id/textView4"
@@ -618,7 +615,7 @@
                             app:layout_constraintStart_toEndOf="@+id/btn_repeat_minus"
                             app:layout_constraintTop_toTopOf="@+id/textView6"
                             app:layout_constraintVertical_bias="0.0"
-                            tools:ignore="TouchTargetSizeCheck" />
+                            tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
                         <TextView
                             android:id="@+id/textView6"

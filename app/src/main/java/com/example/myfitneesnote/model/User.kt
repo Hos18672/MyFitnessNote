@@ -14,7 +14,9 @@ import android.os.Parcelable
         val age: String="",
         val height: String="",
         val weight: String="",
-        val gender: String=""
+        val gender: String="",
+        val inChat : String="0",
+        val lastMessage : String =""
         ) : Parcelable {
         constructor(parcel: Parcel) : this(
             parcel.readString()!!,
@@ -27,8 +29,9 @@ import android.os.Parcelable
             parcel.readString()!!,
             parcel.readString()!!,
             parcel.readString()!!,
+            parcel.readString()!!,
+            parcel.readString()!!,
             parcel.readString()!!
-
         )
         override fun writeToParcel(parcel: Parcel, flags: Int) = with(parcel) {
             writeString(user_id)
@@ -42,8 +45,8 @@ import android.os.Parcelable
             writeString(height)
             writeString(weight)
             writeString(gender)
-
-
+            writeString(inChat)
+            writeString(lastMessage)
         }
         override fun describeContents(): Int {
             return 0

@@ -10,6 +10,7 @@ import android.widget.RadioButton
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.example.myfitneesnote.R
+import com.example.myfitneesnote.utils.showCustomToast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -29,11 +30,18 @@ class BodyInfoActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_body_info)
         setupActionBar()
+            if (FirebaseAuth.getInstance().currentUser!!.isEmailVerified){
+                println("E-Mail is verified!")
+            }else{
+                Toast(this).showCustomToast("Please check your email for verification", this)
+            }
+
         mFirebaseInstance = FirebaseDatabase.getInstance()
         // get reference to 'users' node
         mFirebaseDatabase = mFirebaseInstance!!.getReference("users")
         val user = FirebaseAuth.getInstance().currentUser
         // add it only if it is not saved to database
+
         userId = user?.uid
         finish_button.setOnClickListener {
                 onUpdateClicked()
@@ -41,7 +49,6 @@ class BodyInfoActivity : BaseActivity() {
 
     }
     private fun updateUser(age: String, height :String, weight :String, gender: String) {
-        // updating the user via child nodes
         if (!TextUtils.isEmpty(age) && !TextUtils.isEmpty(height)&& !TextUtils.isEmpty(weight)&& !TextUtils.isEmpty(gender)) {
             mFirebaseDatabase!!.child(userId!!).child("age").setValue(age)
             mFirebaseDatabase!!.child(userId!!).child("height").setValue(height)
@@ -55,8 +62,6 @@ class BodyInfoActivity : BaseActivity() {
         }
         else
             Toast.makeText(applicationContext, "Unable to update user", Toast.LENGTH_SHORT).show()
-
-
     }
     private fun onUpdateClicked() {
         val age = age_input.text.toString()
@@ -80,22 +85,24 @@ class BodyInfoActivity : BaseActivity() {
                 showErrorSnackBar("Your height must be between 50 cm and 300 cm!")
             }
         }else{
-            showErrorSnackBar("Your age must be between 16 and 120 years Old!")
+            showErrorSnackBar("Your age must be at least 16 years old!")
         }
 
     }
     private fun setupActionBar() {
         setSupportActionBar(toolBar_info_activity)
         val actionBar = supportActionBar
-        if(actionBar!=null)
-        {
+        if(actionBar!=null) {
             supportActionBar?.setDisplayShowTitleEnabled(false)
             actionBar.setDisplayHomeAsUpEnabled(true)
             actionBar.setHomeAsUpIndicator(R.drawable.ic_navigate_before_black_24dp)
         }
         toolBar_info_activity.setNavigationOnClickListener{
-            onBackPressed()
+            startActivity(Intent(this, SignUpActivity::class.java))
         }
+    }
+    override fun onBackPressed() {
+        startActivity(Intent(this, SignUpActivity::class.java))
     }
     fun onRadioButtonClicked(view: View) {
         if (view is RadioButton) {

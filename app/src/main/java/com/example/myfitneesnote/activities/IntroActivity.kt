@@ -32,12 +32,12 @@ class IntroActivity : BaseActivity() {
     }
     private fun onClick(){
         intro_login_button.setOnClickListener {
-            var intent =  Intent(this, LoginActivity::class.java)
+            val intent =  Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
         }
         intro_sign_up_button.setOnClickListener {
-            var intent =  Intent(this, SignUpActivity::class.java)
+            val intent =  Intent(this, SignUpActivity::class.java)
             startActivity(intent)
             finish()
         }

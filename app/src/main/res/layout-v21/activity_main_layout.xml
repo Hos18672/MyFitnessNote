@@ -32,8 +32,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
-            tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck,DuplicateSpeakableTextCheck"
-            tools:targetApi="lollipop" />
+            tools:ignore="TouchTargetSizeCheck" />
 
         <ImageButton
             android:id="@+id/mainImage"
@@ -48,14 +47,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
-            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
-            android:contentDescription="@string/todo"
-            tools:targetApi="lollipop" />
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
     </androidx.constraintlayout.widget.ConstraintLayout>
     <ScrollView
         android:id="@+id/scrollView_main"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:elevation="-1dp"
         android:orientation="horizontal"
         android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -138,6 +136,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="15dp"
+                android:elevation="15dp"
                 android:text="@string/progress"
                 android:textColor="@color/textColor"
                 android:textSize="30sp" />
@@ -156,14 +155,12 @@
                 android:background="@color/backgroundColor"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:targetApi="p">
+                app:layout_constraintTop_toTopOf="parent">
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/backgroundColor"
-                    android:backgroundTint="@color/toolbarColor"
-                    tools:targetApi="lollipop">
+                    android:backgroundTint="@color/toolbarColor">
                     <com.google.android.material.button.MaterialButtonToggleGroup
                         android:id="@+id/toggleButtonsGroup"
                         android:layout_width="match_parent"
@@ -187,7 +184,7 @@
                             android:gravity="center"
                             android:text="@string/_1w"
                             android:textSize="12sp"
-                            tools:ignore="SmallSp,UnusedAttribute,TouchTargetSizeCheck,TextContrastCheck" />
+                            tools:ignore="SmallSp,UnusedAttribute,TouchTargetSizeCheck" />
 
                         <Button
                             android:id="@+id/TwoWeeks"
@@ -271,10 +268,9 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="10dp"
                 android:elevation="15dp"
-                android:text="@string/training_tips"
+                android:text="Training tips"
                 android:textColor="@color/textColor"
-                android:textSize="30sp"
-                tools:targetApi="lollipop" />
+                android:textSize="30sp" />
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -284,8 +280,7 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="5dp"
                 android:translationZ="-4dp"
-                android:gravity="center"
-                tools:targetApi="lollipop">
+                android:gravity="center">
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/EZ_bar_curl"
@@ -305,14 +300,14 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:rippleColor="#4FB9FF"
-                    tools:targetApi="p">
+                    tools:targetApi="lollipop">
 
                     <TextView
                         android:id="@+id/T1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="@string/ez_bar_curl"
+                        android:text="EZ Bar curl"
                         android:textColor="@color/textColor"
                         android:textSize="20sp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -348,7 +343,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:gravity="center"
-                        android:text="@string/one_arm_dumbbell"
+                        android:text="One arm dumbbell "
                         android:textColor="@color/textColor"
                         android:textSize="20sp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -386,14 +381,14 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:rippleColor="#4FB9FF"
-                    tools:targetApi="p">
+                    tools:targetApi="lollipop">
 
                     <TextView
                         android:id="@+id/T3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="@string/dumbbell_curl"
+                        android:text="Dumbbell curl "
                         android:textColor="@color/textColor"
                         android:textSize="20sp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -456,8 +451,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        tools:targetApi="p">
+        app:layout_constraintVertical_bias="1.0">
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/chat_main"
@@ -519,7 +513,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="SpeakableTextPresentCheck"
-        tools:targetApi="lollipop"
-        android:focusable="true" />
+        tools:ignore="SpeakableTextPresentCheck" />
 </androidx.constraintlayout.widget.ConstraintLayout>

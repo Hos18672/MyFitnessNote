@@ -89,7 +89,6 @@ class WorkoutsChoiceActivity : BaseActivity(){
         cv_gym2.startAnimation(ttb)
         val ttb1 = AnimationUtils.loadAnimation(this, R.anim.ttb)
         tv_gymType.startAnimation(ttb1)
-
         llmain.layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
     }
     private  fun onClick2(){

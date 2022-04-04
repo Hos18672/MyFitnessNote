@@ -41,7 +41,6 @@ class TipsActivity : BaseActivity() {
         if (t == "Seated biceps curls"){
             pic.setImageResource(R.drawable.biceps_curl)
         }
-
         sv_tipp.viewTreeObserver
             .addOnScrollChangedListener {
                 if (!sv_tipp.canScrollVertically(-1)) {
@@ -51,7 +50,6 @@ class TipsActivity : BaseActivity() {
                     toolBar_Tipps.elevation = 50f
                 }
             }
-
     }
     private fun setupActionBar() {
         setSupportActionBar(toolBar_Tipps)

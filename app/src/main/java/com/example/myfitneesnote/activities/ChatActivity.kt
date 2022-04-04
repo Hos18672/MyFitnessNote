@@ -1,12 +1,13 @@
-
 package com.example.myfitneesnote.activities
 
 import android.annotation.SuppressLint
 import android.app.NotificationManager
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import android.view.WindowManager
 import android.widget.Toast
@@ -22,6 +23,7 @@ import com.example.myfitneesnote.utils.showCustomToast
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.gson.Gson
 import com.xwray.groupie.GroupAdapter
@@ -43,30 +45,31 @@ class ChatActivity : BaseActivity() {
     var TOPIC = "/topics/myTopic"
     var username = ""
     var active = false;
+    var isInChat = ""
     lateinit var sharedpref : SharedPreferences
     @RequiresApi(Build.VERSION_CODES.N)
     @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat_users)
+        window.enterTransition = null;
+        window.exitTransition = null;
         userData()
         active = true
         sharedpref = getSharedPreferences("chat", MODE_PRIVATE)
         sharedpref.edit().putBoolean("active",active).apply()
         FirebaseService.sharedPref = getSharedPreferences("sharedPref", Context.MODE_PRIVATE)
-
-
+        updateUser("1")
         toUser =  intent.getParcelableExtra(UsersActivity.USER_KEY)
-
-
+        updateUser("1")
+        deleteUserMessage(toUser!!.user_id)
         getFirebaseMessagingToken()
         FirebaseMessaging.getInstance().subscribeToTopic(TOPIC)
         recyclerView_chat_users.adapter= adapter
         setupActionBar()
         listenForMessages()
-
         var noti = NotificationManager.EXTRA_NOTIFICATION_CHANNEL_ID
-        var  notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             notificationManager.areNotificationsPaused()
         }
@@ -78,6 +81,7 @@ class ChatActivity : BaseActivity() {
                 performSendMessage()
             }
         }
+        userProfileData2()
     }
     fun getFirebaseMessagingToken() {
         FirebaseMessaging.getInstance().token
@@ -110,7 +114,7 @@ class ChatActivity : BaseActivity() {
                             chatMessage.text, currentUser,
                             chatMessage.timestamp
                         ).let {
-                                 adapter.add(it)
+                            adapter.add(it)
                         }
                         recyclerView_chat_users.scrollToPosition(adapter.itemCount -1)
                     } else {
@@ -154,19 +158,62 @@ class ChatActivity : BaseActivity() {
             editTextChatLog.setText("")
             recyclerView_chat_users.scrollToPosition(adapter.itemCount -1)
         }
+        updateUserMessage(chatMessage)
+        userProfileData2()
         toRefrence.setValue(chatMessage)
-        FirebaseService!!.token?.let {
-            PushNotification(
-                NotificationData(username,chatMessage.text),
-                toUser!!.token
-            ).also {
-                sendNotification(it)
-                //Log.d(TAG, "Message sended : ${refrence.key}")
+        if( userProfileData2() == "0"){
+            FirebaseService.token?.let {
+                PushNotification(
+                    NotificationData(username,chatMessage.text,fromId),
+                    toUser!!.token
+                ).also {
+                    sendNotification(it)
+                    userProfileData2()
+                }
             }
         }
-
+        userProfileData2()
+    }
+    private fun updateUserMessage(text: ChatMessage) {
+         val mFirebaseDatabase: DatabaseReference? = FirebaseDatabase.getInstance()!!.getReference("/users/${text.toId}")
+        val fs  : FirebaseFirestore = FirebaseFirestore.getInstance()
+        if (!TextUtils.isEmpty(text.text)) {
+           mFirebaseDatabase!!.child("lastMessage").setValue(text.text)
+            fs.collection("users").document(FirebaseAuth.getInstance().currentUser!!.uid).update(
+                "lastMessage",text.text)
+                }
+        val mFirebaseDatabase2: DatabaseReference? = FirebaseDatabase.getInstance()!!.getReference("/users/${FirebaseAuth.getInstance()!!.currentUser!!.uid}")
+        val fs2  : FirebaseFirestore = FirebaseFirestore.getInstance()
+        if (!TextUtils.isEmpty(text.text)) {
+            mFirebaseDatabase2!!.child("lastMessage").setValue(text.text)
+            fs2.collection("users").document(FirebaseAuth.getInstance().currentUser!!.uid).update(
+                "lastMessage",text.text)
+        }
+    }
+    private fun deleteUserMessage(text: String) {
+        val mFirebaseDatabase: DatabaseReference? = FirebaseDatabase.getInstance()!!.getReference("/users/${text}")
+        val fs  : FirebaseFirestore = FirebaseFirestore.getInstance()
+        if (!TextUtils.isEmpty(text)) {
+            mFirebaseDatabase!!.child("lastMessage").setValue("")
+            fs.collection("users").document(FirebaseAuth.getInstance().currentUser!!.uid).update(
+                "lastMessage","")
+        }
     }
 
+    private fun userProfileData2():String {
+        val toId = toUser?.user_id
+        val ref   = FirebaseDatabase.getInstance().getReference("/users/$toId")
+        ref.child("inChat").addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                isInChat = dataSnapshot.value.toString()
+            }
+            override fun onCancelled(error: DatabaseError) {
+                // Failed to read value
+                Log.e("Hey", "Failed to read app title value.", error.toException())
+            }
+        })
+        return isInChat
+    }
     private fun userData() {
         val uid = FirebaseAuth.getInstance().uid
         val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
@@ -190,37 +237,47 @@ class ChatActivity : BaseActivity() {
             }
         } catch(e: Exception) {
             Log.e("TAG", e.toString())
+
+
         }
     }
-
+    private fun updateUser(inChat :String) {
+        val uid = FirebaseAuth.getInstance().uid
+        val mFirebaseDatabase = FirebaseDatabase.getInstance().getReference("/users/$uid")
+        val fs  : FirebaseFirestore = FirebaseFirestore.getInstance()
+        mFirebaseDatabase!!.child("inChat").setValue(inChat)
+    }
     override fun onStart() {
         super.onStart()
-        active = true
-        sharedpref.edit().putBoolean("active",active).apply()
+        updateUser("1")
     }
     override fun onResume() {
         super.onResume()
-        active = false
-        sharedpref.edit().putBoolean("active",active).apply()
+        updateUser("1")
     }
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onBackPressed() {
         super.onBackPressed()
-        active = false
-        sharedpref.edit().putBoolean("active",active).apply()
+        updateUser("0")
+        val intent = Intent(this, UsersActivity::class.java)
+        startActivity(intent)
+        finishAffinity()
+        window.enterTransition = null;
+        window.exitTransition = null;
+        deleteUserMessage(toUser!!.user_id)
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        active = false
-        sharedpref.edit().putBoolean("active",active).apply()
+        updateUser("0")
     }
 
     override fun onStop() {
         super.onStop()
-        active = false
-        sharedpref.edit().putBoolean("active",active).apply()
+        updateUser("0")
     }
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     private fun setupActionBar() {
         setSupportActionBar(toolBar_Chat_activity)
         val actionBar = supportActionBar
@@ -231,6 +288,8 @@ class ChatActivity : BaseActivity() {
         }
         toolBar_Chat_activity.setNavigationOnClickListener{
             onBackPressed()
+            window.enterTransition = null;
+            window.exitTransition = null;
         }
     }
 }

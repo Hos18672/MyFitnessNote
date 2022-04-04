@@ -44,7 +44,8 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:layout_marginTop="10dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                tools:ignore="UseCompoundDrawables">
                 <ImageView
                     android:id="@+id/Picture"
                     android:layout_width="150dp"
@@ -53,13 +54,14 @@
                     android:background="@drawable/ez_bar_curl"
                     android:layout_marginBottom="10dp"
                     tools:layout_editor_absoluteX="165dp"
-                    tools:layout_editor_absoluteY="218dp"/>
+                    tools:layout_editor_absoluteY="218dp"
+                    android:contentDescription="@string/todo" />
                 <TextView
                     android:id="@+id/Topic"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:text="This is a Test"
+                    android:text="@string/test"
                     android:textColor="@color/textColor"
                     android:textSize="35sp"
                     android:textStyle="bold"
@@ -73,7 +75,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="10dp"
                 android:layout_marginStart="20dp"
-                android:text="This is a Test"
+                android:text="@string/test"
                 android:textColor="@color/textColor"
                 android:textSize="20sp" />
 

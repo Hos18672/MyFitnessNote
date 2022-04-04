@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,9 +20,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import java.time.LocalDate
-import java.time.chrono.ChronoLocalDate
 import java.time.format.DateTimeFormatter
-import java.util.*
 
 
 class WorkoutListFragmentTomorrow : Fragment() {
@@ -29,24 +28,25 @@ class WorkoutListFragmentTomorrow : Fragment() {
     private lateinit var trainingItemAdapter : TrainingItemAdapter
     private lateinit var recyclerView: RecyclerView
     private lateinit var _view: View
-
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _view = inflater.inflate(R.layout.workout_list__fragment_tomorrow, container, false)
+        _view = inflater.inflate(R.layout.workout_list__fragment_today, container, false)
         getTrainingsFromFireStore()
         recyclerView = _view.findViewById(R.id.recyclerView_add);
         recyclerView.setHasFixedSize(true);
         return _view
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun getTrainingsFromFireStore(){
         val query : Query = db.collection(Constant.USERS)
             .document(getCurrentUserID())
             .collection("Workouts")
             .orderBy("date", Query.Direction.DESCENDING)
-            .whereEqualTo("currentDateTime", getCurrentDate())
+            .whereEqualTo("currentDateTime", getDateTomorrow())
 
         val fireStoreRecyclerOption : FirestoreRecyclerOptions<Workout> = FirestoreRecyclerOptions.Builder<Workout>()
             .setQuery(query, Workout::class.java)
@@ -80,21 +80,11 @@ class WorkoutListFragmentTomorrow : Fragment() {
     private fun getCurrentUserID() :String{
         return FirebaseAuth.getInstance().currentUser!!.uid
     }
-
-    private  fun getCurrentDate() : String? {
-        val c = Calendar.getInstance()
-        val year = c.get(Calendar.YEAR)
-        val month = c.get(Calendar.MONTH)
-        val day = c.get(Calendar.DAY_OF_MONTH)
-        return  "${year}-${month + 1}-${day+1}"
-    }
-    private fun dateFormatter(date: String): ChronoLocalDate? {
-        val currentDate = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-M-d"))
-        } else {
-            TODO("VERSION.SDK_INT < O")
-        }
-        return currentDate
+     @RequiresApi(Build.VERSION_CODES.O)
+     fun getDateTomorrow(): String {
+         val formatter = DateTimeFormatter.ofPattern("yyyy-M-d")
+        val tomorrow = LocalDate.now().plusDays(1)
+        return tomorrow.format(formatter)
     }
 
 

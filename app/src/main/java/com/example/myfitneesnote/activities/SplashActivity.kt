@@ -12,16 +12,13 @@ import kotlinx.android.synthetic.main.activity_splash.*
 
 @Suppress("DEPRECATION")
 class SplashActivity : BaseActivity() {
-
     lateinit var mAuth: FirebaseAuth
     @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-        //fullscreen()
         animat()
         mAuth = FirebaseAuth.getInstance()
-
         val user = mAuth.currentUser
         Handler().postDelayed({
             val currentUserID = FirestoreClass().getCurrentUserId()

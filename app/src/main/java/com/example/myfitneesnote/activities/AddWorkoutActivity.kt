@@ -20,7 +20,6 @@ import com.example.myfitneesnote.firebase.FirestoreClass
 import com.example.myfitneesnote.fragments.AddWorkoutFragment
 import com.example.myfitneesnote.model.Workout
 import com.google.android.material.navigation.NavigationView
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.vivekkaushik.datepicker.OnDateSelectedListener
 import kotlinx.android.synthetic.main.activity_add_workout.*
@@ -32,11 +31,9 @@ import java.util.concurrent.ThreadLocalRandom
 class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var currentDate: String
-    private var trainingsName: String? = ""
     private var gymType = ""
     var muskelName: String = ""
     var workoutName: String = ""
-    var workout_num = ""
     private  var listWeightlessWorkout : ArrayList<String> = ArrayList()
     @SuppressLint("ResourceAsColor")
     @RequiresApi(Build.VERSION_CODES.P)
@@ -51,14 +48,6 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
         //  trainingsName = intent.getStringExtra("MuskelName")
         tv_muscle_name.text = muskelName
         tv_workout_name.text = workoutName
-/*
-        listWeightlessWorkout.add("Dumbbel fly")
-        listWeightlessWorkout.add("Flat bench lying leg lift")
-        listWeightlessWorkout.add("Side bridge")
-        listWeightlessWorkout.add("Superman")
-        listWeightlessWorkout.add("Leg lift")
-        listWeightlessWorkout.add("Push Up")
-        listWeightlessWorkout.add("rotating hip lift")*/
 
         listWeightlessWorkout.addAll(arrayListOf(
             "Dumbbel fly","Flat bench lying leg lift","Side bridge","Superman","Leg lift","Push Up","rotating hip lift",
@@ -75,7 +64,6 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
             }
         }
 
-        //Set a Start date (Default, 1 Jan 1970)
         val c = Calendar.getInstance()
         val year = c.get(Calendar.YEAR)
         val month = c.get(Calendar.MONTH)
@@ -103,7 +91,6 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
                 //  currentDate = "${year}/${month+1}/${day}"
             }
         })
-        // Disable date
         datePickerTimeline.setDisabledDateColor(Color.BLUE)
         val dates = arrayOf(Calendar.getInstance().time)
         datePickerTimeline.deactivateDates(dates)
@@ -143,20 +130,17 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
                 num--
                 et.text = "$num".toEditable()
             }
-        }else
-        {
+        }else {
             showErrorSnackBar("Fill the field!")
         }
     }
-
     private fun plusButton(et: EditText) {
         if (et.text.toString() != " " && et.text.toString() != ""){
             var num = et.text.toString().toInt()
             num++
             et.text = "$num".toEditable()
         }
-        else
-        {
+        else {
             showErrorSnackBar("Fill the field!")
         }
     }
@@ -169,7 +153,7 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
 
     private fun createTraining() {
         val mFirestore = FirebaseFirestore.getInstance()
-        mFirestore.collection("users").document(getCurrentUserId()).get()
+        mFirestore.collection("users").document(getCurrentUserID()).get()
             .addOnSuccessListener { documentSnapshot ->
                 var weight = documentSnapshot.getString("weight")
                 if (weight == "0"){
@@ -188,8 +172,18 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
                     val random = 0.0 + _random
                     val s = 20 * set.toInt() * rep.toInt() * (2 * 3.0 + random * weight.toString().toInt())
                     val calories = s / 200
-                    workout = Workout(getCurrentUserId(),gymType,muskelName,workoutName, set, weight2, breakNum,
-                                        rep, currentDate, calories, dateFormatter(currentDate), note)
+                    workout = Workout( getCurrentUserID(),
+                                        gymType,
+                                        muskelName,
+                                        workoutName,
+                                        set,
+                                        weight2,
+                                        breakNum,
+                                        rep,
+                                        currentDate,
+                                        calories,
+                                        dateFormatter(currentDate),
+                                        note)
                     FirestoreClass().createNewTraining(this@AddWorkoutActivity, workout)
                     val recyclerView = findViewById<RecyclerView>(id.recyclerView_add)
                     recyclerView.scrollToPosition(0)
@@ -224,14 +218,6 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
             }
         }
     }
-    private fun getCurrentUserId(): String {
-        val currentUser = FirebaseAuth.getInstance().currentUser
-        var currentUserID = ""
-        if (currentUser != null) {
-            currentUserID = currentUser.uid
-        }
-        return currentUserID
-    }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     private fun setupActionBar() {
@@ -250,7 +236,5 @@ class AddWorkoutActivity : BaseActivity(), NavigationView.OnNavigationItemSelect
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         TODO("Not yet implemented")
     }
-
-
 
 }

@@ -8,10 +8,6 @@ abstract class SwipeToDelete(dragDir: Int, swipDir: Int): ItemTouchHelper.Simple
         recyclerView: RecyclerView,
         viewHolder: RecyclerView.ViewHolder,
         target: RecyclerView.ViewHolder
-    ): Boolean {
-       return false
-    }
-    override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-         TODO("Not yet implemented")
-    }
+    ): Boolean { return false }
+    override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) { TODO("Not yet implemented") }
 }

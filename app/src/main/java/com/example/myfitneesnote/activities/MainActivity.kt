@@ -18,15 +18,12 @@ import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.view.GravityCompat
-import androidx.recyclerview.widget.RecyclerView
 import com.example.myfitneesnote.R.id
 import com.example.myfitneesnote.R.layout
-import com.example.myfitneesnote.adapters.TrainingItemAdapterMain
 import com.example.myfitneesnote.fragments.WorkoutListMainFragment
 import com.example.myfitneesnote.fragments.WorkoutListMainFragment2
 import com.example.myfitneesnote.model.Workout
 import com.example.myfitneesnote.utils.Constant
-import com.example.myfitneesnote.utils.showCustomToast
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.components.YAxis
@@ -59,22 +56,20 @@ import java.util.*
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-    private lateinit var trainingItemAdapterMain: TrainingItemAdapterMain
-    private lateinit var recyclerView: RecyclerView
     private val db = FirebaseFirestore.getInstance()
     private lateinit var imageProfileMain: CircleImageView
-
     @SuppressLint("ResourceAsColor", "NewApi", "ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(layout.activity_main)
         nav_view.setNavigationItemSelectedListener(this)
+        window.enterTransition = null
+        window.exitTransition = null
         constraintLayout3.bringToFront()
-
         onClick()
         userData()
         animate()
-      //  getTrainingsFromFireStore()
+        updateUser("0")
         updateNavigationUserDetails()
         btn1.setCardBackgroundColor(Color.parseColor("#00AEFF"))
         tip()
@@ -84,13 +79,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         supportFragmentManager.beginTransaction().apply {
             replace(id.root_container_main, trainingsFragment).commit()
         }
-
-        if (FirebaseAuth.getInstance().currentUser!!.isEmailVerified){
-             print("email is verified!")
-        }else{
-            Toast(this).showCustomToast("Please verify your email!", this)
-        }
-
 
         if (!checkForInternet(this)) {
             Toast.makeText(this, "No internet connection!", Toast.LENGTH_SHORT).show()
@@ -111,8 +99,14 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                     constraintLayout3.elevation = 50f
                 }
             }
-    }
 
+    }
+    private fun updateUser(inChat :String) {
+        val uid = FirebaseAuth.getInstance().uid
+        val mFirebaseDatabase = FirebaseDatabase.getInstance().getReference("/users/$uid")
+        FirebaseFirestore.getInstance()
+        mFirebaseDatabase.child("inChat").setValue(inChat)
+    }
     @SuppressLint("Range")
     private fun tip() {
         val nightModeFlags: Int = applicationContext.resources.configuration.uiMode and
@@ -171,14 +165,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         }
     }
 
-    private fun getCurrentUserId(): String {
-        val currentUser = FirebaseAuth.getInstance().currentUser
-        var currentUserID = ""
-        if (currentUser != null) {
-            currentUserID = currentUser.uid
-        }
-        return currentUserID
-    }
+
 
     private fun userData() {
         val uid = FirebaseAuth.getInstance().uid
@@ -190,7 +177,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                     tv_username.text = username
                     if(snapshot.hasChild("image")){
                         imageProfileMain = findViewById(id.main_drawer_profile_photo)
-                        var image = snapshot.child("image").value.toString()
+                        val image = snapshot.child("image").value.toString()
                         if (image.isNotEmpty()){
                             Picasso.get().load(image).into(imageProfileMain)
                         }
@@ -263,9 +250,10 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             chat_main
             animate(chatMain)
             val intent = Intent(this, UsersActivity::class.java)
-            val options =
-                ActivityOptionsCompat.makeSceneTransitionAnimation(this, chatMain, "chatBtn")
+            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, chatMain, "chatBtn")
             startActivity(intent, options.toBundle())
+            finishAffinity()
+            window.exitTransition = null
         }
         diagramMain.setOnClickListener {
             animate(diagramMain)
@@ -495,7 +483,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         val listDates = arrayListOf<Int>()
         var sumCal = 0.0
         db.collection(Constant.USERS)
-            .document(getCurrentUserId()).collection("Workouts")
+            .document(getCurrentUserID()).collection("Workouts")
             .orderBy("currentDateTime", Query.Direction.DESCENDING).get()
             .addOnCompleteListener { task: Task<QuerySnapshot> ->
                 if (task.isSuccessful) {

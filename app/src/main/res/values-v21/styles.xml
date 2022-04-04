@@ -13,6 +13,7 @@
     <style name="AppTheme.NoActionBar.NoActionBar" tools:ignore="DuplicateDefinition">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="windowActionBar">false</item>
+        <item name="android:windowAnimationStyle">@null</item>
         <item name="windowNoTitle">true</item>
     </style>
     <style name="BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView">

@@ -44,14 +44,12 @@ class TrainingItemAdapter(options: FirestoreRecyclerOptions<Workout>?) : Firesto
             holder.workoutName.text = training.workoutName
             val isExpandable : Boolean  = training.expandable
             holder.expandable_layout.layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
-        var v = 0
-        if(isExpandable)
-        {
+        var v= 0
+        if(isExpandable) {
             v =  View.VISIBLE
             holder.arrow.setBackgroundResource(arrow_up)
         }
-        else
-        {
+        else {
             v= View.GONE
             holder.arrow.setBackgroundResource(arrow_down)
         }
@@ -70,8 +68,6 @@ class TrainingItemAdapter(options: FirestoreRecyclerOptions<Workout>?) : Firesto
            holder.image.setBackgroundResource(done)
        }
     }
-
-
     private fun dateFormatter(date: String): ChronoLocalDate? {
         val currentDate = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-M-d"))
@@ -80,17 +76,15 @@ class TrainingItemAdapter(options: FirestoreRecyclerOptions<Workout>?) : Firesto
         }
         return currentDate
     }
-
     private  fun getCurrentDate() : ChronoLocalDate? {
         val c = Calendar.getInstance()
         val year = c.get(Calendar.YEAR)
         val month = c.get(Calendar.MONTH)
         val day = c.get(Calendar.DAY_OF_MONTH)
-        var currentDate = "${year}-${month + 1}-${day}"
+        val currentDate = "${year}-${month + 1}-${day}"
         return  dateFormatter(currentDate)
     }
-
-
+    @SuppressLint("NotifyDataSetChanged")
     fun deleteItem(i: Int){
         snapshots.getSnapshot(i).reference.delete()
         notifyDataSetChanged()

@@ -11,19 +11,14 @@ import com.example.myfitneesnote.fragments.WorkoutListFragmentAll
 import com.example.myfitneesnote.fragments.WorkoutListFragmentToday
 import com.example.myfitneesnote.fragments.WorkoutListFragmentTomorrow
 import kotlinx.android.synthetic.main.activity_workouts_list.*
-import kotlinx.android.synthetic.main.activity_workouts_list.btn1
-import kotlinx.android.synthetic.main.activity_workouts_list.btn2
 
 class WorkoutListActivity : BaseActivity() {
-
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_workouts_list)
-        //recyclerView = findViewById(R.id.rv_trainings_list)
         toolBar_workouts_activity.elevation = 0f
-        //fullscreen()
         setupActionBar()
         btn1.setCardBackgroundColor(Color.parseColor("#00AEFF"))
         val trainingsFragment = WorkoutListFragmentToday()
@@ -32,8 +27,6 @@ class WorkoutListActivity : BaseActivity() {
         }
         tip()
     }
-
-
     @SuppressLint("Range")
     private fun tip() {
         val nightModeFlags: Int = applicationContext.resources.configuration.uiMode and
@@ -50,7 +43,6 @@ class WorkoutListActivity : BaseActivity() {
                         btn3.setCardBackgroundColor(Color.parseColor("#26282C"))
                         btn1.setCardBackgroundColor(Color.parseColor("#00AEFF"))
                     }
-
                 }
 
                 btn2.setOnClickListener {
@@ -61,7 +53,6 @@ class WorkoutListActivity : BaseActivity() {
                         btn1.setCardBackgroundColor(Color.parseColor("#26282C"))
                         btn3.setCardBackgroundColor(Color.parseColor("#26282C"))
                     }
-
                 }
 
                 btn3.setOnClickListener {
@@ -84,7 +75,6 @@ class WorkoutListActivity : BaseActivity() {
                         btn2.setCardBackgroundColor(Color.WHITE)
                         btn1.setCardBackgroundColor(Color.parseColor("#00AEFF"))
                     }
-
                 }
 
                 btn2.setOnClickListener {
@@ -96,7 +86,6 @@ class WorkoutListActivity : BaseActivity() {
                         btn1.setCardBackgroundColor(Color.WHITE)
                         btn3.setCardBackgroundColor(Color.WHITE)
                     }
-
                 }
                 btn3.setOnClickListener {
                     val trainingsFragment2 = WorkoutListFragmentAll()
@@ -110,7 +99,6 @@ class WorkoutListActivity : BaseActivity() {
                 }
             }
             Configuration.UI_MODE_NIGHT_UNDEFINED -> {
-
             }
         }
     }

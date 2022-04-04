@@ -89,8 +89,8 @@
                         android:layout_marginStart="32dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
-                        android:text="Change password"
-                        android:textSize="20dp"
+                        android:text="@string/change_password"
+                        android:textSize="20sp"
                         app:layout_constraintBottom_toTopOf="@+id/editps0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
@@ -116,7 +116,9 @@
                             android:layout_gravity="start"
                             android:hint="@string/current_password"
                             android:inputType="textPassword"
-                            android:textAlignment="viewStart" />
+                            android:textAlignment="viewStart"
+                            android:textColorHint="#757575"
+                            tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck" />
                     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -139,7 +141,9 @@
                             android:layout_gravity="start"
                             android:hint="@string/new_password"
                             android:inputType="textPassword"
-                            android:textAlignment="viewStart" />
+                            android:textAlignment="viewStart"
+                            android:textColorHint="#757575"
+                            tools:ignore="TextContrastCheck" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -161,7 +165,8 @@
                             android:layout_gravity="start"
                             android:hint="@string/repeat_password"
                             android:inputType="textPassword"
-                            android:textAlignment="viewStart" />
+                            android:textAlignment="viewStart"
+                            tools:ignore="TextContrastCheck" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.button.MaterialButton
@@ -180,6 +185,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
+                        tools:ignore="DuplicateSpeakableTextCheck"
                         tools:targetApi="lollipop" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
@@ -214,8 +220,8 @@
                         android:layout_marginStart="32dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginBottom="8dp"
-                        android:text="Change Email"
-                        android:textSize="20dp"
+                        android:text="@string/change_email"
+                        android:textSize="20sp"
                         app:layout_constraintBottom_toTopOf="@+id/editps1"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
@@ -242,7 +248,9 @@
                             android:layout_gravity="start"
                             android:hint="@string/current_password"
                             android:inputType="textPassword"
-                            android:textAlignment="viewStart" />
+                            android:textAlignment="viewStart"
+                            android:textColorHint="#757575"
+                            tools:ignore="TextContrastCheck" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -264,7 +272,8 @@
                             android:layout_gravity="start"
                             android:hint="@string/email"
                             android:inputType="textEmailAddress"
-                            android:textAlignment="viewStart" />
+                            android:textAlignment="viewStart"
+                            tools:ignore="TextContrastCheck" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.button.MaterialButton

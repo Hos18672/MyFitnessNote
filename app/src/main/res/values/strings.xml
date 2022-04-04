@@ -64,8 +64,8 @@
     <string name="today">Today</string>
     <string name="no_trainings_for_today_available">No trainings for today available</string>
     <string name="date">Date</string>
-    <string name="muscle">Muscle:</string>
-    <string name="sets_">Sets:</string>
+    <string name="muscle">Max muscle:</string>
+    <string name="sets_">Max sets:</string>
     <string name="weight_">Weight:</string>
     <string name="breaktime">Break Time:</string>
     <string name="repeat_">Repeat:</string>
@@ -108,9 +108,7 @@
     <string name="all">All</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="info">Info</string>
     <string name="your_height">Your height</string>
-    <string name="cm">cm</string>
     <string name="female">Female</string>
     <string name="male">Male</string>
     <string name="your_weight">Your weight</string>
@@ -122,5 +120,22 @@
     <string name="Pause">Pause</string>
     <string name="tomorrow">Tomorrow</string>
     <string name="leg">LEG</string>
-
+    <string name="this_is_a_custom_toast_plaase_check_your_email_to_verfiy">This is a custom Toast plaase check your email to verfiy</string>
+    <string name="one">one</string>
+    <string name="two">two</string>
+    <string name="three">three</string>
+    <string name="four">four</string>
+    <string name="five">five</string>
+    <string name="note">Note:</string>
+    <string name="info">Info</string>
+    <string name="finish">finish</string>
+    <string name="workout">Workout</string>
+    <string name="cm">cm</string>
+    <string name="change_password">Change password</string>
+    <string name="gymorhome">GymOrHome</string>
+    <string name="workoutname">Workoutname</string>
+    <string name="dumbbell_curl">Dumbbell curl</string>
+    <string name="one_arm_dumbbell">One arm dumbbell</string>
+    <string name="ez_bar_curl">EZ Bar curl</string>
+    <string name="training_tips">Training tips</string>
 </resources>

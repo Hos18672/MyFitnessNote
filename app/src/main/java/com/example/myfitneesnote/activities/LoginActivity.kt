@@ -11,20 +11,13 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityOptionsCompat
 import com.example.myfitneesnote.R
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_login.*
 
 @Suppress("DEPRECATION")
 class LoginActivity : BaseActivity() {
-    lateinit var GoogleSignInClient: GoogleSignInClient
-    val RC_SIGN_IN: Int = 1
-    lateinit var gso: GoogleSignInOptions
+
     lateinit var auth: FirebaseAuth
-    private val regCode: Int = 123
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint("ResourceAsColor")
@@ -33,7 +26,6 @@ class LoginActivity : BaseActivity() {
         setContentView(R.layout.activity_login)
         setupActionBar()
 
-        auth = Firebase.auth
 
 
         login_signUpBtn.setOnClickListener {
