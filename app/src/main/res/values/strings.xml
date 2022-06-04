@@ -64,7 +64,7 @@
     <string name="today">Today</string>
     <string name="no_trainings_for_today_available">No trainings for today available</string>
     <string name="date">Date</string>
-    <string name="muscle">Max muscle:</string>
+    <string name="muscle">Muscle:</string>
     <string name="sets_">Max sets:</string>
     <string name="weight_">Weight:</string>
     <string name="breaktime">Break Time:</string>

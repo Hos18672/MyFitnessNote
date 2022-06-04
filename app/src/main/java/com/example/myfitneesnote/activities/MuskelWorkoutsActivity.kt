@@ -52,9 +52,9 @@ class MuskelWorkoutsActivity : BaseActivity() {
         listBackWorkoutsImage.addAll(arrayOf(R.drawable.bridge,R.drawable.high_blank,R.drawable.low_blank,R.drawable.quadruped_limb_raises,R.drawable.superman_back_extension))
         // list of Shoulder Workouts
         listShoulderWorkoutsImage.addAll(arrayOf(R.drawable.band_pull_aparts,R.drawable.decline_push_ups,R.drawable.front_schoulder_raise_with_band,R.drawable.handstand_push_ups,R.drawable.plank_raise_tap_crunch))
-        // list of Abs Workouts
-        listLegWorkoutsImage.addAll(arrayOf(R.drawable.lunges,R.drawable.pistol_squats,R.drawable.squats,R.drawable.squats_jumps))
         // list of Leg Workouts
+        listLegWorkoutsImage.addAll(arrayOf(R.drawable.lunges,R.drawable.pistol_squats,R.drawable.squats,R.drawable.squats_jumps))
+        // list of Abs Workouts
         listAbsWorkoutsImage.addAll(arrayOf(R.drawable.flachebank_liegendes_beinheben,R.drawable.seitenbruecke,R.drawable.superman,R.drawable.beinheben,R.drawable.drehendes_hueftheben))
 
         listOfAllWorkouts["Chest"] = listChestWorkoutsImage
@@ -69,18 +69,18 @@ class MuskelWorkoutsActivity : BaseActivity() {
 
     private fun setListGym(){
         // list of Chest Workouts
-        listChestWorkoutsImage.addAll(arrayOf(R.drawable.bench_press_barbell,R.drawable.schraegbankdruecken,R.drawable.parallels_stangenbeugen,R.drawable.kabelbruecken_fliegen,R.drawable.hantelfliegen,R.drawable.liegenstuetzen))
+        listChestWorkoutsImage.addAll(arrayOf(R.drawable.langhantel_bacnkdruecken,R.drawable.bench_press_barbell,R.drawable.schraegbankdruecken,R.drawable.parallels_stangenbeugen,R.drawable.kabelbruecken_fliegen,R.drawable.hantelfliegen,R.drawable.liegenstuetzen))
         listChestWorkoutsImage.addAll(arrayOf(R.drawable.decline_push_ups,R.drawable.incline_push_ups,R.drawable.plyometric_pushups,R.drawable.slightly_easier_push_ups,R.drawable.walking_plank))
         // list of Biceps Workouts
-        listBicepsWorkoutsImage.addAll(arrayOf(R.drawable.hantelausfallschritte,R.drawable.langhantel_bacnkdruecken,R.drawable.hammer_exercise,R.drawable.bizeps_kurzhantel,R.drawable.kabelbiezepsuebung))
-        listBicepsWorkoutsImage.addAll(arrayOf(R.drawable.chin_ups,R.drawable.plank_taps,R.drawable.pull_ups,R.drawable.reverse_hand_push_ups))
+        listBicepsWorkoutsImage.addAll(arrayOf(R.drawable.hammer_exercise,R.drawable.bizeps_kurzhantel,R.drawable.kabelbiezepsuebung))
+        listBicepsWorkoutsImage.addAll(arrayOf(R.drawable.chin_ups,R.drawable.plank_taps,R.drawable.reverse_hand_push_ups))
         // list of Triceps Workouts
         listTricepsWorkoutsImage.addAll(arrayOf(R.drawable.bankdruecken_mit_enger_griff,R.drawable.sitzendes_kurzhanteldruecken,R.drawable.trizepsverlaengerungen,R.drawable.einarmige_tirzepshantelverlaengerungen,R.drawable.plank_up_down))
         listTricepsWorkoutsImage.addAll(arrayOf(R.drawable.diamond_pushups,R.drawable.power_triceps_extension,R.drawable.triceps_bow,R.drawable.triceps_dips))
         // list of Forearms Workouts
         listForearmsWorkoutsImage.addAll(arrayOf(R.drawable.handgelenkuebungen,R.drawable.handgelenkuebungen_2,R.drawable.handgelenkuebung_im_stehen,R.drawable.kurzhantel_handgelenkdrehung))
         // list of Back Workouts
-        listBackWorkoutsImage.addAll(arrayOf(R.drawable.barbell_pronation_bent_over,R.drawable.latziehen,R.drawable.senkrechtes_rudern,R.drawable.kurzhantel_handgelenkdrehung))
+        listBackWorkoutsImage.addAll(arrayOf(R.drawable.pull_ups,R.drawable.barbell_pronation_bent_over,R.drawable.latziehen,R.drawable.senkrechtes_rudern,R.drawable.kurzhantel_handgelenkdrehung))
         listBackWorkoutsImage.addAll(arrayOf(R.drawable.bridge,R.drawable.high_blank,R.drawable.low_blank,R.drawable.quadruped_limb_raises,R.drawable.superman_back_extension))
         // list of Shoulder Workouts
         listShoulderWorkoutsImage.addAll(arrayOf(R.drawable.rueckendruecken,R.drawable.sitzendes_kurzhanteldruecken,R.drawable.seitenheben,R.drawable.frontheben,R.drawable.barbel_front_lift,R.drawable.militaerpresse_hinter_dem_nacken))
@@ -88,7 +88,7 @@ class MuskelWorkoutsActivity : BaseActivity() {
         // list of Abs Workouts
         listAbsWorkoutsImage.addAll(arrayOf(R.drawable.dumbell_side_tilt,R.drawable.flachebank_liegendes_beinheben,R.drawable.seitenbruecke,R.drawable.superman,R.drawable.beinheben,R.drawable.drehendes_hueftheben))
         // list of Leg Workouts
-        listLegWorkoutsImage.addAll(arrayOf(R.drawable.kniebeugen,R.drawable.dumbbel_drop_steps,R.drawable.squat_dumbbell,R.drawable.hackkniebeugen,R.drawable.barbel_step,R.drawable.good_morning))
+        listLegWorkoutsImage.addAll(arrayOf(R.drawable.hantelausfallschritte,R.drawable.kniebeugen,R.drawable.dumbbel_drop_steps,R.drawable.squat_dumbbell,R.drawable.hackkniebeugen,R.drawable.barbel_step,R.drawable.good_morning))
         listLegWorkoutsImage.addAll(arrayOf(R.drawable.lunges,R.drawable.pistol_squats,R.drawable.squats_jumps))
 
         listOfAllWorkouts["Chest"] = listChestWorkoutsImage

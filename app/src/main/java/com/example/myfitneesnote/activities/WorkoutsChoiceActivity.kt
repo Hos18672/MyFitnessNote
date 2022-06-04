@@ -43,18 +43,17 @@ class WorkoutsChoiceActivity : BaseActivity(){
         onClick2()
     }
 
-
     private fun setlist(name : String){
         if (name == "GYM"){
-            listOfChestWorkouts = arrayListOf("Bench press", "Inclined Bench Press", "Parallel bar flexion", "Standing Cable Fly", "Dumbbell fly", "Push Up","Decline push-ups", "Incline push-ups","Plyometric push-ups", "slightly easier push-ups", "Walking plank")
-            listOfBicepsWorkouts = arrayListOf("Dumbbell exercises", " Lang Barbell exercises", "Hammer exercise","Short dumbbell", "Cable bicep exercise","Chin ups", "plank taps", "Pull ups","Reverse hand push-ups")
-            listOfBackWorkouts = arrayListOf("Cross lift", "Lat pull", "Barbell shrug","Dumbbell shrug", "Bridge","High blank", "Low blank", "Quadruped limb raises", "Superman back extension")
+            listOfChestWorkouts = arrayListOf("Lang Barbell exercises","Bench press", "Inclined Bench Press", "Parallel bar flexion", "Standing Cable Fly", "Dumbbell fly", "Push Up","Decline push-ups", "Incline push-ups","Plyometric push-ups", "slightly easier push-ups", "Walking plank")
+            listOfBicepsWorkouts = arrayListOf("Hammer exercise","Short dumbbell", "Cable bicep exercise","Chin ups", "plank taps", "Reverse hand push-ups")
+            listOfBackWorkouts = arrayListOf("Pull ups","Cross lift", "Lat pull", "Barbell shrug","Dumbbell shrug", "Bridge","High blank", "Low blank", "Quadruped limb raises", "Superman back extension")
             listOfForarmsWorkouts = arrayListOf("Wrist exercise", "Wrist exercise", "Wrist exercise standing", "Dumbbell wrist exercise")
-            listOfTricepsWorkouts = arrayListOf("Bench press with close grip one", "Press down", "tricep extensions", "one-arm triceps extensions","Plank Up-Down","Diamond push-ups", "Power triceps extension","Triceps bow", "triceps dips")
+            listOfTricepsWorkouts = arrayListOf("Bench press with close grip one", "Dumbbel Overhead", "tricep extensions", "one-arm triceps extensions","Plank Up-Down","Diamond push-ups", "Power triceps extension","Triceps bow", "triceps dips")
             listOfAbsWorkouts = arrayListOf("Dumbbell side tilt", "Flat bench lying leg lift", "Side bridge","Superman","Leg lift", "rotating hip lift" )
             listOfSchoulderWorkouts = arrayListOf("Back Press", "Seated single column press", "Side lift","Front lift", "Barbell front lift",
                 "Mitlitärpress behind neck","Band pull aparts", "Decline push-ups", "Front schoulder raise with band", "Handstand push-ups", "Plank raise tap crunch")
-            listOfLegWorkouts = arrayListOf("squats", "Dumbbell drop steps", "Dumbbell squats","Hack squats", "Barbell step", "Good morning","Lunges", "Pistol squats","Squats jumps")
+            listOfLegWorkouts = arrayListOf("Dumbbell exercises","squats", "Dumbbell drop steps", "Dumbbell squats","Hack squats", "Barbell step", "Good morning","Lunges", "Pistol squats","Squats jumps")
             listOfWorkouts= hashMapOf()
             listOfWorkouts["Chest"] = listOfChestWorkouts
             listOfWorkouts["Biceps"] = listOfBicepsWorkouts

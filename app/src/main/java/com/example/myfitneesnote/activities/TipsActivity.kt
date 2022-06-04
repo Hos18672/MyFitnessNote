@@ -30,13 +30,13 @@ class TipsActivity : BaseActivity() {
         topic.text = t
         disc.text  = d
         if (t == "EZ Bar Curl"){
-            pic.setImageResource(R.drawable.ez_bar_curl)
+            pic.setImageResource(R.drawable.ez_barl_curl)
         }
         if (t == "Dumbbell Curl"){
             pic.setImageResource(R.drawable.curl_dumbell)
         }
         if (t == "One arm dumbbell Curl"){
-            pic.setImageResource(R.drawable.one_arm_dumbell)
+            pic.setImageResource(R.drawable.arm_dumbell)
         }
         if (t == "Seated biceps curls"){
             pic.setImageResource(R.drawable.biceps_curl)
